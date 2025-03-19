@@ -101,35 +101,3 @@ https://nixos.org/guides/nix-pills/
   $ sudo nix-channel --list
   nixos https://nixos.org/channels/nixos-24.05
   ```
-
-## Nix Language
-
-- The **Nix language** is used to write expressions that produce **derivations**.
-- The `nix-build` tool is used to **build derivations** from an **expression**.
-
-> [!IMPORTANT]
-> In **Nix**, everything is an **expression**, there are **no statements**.
-> This is common in **functional languages**.
-
-> [!IMPORTANT]
-> Values in **Nix** are **immutable**.
-
-- `nix repl` is a simple command line tool for playing with the **Nix language**.
-
-### Value types
-
-### Identifier
-
-### Strings
-
-### Lists
-
-### Attribute sets
-
-### If expressions
-
-### Let expressions
-
-### With expression
-
-### Laziness
