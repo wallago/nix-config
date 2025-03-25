@@ -31,6 +31,7 @@ Each subdirectory represents a "feature" that can be toggled in individual home-
 - **`modules/`** – Custom NixOS modules.
 - **`overlay/`** – Patches and version overrides for packages, accessible via `nix build`.
 - **`hydra.nix`** - Hydra configuration to build and test packages and NixOS configurations automatically.
+- **`shell.nix`** – Defines a reproducible development environment for bootstrapping and tool setup.
 - **`pkgs/`** – Custom packages, available through this Flake's overlay or via NUR.
 - **`doc/`** – Miscellaneous documentation related to Nix.
 
@@ -50,7 +51,9 @@ This layout ensures modularity, reusability, and ease of maintenance across mult
 For deployment secrets, I'm using the awesome `[sops-nix](https://github.com/Mic92/sops-nix)`.\
 All secrets are encrypted with my personal **PGP key** (stored on a [YubiKey](https://www.yubico.com/)), as well as the relevant systems's SSH host keys.
 
----
+## Misc
+
+- `alejandra` – A formatting tool, across different system architectures. This ensures consistent code formatting across all platforms.
 
 ---
 

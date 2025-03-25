@@ -54,142 +54,32 @@
       inherit lib;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
-
-      # Overlays in Nix are functions that modify or extend the Nixpkgs package set.
       overlays = import ./overlays { inherit inputs outputs; };
-
-      # Hydra is a continuous integration and build system designed specifically for Nix-based projects.
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
-
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      # devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      # formatter = forEachSystem (pkgs: pkgs.alejandra);
-      #
-      # nixosConfigurations = {
-      #   # Main desktop
-      #   atlas = lib.nixosSystem {
-      #     modules = [ ./hosts/atlas ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Personal laptop
-      #   pleione = lib.nixosSystem {
-      #     modules = [ ./hosts/pleione ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Core server (Vultr)
-      #   alcyone = lib.nixosSystem {
-      #     modules = [ ./hosts/alcyone ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Build and game server (Oracle)
-      #   celaeno = lib.nixosSystem {
-      #     modules = [ ./hosts/celaeno ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Build and game server (Magalu Cloud)
-      #   taygeta = lib.nixosSystem {
-      #     modules = [ ./hosts/taygeta ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Media server (RPi)
-      #   merope = lib.nixosSystem {
-      #     modules = [ ./hosts/merope ];
-      #     specialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      # };
-      #
-      # homeConfigurations = {
-      #   # Standalone HM only
-      #   # Work laptop
-      #   "gabriel@electra" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/electra.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #
-      #   # Main desktop
-      #   "gabriel@atlas" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/atlas.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Personal laptop
-      #   "gabriel@pleione" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/pleione.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Core server (Vultr)
-      #   "gabriel@alcyone" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/alcyone.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Build and game server (Oracle)
-      #   "gabriel@celaeno" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/celaeno.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.aarch64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Build and game server (Magalu Cloud)
-      #   "gabriel@taygeta" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/taygeta.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.aarch64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   # Media server (RPi)
-      #   "gabriel@merope" = lib.homeManagerConfiguration {
-      #     modules = [
-      #       ./home/gabriel/merope.nix
-      #       ./home/gabriel/nixpkgs.nix
-      #     ];
-      #     pkgs = pkgsFor.aarch64-linux;
-      #     extraSpecialArgs = {
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      # };
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      formatter = forEachSystem (pkgs: pkgs.alejandra);
+
+      nixosConfigurations = {
+        home = lib.nixosSystem {
+          modules = [ ./hosts/home ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+      };
+
+      homeConfigurations = {
+        "gabriel@home" = lib.homeManagerConfiguration {
+          modules = [
+            ./home/hugo/home.nix
+            ./home/hugo/nixpkgs.nix
+          ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
+      };
     };
 }
