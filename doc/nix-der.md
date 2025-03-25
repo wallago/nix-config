@@ -101,3 +101,107 @@ nix-repl> builtins.toString d
 > During Realise/Build time.\
 > The `.drv` from the derivation set is built, first building `.drv` inputs (build dependencies).\
 > This is achieved with `nix-store -r`.
+
+## Using a script as a builder
+
+`builder.sh`:
+
+```sh
+declare -xp
+echo foo > $out
+```
+
+So with the usual trick, we can refer to `bin/bash` and create our **derivation**:
+
+```nix
+nix-repl> :l <nixpkgs>
+Added 3950 variables.
+nix-repl> "${bash}"
+"/nix/store/ihmkc7z2wqk3bbipfnlh0yjrlfkkgnv6-bash-4.2-p45"
+nix-repl> d = derivation { name = "foo"; builder = "${bash}/bin/bash"; args = [ ./builder.sh ]; system = builtins.currentSystem; }
+nix-repl> :b d
+[1 built, 0.0 MiB DL]
+
+this derivation produced the following outputs:
+  out -> /nix/store/gczb4qrag22harvv693wwnflqy7lx5pb-foo
+```
+
+## The builder environment
+
+We can use `nix-store --read-log` to see the logs our builder produced:
+
+```shell
+$ nix-store --read-log /nix/store/gczb4qrag22harvv693wwnflqy7lx5pb-foo
+[...]
+```
+
+## Packaging a simple C program
+
+`simple.c`:
+
+```c
+void main() {
+    puts("Simple!");
+}
+```
+
+`simple_builder.sh`:
+
+```sh
+export PATH="$coreutils/bin:$gcc/bin"
+mkdir $out
+gcc -o $out/simple $src
+```
+
+- We added two new attributes to the derivation call, `gcc` and `coreutils`.
+  - In `gcc = gcc;`, the left is the **derivation set**, and the right is the `gcc` **derivation** from **nixpkgs**.
+  - The same applies for `coreutils`.
+- We also added the `src` **attribute**, nothing magical --- it's just a name, to which the path `./simple.c` is assigned.
+- We then create `$out` as a directory and place the binary inside it.\
+  `gcc` is found via the `PATH` environment variable, but it could equivalently be referenced explicitly using `$gcc/bin/gcc`.
+
+```nix
+nix-repl> :l <nixpkgs>
+nix-repl> simple = derivation { name = "simple"; builder = "${bash}/bin/bash"; args = [ ./simple_builder.sh ]; gcc = gcc; coreutils = coreutils; src = ./simple.c; system = builtins.currentSystem; }
+nix-repl> :b simple
+this derivation produced the following outputs:
+
+  out -> /nix/store/ni66p4jfqksbmsl616llx3fbs1d232d4-simple
+```
+
+> [!TIP]
+> Every **attribute** in the set passed to **derivation** will be converted to a `string` and passed to the **builder** as an **environment variable.**\
+> This is how the **builder** gains access to `coreutils` and `gcc`.\
+> The **derivations** evaluate to their `output` paths, and appending `/bin` to these leads us to their binaries.\
+> The same goes for the `src` variable.\
+> `$src` is the path to `simple.c` in the nix store.
+
+## Enough of `nix repl`
+
+`simple.nix`:
+
+```nix
+let
+  pkgs = import <nixpkgs> { };
+in
+derivation {
+  name = "simple";
+  builder = "${pkgs.bash}/bin/bash";
+  args = [ ./simple_builder.sh ];
+  inherit (pkgs) gcc coreutils;
+  src = ./simple.c;
+  system = builtins.currentSystem;
+}
+```
+
+- `import <nixpkgs> {}` is calling two functions, not one. \
+  Reading it as `(import <nixpkgs>) {}` makes this clearer.\
+  The value returned by the `nixpkgs` function is a set; more specifically, it's a set of derivations.\
+  Calling `import <nixpkgs> {}` into a `let` creates the local variable `pkgs` and brings it into scope.
+
+`nix-build` does two jobs:
+
+- `nix-instantiate`: parse and evaluate `simple.nix` and return the `.drv` file corresponding to the parsed derivation set
+- `nix-store -r`: realise the `.drv` file, which actually builds it.
+
+Finally, it creates the symlink.
