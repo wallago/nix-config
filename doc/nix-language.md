@@ -149,7 +149,7 @@ nix-repl> let a = 4; b = a + 5; in b
 9
 ```
 
-## With expression
+## `With` expression
 
 - It takes an attribute set and includes symbols from it in the scope of the inner expression.
 - Only valid identifiers from the keys of the set will be included.
