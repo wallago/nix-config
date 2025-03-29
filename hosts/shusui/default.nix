@@ -5,11 +5,6 @@
     inputs.disko.nixosModules.disko
     ./hardware-configuration.nix
     ./disko-configuration.nix
+    ../common
   ];
-
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-  };
 }
