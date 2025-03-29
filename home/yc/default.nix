@@ -13,20 +13,23 @@
       FLAKE = "$HOME/Documents/NixConfig";
     };
 
+    # Ensures that user data survives across system reboots by storing it in /persist
     persistence = {
       "/persist/${config.home.homeDirectory}" = {
         defaultDirectoryMethod = "symlink";
         directories = [
+          # Common user data directories
           "Documents"
           "Downloads"
           "Pictures"
           "Videos"
+          # Stores user scripts and executables
           ".local/bin"
-          ".local/share/nix" # trusted settings and repl history
+          # Nix-related user data, including trusted settings and repl history
+          ".local/share/nix"
         ];
         allowOther = true;
       };
     };
   };
-
 }
