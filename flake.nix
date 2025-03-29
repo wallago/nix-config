@@ -89,6 +89,7 @@
       # NixOS system configuration
       nixosConfigurations = {
         shusui = lib.nixosSystem {
+          # system = "x86_64-linux";
           modules = [ ./hosts/shusui ];
           specialArgs = {
             inherit inputs outputs;
