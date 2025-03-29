@@ -90,8 +90,6 @@
       nixosConfigurations = {
         shusui = lib.nixosSystem {
           modules = [
-            # Includes the Disko module from the disko input in your NixOS configuration
-            inputs.disko.nixosModules.disko
             ./hosts/shusui
           ];
           specialArgs = {
