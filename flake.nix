@@ -92,21 +92,10 @@
           modules = [
             ./hosts/shusui
           ];
-          specialArgs = {
-            inherit inputs outputs;
-          };
-        };
-      };
-
-      # Home Manager configuration
-      homeConfigurations = {
-        "yc@shusui" = lib.homeManagerConfiguration {
-          modules = [
-            # ./home/yc/home.nix
-            ./home/yc/nixpkgs.nix
+          extraModules = [
+            ./home/yc
           ];
-          # pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = {
+          specialArgs = {
             inherit inputs outputs;
           };
         };

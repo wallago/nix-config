@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports = [
     # Includes the Disko module from the disko input in NixOS configuration

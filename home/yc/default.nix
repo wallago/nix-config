@@ -2,62 +2,65 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
+let
+  username = "yc";
+in
 {
   imports = [
-    # Includes the Impermanence module from the impermanence input in NixOS configuration
-    inputs.impermanence.nixosModules.home-manager.impermanence
+    # Includes the Home Manager module from the home-manager input in NixOS configuration
+    inputs.home-manager.nixosModules.home-manager
   ];
 
-  nix = {
-    package = lib.mkDefault pkgs.nix;
-    settings = {
-      experimental-features = [
-        # Enables the new Nix CLI commands
-        "nix-command"
-        # Enables Nix flakes
-        "flakes"
-        # The hash is based on the output rather than the inputs.
-        "ca-derivations"
-      ];
-      warn-dirty = false;
-    };
-  };
+  home-manager = {
+    users.${username} = {
+      nix = {
+        package = lib.mkDefault pkgs.nix;
+        settings = {
+          experimental-features = [
+            # Enables the new Nix CLI commands
+            "nix-command"
+            # Enables Nix flakes
+            "flakes"
+            # The hash is based on the output rather than the inputs.
+            "ca-derivations"
+          ];
+          warn-dirty = false;
+        };
+      };
 
-  systemd.user.startServices = "sd-switch";
+      programs = {
+        home-manager.enable = true;
+        git.enable = true;
+      };
 
-  programs = {
-    home-manager.enable = true;
-    git.enable = true;
-  };
+      systemd.user.startServices = "sd-switch";
 
-  home = {
-    username = "yc";
-    homeDirectory = "/home/${config.home.username}";
-    sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables = {
-      FLAKE = "$HOME/Documents/NixConfig";
-    };
-    password = "yc";
-
-    # Ensures that user data survives across system reboots by storing it in /persist
-    persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        defaultDirectoryMethod = "symlink";
-        directories = [
-          # Common user data directories
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Videos"
-          # Stores user scripts and executables
-          ".local/bin"
-          # Nix-related user data, including trusted settings and repl history
-          ".local/share/nix"
-        ];
-        allowOther = true;
+      home = {
+        username = "${username}";
+        homeDirectory = "/home/${username}";
+        sessionPath = [ "$HOME/.local/bin" ];
+        sessionVariables = {
+          FLAKE = "$HOME/Documents/NixConfig";
+        };
+        stateVersion = "${config.system.nixos.release}";
       };
     };
+
+    useUserPackages = true;
+    useGlobalPkgs = true;
+  };
+
+  users.mutableUsers = false;
+  users.users."${username}" = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+    ];
+    password = "${username}";
   };
 }
