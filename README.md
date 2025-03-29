@@ -33,7 +33,7 @@ This section explains the inputs used in our NixOS flake configuration.
 
 ## NixOS system configuration
 
-- **Shusui**
+- **shusui**
   | Component | Details |
   | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
   | **Power Supply (PSU)** | Corsair RMX Series, RM750x, 750W, 80+ Gold Certified |
@@ -43,5 +43,9 @@ This section explains the inputs used in our NixOS flake configuration.
   | **RAM (Total: 32GB)** | - 2× Corsair Vengeance LPX 16GB (2×8GB) DDR4 2400MHz CL14 <br> - 2× Corsair Vengeance LPX 16GB (2×8GB) DDR4 3200MHz CL16 |
   | **Case** | Corsair 5000D |
   | **Cooling** | Corsair iCUE H100i RGB PRO XT Liquid CPU Cooler |
+
+## Home Manager configuration
+
+- **yc**
 
 ## Project Architecture
