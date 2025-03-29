@@ -10,7 +10,7 @@
   ];
 
   networking = {
-    hostName = "home";
+    hostName = "shusui";
     useDHCP = true;
   };
 }

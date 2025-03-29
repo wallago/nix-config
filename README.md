@@ -6,34 +6,64 @@ This repository organizes my NixOS configurations, home-manager setups, overlays
 
 ## Structure
 
-### Root Files
+### 🌵 Flake
 
-- **`flake.nix`** – Entrypoint for hosts and home configurations.\
-  Also provides a devshell for bootstrapping (`nix develop` or `nix-shell`).
+- **`flake.nix`** – Entrypoint for hosts and home configurations.
+  <br>
+  <br>
 - **`lib/`** – Utility functions to keep the Flake clean and modular.
 
-### NixOS Configurations (`hosts/`)
+### 👤 Hosts
 
 Machine-specific configurations, accessible via `nixos-rebuild --flake`:
 
-- **`common/`** – Shared configurations:
-  - **`global/`** – Applied to all machines.
-  - **`optional/`** – Opt-in features for specific machines.
-- **Machines:**
-  - **`home/`** – Desktop PC _(R5 3600X, 32GB RAM, RX 5700XT | Hyprland)_
+- **`host/`** – Hosts:
+  <br>
+  <br>
+  - **`common/`** – Shared configurations:
+    <br>
+    <br>
+    - **`global/`** – Applied to all machines.
+      <br>
+      <br>
+    - **`optional/`** – Opt-in features for specific machines.<br>
+      <br>
+      <br>
+  - **`machine/`** - Machine:
+    <br>
+    <br>
+    - **`shusui/`** – Config:
+      <br>
+      <br>
+      | Component | Details |
+      | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+      | **Power Supply (PSU)** | Corsair RMX Series, RM750x, 750W, 80+ Gold Certified |
+      | **CPU** | Intel Core i7-10700K, 8 Cores @ 3.80GHz |
+      | **GPU** | MSI Gaming GeForce RTX 2060 Super |
+      | **Motherboard (MB)** | MSI MPG Z490 Gaming Carbon WiFi |
+      | **RAM (Total: 32GB)** | - 2× Corsair Vengeance LPX 16GB (2×8GB) DDR4 2400MHz CL14 <br> - 2× Corsair Vengeance LPX 16GB (2×8GB) DDR4 3200MHz CL16 |
+      | **Case** | Corsair 5000D |
+      | **Cooling** | Corsair iCUE H100i RGB PRO XT Liquid CPU Cooler |
 
-### Home-Manager (`home/`)
+### 🏠 Home-Manager
 
-Each subdirectory represents a "feature" that can be toggled in individual home-manager configurations, allowing per-machine customization.
+- **`home/`** – Home-Manager:
+  <br>
+  <br>
+  - Each subdirectory represents a "feature" that can be toggled in individual home-manager configurations, allowing per-machine customization.
+
+### 📄 Documentation
+
+- **`doc/`** – Miscellaneous documentation related to Nix.
 
 ### Additional Components
 
 - **`modules/`** – Custom NixOS modules.
 - **`overlay/`** – Patches and version overrides for packages, accessible via `nix build`.
 - **`hydra.nix`** - Hydra configuration to build and test packages and NixOS configurations automatically.
-- **`shell.nix`** – Defines a reproducible development environment for bootstrapping and tool setup.
 - **`pkgs/`** – Custom packages, available through this Flake's overlay or via NUR.
-- **`doc/`** – Miscellaneous documentation related to Nix.
+- **`shell.nix`** – Defines a reproducible development environment for bootstrapping and tool setup.\
+   via `nix develop` or `nix-shell`
 
 ---
 
