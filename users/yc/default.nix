@@ -29,6 +29,7 @@ in
           username
           ;
       })
+      ../../home/feat/desktop
     ];
   };
 }
