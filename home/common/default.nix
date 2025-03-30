@@ -1,9 +1,11 @@
-{ username, ... }:
 {
-  users = {
-    mutableUsers = false;
-    users.${username}.isNormalUser = true;
-  };
+  username,
+  lib,
+  pkgs,
+  config,
+}:
+{
+  users.users.${username}.isNormalUser = true;
 
   home-manager.users.${username} = {
     nix = {
@@ -37,8 +39,5 @@
       };
       stateVersion = "${config.system.nixos.release}";
     };
-
-    useUserPackages = true;
-    useGlobalPkgs = true;
   };
 }

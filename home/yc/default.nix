@@ -1,8 +1,8 @@
 {
-  config,
-  lib,
   inputs,
+  lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -10,9 +10,14 @@ let
 in
 {
   imports = [
-    # Includes the Home Manager module from the home-manager input in NixOS configuration
-    inputs.home-manager.nixosModules.home-manager
-    ../common
+    (import ../common {
+      inherit
+        username
+        lib
+        pkgs
+        config
+        ;
+    })
   ];
 
   users.users.${username} = {
