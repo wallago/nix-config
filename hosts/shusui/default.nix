@@ -11,8 +11,12 @@ in
         hostname
         ;
     })
-
+    ../../nixos/feat/desktop
   ];
 
   services.openssh.enable = true;
+
+  services.xserver.displayManager.gdm = {
+    banner = "go fuck your self";
+  };
 }
