@@ -95,7 +95,7 @@
           ];
           extraModules = [
             ./home/global
-            ./home/yc
+            ./users/yc
           ];
           specialArgs = {
             inherit inputs outputs;

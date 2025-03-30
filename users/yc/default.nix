@@ -1,4 +1,9 @@
-{ ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   username = "yc";
 in
@@ -14,11 +19,16 @@ in
     password = "${username}";
   };
 
-  home-manager.users.${username} = ../../home/common {
-    inherit
-      username
-      inputs
-      outputs
-      ;
+  home-manager.users.${username} = {
+    imports = [
+      (import ../../home/common {
+        inherit
+          lib
+          pkgs
+          config
+          username
+          ;
+      })
+    ];
   };
 }
