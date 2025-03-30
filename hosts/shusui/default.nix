@@ -19,7 +19,7 @@ in
     ports = [ 2222 ];
     settings = {
       PermitRootLogin = "prohibit-password";
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       LogLevel = "VERBOSE";
     };
     extraConfig = ''

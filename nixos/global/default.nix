@@ -146,5 +146,12 @@
 
   environment.shells = with pkgs; [ fish ];
 
+  # programs.neovim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  #   viAlias = true;
+  #   vimAlias = true;
+  # };
+
   system.stateVersion = "${config.system.nixos.release}";
 }

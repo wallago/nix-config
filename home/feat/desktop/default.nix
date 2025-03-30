@@ -1,5 +1,7 @@
 { ... }:
 {
+  programs.kitty.enable = true; # Kitty terminal emulator
+
   xdg.configFile = {
     "hypr/hyprland.conf".source = ./hyprland.conf;
     "hypr/windowrule.conf".source = ./windowrule.conf;
