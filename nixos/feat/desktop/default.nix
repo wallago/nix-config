@@ -7,22 +7,26 @@
         gdm = {
           enable = true;
           wayland = true;
-          banner = "go fuck your self";
         };
       };
     };
-    ratbagd.enable = true; # DBus daemon to configure input devices
-    dbus.enable = true;
-  };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
   };
 
   environment.systemPackages = with pkgs; [
     wayland # ------> Core Wayland protocol libraries.
     xwayland # -----> Required if you want to run X11 apps under Wayland.
     wl-clipboard # -> Clipboard utilities for Wayland (copy/paste support).
+
+    hyprpaper # -> Wallpaper utility for Hyprland
   ];
+
+  programs.hyprland.enable = true;
+
+  environment.variables.HYPRLAND_CONFIG_FILE = "/etc/hypr/hyprland.conf";
+
+  environment.etc = {
+    "hypr/hyprland.conf".source = ./hyprland.conf;
+    "hypr/windowrule.conf".source = ./windowrule.conf;
+    "hypr/keybindings.conf".source = ./keybindings.conf;
+  };
 }
