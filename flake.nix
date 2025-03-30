@@ -90,9 +90,11 @@
       nixosConfigurations = {
         shusui = lib.nixosSystem {
           modules = [
+            ./nixos/global
             ./hosts/shusui
           ];
           extraModules = [
+            ./home/global
             ./home/yc
           ];
           specialArgs = {

@@ -1,4 +1,7 @@
 { inputs, ... }:
+let
+  hsotname = "shusui";
+in
 {
   imports = [
     # Includes the Disko module from the disko input in NixOS configuration
@@ -7,7 +10,7 @@
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
     ./disko-configuration.nix
-    ../common
-    ../../home/global
   ];
+
+  services.openssh.enable = true;
 }

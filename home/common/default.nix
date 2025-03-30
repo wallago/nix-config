@@ -3,9 +3,9 @@
   lib,
   pkgs,
   config,
+  ...
 }:
 {
-  users.users.${username}.isNormalUser = true;
 
   home-manager.users.${username} = {
     nix = {
