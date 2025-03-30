@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   boot.loader.grub = {
     enable = true;
@@ -7,4 +7,6 @@
   };
 
   networking.networkmanager.enable = true;
+
+  system.stateVersion = "${config.system.nixos.release}";
 }
