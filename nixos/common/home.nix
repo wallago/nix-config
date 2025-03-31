@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, outputs, ... }:
 {
   users.mutableUsers = false;
 

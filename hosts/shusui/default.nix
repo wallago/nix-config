@@ -10,12 +10,8 @@ in
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
     ./disko-configuration.nix
-    (import ../../nixos/common {
-      inherit
-        hostname
-        ;
-    })
-    # ../../nixos/feat/desktop
+    (import ../../nixos/common { inherit hostname; })
+    ../../nixos/users/yc
   ];
 
   services.openssh = {

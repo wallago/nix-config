@@ -1,9 +1,10 @@
-{ ... }:
+{ hostname, ... }:
 {
   imports = [
     ./grub.nix
     ./home.nix
-    ./network.nix
+    (import ./network.nix { inherit hostname; })
+    ./fish.nix
   ];
 
 }
