@@ -8,6 +8,10 @@ let
   username = "yc";
 in
 {
+  imports = [
+    ../common
+  ];
+
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [
@@ -20,5 +24,6 @@ in
     packages = [ pkgs.home-manager ];
   };
 
-  home-manager.users.${username} = import ../../../home/${username}/${config.networking.hostName}.nix;
+  home-manager.users.${username} =
+    import ../../../home/users/${username}/${config.networking.hostName}.nix;
 }

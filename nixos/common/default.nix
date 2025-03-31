@@ -1,4 +1,9 @@
-{ hostname, ... }:
+{ ... }:
 {
-  networking.hostName = "${hostname}";
+  imports = [
+    ./grub.nix
+    ./home.nix
+    ./network.nix
+  ];
+
 }

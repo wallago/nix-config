@@ -56,13 +56,13 @@ This section explains the inputs used in our NixOS flake configuration.
 ```
 ├── flake.nix
 ├── nixos
-│   ├── common
+│   ├── common // default value for all hosts
 │   └── users
-│       ├── common // default value for all users
 │       └── yc
 ├── home
-│   ├── common
+│   ├── common // default value for all users
 │   └── yc
+│       └── shusui
 ├── hosts
 │   └── shusui
 └── ...
