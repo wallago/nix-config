@@ -88,20 +88,27 @@
 
       # NixOS system configuration
       nixosConfigurations = {
+        # Main desktop
         shusui = lib.nixosSystem {
           modules = [
-            # Includes the Disko module from the disko input in NixOS configuration
-            inputs.disko.nixosModules.disko
-            # Includes the Home Manager module from the home-manager input in NixOS configuration
-            inputs.home-manager.nixosModules.home-manager
-            ./nixos/global
             ./hosts/shusui
           ];
-          extraModules = [
-            ./home/global
-            ./users/yc
-          ];
           specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+      };
+
+      # Home Manager system configuration
+      homeConfigurations = {
+        # Main desktop
+        "yc@shusui" = lib.homeManagerConfiguration {
+          modules = [
+            ./users/yc/shusui.nix
+            ./home/yc/nixpkgs.nix
+          ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = {
             inherit inputs outputs;
           };
         };
