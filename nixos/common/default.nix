@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./boot.nix
     ./grub.nix
     ./home.nix
     (import ./network.nix { inherit hostname; })
