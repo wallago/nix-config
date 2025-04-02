@@ -1,4 +1,9 @@
-{ hostname, config, ... }:
+{
+  hostname,
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./grub.nix
