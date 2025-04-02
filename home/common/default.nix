@@ -8,7 +8,7 @@
 {
   imports = [
     ./nix.nix
-    (import ./home.nix { inherit username; })
+    (import ./home.nix { inherit username config; })
     # ./nvim.nix
   ];
 
