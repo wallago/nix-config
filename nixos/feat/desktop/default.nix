@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./common/firefox.nix
+    ./firefox.nix
   ];
 
   services = {

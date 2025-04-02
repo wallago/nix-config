@@ -17,5 +17,6 @@ in
         pkgs
         ;
     })
+    ../../feat/desktop
   ];
 }

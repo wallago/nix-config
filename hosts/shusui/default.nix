@@ -17,6 +17,8 @@ in
     ./disko-configuration.nix
     (import ../../nixos/common { inherit hostname config pkgs; })
     ../../nixos/users/yc
+
+    ../../nixos/feat/desktop
   ];
 
   services.openssh = {
