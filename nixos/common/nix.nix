@@ -15,15 +15,15 @@ in
       ];
       auto-optimise-store = true;
       experimental-features = [
-        "nix-command"
-        "flakes"
-        "ca-derivations"
+        "nix-command" # ----> Enables the new Nix CLI commands
+        "flakes" # ---------> Enables Nix flakes
+        "ca-derivations" # -> The hash is based on the output rather than the inputs.
       ];
       warn-dirty = false;
       system-features = [
-        "kvm"
-        "big-parallel"
-        "nixos-test"
+        "kvm" # ----------> Enable KVM virtualization support
+        "big-parallel" # -> Enable support for parallel builds
+        "nixos-test" # ---> Enable features related to NixOS testing
       ];
       flake-registry = ""; # Disable global flake registry
     };

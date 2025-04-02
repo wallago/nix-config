@@ -15,6 +15,7 @@ in
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
     ./disko-configuration.nix
+
     (import ../../nixos/common { inherit hostname config pkgs; })
     ../../nixos/users/yc
 

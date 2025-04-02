@@ -4,12 +4,9 @@
     package = lib.mkDefault pkgs.nix;
     settings = {
       experimental-features = [
-        # Enables the new Nix CLI commands
-        "nix-command"
-        # Enables Nix flakes
-        "flakes"
-        # The hash is based on the output rather than the inputs.
-        "ca-derivations"
+        "nix-command" # ----> Enables the new Nix CLI commands
+        "flakes" # ---------> Enables Nix flakes
+        "ca-derivations" # -> The hash is based on the output rather than the inputs.
       ];
       warn-dirty = false;
     };
