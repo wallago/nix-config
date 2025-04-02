@@ -62,60 +62,60 @@
       #
       # gbk = "/etc/misc/generate_boot_key.fish";
     };
-    interactiveShellInit = ''
-      # Set vi mode
-      fish_vi_key_bindings
-
-      # Set theme if not already set
-      if not set -q THEME
-          set -xU THEME gruvbox-light
-      end
-
-      # Initialize fzf
-      fzf --fish | source
-
-      # Set some useful environment variables
-      set -gx VISUAL $EDITOR
-      set -gx PAGER less
-
-      # Configure less
-      set -gx LESS '-R --use-color -Dd+r$Du+b'
-
-      # Configure man pages
-      set -gx MANPAGER 'less -R --use-color -Dd+r -Du+b'
-
-      # Enable syntax highlighting for man pages using bat
-      if type -q bat
-        set -gx MANROFFOPT "-c"
-        set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
-      end
-
-      # Greeting message
-      function fish_greeting
-        echo "󱐋 This is your way 󱐋"
-        commandline -f repaint
-      end
-
-      # Load tide configuration
-      if type -q tide
-        tide configure \
-          --auto \
-          --style=Rainbow \
-          --prompt_colors='True color' \
-          --show_time=No \
-          --rainbow_prompt_separators=Angled \
-          --powerline_prompt_heads=Sharp \
-          --powerline_prompt_tails=Flat \
-          --powerline_prompt_style='Two lines, character' \
-          --powerline_prompt_style='One line' \
-          # --prompt_connection=Solid \
-          # --powerline_right_prompt_frame=No \
-          # --prompt_connection_andor_frame_color=Dark \
-          --prompt_spacing=Compact \
-          --icons='Many icons' \
-          --transient=No
-      end
-    '';
+    # interactiveShellInit = ''
+    #   # Set vi mode
+    #   fish_vi_key_bindings
+    #
+    #   # Set theme if not already set
+    #   if not set -q THEME
+    #       set -xU THEME gruvbox-light
+    #   end
+    #
+    #   # Initialize fzf
+    #   fzf --fish | source
+    #
+    #   # Set some useful environment variables
+    #   set -gx VISUAL $EDITOR
+    #   set -gx PAGER less
+    #
+    #   # Configure less
+    #   set -gx LESS '-R --use-color -Dd+r$Du+b'
+    #
+    #   # Configure man pages
+    #   set -gx MANPAGER 'less -R --use-color -Dd+r -Du+b'
+    #
+    #   # Enable syntax highlighting for man pages using bat
+    #   if type -q bat
+    #     set -gx MANROFFOPT "-c"
+    #     set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+    #   end
+    #
+    #   # Greeting message
+    #   function fish_greeting
+    #     echo "󱐋 This is your way 󱐋"
+    #     commandline -f repaint
+    #   end
+    #
+    #   # Load tide configuration
+    #   if type -q tide
+    #     tide configure \
+    #       --auto \
+    #       --style=Rainbow \
+    #       --prompt_colors='True color' \
+    #       --show_time=No \
+    #       --rainbow_prompt_separators=Angled \
+    #       --powerline_prompt_heads=Sharp \
+    #       --powerline_prompt_tails=Flat \
+    #       --powerline_prompt_style='Two lines, character' \
+    #       --powerline_prompt_style='One line' \
+    #       # --prompt_connection=Solid \
+    #       # --powerline_right_prompt_frame=No \
+    #       # --prompt_connection_andor_frame_color=Dark \
+    #       --prompt_spacing=Compact \
+    #       --icons='Many icons' \
+    #       --transient=No
+    #   end
+    # '';
   };
 
   environment.systemPackages = with pkgs; [
@@ -137,5 +137,7 @@
     fishPlugins.colored-man-pages # ---> Adds color to man pages for improved readability
     fishPlugins.fish-you-should-use # -> Fish plugin that reminds you to use your aliases
     fishPlugins.plugin-git # ----------> Git plugin for fish (similar to oh-my-zsh git)
+    eza # A modern replacement for ls
+    fzf # Command-line fuzzy finder for efficient searching and filtering
   ];
 }
