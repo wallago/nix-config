@@ -1,15 +1,5 @@
 { config, pkgs, ... }:
 {
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-  };
-
-  services.dbus.enable = true;
-
-  networking.networkmanager.enable = true;
-
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -145,13 +135,4 @@
   ];
 
   environment.shells = with pkgs; [ fish ];
-
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  # };
-
-  system.stateVersion = "${config.system.nixos.release}";
 }

@@ -1,4 +1,4 @@
-{ hostname, ... }:
+{ hostname, config, ... }:
 {
   imports = [
     ./grub.nix
@@ -13,4 +13,9 @@
 
   services.upower.enable = true; # D-Bus service for power management.
 
+  system.stateVersion = "${config.system.nixos.release}";
+
+  environment.systemPackages = with pkgs; [
+    sqlite # Self-contained, serverless, zero-configuration, transactional SQL database engine.
+  ];
 }
