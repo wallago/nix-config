@@ -13,7 +13,7 @@
     ./fish.nix
     ./ssh.nix
     ./nix.nix
-    ./nvim.nix
+    #./nvim.nix
   ];
 
   # ---

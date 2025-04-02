@@ -9,6 +9,7 @@
   imports = [
     ./nix.nix
     (import ./home.nix { inherit username config; })
+    ./nvim
   ];
 
   # ---

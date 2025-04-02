@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ./common.nix
     (import ../../common {
       inherit
         username
