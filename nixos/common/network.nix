@@ -1,4 +1,7 @@
 { hostname, ... }:
 {
-  networking.hostName = "${hostname}";
+  networking = {
+    hostName = "${hostname}";
+    networkmanager.enable = false;
+  };
 }
