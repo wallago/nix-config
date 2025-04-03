@@ -115,6 +115,7 @@
     prettierd # -------------> Prettier daemon for faster formatting
     isort # -----------------> Python utility to sort imports alphabetically
     black # -----------------> The uncompromising Python code formatter
+    grc # -------------------> Generic text colouriser
   ];
 
   home.sessionVariables = {
