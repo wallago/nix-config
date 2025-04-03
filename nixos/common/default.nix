@@ -12,6 +12,7 @@
     ./fish.nix
     ./ssh.nix
     ./nix.nix
+    ./font.nix
   ];
 
   nixpkgs = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.xserver = {
     videoDrivers = [ "nvidia" ];

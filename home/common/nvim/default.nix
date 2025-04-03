@@ -30,52 +30,51 @@
       # ========================
       # misc
       # ========================
-      toggleterm-nvim # floating terminal
-      telescope-nvim # fuzzy finder over lists
-      nvim-notify # notify
-      vim-dadbod-ui # navigation database gui
-      oil-nvim # file explorer that lets you edit your filesystem like a normal Neovim buffer.
-      plenary-nvim # All the lua functions I don't want to write twice.
-      openscad-nvim
+      toggleterm-nvim # -------> floating terminal
+      telescope-nvim # --------> fuzzy finder over lists
+      nvim-notify # -----------> notify
+      vim-dadbod-ui # ---------> navigation database gui
+      oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
+      plenary-nvim # ----------> All the lua functions I don't want to write twice.
+      openscad-nvim # --------->
       # ========================
       # code
       # ========================
-      coc-nvim # conquer of completion nvim
-      coc-lua # conquer of completion lua
-      coc-rust-analyzer # conquer of completion rust analyzer
-      coc-tailwindcss # conquer of completion of tailwindcss
-      coc-fzf # conquer of completion for fzf
-      vim-nix # writing Nix expressions
-      comment-nvim # comment line
-      conform-nvim # formating code
-      markdown-nvim # beautify markdown
-      markdown-preview-nvim # preview markdown file
-      nvim-lspconfig # Language Server Protocol
-      rest-nvim # asynchronous Neovim HTTP client
-      rustaceanvim # Supercharge your Rust experience
-      actions-preview-nvim # Better actions preview
-
-      inc-rename-nvim # LSP renaming with immediate visual feedback
+      coc-nvim # --------------> conquer of completion nvim
+      coc-lua # ---------------> conquer of completion lua
+      coc-rust-analyzer # -----> conquer of completion rust analyzer
+      coc-tailwindcss # -------> conquer of completion of tailwindcss
+      coc-fzf # ---------------> conquer of completion for fzf
+      vim-nix # ---------------> writing Nix expressions
+      comment-nvim # ----------> comment line
+      conform-nvim # ----------> formating code
+      markdown-nvim # ---------> beautify markdown
+      markdown-preview-nvim # -> preview markdown file
+      nvim-lspconfig # --------> Language Server Protocol
+      rest-nvim # -------------> asynchronous Neovim HTTP client
+      rustaceanvim # ----------> Supercharge your Rust experience
+      actions-preview-nvim # --> Better actions preview
+      inc-rename-nvim # -------> LSP renaming with immediate visual feedback
 
       # ========================
       # git
       # ========================
-      vim-flog # git graph
-      fugitive # git commands
-      neogit # git interface
-      lazygit-nvim # git interface
+      vim-flog # --------------> git graph
+      fugitive # --------------> git commands
+      neogit # ----------------> git interface
+      lazygit-nvim # ----------> git interface
       # ========================
       # clean gui
       # ========================
-      bufferline-nvim # tabs behavior
-      which-key-nvim # displays available keybindings
-      gruvbox-nvim # colorsheme
-      tokyonight-nvim # colorsheme
-      nvim-colorizer-lua # show color by code
-      nvim-tree-lua # file explorer
-      nvim-web-devicons # provide Nerd Font icons
+      bufferline-nvim # -------> tabs behavior
+      which-key-nvim # --------> displays available keybindings
+      gruvbox-nvim # ----------> colorsheme
+      tokyonight-nvim # -------> colorsheme
+      nvim-colorizer-lua # ----> show color by code
+      nvim-tree-lua # ---------> file explorer
+      nvim-web-devicons # -----> provide Nerd Font icons
       {
-        # https://github.com/nvim-treesitter/nvim-treesitter
+        # ---------------------> Better syntax highlighting, code parsing, and structural analysis
         plugin = nvim-treesitter.withPlugins (
           plugins: with plugins; [
             tree-sitter-bash
@@ -110,12 +109,15 @@
   };
 
   home.packages = with pkgs; [
-    luajit # Just-In-Time compiler for Lua programming language
-    stylua # Opinionated Lua code formatter
-    nixfmt-rfc-style # Formatter for Nix code following RFC style
-    prettierd # Prettier daemon for faster formatting
-    isort # Python utility to sort imports alphabetically
-    black # The uncompromising Python code formatter
-    # nodePackages.prettier # Multi-language code formatter
+    luajit # ----------------> Just-In-Time compiler for Lua programming language
+    stylua # ----------------> Opinionated Lua code formatter
+    nixfmt-rfc-style # ------> Formatter for Nix code following RFC style
+    prettierd # -------------> Prettier daemon for faster formatting
+    isort # -----------------> Python utility to sort imports alphabetically
+    black # -----------------> The uncompromising Python code formatter
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

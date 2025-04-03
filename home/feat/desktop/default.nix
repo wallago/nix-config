@@ -1,10 +1,10 @@
 { ... }:
 {
-  programs.kitty.enable = true; # Kitty terminal emulator
-
-  xdg.configFile = {
-    "hypr/hyprland.conf".source = ./hyprland.conf;
-    "hypr/windowrule.conf".source = ./windowrule.conf;
-    "hypr/keybindings.conf".source = ./keybindings.conf;
-  };
+  imports = [
+    ./hyprland
+    ./kitty.nix
+    ./rofi.nix
+    ./waybar.nix
+    ./mako.nix
+  ];
 }
