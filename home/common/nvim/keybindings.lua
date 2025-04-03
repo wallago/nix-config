@@ -64,10 +64,10 @@ vim.keymap.set(
 
 -- ===============================
 -- focus
-vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "Switch window left" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "Switch window right" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "Switch window down" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "Switch window up" })
+vim.keymap.set("n", "<leader>h", { noremap = true, silent = true, desc = "Switch window left" })
+vim.keymap.set("n", "<leader>k", { noremap = true, silent = true, desc = "Switch window right" })
+vim.keymap.set("n", "<leader>j", { noremap = true, silent = true, desc = "Switch window down" })
+vim.keymap.set("n", "<leader>l", { noremap = true, silent = true, desc = "Switch window up" })
 
 -- ===============================
 -- tree
