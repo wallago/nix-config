@@ -3,8 +3,8 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "0xproto Nerd Font";
-      size = 12.0;
+      name = "0xProto Nerd Font";
+      size = 11.0;
     };
     settings = {
       shell = "fish";

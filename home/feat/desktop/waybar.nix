@@ -6,6 +6,9 @@
       mainBar = {
         layer = "top";
         position = "top";
+        output = [
+          "Primary"
+        ];
         height = 30;
         margin-top = 5;
         margin-bottom = 0;
