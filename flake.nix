@@ -50,6 +50,12 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Rust overlay for better management
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -77,11 +83,15 @@
     in
     {
       inherit lib;
-      formatter = forEachSystem (pkgs: pkgs.alejandra);
-
       # nixosModules = import ./modules/nixos;
       # homeManagerModules = import ./modules/home-manager;
-      # overlays = import ./overlays { inherit inputs outputs; };
+
+      # Specifies a code formatter for each system architecture
+      formatter = forEachSystem (pkgs: pkgs.alejandra);
+
+      # Overlay is a mechanism to modify or extend the Nix package set
+      overlays = import ./overlays { inherit inputs outputs; };
+
       # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       # devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });

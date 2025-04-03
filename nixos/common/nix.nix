@@ -39,10 +39,4 @@ in
   };
 
   programs.nix-ld.enable = true; # Run unpatched dynamic
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
 }

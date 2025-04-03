@@ -1,7 +1,6 @@
 {
-  hostname,
   config,
-  pkgs,
+  outputs,
   ...
 }:
 {
@@ -9,12 +8,18 @@
     ./boot.nix
     ./grub.nix
     ./home.nix
-    (import ./network.nix { inherit hostname; })
+    ./network.nix
     ./fish.nix
     ./ssh.nix
     ./nix.nix
-    #./nvim.nix
   ];
+
+  nixpkgs = {
+    overlays = outputs.overlays;
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   # ---
 

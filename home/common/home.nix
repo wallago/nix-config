@@ -1,4 +1,4 @@
-{ username, config }:
+{ username, ... }:
 {
   home = {
     username = "${username}";
@@ -8,7 +8,7 @@
       FLAKE = "$HOME/Documents/NixConfig";
       EDITOR = "nvim";
     };
-    stateVersion = "${config.system.nixos.release}";
+    stateVersion = "25.05";
   };
 
 }

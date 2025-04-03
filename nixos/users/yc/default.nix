@@ -1,15 +1,18 @@
 {
-  lib,
   pkgs,
   config,
   inputs,
-  outputs,
   ...
 }:
 let
   username = "yc";
 in
 {
+  imports = [
+    # Includes the Home Manager module from the home-manager input in NixOS configuration
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [
@@ -23,6 +26,5 @@ in
   };
 
   home-manager.users.${username} =
-    import ../../../home/users/${username}/${config.networking.hostName}.nix
-      { inherit lib pkgs config; };
+    import ../../../home/users/${username}/${config.networking.hostName}.nix;
 }
