@@ -27,6 +27,5 @@
     nix-diff # -----------> Explain why two Nix derivations differ
     nix-output-monitor # -> Processes output of Nix commands to show helpful and pretty information
     nh # -----------------> Yet another nix cli helper
-
   ];
 }

@@ -14,13 +14,13 @@
 
     # ----- System Components -----
     # Hardware-specific configurations
-    hardware.url = "github:nixos/nixos-hardware";
+    # hardware.url = "github:nixos/nixos-hardware";
 
     # Ephemeral storage management
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
 
     # Color scheme management
-    nix-colors.url = "github:misterio77/nix-colors";
+    # nix-colors.url = "github:misterio77/nix-colors";
 
     # ----- User Environment Management -----
     # Home Manager for user-level configurations
@@ -32,10 +32,10 @@
 
     # ----- Security -----
     # Secrets management with SOPS
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # sops-nix = {
+    #   url = "github:mic92/sops-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # ----- Storage Management -----
     # Declarative disk partitioning
@@ -46,10 +46,10 @@
 
     # ----- Third-Party Packages -----
     # Firefox extensions repository
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # firefox-addons = {
+    #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Rust overlay for better management
     rust-overlay = {

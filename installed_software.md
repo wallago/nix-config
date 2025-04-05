@@ -5,6 +5,8 @@
 ### Common
 
 - **Shell**: `fish`
+- **Nix Tools**:
+  - `nix-ld`
 
 ### Feat
 
@@ -12,7 +14,6 @@
 
 - **Window Server**: `wayland`
 - **Window Manager**: `hyprland`
-- **Browser**: `firefox`
 
 #### GPU
 
@@ -28,7 +29,9 @@
 
 ### Common
 
-- **Editor**: `neovim`
+<!--- **Editor**: `neovim`-->
+
+- **Editor**: `helix`
 - **Terminal Multiplexer**: `zellij`
 - **Misc**:
   - `git`
@@ -66,5 +69,9 @@
 - **Window Manager**: `hyprland`
 - **Notification**: `mako`
 - **Bar**: `waybar`
-- **DMenu**: `rofi`
-- **Screenshooter**: `grimblast`
+<!--- **Launcher**: `rofi`-->
+- **Launcher**: `wofi`
+- **Screenshoot**: `grimblast`
+- **Sound Server**: `pulseaudio`
+- **Browser**: `firefox`
+- **Password Manager**:`browserpass`

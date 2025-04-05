@@ -15,10 +15,6 @@ let
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in
 {
-  home.packages = with pkgs; [
-    grimblast # -> Helper for screenshots within Hyprland, based on grimshot.
-  ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -156,6 +152,7 @@ in
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];
 
+      # -----------------------------
       monitor =
         let
           waybarSpace =

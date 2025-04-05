@@ -35,34 +35,40 @@ The behavior for someone who used NixOs, if it reload only Home-Manager with a u
 
 This section explains the inputs used in our NixOS flake configuration.
 
-### Core Nix Ecosystem
+### Implemented
+
+#### Core Nix Ecosystem
 
 - **nixpkgs**: The primary package collection, using the unstable channel for the latest packages.
 - **systems**: Standard system architectures for cross-compilation.
-
-### System Components
-
-- **hardware**: Hardware-specific configurations.
-  <!--- **impermanence**: Ephemeral storage management.-->
-  <!--- **nix-colors**: Color scheme management.-->
 
 ### User Environment Management
 
 - **home-manager**: User-level configurations.
 
-### Security
-
-<!--- **sops-nix**: Secrets management with SOPS.-->
-
 ### Storage Management
 
 - **disko**: Declarative disk partitioning.
 
-### Third-Party Packages
-
-<!--- **firefox-addons**: Firefox extensions repository.-->
+#### Third-Party Packages
 
 - **rust-overlay**: Rust overlay for better Management.
+
+### Not Implemented
+
+#### Security
+
+- **sops-nix**: Secrets management with SOPS.
+
+#### System Components
+
+- **hardware**: Hardware-specific configurations.
+- **impermanence**: Ephemeral storage management.
+- **nix-colors**: Color scheme management.
+
+#### Third-Party Packages
+
+- **firefox-addons**: Firefox extensions repository.
 
 ## Overlay
 
