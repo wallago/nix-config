@@ -1,28 +1,70 @@
 # Installed Software
 
 ## System-wide Packages
-- **NixOS Packages**:
-  - `bat` - A modern `cat` replacement
-  - `ripgrep` - A fast `grep` alternative
-  - `exa` - A modern `ls` replacement
-  - `nixos-hardware` - For hardware compatibility
-  - `Hydra` - CI/CD server
-  
-## User-specific Software
-### User: ${user}
 
-- **Shell**: Fish
-- **Editor**: Neovim (with Treesitter)
-- **Terminal**: Alacritty
-- **Browser**: Qutebrowser
-- **Productivity**:
-  - Neomutt
-  - mbsync
-  - Todoman
-- **Networking**:
-  - Tailscale
-  - Podman (for containers)
+### Common
+
+- **Shell**: `fish`
+
+### Feat
+
+#### Desktop
+
+- **Window Server**: `wayland`
+- **Window Manager**: `hyprland`
+- **Browser**: `firefox`
+
+#### GPU
+
+- **GPU**:
+  - `nvidia` (choice one)
+
+#### Code
+
 - **Development Tools**:
-  - Rust
-  - Cargo
-  - Clang
+  - `rust` (choice one)
+
+## User-specific Software
+
+### Common
+
+- **Editor**: `neovim`
+- **Terminal Multiplexer**: `zellij`
+- **Misc**:
+  - `git`
+
+### Feat
+
+#### CLI
+
+- **Shell**: `fish`
+- **Nix Tools**:
+  - `nixd`
+  - `alejandra`
+  - `nvd`
+  - `nix-diff`
+  - `nix-output-monitor`
+  - `nh`
+- **Misc**:
+  - `bat`
+  - `fzf`
+  - `lazygit`
+  - `eza`
+  - `ripgrep`
+  - `less`
+  - `trashcan`
+  - `bc`
+  - `bottom`
+  - `fd`
+  - `httpie`
+  - `jq`
+  - `viddy`
+
+#### Desktop
+
+- **Terminal**: `kitty`
+- **Window Manager**: `hyprland`
+- **Notification**: `mako`
+- **Bar**: `waybar`
+- **DMenu**: `rofi`
+- **Screenshooter**: `grimblast`
