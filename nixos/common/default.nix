@@ -13,7 +13,7 @@
     ./ssh.nix
     ./nix.nix
     ./font.nix
-  ];
+  ] ++ (builtins.attrValues outputs.nixosModules);
 
   nixpkgs = {
     overlays = outputs.overlays;

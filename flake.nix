@@ -90,7 +90,7 @@
     in
     {
       inherit lib;
-      # nixosModules = import ./modules/nixos;
+      nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
 
       # Specifies a code formatter for each system architecture
