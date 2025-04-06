@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  ...
 }:
 let
   defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
@@ -13,10 +12,10 @@ in
   "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
 ]
 ++ import ./brightness.nix
-++ import ./sound.nix
-++ import ./screenshot.nix
-++ import ./lock.nix
-++ import ./notification.nix
-++ import ./mediactl.nix
-++ import ./clipboard.nix
-++ import ./launcher.nix
+++ import ./sound.nix { inherit lib pkgs; }
+++ import ./screenshot.nix { inherit lib pkgs; }
+++ import ./lock.nix { inherit lib config; }
+++ import ./notification.nix { inherit lib config; }
+++ import ./mediactl.nix { inherit lib config; }
+++ import ./clipboard.nix { inherit lib config; }
+++ import ./launcher.nix { inherit lib config; }

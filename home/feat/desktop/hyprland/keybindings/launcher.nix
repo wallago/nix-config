@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  ...
 }:
 let
   wofi = lib.getExe config.programs.wofi.package;

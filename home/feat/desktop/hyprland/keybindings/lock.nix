@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  ...
 }:
 let
   swaylock = lib.getExe config.programs.swaylock.package;

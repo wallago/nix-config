@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  ...
 }:
 let
   grimblast = lib.getExe pkgs.grimblast;

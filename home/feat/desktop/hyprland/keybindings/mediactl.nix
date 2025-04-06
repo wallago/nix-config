@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  ...
 }:
 let
   playerctl = lib.getExe' config.services.playerctld.package "playerctl";

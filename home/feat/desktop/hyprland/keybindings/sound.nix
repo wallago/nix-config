@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  ...
 }:
 let
   pactl = lib.getExe' pkgs.pulseaudio "pactl";

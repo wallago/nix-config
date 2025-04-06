@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  ...
 }:
 let
   cliphist = lib.getExe config.services.cliphist.package;

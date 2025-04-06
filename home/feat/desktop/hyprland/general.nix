@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, rgba }:
 {
   gaps_in = 15;
   gaps_out = 20;

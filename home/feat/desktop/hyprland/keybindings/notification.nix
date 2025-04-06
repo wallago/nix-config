@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  ...
 }:
 let
   makoctl = lib.getExe' config.services.mako.package "makoctl";
