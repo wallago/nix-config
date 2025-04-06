@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.sessionVariables = {
     BROWSER = "firefox";
@@ -11,10 +11,9 @@
     profiles.default = {
       search = {
         force = true;
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
         order = [
-          "Kagi"
           "DuckDuckGo"
           "Google"
         ];
@@ -27,10 +26,10 @@
         };
       };
       bookmarks = { };
-      extensions.packages = with pkgs.inputs.firefox-addons; [
-        ublock-origin
-        browserpass
-      ];
+      # extensions.packages = with pkgs.inputs.firefox-addons; [
+      #   ublock-origin
+      #   browserpass
+      # ];
       bookmarks = { };
       settings = {
         "browser.startup.homepage" = "about:home";

@@ -1,12 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.sessionVariables = {
+    PAGER = "less";
+    VISUAL = "nvim";
+    LESS = "-R --use-color -Dd+r$Du+b";
+    MANPAGER = "less -R --use-color -Dd+r -Du+b";
+  };
+
   programs.fish = {
     enable = true;
-    vendor = {
-      completions.enable = true;
-      config.enable = true;
-      functions.enable = true;
-    };
     shellAliases = {
       ll = "exa -l";
       la = "exa -a";
@@ -108,7 +110,7 @@
     '';
   };
 
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     fish # ----------------------------> The friendly interactive shell
     fishPlugins.done # ----------------> Automatically receive notifications when long processes finish
     fishPlugins.fifc # ----------------> Fzf powers on top of fish completion engine and allows customizable completion rules
@@ -136,10 +138,4 @@
     trash-cli # -----------------------> Command line interface to the freedesktop.org trashcan.
   ];
 
-  environment.variables = {
-    PAGER = "less";
-    VISUAL = "nvim";
-    LESS = "-R --use-color -Dd+r$Du+b";
-    MANPAGER = "less -R --use-color -Dd+r -Du+b";
-  };
 }

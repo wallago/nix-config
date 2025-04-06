@@ -12,11 +12,11 @@ in
   "SUPER,e,exec,${defaultApp "text/plain"}"
   "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
 ]
-++ import = ./brightness.nix;
-++ import = ./sound.nix;
-++ import = ./screenshot.nix;
-++ import = ./lock.nix;
-++ import = ./notification.nix;
-++ import = ./mediactl.nix;
-++ import = ./clipboard.nix;
-++ import = ./launcher.nix;
+++ import ./brightness.nix
+++ import ./sound.nix
+++ import ./screenshot.nix
+++ import ./lock.nix
+++ import ./notification.nix
+++ import ./mediactl.nix
+++ import ./clipboard.nix
+++ import ./launcher.nix

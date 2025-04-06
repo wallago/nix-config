@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./firefox.nix
-  ];
-
   services = {
     xserver = {
       enable = true;
