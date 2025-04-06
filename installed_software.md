@@ -67,11 +67,14 @@
 
 - **Terminal**: `kitty`
 - **Window Manager**: `hyprland`
+- **Screen Locker**: `swaylock`
 - **Notification**: `mako`
 - **Bar**: `waybar`
-<!--- **Launcher**: `rofi`-->
 - **Launcher**: `wofi`
 - **Screenshoot**: `grimblast`
 - **Sound Server**: `pulseaudio`
 - **Browser**: `firefox`
 - **Password Manager**:`browserpass`
+- **Clipboard Manager**: `cliphist`
+- **Misc**:
+  `pass-wofi`
