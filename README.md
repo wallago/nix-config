@@ -70,6 +70,10 @@ This section explains the inputs used in our NixOS flake configuration.
 
 - **firefox-addons**: Firefox extensions repository.
 
+#### Own Packages
+
+- **themes**: Themes
+
 ## Overlay
 
 - Rust

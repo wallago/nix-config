@@ -110,6 +110,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1740367490,
+        "narHash": "sha256-WGaHVAjcrv+Cun7zPlI41SerRtfknGQap281+AakSAw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0196c0175e9191c474c26ab5548db27ef5d34b05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -118,7 +134,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "rust-overlay": "rust-overlay",
-        "systems": "systems"
+        "systems": "systems",
+        "themes": "themes"
       }
     },
     "rust-overlay": {
@@ -153,6 +170,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "themes": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740513468,
+        "narHash": "sha256-MaSS9uYPMPD0NUWxPDfJtPNgccRKVE91ictOAHnBUxs=",
+        "owner": "misterio77",
+        "repo": "themes",
+        "rev": "430f39469fe8eaec08340449237e01a408323585",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misterio77",
+        "repo": "themes",
         "type": "github"
       }
     }

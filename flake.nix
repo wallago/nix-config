@@ -56,6 +56,13 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # ----- Own Packages -----
+    # Themes
+    themes = {
+      url = "github:misterio77/themes";
+      inputs.systems.follows = "systems";
+    };
   };
 
   outputs =
@@ -84,7 +91,7 @@
     {
       inherit lib;
       # nixosModules = import ./modules/nixos;
-      # homeManagerModules = import ./modules/home-manager;
+      homeManagerModules = import ./modules/home;
 
       # Specifies a code formatter for each system architecture
       formatter = forEachSystem (pkgs: pkgs.alejandra);
@@ -115,7 +122,6 @@
         "yc@shusui" = lib.homeManagerConfiguration {
           modules = [
             ./users/yc/shusui.nix
-            ./home/yc/nixpkgs.nix
           ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = {
