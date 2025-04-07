@@ -14,16 +14,16 @@
         default = "ddg";
         privateDefault = "ddg";
         order = [
-          "DuckDuckGo"
-          "Google"
+          "ddg"
+          "google"
         ];
-        engines = {
-          "Kagi" = {
-            urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
-            iconUpdateURL = "https://kagi.com/favicon.ico";
-          };
-          "Bing".metaData.hidden = true;
-        };
+        # engines = {
+        #   "Kagi" = {
+        #     urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
+        #     iconUpdateURL = "https://kagi.com/favicon.ico";
+        #   };
+        #   "Bing".metaData.hidden = true;
+        # };
       };
       bookmarks = { };
       # extensions.packages = with pkgs.inputs.firefox-addons; [
