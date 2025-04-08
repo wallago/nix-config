@@ -19,14 +19,14 @@ in
     enable = true;
     systemd.enable = true;
     settings = {
-      # general = import ./general.nix { inherit config rgba; };
+      general = import ./general.nix { inherit config rgba; };
       cursor = import ./cursor.nix;
-      # group = import ./group.nix { inherit config rgba; };
+      group = import ./group.nix { inherit config rgba; };
       binds = import ./binds.nix;
       input = import ./input.nix;
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix;
-      windowrulev2 = import ./windowrulev2.nix { inherit lib remoteColorschemes rgba; };
+      # windowrulev2 = import ./windowrulev2.nix { inherit lib remoteColorschemes rgba; };
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;
