@@ -37,7 +37,7 @@ in
       name = "eDP-1";
       width = 1920;
       height = 1080;
-      default = 60;
+      refreshRate = 240;
       workspace = "2";
       position = "auto-left";
     }

@@ -26,7 +26,7 @@ in
       input = import ./input.nix;
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix;
-      # windowrulev2 = import ./windowrulev2.nix { inherit lib remoteColorschemes rgba; };
+      windowrulev2 = import ./windowrulev2.nix { inherit lib remoteColorschemes rgba; };
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;
