@@ -30,7 +30,7 @@ in
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;
-      # exec = import ./exec.nix { inherit pkgs config; };
+      exec = import ./exec.nix { inherit pkgs config; };
       # monitor = import ./monitor.nix;
       # workspace = import ./workspace.nix;
       # bind = import ./keybindings { inherit config lib pkgs; };
