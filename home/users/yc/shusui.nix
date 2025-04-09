@@ -43,5 +43,5 @@ in
     }
   ];
 
-  wallpaper = inputs.themes.packages.${pkgs.system}.wallpapers.aenami-bright-planet;
+  wallpaper = inputs.themes.packages.${pkgs.system}.wallpapers.car-purple;
 }

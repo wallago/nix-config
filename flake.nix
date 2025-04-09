@@ -60,7 +60,7 @@
     # ----- Own Packages -----
     # Themes
     themes = {
-      url = "github:misterio77/themes";
+      url = "github:YvesCousteau/nix-themes";
       inputs.systems.follows = "systems";
     };
   };
