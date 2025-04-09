@@ -3,7 +3,7 @@
   programs.waybar = {
     enable = true;
     settings = {
-      mainBar = {
+      primary = {
         layer = "top";
         position = "top";
         output = [
