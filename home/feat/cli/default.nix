@@ -2,15 +2,15 @@
 {
   imports = [
     ./fish.nix
-    ./bat.nix # -> Cat(1) clone with syntax highlighting and Git integration
-    ./fzf.nix # -> Command-line fuzzy finder for efficient searching and filtering
+    ./bat.nix # -----> Better cat
+    ./eza.nix # -----> Better ls
+    ./ripgrep.nix # -> Better grep
+    ./fzf.nix # -----> Fuzzy finder for fast searching in the terminal
   ];
 
   home.packages = with pkgs; [
     # Misc
-    lazygit # ------------> Simple terminal UI for git commands
-    eza # ----------------> A modern replacement for ls
-    ripgrep # ------------> Utility that combines the usability of The Silver Searcher with the raw speed of grep
+    # lazygit # ------------> Simple terminal UI for git commands
     less # ---------------> More advanced file pager than 'more'
     trash-cli # ----------> Command line interface to the freedesktop.org trashcan.
     bc # -----------------> GNU software calculator

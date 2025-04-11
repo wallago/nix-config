@@ -49,11 +49,10 @@
   - `nix-output-monitor`
   - `nh`
 - **Misc**:
-  - `bat`
-  - `fzf`
-  - `lazygit`
-  - `eza`
-  - `ripgrep`
+  - `bat`: Better cat
+  - `fzf`: 
+  - `eza`: Better ls
+  - `ripgrep`: Better grep
   - `less`
   - `trashcan`
   - `bc`
@@ -71,9 +70,10 @@
 - **Notification**: `mako`
 - **Bar**: `waybar`
 - **Launcher**: `wofi`
+- **Browser**: `firefox`
+
 - **Screenshoot**: `grimblast`
 - **Sound Server**: `pulseaudio`
-- **Browser**: `firefox`
 - **Password Manager**:`browserpass`
 - **Clipboard Manager**: `cliphist`
 - **Misc**:

@@ -1,6 +1,5 @@
 {
   lib,
-  remoteColorschemes,
   rgba,
 }:
 let
@@ -24,7 +23,3 @@ in
   "norounding, ${rofi}"
   "dimaround, ${rofi}"
 ]
-++ (lib.mapAttrsToList (
-  name: colors:
-  "bordercolor ${rgba colors.primary "aa"} ${rgba colors.primary_container "aa"}, title:\\[${name}\\].*"
-) remoteColorschemes)

@@ -19,3 +19,4 @@ in
 ++ import ./mediactl.nix { inherit lib config; }
 ++ import ./clipboard.nix { inherit lib config; }
 ++ import ./launcher.nix { inherit lib config; }
+++ import ./classic.nix { inherit lib; }

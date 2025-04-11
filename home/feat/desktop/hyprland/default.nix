@@ -7,10 +7,6 @@
 }:
 let
   getHostname = x: lib.last (lib.splitString "@" x);
-  remoteColorschemes = lib.mapAttrs' (n: v: {
-    name = getHostname n;
-    value = v.config.colorscheme.rawColorscheme.colors.${config.colorscheme.mode};
-  }) outputs.homeConfigurations;
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in
@@ -26,7 +22,7 @@ in
       input = import ./input.nix;
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix;
-      windowrulev2 = import ./windowrulev2.nix { inherit lib remoteColorschemes rgba; };
+      windowrulev2 = import ./windowrulev2.nix { inherit lib rgba; };
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;

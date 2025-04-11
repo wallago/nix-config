@@ -121,7 +121,7 @@
         # Main desktop
         "yc@shusui" = lib.homeManagerConfiguration {
           modules = [
-            ./users/yc/shusui.nix
+            ./home/users/yc/shusui.nix
           ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = {
