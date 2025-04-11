@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
   imports = [
-    ./hyprland
+    ./hyprland # -- check deps for bindings
     ./firefox.nix # -> Browser
-    ./waybar.nix # --> Status bar
+    ./waybar.nix # --> Status bar -- WIP
+    ./alacritty.nix # -- WIP
 
     # ./kitty.nix # ---> Terminal emulator
     # ./wofi.nix # ----> Launcher and window switcher

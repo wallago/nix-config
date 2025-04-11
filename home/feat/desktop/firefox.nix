@@ -25,9 +25,9 @@
         engines = {
           "ddg" = {
             urls = [ { template = "https://duckduckgo.com/search?q={searchTerms}"; } ];
-            iconUpdateURL = "https://duckduckgo.com/favicon.ico";
+            icon = "https://duckduckgo.com/favicon.ico";
           };
-          "Bing".metaData.hidden = true;
+          "bing".metaData.hidden = true;
         };
       };
       bookmarks = { };
