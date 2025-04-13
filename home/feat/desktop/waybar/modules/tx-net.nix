@@ -7,7 +7,7 @@
   return-type = "json";
   tooltip = false;
   interval = 1;
-  exec = mkScriptJson {
+  exec = mkScript {
     script = ''
       INTERFACE=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+')
       NET_TX1=$(ifstat -j | jq ".kernel.$INTERFACE.tx_bytes")
@@ -30,7 +30,7 @@
       echo "{\"text\": \"$RATE $UNIT\"}"
     '';
   };
-  exec-if = mkScriptJson {
+  exec-if = mkScript {
     script = ''
       INTERFACE_COUNT=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+' | wc -l)
       if [[ $INTERFACE_COUNT -gt 0 ]]; then
