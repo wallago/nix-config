@@ -24,7 +24,7 @@ in
     };
     type = mkOption {
       type = types.str;
-      default = "rainbow";
+      default = "content";
     };
 
     generatedDrv = mkOption {
