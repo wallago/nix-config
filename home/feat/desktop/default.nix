@@ -3,7 +3,7 @@
   imports = [
     ./hyprland # -- check deps for bindings
     ./firefox.nix # -> Browser
-    ./waybar.nix # --> Status bar -- WIP
+    ./waybar # --> Status bar -- WIP
     ./alacritty.nix # -- WIP
 
     # ./wofi.nix # ----> Launcher and window switcher

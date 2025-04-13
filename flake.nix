@@ -20,7 +20,7 @@
     # impermanence.url = "github:nix-community/impermanence";
 
     # Color scheme management
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # ----- User Environment Management -----
     # Home Manager for user-level configurations
