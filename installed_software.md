@@ -64,7 +64,7 @@
 
 #### Desktop
 
-- **Terminal**: `kitty`
+- **Terminal**: `ghostty`
 - **Window Manager**: `hyprland`
 - **Screen Locker**: `swaylock`
 - **Notification**: `mako`
