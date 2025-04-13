@@ -61,16 +61,6 @@ in
     systemd.enable = true;
     settings = {
       primary = {
-        # layer = "top";
-        # position = "top";
-        # output = [
-        #   "Primary"
-        # ];
-        # height = 30;
-        # margin-top = 5;
-        # margin-bottom = 0;
-        # margin-left = 5;
-        # margin-right = 5;
         exclusive = false;
         passthrough = false;
         height = 40;
@@ -120,82 +110,8 @@ in
         "custom/player" = import ./modules/player.nix { inherit pkgs mkScript; };
         "custom/currentplayer" = import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
         "custom/minicava" = import ./modules/minicava.nix { inherit pkgs lib mkScript; };
-        "custom/tx-net" = {
-          format = "{icon} {}";
-          format-icons = {
-            default = "";
-          };
-          return-type = "json";
-          tooltip = false;
-          interval = 1;
-          exec = "${pkgs.writeShellScript "net-tx" ''
-            INTERFACE=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+')
-            NET_TX1=$(ifstat -j | jq ".kernel.$INTERFACE.tx_bytes")
-            sleep 1
-            NET_TX2=$(ifstat -j | jq ".kernel.$INTERFACE.tx_bytes")
-            NET_TX=$((NET_TX2 - NET_TX1))
-            if [ $NET_TX -ge 1073741824 ]; then
-              RATE=$(echo "scale=2; $NET_TX / 1073741824" | bc)
-              UNIT="GB/s"
-            elif [ $NET_TX -ge 1048576 ]; then
-              RATE=$(echo "scale=2; $NET_TX / 1048576" | bc)
-              UNIT="MB/s"
-            elif [ $NET_TX -ge 1024 ]; then
-              RATE=$(echo "scale=2; $NET_TX / 1024" | bc)
-              UNIT="KB/s"
-            else
-              RATE=$NET_TX
-              UNIT="B/s"
-            fi
-            echo "{\"text\": \"$RATE $UNIT\"}"
-          ''}";
-          exec-if = "${pkgs.writeShellScript "check-interface" ''
-            INTERFACE_COUNT=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+' | wc -l)
-            if [[ $INTERFACE_COUNT -gt 0 ]]; then
-              exit 0
-            else
-              exit 1
-            fi
-          ''}";
-        };
-        "custom/rx-net" = {
-          format = "{icon} {}";
-          format-icons = {
-            default = "";
-          };
-          return-type = "json";
-          tooltip = false;
-          interval = 1;
-          exec = "${pkgs.writeShellScript "net-rx" ''
-            INTERFACE=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+')
-            NET_RX1=$(ifstat -j | jq ".kernel.$INTERFACE.rx_bytes")
-            sleep 1
-            NET_RX2=$(ifstat -j | jq ".kernel.$INTERFACE.rx_bytes")
-            NET_RX=$((NET_RX2 - NET_RX1))
-            if [ $NET_RX -ge 1073741824 ]; then
-              RATE=$(echo "scale=2; $NET_RX / 1073741824" | bc)
-              UNIT="GB/s"
-            elif [ $NET_RX -ge 1048576 ]; then
-              RATE=$(echo "scale=2; $NET_RX / 1048576" | bc)
-              UNIT="MB/s"
-            elif [ $NET_RX -ge 1024 ]; then
-              RATE=$(echo "scale=2; $NET_RX / 1024" | bc)
-              UNIT="KB/s"
-            else
-              RATE=$NET_RX
-              UNIT="B/s"
-            fi
-            echo "{\"text\": \"$RATE $UNIT\"}"
-          ''}";
-          exec-if = "${pkgs.writeShellScript "check-interface" ''
-            INTERFACE_COUNT=$(ip route get 1.1.1.1 | grep -oP 'dev\s+\K[^ ]+' | wc -l)
-            if [[ $INTERFACE_COUNT -gt 0 ]]; then
-              exit 0
-            else
-              exit 1
-            fi
-          ''}";
-        };
+        "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
+        "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
 
       };
     };
