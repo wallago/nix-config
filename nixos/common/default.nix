@@ -6,6 +6,7 @@
 {
   imports = [
     ./boot.nix
+    ./sops.nix
     ./grub.nix
     ./home.nix
     ./network.nix

@@ -32,10 +32,10 @@
 
     # ----- Security -----
     # Secrets management with SOPS
-    # sops-nix = {
-    #   url = "github:mic92/sops-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # ----- Storage Management -----
     # Declarative disk partitioning
