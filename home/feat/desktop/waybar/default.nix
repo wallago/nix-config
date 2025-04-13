@@ -24,6 +24,32 @@ let
         runtimeInputs = commonDeps ++ deps;
       }
     );
+  mkScriptJson =
+    {
+      name ? "script",
+      deps ? [ ],
+      script ? "",
+      text ? "",
+      tooltip ? "",
+      alt ? "",
+      class ? "",
+      percentage ? "",
+    }:
+    mkScript {
+      inherit name;
+      deps = [ pkgs.jq ] ++ deps;
+      script = ''
+        ${script}
+        jq -cn \
+          --arg text "${text}" \
+          --arg tooltip "${tooltip}" \
+          --arg alt "${alt}" \
+          --arg class "${class}" \
+          --arg percentage "${percentage}" \
+          '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+      '';
+    };
+  hyprlandCfg = config.wayland.windowManager.hyprland;
 in
 {
   programs.waybar = {
@@ -51,35 +77,31 @@ in
         margin = "6";
         position = "top";
 
-        modules-left = [
-          # [ "custom/menu" ]
-          # ++ (lib.optionals swayCfg.enable [
-          #   "sway/workspaces"
-          #   "sway/mode"
-          # ])
-          # ++ (lib.optionals hyprlandCfg.enable [
-          #   "hyprland/workspaces"
-          #   "hyprland/submap"
-          # ])
-          # ++ [
-          #   "custom/currentplayer"
-          #   "custom/player"
-          #   "custom/minicava"
-        ];
+        modules-left =
+          [ "custom/menu" ]
+          ++ (lib.optionals hyprlandCfg.enable [
+            "hyprland/workspaces"
+            "hyprland/submap"
+          ])
+          ++ [
+            "custom/currentplayer"
+            "custom/player"
+            "custom/minicava"
+          ];
         modules-center = [
           "cpu"
           "custom/gpu"
           "memory"
           "clock"
-          # "custom/unread-mail"
+          "custom/unread-mail"
         ];
         modules-right = [
-          # "tray"
-          # "custom/rfkill"
+          "tray"
+          "custom/rfkill"
           "network"
           "pulseaudio"
-          # "battery"
-          # "custom/hostname"
+          "battery"
+          "custom/hostname"
         ];
 
         clock = import ./modules/clock.nix;
@@ -87,8 +109,15 @@ in
         "custom/gpu" = import ./modules/gpu.nix { inherit mkScript; };
         memory = import ./modules/memory.nix;
         pulseaudio = import ./modules/pulseaudio.nix { inherit pkgs lib; };
-        # battery = ./modules/battery.nix;
+        battery = import ./modules/battery.nix;
         network = import ./modules/network.nix;
+        "custom/menu" = import ./modules/menu.nix { inherit hyprlandCfg lib mkScriptJson; };
+        "custom/hostname" = import ./modules/hostname.nix { inherit mkScript; };
+        "custom/unread-mail" = import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
+        "custom/rfkill" = import ./modules/rfkill.nix { inherit pkgs mkScript; };
+        "custom/player" = import ./modules/player.nix { inherit pkgs mkScript; };
+        "custom/currentplayer" = import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
+        "custom/minicava" = import ./modules/minicava.nix { inherit pkgs lib mkScript; };
       };
     };
   };

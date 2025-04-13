@@ -102,7 +102,9 @@
       # Filter valid packages for each system and Get the top-level configuration for each NixOS configuration
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      # Custom packages - Also accessible via `nix build`
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
       # devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
       # NixOS system configuration
@@ -124,6 +126,7 @@
         "yc@shusui" = lib.homeManagerConfiguration {
           modules = [
             ./home/users/yc/shusui.nix
+            ./home/nixpkgs.nix
           ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = {

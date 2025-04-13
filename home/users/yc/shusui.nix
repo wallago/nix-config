@@ -46,7 +46,7 @@ in
     }
   ];
 
-  wallpaper = inputs.themes.packages.${pkgs.system}.wallpapers.car-purple;
+  wallpaper = pkgs.inputs.themes.wallpapers.car-purple;
 
   fontProfiles = {
     enable = true;

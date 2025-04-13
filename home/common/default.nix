@@ -3,11 +3,14 @@
   lib,
   pkgs,
   outputs,
+  inputs,
   ...
 }:
+let
+  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+in
 {
   imports = [
-    ./nix.nix
     (import ./home.nix { inherit username; })
     ../feat/cli
 
