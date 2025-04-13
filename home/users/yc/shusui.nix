@@ -44,15 +44,16 @@ in
   ];
 
   wallpaper = inputs.themes.packages.${pkgs.system}.wallpapers.car-purple;
+
   fontProfiles = {
     enable = true;
     monospace = {
-      name = "0xProtoMono Nerd Font";
-      package = pkgs.nerd-fonts._0xproto;
+      name = "0xProto Nerd Font Mono";
+      package = pkgs.nerd-fonts.fira-mono;
     };
     regular = {
       name = "0xProto Sans";
-      package = pkgs.nerd-fonts._0xproto;
+      package = pkgs.nerd-fonts.fira-code;
     };
   };
 

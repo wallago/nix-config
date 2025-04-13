@@ -8,7 +8,6 @@ let
 in
 [
   "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-  "SUPER,t,exec,alacritty"
   "SUPER,e,exec,${defaultApp "text/plain"}"
   "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
 ]

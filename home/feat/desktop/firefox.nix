@@ -9,6 +9,13 @@
     BROWSER = "firefox";
   };
 
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "firefox.desktop" ];
+    "text/xml" = [ "firefox.desktop" ];
+    "x-scheme-handler/http" = [ "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "firefox.desktop" ];
+  };
+
   programs.browserpass.enable = true; # Browser extension designed to securely integrate the Unix-based password manager pass
 
   programs.firefox = {
