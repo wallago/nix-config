@@ -3,8 +3,8 @@
   imports = [
     ./hyprland # -- check deps for bindings
     ./firefox.nix # -> Browser
-    ./waybar # --> Status bar -- WIP
-    ./alacritty.nix # -- WIP
+    ./waybar # ------> Status bar
+    ./ghostty.nix # -> Terminal emulator
 
     # ./wofi.nix # ----> Launcher and window switcher
     # ./mako.nix # ----> Lightweight notification daemon
