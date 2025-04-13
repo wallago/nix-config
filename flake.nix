@@ -99,7 +99,9 @@
       # Overlay is a mechanism to modify or extend the Nix package set
       overlays = import ./overlays { inherit inputs outputs; };
 
-      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+      # Filter valid packages for each system and Get the top-level configuration for each NixOS configuration
+      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+
       # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       # devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
