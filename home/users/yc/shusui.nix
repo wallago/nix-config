@@ -35,7 +35,7 @@ in
       height = 1080;
       refreshRate = 240;
       workspace = "2";
-      position = "auto-left";
+      position = "0x0";
     }
     {
       name = "HDMI-A-1";
@@ -43,6 +43,7 @@ in
       height = 1440;
       workspace = "1";
       primary = true;
+      position = "1920x0";
     }
   ];
 
