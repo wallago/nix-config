@@ -21,9 +21,9 @@
         }
       ];
       font = {
-        size = config.fontProfiles.monospace.size;
+        size = config.fontProfiles.regular.size;
         normal = {
-          family = config.fontProfiles.monospace.name;
+          family = config.fontProfiles.regular.name;
           style = "Medium";
         };
       };
