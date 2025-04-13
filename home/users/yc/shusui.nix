@@ -19,27 +19,29 @@ in
         config
         pkgs
         outputs
-        # inputs
         ;
     })
     ../../feat/desktop
   ];
 
+  #  ------   ----------
+  # | DP-1 | | HDMI-A-1 |
+  #  ------   ----------
   monitors = [
+    {
+      name = "DP-1";
+      width = 1920;
+      height = 1080;
+      refreshRate = 240;
+      workspace = "2";
+      position = "auto-left";
+    }
     {
       name = "HDMI-A-1";
       width = 2560;
       height = 1440;
       workspace = "1";
       primary = true;
-    }
-    {
-      name = "eDP-1";
-      width = 1920;
-      height = 1080;
-      refreshRate = 240;
-      workspace = "2";
-      position = "auto-left";
     }
   ];
 
