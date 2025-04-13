@@ -19,6 +19,7 @@ in
         config
         pkgs
         outputs
+        inputs
         ;
     })
     ../../feat/desktop
@@ -58,5 +59,4 @@ in
       package = pkgs.nerd-fonts.fira-code;
     };
   };
-
 }

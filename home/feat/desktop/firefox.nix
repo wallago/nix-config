@@ -1,9 +1,4 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   home.sessionVariables = {
     BROWSER = "firefox";
@@ -20,104 +15,37 @@
 
   programs.firefox = {
     enable = true;
-    profiles.default = {
-      search = {
-        force = true;
-        default = "ddg";
-        privateDefault = "ddg";
-        order = [
-          "ddg"
-          "google"
-        ];
-        engines = {
-          "ddg" = {
-            urls = [ { template = "https://duckduckgo.com/search?q={searchTerms}"; } ];
-            icon = "https://duckduckgo.com/favicon.ico";
-          };
-          "bing".metaData.hidden = true;
-        };
-      };
-      bookmarks = { };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin # --> Content blocker
-        browserpass # ----> Password manager
-        vimium # ---------> Keyboard shortcuts
-        privacy-badger # -> Block invisible trackers
-      ];
-      bookmarks = { };
-      settings = {
+    languagePacks = [ "en-US" ];
+    policies = {
+      BlockAboutConfig = true;
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      }; # --------------------------------> Configure tracking protection.
+      DisableTelemetry = true; # ----------> Prevent the upload of telemetry data.
+      DisableFirefoxStudies = true; # -----> Disable Firefox studies (Shield).
+      DisablePocket = true; # -------------> Remove Pocket in the Firefox UI.
+      DisableFirefoxAccounts = true; # ----> Disable Firefox Accounts integration (Sync).
+      DisableFirefoxScreenshots = true; # -> Remove access to Firefox Screenshots.
+      DontCheckDefaultBrowser = true; # ---> Don’t check if Firefox is the default browser at startup.
+      DisablePasswordReveal = true; # -----> Do not allow passwords to be shown in saved logins.
+      HttpsOnlyMode = "enabled"; # --------> Configure HTTPS-Only Mode.
+      DNSOverHTTPS = {
+        Enabled = true;
+        ProviderURL = "https://mozilla.cloudflare-dns.com/dns-query";
+        Locked = true;
+      }; # --------------------------------> Configure DNS over HTTPS (DoH).
+      Preferences = {
+        # Homepage
         "browser.startup.homepage" = "https://homepage-brown-ten.vercel.app/";
-
-        # Disable irritating first-run stuff
-        "browser.disableResetPrompt" = true;
-        "browser.download.panel.shown" = true;
-        "browser.feeds.showFirstRunUI" = false;
-        "browser.messaging-system.whatsNewPanel.enabled" = false;
-        "browser.rights.3.shown" = true;
-        "browser.shell.checkDefaultBrowser" = false;
-        "browser.shell.defaultBrowserCheckCount" = 1;
-        "browser.startup.homepage_override.mstone" = "ignore";
-        "browser.uitour.enabled" = false;
         "startup.homepage_override_url" = "";
-        "trailhead.firstrun.didSeeAboutWelcome" = true;
-        "browser.bookmarks.restore_default_bookmarks" = false;
-        "browser.bookmarks.addedImportButton" = true;
+        "browser.startup.homepage_override.mstone" = "ignore";
+        "browser.newtabpage.enabled" = false;
 
-        # Don't ask for download dir
-        "browser.download.useDownloadDir" = false;
-
-        # Privacy & security
-        "privacy.trackingprotection.enabled" = true;
-        "dom.security.https_only_mode" = true;
-        "signon.rememberSignons" = false;
-        "identity.fxaccounts.enabled" = false;
-
-        # Disable crappy home activity stream page
-        "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
-        "browser.newtabpage.blocked" = lib.genAttrs [
-          # Youtube
-          "26UbzFJ7qT9/4DhodHKA1Q=="
-          # Facebook
-          "4gPpjkxgZzXPVtuEoAL9Ig=="
-          # Wikipedia
-          "eV8/WsSLxHadrTL1gAxhug=="
-          # Reddit
-          "gLv0ja2RYVgxKdp0I5qwvA=="
-          # Amazon
-          "K00ILysCaEq8+bEqV/3nuw=="
-          # Twitter
-          "T9nJot5PurhJSy8n038xGA=="
-        ] (_: 1);
-
-        # Disable some telemetry
-        "app.shield.optoutstudies.enabled" = false;
-        "browser.discovery.enabled" = false;
-        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-        "browser.newtabpage.activity-stream.telemetry" = false;
-        "browser.ping-centre.telemetry" = false;
-        "datareporting.healthreport.service.enabled" = false;
-        "datareporting.healthreport.uploadEnabled" = false;
-        "datareporting.policy.dataSubmissionEnabled" = false;
-        "datareporting.sessions.current.clean" = true;
-        "devtools.onboarding.telemetry.logged" = false;
-        "toolkit.telemetry.archive.enabled" = false;
-        "toolkit.telemetry.bhrPing.enabled" = false;
-        "toolkit.telemetry.enabled" = false;
-        "toolkit.telemetry.firstShutdownPing.enabled" = false;
-        "toolkit.telemetry.hybridContent.enabled" = false;
-        "toolkit.telemetry.newProfilePing.enabled" = false;
-        "toolkit.telemetry.prompted" = 2;
-        "toolkit.telemetry.rejected" = true;
-        "toolkit.telemetry.reportingpolicy.firstRun" = false;
-        "toolkit.telemetry.server" = "";
-        "toolkit.telemetry.shutdownPingSender.enabled" = false;
-        "toolkit.telemetry.unified" = false;
-        "toolkit.telemetry.unifiedIsOptIn" = false;
-        "toolkit.telemetry.updatePing.enabled" = false;
-
-        # Layout
+        # UI Customization
         "browser.uiCustomization.state" = builtins.toJSON {
           newElementCount = 5;
           dirtyAreaCache = [
@@ -156,6 +84,87 @@
             "_testpilot-containers-browser-action"
           ];
         };
+
+        # General UX
+        "browser.disableResetPrompt" = true;
+        "browser.download.panel.shown" = true;
+        "browser.shell.checkDefaultBrowser" = false;
+        "browser.shell.defaultBrowserCheckCount" = 1;
+        "browser.bookmarks.restore_default_bookmarks" = false;
+        "browser.bookmarks.addedImportButton" = true;
+        "browser.uitour.enabled" = false;
+        "browser.feeds.showFirstRunUI" = false;
+        "trailhead.firstrun.didSeeAboutWelcome" = true;
+        "reader.parse-on-load.enabled" = true;
+
+        # Search / Suggestions
+        "browser.urlbar.suggest.searches" = false;
+        "browser.urlbar.showSearchSuggestionsFirst" = false;
+        "browser.search.suggest.enabled" = false;
+        "browser.search.suggest.enabled.private" = false;
+
+        # Forms & Autofill
+        "browser.formfill.enable" = false;
+
+        # Privacy & Security
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.resistFingerprinting" = true;
+        "privacy.trackingprotection.fingerprinting.enabled" = true;
+        "privacy.trackingprotection.cryptomining.enabled" = true;
+        "dom.security.https_only_mode" = true;
+        "signon.rememberSignons" = false;
+        "media.peerconnection.enabled" = false;
+        "browser.contentblocking.category" = "strict";
+
+        # Disable Firefox Account
+        "identity.fxaccounts.enabled" = false;
+
+        # Disable Pocket & Sponsored Content
+        "extensions.pocket.enabled" = false;
+        "extensions.screenshots.disabled" = true;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.system.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.activity-stream.feeds.topsites" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+        "browser.topsites.contile.enabled" = false;
+
+        # Download behavior
+        "browser.download.useDownloadDir" = false;
+
+        # Disable telemetry
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.unifiedIsOptIn" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.prompted" = 2;
+        "toolkit.telemetry.rejected" = true;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.server" = "";
+        "app.shield.optoutstudies.enabled" = false;
+        "browser.discovery.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.ping-centre.telemetry" = false;
+        "datareporting.healthreport.service.enabled" = false;
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        "datareporting.sessions.current.clean" = true;
+        "devtools.onboarding.telemetry.logged" = false;
+
+        # Zoom
+        "zoom.defaultPercent" = 100;
       };
     };
   };
