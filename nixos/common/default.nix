@@ -16,6 +16,7 @@
     ./font.nix
     ./upower.nix
     ./nixpkgs.nix
+    ./systemd-initrd.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   # ---
