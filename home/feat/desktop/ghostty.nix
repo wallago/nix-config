@@ -24,13 +24,12 @@
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    clearDefaultKeybinds = true;
     settings = {
       theme = "custom";
       font-size = config.fontProfiles.monospace.size;
       font-family = config.fontProfiles.monospace.name;
-      window-padding-x = 24;
-      window-padding-y = 26;
+      window-padding-x = "6";
+      window-padding-y = "3";
       confirm-close-surface = false;
     };
     themes = {
