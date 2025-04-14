@@ -48,6 +48,7 @@ in
   ];
 
   wallpaper = pkgs.inputs.themes.wallpapers.car-purple;
+  colorscheme.type = "content";
 
   fontProfiles = {
     enable = true;

@@ -37,7 +37,7 @@
         background = config.colorscheme.colors.surface;
         foreground = config.colorscheme.colors.on_surface;
         cursor-color = config.colorscheme.colors.primary;
-        selection-background = config.colorscheme.colors.surface_container_high;
+        selection-background = config.colorscheme.colors.surface_tint;
         selection-foreground = config.colorscheme.colors.on_surface;
         palette = [
           "0=${config.colorscheme.colors.surface}"
@@ -48,14 +48,15 @@
           "5=${config.colorscheme.colors.magenta}"
           "6=${config.colorscheme.colors.cyan}"
           "7=${config.colorscheme.colors.on_surface}"
-          "8=${config.colorscheme.colors.surface_container_highest}"
+
+          "8=${config.colorscheme.colors.surface_container}"
           "9=${config.colorscheme.colors.red_container}"
           "10=${config.colorscheme.colors.green_container}"
           "11=${config.colorscheme.colors.yellow_container}"
           "12=${config.colorscheme.colors.blue_container}"
           "13=${config.colorscheme.colors.magenta_container}"
           "14=${config.colorscheme.colors.cyan_container}"
-          "15=${config.colorscheme.colors.on_primary_container}"
+          "15=${config.colorscheme.colors.on_surface_variant}"
         ];
       };
     };
