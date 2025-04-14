@@ -25,6 +25,8 @@ in
     ../../nixos/feat/code/rust.nix
   ];
 
+  time.timeZone = "Europe/Paris";
+
   networking = {
     hostName = "${hostname}";
   };
