@@ -14,18 +14,11 @@
     ./ssh.nix
     ./nix.nix
     ./font.nix
+    ./upower.nix
+    ./nixpkgs.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   # ---
-
-  services.upower.enable = true; # D-Bus service for power management.
 
   system.stateVersion = "${config.system.nixos.release}";
 }
