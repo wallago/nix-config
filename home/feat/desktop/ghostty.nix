@@ -29,7 +29,7 @@
       font-size = config.fontProfiles.monospace.size;
       font-family = config.fontProfiles.monospace.name;
       window-padding-x = "6";
-      window-padding-y = "3";
+      window-padding-y = "4";
       confirm-close-surface = false;
     };
     themes = {

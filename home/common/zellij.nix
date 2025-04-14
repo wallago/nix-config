@@ -7,8 +7,8 @@
       show_startup_tips = false;
       theme = "custom";
       themes.custom = {
-        fg = config.colorscheme.colors.on_surface;
-        bg = config.colorscheme.colors.surface;
+        fg = config.colorscheme.colors.on_surface_variant;
+        bg = config.colorscheme.colors.surface_variant;
         black = config.colorscheme.colors.surface;
         red = config.colorscheme.colors.on_primary;
         green = config.colorscheme.colors.green;
