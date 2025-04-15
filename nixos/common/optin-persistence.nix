@@ -12,18 +12,16 @@
 {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
-  environment.persistence = {
-    "/persistent" = {
-      files = [
-        "/etc/machine-id"
-      ];
-      directories = [
-        "/var/lib/systemd"
-        "/var/lib/nixos"
-        "/var/log"
-        "/srv"
-      ];
-    };
+  environment.persistence."/persistent" = {
+    files = [
+      "/etc/machine-id"
+    ];
+    directories = [
+      "/var/lib/systemd"
+      "/var/lib/nixos"
+      "/var/log"
+      "/srv"
+    ];
   };
 
   programs.fuse.userAllowOther = true;
