@@ -1,6 +1,17 @@
-# Installed Software
+# 💽 Installed Software
 
-## System-wide Packages
+## 📦 System-wide Packages
+
+### 📐 Host Default Arch
+
+
+## 👤 User-specific Software
+
+### 📐 User Default Arch
+
+## 📦 System-wide Packages
+
+
 
 ### Common
 
@@ -25,7 +36,7 @@
 - **Development Tools**:
   - `rust` (choice one)
 
-## User-specific Software
+## 👤 User-specific Software
 
 ### Common
 

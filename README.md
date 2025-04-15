@@ -4,17 +4,31 @@
 
 ```
 ├── flake.nix
-├── nixos
-│   ├── common // default value for all hosts
-│   └── users
-│       └── ${user}
-├── home
-│   ├── common // default value for all users
-│   └── ${user}
-│       └── ${host}
+│
+├── nixos -> system configuration
+│   ├── common -> default params for all hosts
+│   ├── feat -> optional features  
+│   └── users 
+│       └── ${user} -> specific params for ${user} 
+│
+├── home -> user configuration
+│   ├── common -> default params for all users
+│   ├── feat -> optional features  
+│   └── users 
+│       └── ${user} -> specific params for ${user} 
+│           ├── common -> default params for ${user}
+│           └── ${host} -> specific params for ${user} for ${host}
+│
 ├── hosts
-│   └── ${host
-└── overlays // modify or extend the Nix package set
+│   └── ${host} -> specific params for ${host}
+│
+├── overlays -> modify or extend the Nix package set
+├── modules -> options for defines some params  
+│   ├── home -> specifc for home
+│   └── nixos -> specifc for system
+│
+├── pkgs -> custom packages
+└── hydra.nix -> filter valid packages
 ```
 
 The idea:\

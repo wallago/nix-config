@@ -4,6 +4,7 @@
 
 ### 🖥️ Host: shusui
 
+- **Host**: `host/shusui/default.nix`
 - **Host Type**: Desktop
 - **Hardware Details**:
   - CPU: Intel Core i7-10700K, 8 Cores @ 3.80GHz
@@ -19,36 +20,31 @@
   - Case: Corsair 5000D
   - Cooling: Corsair iCUE H100i RGB PRO XT Liquid CPU Cooler
 - **Users**:
-  - **yc**
-    - User-specific Configuration: `home/yc/shusui/config.nix`
+  - **yc**: `home/users/yc/shusui/default.nix`
 
-### 💻 Host: enma
-
-- **Host Type**: Laptop
-- **Hardware Details**:
-  - CPU: 12th Gen Intel i7-1255U (12) @ 4.700GHz
-  - RAM: 16 Go
-  - Disk:
-    - 1 To SSD
-  - GPU: Intel Alder Lake-UP3 GT2 [Iris Xe Graphics]
-- **Users**:
-  - **yc**
-    - User-specific Configuration: `home/yc/enma/config.nix`
-
-### 🌐 Host: murakumogiri
-
-- **Host Type**: Server
-- **Hardware Details**:
-- **Users**:
-  - **guest**
-    - User-specific Configuration: `home/guest/murakumogiri/config.nix`
+<!-- ### 💻 Host: enma -->
+<!---->
+<!-- - **Host Type**: Laptop -->
+<!-- - **Hardware Details**: -->
+<!--   - CPU: 12th Gen Intel i7-1255U (12) @ 4.700GHz -->
+<!--   - RAM: 16 Go -->
+<!--   - Disk: -->
+<!--     - 1 To SSD -->
+<!--   - GPU: Intel Alder Lake-UP3 GT2 [Iris Xe Graphics] -->
+<!-- - **Users**: -->
+<!--   - **yc** -->
+<!--     - User-specific Configuration: `home/yc/enma/config.nix` -->
+<!---->
+<!-- ### 🌐 Host: murakumogiri -->
+<!---->
+<!-- - **Host Type**: Server -->
+<!-- - **Hardware Details**: -->
+<!-- - **Users**: -->
+<!--   - **guest** -->
+<!--     - User-specific Configuration: `home/guest/murakumogiri/config.nix` -->
 
 ## 👤 Users
 
 ### User: yc
 
-- **Home Directory**: `/home/yc`
-
-### User: guest
-
-- **Home Directory**: `/home/guest`
+- **Home Directory**: `/home/users/yc`
