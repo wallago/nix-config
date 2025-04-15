@@ -4,7 +4,7 @@ keys:
     - &yc 7E60EC8F165F780F
   # Hosts
   - &hosts:
-    - &shusui age1zplf2makzh55ddradkc86cm9t73feqjnf5k4gq8j25ch0qw6qp7qhweg2y
+    - &shusui age1rr4gyh2dmpaplgcxswm4xt4t449z2tcyc8a7q0ql8we6vzkevpvsd6fzce
 
 creation_rules:
   - path_regex: nixos/common/secrets.ya?ml$
