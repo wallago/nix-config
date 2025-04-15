@@ -9,7 +9,7 @@ keys:
 creation_rules:
   - path_regex: nixos/common/secrets.ya?ml$
     key_groups:
-    - pgp:
-      - *yc
-      age:
+    - age:
       - *shusui
+      pgp:
+      - *yc

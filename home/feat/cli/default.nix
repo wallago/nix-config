@@ -6,6 +6,8 @@
     ./eza.nix # -----> Better ls
     ./ripgrep.nix # -> Better grep
     ./fzf.nix # -----> Fuzzy finder for fast searching in the terminal
+    ./gpg.nix # -----> GnuPG
+    ./ssh.nix # -----> -- WIP
   ];
 
   home.packages = with pkgs; [

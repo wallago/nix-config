@@ -2,20 +2,20 @@
   username,
   lib,
   pkgs,
+  config,
   outputs,
   inputs,
   ...
 }:
-let
-  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-in
 {
   imports = [
-    (import ./home.nix { inherit username; })
+    inputs.impermanence.nixosModules.home-manager.impermanence
+    (import ./home.nix { inherit username config; })
     ../feat/cli
 
-    ./nvim # -------> Vim text editor fork focused on extensibility and agility
-    ./zellij.nix # -> Terminal workspace with batteries included
+    ./nvim # ------------> Vim text editor fork focused on extensibility and agility
+    ./zellij.nix # ------> Terminal workspace with batteries included
+    ./colorscheme.nix # -> Color scheme
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   # ---

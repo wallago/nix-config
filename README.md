@@ -43,6 +43,7 @@ This section explains the inputs used in our NixOS flake configuration.
 ### 🧩 System Components
 
 - **nix-colors**: Color scheme management.
+- **impermanence**: Impermanence.
 
 ### 👤 User Environment Management
 
@@ -81,6 +82,12 @@ All secrets are encrypted with my personal PGP key (stored on a [`YubiKey`](http
 By default secrets are owned by `root:root`.\
 By default secrets are stored into `/run/secrets.d` and `/run/secrets-for-users.d`.
 
+> [!TIP]
+> Find the keygrip: Use `gpg --with-keygrip --list-secret-keys <key-id>`
+
+> [!TIP]
+> To generate a GPG public key: Use `gpg --armor --export commandant.cousteau1997@gmail.com > home/pgp.asc`
+
 ### 📄 Add secrets file
 To create the file with the sops config, type:
 ```shell
@@ -93,6 +100,30 @@ cat path/to/secrets.yaml
 ```
 
 ## 💾 Impermanence
+
+Choose what files and directories you want to keep between reboots - the rest are thrown away.\
+The persistent storage can be found at `/persistent`.
+
+`directories`: All directories you want to bind mount to persistent storage.
+- `/var/lib/systemd`
+- `/var/lib/nixos`
+- `/var/log`
+- `/srv`
+- `/home/${user}/Documents`
+- `/home/${user}/Downloads`
+- `/home/${user}/Pictures`
+- `/home/${user}/Videos`
+- `/home/${user}/.local/bin`
+- `/home/${user}/.local/share/nix`: trusted settings and repl history
+
+`files`: All files you want to link or bind to persistent storage.
+- `/etc/machine-id`
+- `/etc/ssh/ssh_host_ed25519_key`
+- `/etc/ssh/ssh_host_ed25519_key.pub`
+
+> [!NOTE]
+> The users option defines a set of submodules which correspond to the users’ names. 
+> The directories and files options of each submodule work like their root counterparts, but the paths are automatically prefixed with with the user’s home directory.
 
 ## 🌀 for new host -- maybe to rm (more to understand)
 
