@@ -1,8 +1,8 @@
-# User and Host Configuration
+# 👥 User and Host Configuration
 
-## Hosts
+## 🏠 Hosts
 
-### Host: shusui
+### 🖥️ Host: shusui
 
 - **Host Type**: Desktop
 - **Hardware Details**:
@@ -22,7 +22,7 @@
   - **yc**
     - User-specific Configuration: `home/yc/shusui/config.nix`
 
-### Host: enma
+### 💻 Host: enma
 
 - **Host Type**: Laptop
 - **Hardware Details**:
@@ -35,7 +35,7 @@
   - **yc**
     - User-specific Configuration: `home/yc/enma/config.nix`
 
-### Host: murakumogiri
+### 🌐 Host: murakumogiri
 
 - **Host Type**: Server
 - **Hardware Details**:
@@ -43,7 +43,7 @@
   - **guest**
     - User-specific Configuration: `home/guest/murakumogiri/config.nix`
 
-## Users
+## 👤 Users
 
 ### User: yc
 

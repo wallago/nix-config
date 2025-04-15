@@ -1,0 +1,15 @@
+keys:
+  # Users
+  - &users:
+    - &yc 7E60EC8F165F780F
+  # Hosts
+  - &hosts:
+    - &shusui age1zplf2makzh55ddradkc86cm9t73feqjnf5k4gq8j25ch0qw6qp7qhweg2y
+
+creation_rules:
+  - path_regex: nixos/common/secrets.ya?ml$
+    key_groups:
+    - pgp:
+      - *yc
+      age:
+      - *shusui

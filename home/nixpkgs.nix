@@ -3,6 +3,7 @@
   outputs,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -10,6 +11,7 @@ let
 in
 {
   nix = {
+    package = pkgs.nix;
     settings = {
       experimental-features = [
         "nix-command"

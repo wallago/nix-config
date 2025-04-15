@@ -17,7 +17,7 @@
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Ephemeral storage management
-    # impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence";
 
     # Color scheme management
     nix-colors.url = "github:misterio77/nix-colors";
@@ -105,7 +105,8 @@
       # Custom packages - Also accessible via `nix build`
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
-      # devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      # Development shell environment
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
       # NixOS system configuration
       nixosConfigurations = {
