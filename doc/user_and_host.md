@@ -22,19 +22,19 @@
 - **Users**:
   - **yc**: `home/users/yc/shusui/default.nix`
 
-<!-- ### 💻 Host: enma -->
-<!---->
-<!-- - **Host Type**: Laptop -->
-<!-- - **Hardware Details**: -->
-<!--   - CPU: 12th Gen Intel i7-1255U (12) @ 4.700GHz -->
-<!--   - RAM: 16 Go -->
-<!--   - Disk: -->
-<!--     - 1 To SSD -->
-<!--   - GPU: Intel Alder Lake-UP3 GT2 [Iris Xe Graphics] -->
-<!-- - **Users**: -->
-<!--   - **yc** -->
-<!--     - User-specific Configuration: `home/yc/enma/config.nix` -->
-<!---->
+### 💻 Host: enma
+
+- **Host Type**: Laptop
+- **Hardware Details**:
+  - CPU: 12th Gen Intel i7-1255U (12) @ 4.700GHz
+  - RAM: 16 Go
+  - Disk:
+    - 1 To SSD
+  - GPU: Intel Alder Lake-UP3 GT2 [Iris Xe Graphics]
+- **Users**:
+  - **yc**
+    - User-specific Configuration: `home/yc/enma/config.nix`
+
 <!-- ### 🌐 Host: murakumogiri -->
 <!---->
 <!-- - **Host Type**: Server -->

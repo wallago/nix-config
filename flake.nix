@@ -119,6 +119,15 @@
             inherit inputs outputs;
           };
         };
+        # Main laptop
+        shusui = lib.nixosSystem {
+          modules = [
+            ./hosts/enma
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
 
       # Home Manager system configuration
@@ -127,6 +136,17 @@
         "yc@shusui" = lib.homeManagerConfiguration {
           modules = [
             ./home/users/yc/shusui.nix
+            ./home/nixpkgs.nix
+          ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
+        # Main laptop
+        "yc@enma" = lib.homeManagerConfiguration {
+          modules = [
+            ./home/users/yc/enma.nix
             ./home/nixpkgs.nix
           ];
           pkgs = pkgsFor.x86_64-linux;
