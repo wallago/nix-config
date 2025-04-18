@@ -120,7 +120,7 @@
           };
         };
         # Main laptop
-        shusui = lib.nixosSystem {
+        enma = lib.nixosSystem {
           modules = [
             ./hosts/enma
           ];
