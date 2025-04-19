@@ -1,5 +1,12 @@
 # 🔧 System Configuration
 
+### 🔹 Variables
+
++ `flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs`\
+▶️ filter inputs for flakes
+
+---
+
 + `system.stateVersion = config.system.nixos.release`\
 ▶️ version of NixOS
 + `nixpkgs`
@@ -33,8 +40,6 @@
     ▶️ map each flake input as a registry
     + `nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs`\
     ▶️ set nixPath for each flake input
-+ `flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs`\
-▶️ filter inputs for flakes
 + `programs.nix-ld.enable = true`\
 ▶️ enable dynamic linking for Nix packages
 
@@ -44,14 +49,18 @@
     + `kernelPackages = pkgs.linuxPackages_latest`\
     ▶️ override the Linux kernel used by NixOS
     + `consoleLogLevel = 4`\
-    ▶️ kernel console `loglevel`
+    ▶️ kernel console logging verbosity
     + `loader.grub`
         + `enable = true`  
         ▶️ enable GNU GRUB boot loader
         + `efiSupport = true`\
-        ▶️ GRUB should be built with EFI suppor
+        ▶️ GRUB should be built with EFI support
         + `efiInstallAsRemovable = true`\
         ▶️ invoke grub-install with `--removable`
+    + `initrd.systemd.enable = true`\
+    ▶️ use `systemd` in the initrd (initial RAM disk) stage instead of the default init system  
+    ▶️ improves early boot diagnostics, consistency, and service management  
+    ▶️ enables features like early systemd journal logging and better integration with the main systemd boot process
 
 # 🐟 Fish Shell
 
@@ -107,8 +116,13 @@
 
 # 🗂️ Persistence Configuration
 
+### 📥 Imports
+
 + `imports = [ inputs.impermanence.nixosModules.impermanence ]`\
 ▶️ import the impermanence module for persistence
+
+---
+
 + `environment.persistence."/persistent"` \
 ▶️ define persistent directory
     + `files = [ "/etc/machine-id" ]`\
@@ -119,3 +133,53 @@
     ▶️ allow other users to access FUSE-mounted files
 + `system.activationScripts.persistent-dirs.text`\
 ▶️ script to ensure all home users directories exist and persist with correct permissions
+
+# 🔐 Secrets Management with SOPS
+
+### 🔹 Variables
+
++ `keys = builtins.filter isEd25519 config.services.openssh.hostKeys`\
+▶️ list of SSH host ed25519 keys available in the system  
+
+### 📥 Imports
+
++ `imports = [ inputs.sops-nix.nixosModules.sops ]`\
+▶️ import the SOPS module for secrets management
+
+---
+
++ `sops.age.sshKeyPaths = map getKeyPath keys`\
+▶️ configure SOPS to use the filtered list of SSH keys for decrypting age-encrypted secrets  
+
+# 🔗 SSH Configuration
+
++ `services.openssh`
+    + `enable = true`\
+    ▶️ enable the OpenSSH daemon
+    + `port = [2222]`\
+    ▶️ configure SSH to listen on port `2222`
+    + `settings`
+        + `PasswordAuthentication = false`\
+        ▶️ disable password authentication
+        + `PermitRootLogin = no`\
+        ▶️ disallow root login over SSH
+        + `LogLevel = "VERBOSE"`\
+        ▶️ logging verbosity
+    + `hostKeys`\
+    ▶️ specify the host key and its type
+        + `type = "ed25519"`\
+        ▶️ use the ed25519 key type
+        + `path = "${lib.optionalString hasOptinPersistence "/persistent"}/etc/ssh/ssh_host_ed25519_key"`\`\
+        ▶️ conditionally use a path under `/persistent` if persistence is enabled
++ `programs.ssh.knownHosts = lib.genAttrs hosts (hostname: {`\
+▶️ configure known SSH host keys for each host in the deployment
+    + `publicKeyFile = ../../hosts/${hostname}/ssh_host_ed25519_key.pub`\
+    ▶️ reference the corresponding public key for each host
+    + `extraHostNames = (lib.optional (hostname == config.networking.hostName) "localhost")`
+    ▶️ add `localhost` as an alias if the hostname matches the current machine
+
+# 🔋 Power Management
+
++ `services.upower.enable = true`\
+▶️ A power management daemon used for monitoring battery status and power devices  
+

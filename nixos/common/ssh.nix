@@ -28,13 +28,10 @@ in
     ];
   };
 
-  programs.ssh = {
-    # Each hosts public key
-    knownHosts = lib.genAttrs hosts (hostname: {
-      publicKeyFile = ../../hosts/${hostname}/ssh_host_ed25519_key.pub;
-      extraHostNames =
-        # Alias for localhost if it's the same host
-        (lib.optional (hostname == config.networking.hostName) "localhost");
-    });
-  };
+  programs.ssh.knownHosts = lib.genAttrs hosts (hostname: {
+    publicKeyFile = ../../hosts/${hostname}/ssh_host_ed25519_key.pub;
+    extraHostNames =
+      # Alias for localhost if it's the same host
+      (lib.optional (hostname == config.networking.hostName) "localhost");
+  });
 }
