@@ -8,7 +8,7 @@
     ./fzf.nix # -----> Fuzzy finder for fast searching in the terminal
     ./gpg.nix # -----> GnuPG
     ./ssh.nix # -----> -- WIP
-    ./zellij.nix # --> Terminal multiplexer
+    ./zellij # ------> Terminal multiplexer
   ];
 
   home.packages = with pkgs; [

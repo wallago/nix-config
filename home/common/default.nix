@@ -12,7 +12,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
     (import ./home.nix { inherit username config; })
     ../feat/cli
-    ../features/helix
+    ../feat/helix
     ./colorscheme.nix # -> Color scheme
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
