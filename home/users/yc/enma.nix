@@ -25,7 +25,7 @@ in
     ../../feat/desktop
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.car-purple;
+  wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
   colorscheme.type = "content";
 
   fontProfiles = {

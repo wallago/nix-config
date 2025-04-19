@@ -47,7 +47,7 @@ in
     }
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.car-purple;
+  wallpaper = pkgs.inputs.themes.wallpapers.purple-night-porsche-drawing-dark;
   colorscheme.type = "content";
 
   fontProfiles = {
