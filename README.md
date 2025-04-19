@@ -45,6 +45,15 @@ Make a difference between NixOs and Home-Manage !
 
 The behavior for someone who used NixOs, if it reload only Home-Manager with a user inside his config, don't should see a difference (cause NixOs only change Hardware stuff).
 
+### ⚙️ Configuration in details
+
+[Configuration ➖ nixos/common/](doc/nixos_common.md)
+
+### 👥 Hosts & Users in details
+
+[Hosts ➖ hosts/](doc/hosts.md)\
+[Users ➖ home/users/ x nixos/users/](doc/users.md)
+
 ## 📥 Inputs
 
 This section explains the inputs used in our NixOS flake configuration.
