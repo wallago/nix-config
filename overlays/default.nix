@@ -22,6 +22,5 @@
   # Adds custom packages
   additions = final: prev: import ../pkgs { pkgs = final; };
 
-  # rust = import ./rust.nix { inherit inputs; };
   rust = inputs.rust-overlay.overlays.default;
 }
