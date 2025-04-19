@@ -7,22 +7,6 @@
 + `systemd.user.startServices = "sd-switch"`\
 ▶️ ensures user services managed by systemd are started or restarted automatically when switching configs with `home-manager switch`
 
-
-# 🧱 Zellij Configuration
-
-+ `programs.zellij`
-    + `enable = true`\
-    ▶️ enables the Zellij terminal multiplexer
-    + `enableFishIntegration = true`\
-    ▶️ enables shell integration for the Fish shell (e.g., auto-starting Zellij sessions)
-    + `settings`
-        + `show_startup_tips = false`\
-        ▶️ disables startup tips in Zellij
-        + `theme = "custom"`\
-        ▶️ sets the active theme to a custom one defined in `themes.custom`
-        + `themes.custom`\
-        ▶️ defines a custom theme using colors from your `colorscheme` module
-
 # 👤 Home Configuration
 
 + `home`
