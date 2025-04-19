@@ -1,6 +1,6 @@
 # 🔧 System Configuration
 
-### 🔹 Variables
+### 🔹 Variables / Functions
 
 + `flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs`\
 ▶️ filter inputs for flakes
@@ -76,13 +76,6 @@
         + `functions.enable = true`\
         ▶️ autoload fish functions provided by other packages
 
-# 🖋️ Fonts Configuration
-
-+ `fonts.packages`\
-▶️ font packages
-    + `pkgs.noto-fonts-emoji`\
-    ▶️ color emoji font
-
 # 👥 User and Group Management
 
 + `users.mutableUsers = false`\
@@ -136,7 +129,7 @@
 
 # 🔐 Secrets Management with SOPS
 
-### 🔹 Variables
+### 🔹 Variables / Functions
 
 + `keys = builtins.filter isEd25519 config.services.openssh.hostKeys`\
 ▶️ list of SSH host ed25519 keys available in the system  

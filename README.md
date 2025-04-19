@@ -47,6 +47,9 @@ The behavior for someone who used NixOs, if it reload only Home-Manager with a u
 
 ### ⚙️ Configuration in details
 
+[Configuration ➖ overlays/](doc/overlays.md)
+[Configuration ➖ pkgs/](doc/pkgs.md)
+[Configuration ➖ modules/home/](doc/modules.md)
 [Configuration ➖ nixos/common/](doc/nixos_common.md)
 
 ### 👥 Hosts & Users in details

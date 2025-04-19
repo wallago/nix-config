@@ -13,7 +13,6 @@
     ./grub.nix
     ./home.nix
     ./fish.nix
-    ./font.nix
     ./login.nix
     ./upower.nix
     ./nixpkgs.nix
