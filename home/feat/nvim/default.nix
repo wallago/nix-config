@@ -1,9 +1,15 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
-in
-{
+  nvimTreesitter = import ./plugins/nvim_treesitter.nix {inherit pkgs;};
+  nvimLspconfig = import ./plugins/nvim_lspconfig.nix {inherit pkgs;};
+  nvimCmp = import ./plugins/nvim_cmp.nix {inherit pkgs;};
+  deps = with pkgs; [gcc rust-analyzer nil];
+in {
   home.sessionVariables = {
     EDITOR = "nvim";
     COLORTERM = "truecolor";
@@ -15,72 +21,114 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      nvim-lspconfig
+      nvimTreesitter.plugin
+      nvimLspconfig.plugin
+      nvimCmp.plugin
       telescope-nvim
       lazy-nvim
-      nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
       cmp-path
       cmp-cmdline
+      luasnip
       gitsigns-nvim
       nvim-web-devicons
       which-key-nvim
+      vim-commentary
     ];
+
+    extraLuaConfig = ''
+      -- General Settings
+      vim.opt.number = true
+      vim.opt.expandtab = true
+      vim.opt.tabstop = 2
+      vim.opt.softtabstop = 2
+      vim.opt.shiftwidth = 2
+      vim.opt.smartindent = true
+      -- Visual Settings
+      vim.opt.termguicolors = true
+      vim.opt.cursorline = true
+      vim.opt.cursorlineopt = "number"
+      -- Performance & UI Tweaks
+      vim.opt.signcolumn = "yes"
+      vim.opt.foldmethod = "indent"
+      vim.opt.foldlevel = 99
+      vim.opt.mouse = "a"
+      -- Search & Navigation
+      vim.opt.ignorecase = true
+      vim.opt.smartcase = true
+      vim.opt.incsearch = true
+      vim.opt.hlsearch = true
+      -- Clipboard & Yank Settings
+      vim.opt.clipboard = "unnamedplus"
+      vim.opt.history = 1000
+      -- Undo & Backup
+      vim.opt.undofile = true
+      vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+      vim.opt.backup = false
+      vim.opt.writebackup = false
+      -- Spelling & Auto-Completion
+      vim.opt.spell = false
+      vim.opt.completeopt = { "menu", "menuone", "noselect" }
+      -- Miscellaneous
+      -- vim.opt.showmode = false
+      -- vim.opt.wrap = false
+      ${nvimTreesitter.config}
+      ${nvimLspconfig.config}
+      ${nvimCmp.config}
+    '';
   };
+
+  home.packages = deps;
 }
-
-
-
-  #   withNodeJs = true;
-  #   withRuby = true;
-  #   withPython3 = true;
-  #   extraConfig = ''
-  #     ${builtins.readFile ./config.vim}
-  #   '';
-  #   plugins = with pkgs.vimPlugins; [
-  #     toggleterm-nvim # -------> floating terminal
-  #     nvim-notify # -----------> notify
-  #     vim-dadbod-ui # ---------> navigation database gui
-  #     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
-  #     plenary-nvim # ----------> All the lua functions I don't want to write twice.
-  #     openscad-nvim # --------->
-  #     coc-nvim # --------------> conquer of completion nvim
-  #     coc-lua # ---------------> conquer of completion lua
-  #     coc-rust-analyzer # -----> conquer of completion rust analyzer
-  #     coc-tailwindcss # -------> conquer of completion of tailwindcss
-  #     coc-fzf # ---------------> conquer of completion for fzf
-  #     vim-nix # ---------------> writing Nix expressions
-  #     comment-nvim # ----------> comment line
-  #     conform-nvim # ----------> formating code
-  #     markdown-nvim # ---------> beautify markdown
-  #     markdown-preview-nvim # -> preview markdown file
-  #     rest-nvim # -------------> asynchronous Neovim HTTP client
-  #     rustaceanvim # ----------> Supercharge your Rust experience
-  #     actions-preview-nvim # --> Better actions preview
-  #     inc-rename-nvim # -------> LSP renaming with immediate visual feedback
-  #     vim-flog # --------------> git graph
-  #     fugitive # --------------> git commands
-  #     lazygit-nvim # ----------> git interface
-  #     bufferline-nvim # -------> tabs behavior
-  #     nvim-colorizer-lua # ----> show color by code
-  #     nvim-tree-lua # ---------> file explorer
-  #     nvim-web-devicons # -----> provide Nerd Font icons
-  #   ];
-  # };
-  #
-  # home.packages = with pkgs; [
-  #   luajit # ----------------> Just-In-Time compiler for Lua programming language
-  #   stylua # ----------------> Opinionated Lua code formatter
-  #   nixfmt-rfc-style # ------> Formatter for Nix code following RFC style
-  #   prettierd # -------------> Prettier daemon for faster formatting
-  #   isort # -----------------> Python utility to sort imports alphabetically
-  #   black # -----------------> The uncompromising Python code formatter
-  #   grc # -------------------> Generic text colouriser
-  # ];
-  #
-  # home.sessionVariables = {
-  #   EDITOR = "nvim";
-  # };
+#   withNodeJs = true;
+#   withRuby = true;
+#   withPython3 = true;
+#   extraConfig = ''
+#     ${builtins.readFile ./config.vim}
+#   '';
+#   plugins = with pkgs.vimPlugins; [
+#     toggleterm-nvim # -------> floating terminal
+#     nvim-notify # -----------> notify
+#     vim-dadbod-ui # ---------> navigation database gui
+#     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
+#     plenary-nvim # ----------> All the lua functions I don't want to write twice.
+#     openscad-nvim # --------->
+#     coc-nvim # --------------> conquer of completion nvim
+#     coc-lua # ---------------> conquer of completion lua
+#     coc-rust-analyzer # -----> conquer of completion rust analyzer
+#     coc-tailwindcss # -------> conquer of completion of tailwindcss
+#     coc-fzf # ---------------> conquer of completion for fzf
+#     vim-nix # ---------------> writing Nix expressions
+#     conform-nvim # ----------> formating code
+#     markdown-nvim # ---------> beautify markdown
+#     markdown-preview-nvim # -> preview markdown file
+#     rest-nvim # -------------> asynchronous Neovim HTTP client
+#     rustaceanvim # ----------> Supercharge your Rust experience
+#     actions-preview-nvim # --> Better actions preview
+#     inc-rename-nvim # -------> LSP renaming with immediate visual feedback
+#     vim-flog # --------------> git graph
+#     fugitive # --------------> git commands
+#     lazygit-nvim # ----------> git interface
+#     bufferline-nvim # -------> tabs behavior
+#     nvim-colorizer-lua # ----> show color by code
+#     nvim-tree-lua # ---------> file explorer
+#     nvim-web-devicons # -----> provide Nerd Font icons
+#   ];
+# };
+#
+# home.packages = with pkgs; [
+#   luajit # ----------------> Just-In-Time compiler for Lua programming language
+#   stylua # ----------------> Opinionated Lua code formatter
+#   nixfmt-rfc-style # ------> Formatter for Nix code following RFC style
+#   prettierd # -------------> Prettier daemon for faster formatting
+#   isort # -----------------> Python utility to sort imports alphabetically
+#   black # -----------------> The uncompromising Python code formatter
+#   grc # -------------------> Generic text colouriser
+# ];
+#
+# home.sessionVariables = {
+#   EDITOR = "nvim";
+# };
 # }
+

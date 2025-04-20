@@ -25,17 +25,24 @@ in
     ../../feat/desktop
   ];
 
-  #  ------   ----------
-  # | DP-1 | | HDMI-A-1 |
-  #  ------   ----------
+  #  ------   ------   ----------
+  # | DP-2 | | DP-1 | | HDMI-A-1 |
+  #  ------   ------   ----------
   monitors = [
+    {
+      name = "DP-2";
+      width = 1280;
+      height = 768;
+      workspace = "3";
+      position = "0x0";
+    }
     {
       name = "DP-1";
       width = 1920;
       height = 1080;
       refreshRate = 240;
       workspace = "2";
-      position = "0x0";
+      position = "1280x0";
     }
     {
       name = "HDMI-A-1";
@@ -43,7 +50,7 @@ in
       height = 1440;
       workspace = "1";
       primary = true;
-      position = "1920x0";
+      position = "3200x0";
     }
   ];
 

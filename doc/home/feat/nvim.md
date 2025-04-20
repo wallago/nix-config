@@ -30,7 +30,7 @@
         + `telescope-nvim`\
         ▶️ fuzzy finder and picker UI for files, buffers, LSP, and more
         + `lazy-nvim`\
-        ▶️ modern Neovim plugin manager
+        ▶️ modern plugin manager
         + `nvim-cmp`\
         ▶️ completion engine
             + `cmp-nvim-lsp`\
@@ -41,12 +41,17 @@
             ▶️ filesystem path completion source
             + `cmp-nvim-cmdline`\
             ▶️ command line `:` and search mode `/`, `?`
+        + `luasnip`\
+        ▶️ snippet engine
         + `gitsigns-nvim`\
         ▶️ Git diff signs in the sign column (added, changed, removed)
         + `nvim-web-devicons`\
-        ▶️ file icons for Neovim plugins
+        ▶️ file icons 
         + `which-key-nvim`\
         ▶️ displays available keybindings in a popup
         + `neogit`\
         ▶️ Git interface manager
+        + `vim-commentary`\
+        ▶️ comment stuff help
 
+ 
