@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{ pkgs, lib, ... }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    consoleLogLevel = 4;
+    consoleLogLevel = lib.mkDefault 4;
   };
 }
