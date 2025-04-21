@@ -1,28 +1,10 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  outputs,
-  ...
-}:
-let
-  username = "yc";
-in
-{
+{ lib, config, pkgs, inputs, outputs, ... }:
+let username = "yc";
+in {
   imports = [
     ./common.nix
-    (import ../../common {
-      inherit
-        username
-        lib
-        config
-        pkgs
-        outputs
-        inputs
-        ;
-    })
-    ../../feat/desktop
+    (import ../../common { inherit username lib config pkgs outputs inputs; })
+    # ../../feat/desktop
   ];
 
   wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
