@@ -4,7 +4,7 @@ in {
   imports = [
     ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
-    # ../../feat/desktop
+    ../../feat/desktop
   ];
 
   wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;

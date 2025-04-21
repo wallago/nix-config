@@ -12,7 +12,6 @@ in {
     ../../nixos/users/yc
 
     ../../nixos/feat/gpu/nvidia.nix
-
     ../../nixos/feat/desktop
     ../../nixos/feat/code/rust.nix
   ];
