@@ -1,5 +1,12 @@
-{pkgs}: {
-  plugin = pkgs.vimPlugins.nvim-cmp;
+{ pkgs }: {
+  plugins = with pkgs.vimPlugins; [
+    nvim-cmp
+    cmp-nvim-lsp
+    cmp-buffer
+    cmp-path
+    cmp-cmdline
+    luasnip
+  ];
   config = ''
     local cmp = require'cmp'
     cmp.setup({

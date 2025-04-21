@@ -1,14 +1,26 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
-  nvimTreesitter = import ./plugins/nvim_treesitter.nix {inherit pkgs;};
-  nvimLspconfig = import ./plugins/nvim_lspconfig.nix {inherit pkgs;};
-  nvimCmp = import ./plugins/nvim_cmp.nix {inherit pkgs;};
-  deps = with pkgs; [gcc rust-analyzer nil];
+
+  rawPluginModules = [
+    ./plugins/nvim_treesitter.nix
+    ./plugins/nvim_lspconfig.nix
+    ./plugins/nvim_cmp.nix
+    ./plugins/telescope_nvim.nix
+    ./plugins/neogit.nix
+  ];
+
+  pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
+
+  getOrDefault = name: default: module:
+    if builtins.hasAttr name module then module.${name} else default;
+
+  allPlugins = builtins.concatLists (map (m: m.plugins) pluginModules);
+  allDeps =
+    builtins.concatLists (map (m: getOrDefault "deps" [ ] m) pluginModules);
+  allConfig = builtins.concatStringsSep "\n"
+    (map (m: getOrDefault "config" "" m) pluginModules);
 in {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -20,22 +32,13 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      nvimTreesitter.plugin
-      nvimLspconfig.plugin
-      nvimCmp.plugin
-      telescope-nvim
+    plugins = allPlugins ++ (with pkgs.vimPlugins; [
       lazy-nvim
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      luasnip
       gitsigns-nvim
       nvim-web-devicons
       which-key-nvim
       vim-commentary
-    ];
+    ]);
 
     extraLuaConfig = ''
       -- General Settings
@@ -73,14 +76,13 @@ in {
       -- Miscellaneous
       -- vim.opt.showmode = false
       -- vim.opt.wrap = false
-      ${nvimTreesitter.config}
-      ${nvimLspconfig.config}
-      ${nvimCmp.config}
+      ${allConfig}
     '';
   };
 
-  home.packages = deps;
+  home.packages = allDeps;
 }
+
 #   withNodeJs = true;
 #   withRuby = true;
 #   withPython3 = true;
