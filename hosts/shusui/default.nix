@@ -1,14 +1,6 @@
-{
-  inputs,
-  config,
-  pkgs,
-  outputs,
-  ...
-}:
-let
-  hostname = "shusui";
-in
-{
+{ inputs, ... }:
+let hostname = "shusui";
+in {
   imports = [
     # Includes the Disko module from the disko input in NixOS configuration
     inputs.disko.nixosModules.disko
@@ -27,11 +19,7 @@ in
 
   time.timeZone = "Europe/Paris";
 
-  networking = {
-    hostName = "${hostname}";
-  };
+  networking = { hostName = "${hostname}"; };
 
-  services.xserver.displayManager.gdm = {
-    banner = "go fuck your self";
-  };
+  services.xserver.displayManager.gdm = { banner = "go fuck your self"; };
 }

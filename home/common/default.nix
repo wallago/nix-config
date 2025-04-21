@@ -1,13 +1,4 @@
-{
-  username,
-  lib,
-  pkgs,
-  config,
-  outputs,
-  inputs,
-  ...
-}:
-{
+{ username, config, outputs, inputs, ... }: {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
     (import ./home.nix { inherit username config; })
