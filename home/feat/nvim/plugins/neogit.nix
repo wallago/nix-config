@@ -12,6 +12,10 @@
     	commit_editor = {
     		kind = "split",
     	},
+      filewatcher = { 
+        interval = 1000, 
+        enabled = true 
+      },
     })
   '';
 }

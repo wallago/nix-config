@@ -9,6 +9,7 @@ let
     ./plugins/nvim_cmp.nix
     ./plugins/telescope_nvim.nix
     ./plugins/neogit.nix
+    ./plugins/which_key_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -36,7 +37,6 @@ in {
       lazy-nvim
       gitsigns-nvim
       nvim-web-devicons
-      which-key-nvim
       vim-commentary
     ]);
 
