@@ -10,6 +10,7 @@ let
     ./plugins/telescope_nvim.nix
     ./plugins/neogit.nix
     ./plugins/which_key_nvim.nix
+    ./plugins/conform_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -38,6 +39,9 @@ in {
       gitsigns-nvim
       nvim-web-devicons
       vim-commentary
+
+      # stand alone -- need to do with this
+      render-markdown-nvim
     ]);
 
     extraLuaConfig = ''

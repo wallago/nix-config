@@ -26,6 +26,7 @@
         { name = "buffer" },
         { name = "path" },
         { name = "luasnip" },
+        { name = 'render-markdown' },
       },
       window = {
         completion = cmp.config.window.bordered(),

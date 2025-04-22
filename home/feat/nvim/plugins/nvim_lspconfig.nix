@@ -1,13 +1,6 @@
 { pkgs }: {
   plugins = with pkgs.vimPlugins; [ nvim-lspconfig ];
   config = ''
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*",
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end,
-    })
-
     local lspconfig = require("lspconfig")
 
     lspconfig.rust_analyzer.setup({
