@@ -11,6 +11,8 @@ let
     ./plugins/neogit.nix
     ./plugins/which_key_nvim.nix
     ./plugins/conform_nvim.nix
+    ./plugins/nvim_web_devicons.nix
+    ./plugins/gitsigns_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -35,12 +37,8 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
     plugins = allPlugins ++ (with pkgs.vimPlugins; [
-      lazy-nvim
-      gitsigns-nvim
-      nvim-web-devicons
+      # stand alone
       vim-commentary
-
-      # stand alone -- need to do with this
       render-markdown-nvim
     ]);
 

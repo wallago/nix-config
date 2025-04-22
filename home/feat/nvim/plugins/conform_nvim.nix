@@ -19,6 +19,6 @@
     	notify_no_formatters = true,
     })
   '';
-  deps = with pkgs; [ prettier ];
+  deps = with pkgs; [ nodePackages.prettier ];
 }
 
