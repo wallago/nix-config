@@ -1,13 +1,12 @@
 { config, ... }:
-{
+let
+  inherit (config) colorscheme;
+  c = colorscheme.colors;
+in {
   # Set as default terminal
   xdg.mimeApps = {
-    associations.added = {
-      "x-scheme-handler/terminal" = "Ghostty.desktop";
-    };
-    defaultApplications = {
-      "x-scheme-handler/terminal" = "Ghostty.desktop";
-    };
+    associations.added = { "x-scheme-handler/terminal" = "Ghostty.desktop"; };
+    defaultApplications = { "x-scheme-handler/terminal" = "Ghostty.desktop"; };
   };
 
   xdg.desktopEntries.Ghostty = {
@@ -15,10 +14,7 @@
     exec = "ghostty";
     terminal = false;
     mimeType = [ "x-scheme-handler/terminal" ];
-    categories = [
-      "System"
-      "Utility"
-    ];
+    categories = [ "System" "Utility" ];
   };
 
   programs.ghostty = {
@@ -34,29 +30,29 @@
     };
     themes = {
       custom = {
-        background = config.colorscheme.colors.surface;
-        foreground = config.colorscheme.colors.on_surface;
-        cursor-color = config.colorscheme.colors.primary;
-        selection-background = config.colorscheme.colors.surface_tint;
-        selection-foreground = config.colorscheme.colors.on_surface;
+        background = c.surface;
+        foreground = c.on_surface;
+        cursor-color = c.primary;
+        selection-background = c.surface_tint;
+        selection-foreground = c.on_surface;
         palette = [
-          "0=${config.colorscheme.colors.surface}"
-          "1=${config.colorscheme.colors.red}"
-          "2=${config.colorscheme.colors.green}"
-          "3=${config.colorscheme.colors.yellow}"
-          "4=${config.colorscheme.colors.blue}"
-          "5=${config.colorscheme.colors.magenta}"
-          "6=${config.colorscheme.colors.cyan}"
-          "7=${config.colorscheme.colors.on_surface}"
+          "0=${c.surface}"
+          "1=${c.red}"
+          "2=${c.green}"
+          "3=${c.yellow}"
+          "4=${c.blue}"
+          "5=${c.magenta}"
+          "6=${c.cyan}"
+          "7=${c.on_surface}"
 
-          "8=${config.colorscheme.colors.surface_variant}"
-          "9=${config.colorscheme.colors.red_container}"
-          "10=${config.colorscheme.colors.green_container}"
-          "11=${config.colorscheme.colors.yellow_container}"
-          "12=${config.colorscheme.colors.blue_container}"
-          "13=${config.colorscheme.colors.magenta_container}"
-          "14=${config.colorscheme.colors.cyan_container}"
-          "15=${config.colorscheme.colors.on_surface_variant}"
+          "8=${c.surface_container}"
+          "9=${c.red_container}"
+          "10=${c.green_container}"
+          "11=${c.yellow_container}"
+          "12=${c.blue_container}"
+          "13=${c.magenta_container}"
+          "14=${c.cyan_container}"
+          "15=${c.on_surface_variant}"
         ];
       };
     };

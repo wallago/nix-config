@@ -2,6 +2,7 @@
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
+  c = colorscheme.colors;
 
   rawPluginModules = [
     ./plugins/nvim_treesitter.nix
@@ -139,15 +140,15 @@ in {
       vim.g.colors_name = "${hash}"
 
       local colors = {
-        bg      = "#1e1e2e",
-        fg      = "#cdd6f4",
-        red     = "#f38ba8",
-        green   = "#a6e3a1",
-        yellow  = "#f9e2af",
-        blue    = "#89b4fa",
-        magenta = "#cba6f7",
-        cyan    = "#94e2d5",
-        gray    = "#6c7086",
+        bg      = "${c.surface}",
+        fg      = "${c.on_surface}",
+        red     = "${c.red}",
+        green   = "${c.green}",
+        yellow  = "${c.yellow}",
+        blue    = "${c.blue}",
+        magenta = "${c.magenta}",
+        cyan    = "${c.cyan}",
+        gray    = "${c.surface_container}",
       }
 
       vim.api.nvim_set_hl(0, "Normal",       { fg = colors.fg, bg = colors.bg })
@@ -158,7 +159,7 @@ in {
       vim.api.nvim_set_hl(0, "Identifier",   { fg = colors.red })
       vim.api.nvim_set_hl(0, "Statement",    { fg = colors.magenta })
       vim.api.nvim_set_hl(0, "Type",         { fg = colors.yellow })
-      vim.api.nvim_set_hl(0, "Visual",       { bg = "#313244" })
+      vim.api.nvim_set_hl(0, "Visual",       { bg = "${c.surface_tint}" })
       vim.api.nvim_set_hl(0, "LineNr",       { fg = colors.gray })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.yellow, bold = true })
 
