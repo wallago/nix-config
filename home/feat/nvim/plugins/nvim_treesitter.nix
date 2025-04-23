@@ -22,6 +22,7 @@
     nvim-treesitter-parsers.gpg
     nvim-treesitter-parsers.dockerfile
     nvim-treesitter-parsers.gitattributes
+    nvim-treesitter-parsers.regex
     nvim-treesitter-parsers.gitcommit
     nvim-treesitter-parsers.gitignore
     nvim-treesitter-parsers.markdown
@@ -36,13 +37,13 @@
         enable = true,
         additional_vim_regex_highlighting = false,
       },
-      indent = {
+      ident = { enable = true }, 
+      rainbow = {
         enable = true,
-      },
-      autotag = {
-        enable = true, -- for HTML-like tags
-      },
+        extended_mode = true,
+        max_file_lines = nil,
+      }
     })
   '';
-  deps = with pkgs; [ gcc ];
+  deps = with pkgs; [ gcc nodejs tree-sitter ];
 }

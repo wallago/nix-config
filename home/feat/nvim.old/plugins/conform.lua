@@ -2,7 +2,7 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		nix = { "nixfmt" },
-		rust = { "rustfmt", lsp_format = "fallback" },
+		rust = { "rustfmt --edition 2024 --unstable-features", lsp_format = "fallback" },
 		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },

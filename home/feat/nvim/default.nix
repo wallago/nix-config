@@ -13,6 +13,13 @@ let
     ./plugins/conform_nvim.nix
     ./plugins/nvim_web_devicons.nix
     ./plugins/gitsigns_nvim.nix
+    ./plugins/trouble_nvim.nix
+    ./plugins/lualine_nvim.nix
+    ./plugins/noice_nvim.nix
+    ./plugins/nvim_notify.nix
+    ./plugins/render_markdown_nvim.nix
+    ./plugins/rustaceanvim.nix
+    ./plugins/none_ls_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -38,8 +45,8 @@ in {
     vimdiffAlias = true;
     plugins = allPlugins ++ (with pkgs.vimPlugins; [
       # stand alone
+      rustaceanvim
       vim-commentary
-      render-markdown-nvim
     ]);
 
     extraLuaConfig = ''
@@ -50,34 +57,50 @@ in {
       vim.opt.softtabstop = 2
       vim.opt.shiftwidth = 2
       vim.opt.smartindent = true
+
       -- Visual Settings
       vim.opt.termguicolors = true
       vim.opt.cursorline = true
       vim.opt.cursorlineopt = "number"
+
       -- Performance & UI Tweaks
       vim.opt.signcolumn = "yes"
       vim.opt.foldmethod = "indent"
       vim.opt.foldlevel = 99
       vim.opt.mouse = "a"
+
       -- Search & Navigation
       vim.opt.ignorecase = true
       vim.opt.smartcase = true
       vim.opt.incsearch = true
       vim.opt.hlsearch = true
+
       -- Clipboard & Yank Settings
       vim.opt.clipboard = "unnamedplus"
       vim.opt.history = 1000
+
       -- Undo & Backup
       vim.opt.undofile = true
       vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
       vim.opt.backup = false
       vim.opt.writebackup = false
+
       -- Spelling & Auto-Completion
       vim.opt.spell = false
-      vim.opt.completeopt = { "menu", "menuone", "noselect" }
+      vim.opt.completeopt = { 
+        "menu", -- use a popup menu to show the possible completions 
+        "menuone", -- use the popup menu also when there is only one match
+        "noselect", -- except that no menu item is pre-selected
+        "noinsert", -- do not insert any text for a match until the user selects a match from the menu
+      }
       -- Miscellaneous
-      -- vim.opt.showmode = false
-      -- vim.opt.wrap = false
+
+      -- Diagnostic 
+      vim.o.updatetime = 300
+      vim.cmd [[
+        autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+      ]]
+
       ${allConfig}
     '';
   };

@@ -6,6 +6,7 @@
     		json = { "prettier" },
     		yaml = { "prettier" },
     		markdown = { "prettier" },
+        rust = { "rustfmt", lsp_format = "fallback" },
     	},
     	format_on_save = {
     		enabled = true,

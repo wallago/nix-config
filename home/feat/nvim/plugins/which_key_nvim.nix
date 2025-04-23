@@ -40,10 +40,17 @@
       { "<leader>l", "<C-w>l", desc = "Move to Right Window" },
 
       -- LSP
-      { "<leader>l", proxy = "gr", group = "LSP" },
-      { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "LSP References" },
-      { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "LSP Definition" },
-      { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
+      { "<leader>p", proxy = "gr", group = "LSP" },
+      { "<leader>pr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "LSP References" },
+      { "<leader>pd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "LSP Definition" },
+      { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
+      
+      -- Trouble
+      { "<leader>x", group = "Trouble" },
+      { "<leader>xd", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
+      { "<leader>xD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics" },
+      { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols" },
+      { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP" },
     })
   '';
 }
