@@ -45,6 +45,8 @@
       { "<leader>pr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "LSP References" },
       { "<leader>pd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "LSP Definition" },
       { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
+      { "<leader>pn", ":IncRename ", desc = "LSP Rename" },
+      { "<leader>pa", require("actions-preview").code_actions, desc = "LSP Code Actions" },
       
       -- Trouble
       { "<leader>x", group = "Trouble" },

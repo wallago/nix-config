@@ -20,6 +20,7 @@ let
     ./plugins/render_markdown_nvim.nix
     ./plugins/rustaceanvim.nix
     ./plugins/inc_rename_nvim.nix
+    ./plugins/actions_preview_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -137,13 +138,6 @@ in {
   home.packages = allDeps;
 }
 
-#   withNodeJs = true;
-#   withRuby = true;
-#   withPython3 = true;
-#   extraConfig = ''
-#     ${builtins.readFile ./config.vim}
-#   '';
-#   plugins = with pkgs.vimPlugins; [
 #     toggleterm-nvim # -------> floating terminal
 #     vim-dadbod-ui # ---------> navigation database gui
 #     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
@@ -152,22 +146,13 @@ in {
 #     markdown-nvim # ---------> beautify markdown
 #     markdown-preview-nvim # -> preview markdown file
 #     rest-nvim # -------------> asynchronous Neovim HTTP client
-#     actions-preview-nvim # --> Better actions preview
-#     inc-rename-nvim # -------> LSP renaming with immediate visual feedback
 #     vim-flog # --------------> git graph
 #     fugitive # --------------> git commands
 #     lazygit-nvim # ----------> git interface
 #     bufferline-nvim # -------> tabs behavior
 #     nvim-colorizer-lua # ----> show color by code
 #     nvim-tree-lua # ---------> file explorer
-#   ];
-# };
-#
-# home.packages = with pkgs; [
+
 #   luajit # ----------------> Just-In-Time compiler for Lua programming language
-#   stylua # ----------------> Opinionated Lua code formatter
-#   nixfmt-rfc-style # ------> Formatter for Nix code following RFC style
 #   isort # -----------------> Python utility to sort imports alphabetically
 #   black # -----------------> The uncompromising Python code formatter
-#   grc # -------------------> Generic text colouriser
-# ];
