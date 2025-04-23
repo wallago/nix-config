@@ -52,7 +52,7 @@ in {
           "12=${c.blue_container}"
           "13=${c.magenta_container}"
           "14=${c.cyan_container}"
-          "15=${c.on_surface_variant}"
+          "15=${c.red}"
         ];
       };
     };

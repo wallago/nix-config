@@ -10,6 +10,7 @@
       -- Miscellaneous
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
       { "<leader>c", "<cmd>Commentary<cr>", desc = "Commentary" },
+      { "<leader>d", "<cmd>Oil<cr>", desc = "Open parent directory" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },

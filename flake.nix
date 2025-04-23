@@ -33,30 +33,21 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      systems,
-      ...
-    }@inputs:
+  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
       # Creates a lib var combining nixpkgs.lib with home-manager.lib
       lib = nixpkgs.lib // home-manager.lib;
 
       # For each system, the Nixpkgs for that system and sets the configuration to allow unfree packages
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
-        system:
+      forEachSystem = f:
+        lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-        }
-      );
-    in
-    {
+        });
+    in {
       inherit lib;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
@@ -65,26 +56,19 @@
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      help = ./help.nix;
 
       # NixOS system configuration
       nixosConfigurations = {
         # Main desktop
         shusui = lib.nixosSystem {
-          modules = [
-            ./hosts/shusui
-          ];
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          modules = [ ./hosts/shusui ];
+          specialArgs = { inherit inputs outputs; };
         };
         # Main laptop
         enma = lib.nixosSystem {
-          modules = [
-            ./hosts/enma
-          ];
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          modules = [ ./hosts/enma ];
+          specialArgs = { inherit inputs outputs; };
         };
       };
 
@@ -92,25 +76,15 @@
       homeConfigurations = {
         # Main desktop
         "yc@shusui" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/yc/shusui.nix
-            ./home/nixpkgs.nix
-          ];
+          modules = [ ./home/users/yc/shusui.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
-          };
+          extraSpecialArgs = { inherit inputs outputs; };
         };
         # Main laptop
         "yc@enma" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/yc/enma.nix
-            ./home/nixpkgs.nix
-          ];
+          modules = [ ./home/users/yc/enma.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
-          };
+          extraSpecialArgs = { inherit inputs outputs; };
         };
       };
     };

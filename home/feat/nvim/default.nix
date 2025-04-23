@@ -15,7 +15,6 @@ let
     ./plugins/nvim_web_devicons.nix
     ./plugins/gitsigns_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/lualine_nvim.nix
     ./plugins/noice_nvim.nix
     ./plugins/nvim_notify.nix
     ./plugins/render_markdown_nvim.nix
@@ -23,9 +22,13 @@ let
     ./plugins/inc_rename_nvim.nix
     ./plugins/actions_preview_nvim.nix
     ./plugins/nvim_colorizer_lua.nix
+    ./plugins/oil_nvim.nix
   ];
 
-  pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
+  rawPluginColorModules = [ ./plugins/lualine_nvim.nix ];
+
+  pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
+    ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules;
 
   getOrDefault = name: default: module:
     if builtins.hasAttr name module then module.${name} else default;
@@ -138,30 +141,17 @@ in {
       vim.cmd("highlight clear")
       vim.o.background = "dark"
       vim.g.colors_name = "${hash}"
-
-      local colors = {
-        bg      = "${c.surface}",
-        fg      = "${c.on_surface}",
-        red     = "${c.red}",
-        green   = "${c.green}",
-        yellow  = "${c.yellow}",
-        blue    = "${c.blue}",
-        magenta = "${c.magenta}",
-        cyan    = "${c.cyan}",
-        gray    = "${c.surface_container}",
-      }
-
-      vim.api.nvim_set_hl(0, "Normal",       { fg = colors.fg, bg = colors.bg })
-      vim.api.nvim_set_hl(0, "Comment",      { fg = colors.gray, italic = true })
-      vim.api.nvim_set_hl(0, "Constant",     { fg = colors.cyan })
-      vim.api.nvim_set_hl(0, "String",       { fg = colors.green })
-      vim.api.nvim_set_hl(0, "Function",     { fg = colors.blue })
-      vim.api.nvim_set_hl(0, "Identifier",   { fg = colors.red })
-      vim.api.nvim_set_hl(0, "Statement",    { fg = colors.magenta })
-      vim.api.nvim_set_hl(0, "Type",         { fg = colors.yellow })
-      vim.api.nvim_set_hl(0, "Visual",       { bg = "${c.surface_tint}" })
-      vim.api.nvim_set_hl(0, "LineNr",       { fg = colors.gray })
-      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.yellow, bold = true })
+      vim.api.nvim_set_hl(0, "Normal",       { fg = "${c.on_surface}", bg = "${c.surface}" })
+      vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.outline_variant}", italic = true })
+      vim.api.nvim_set_hl(0, "Constant",     { fg = "${c.cyan}" })
+      vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
+      vim.api.nvim_set_hl(0, "Function",     { fg = "${c.blue}" })
+      vim.api.nvim_set_hl(0, "Identifier",   { fg = "${c.red}" })
+      vim.api.nvim_set_hl(0, "Statement",    { fg = "${c.magenta}" })
+      vim.api.nvim_set_hl(0, "Type",         { fg = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "Visual",       { bg = "${c.surface_container_high}" })
+      vim.api.nvim_set_hl(0, "LineNr",       { fg = "${c.outline}" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "${c.yellow}", bold = true })
 
       ${allConfig}
     '';
