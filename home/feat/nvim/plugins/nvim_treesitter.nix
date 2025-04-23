@@ -30,6 +30,9 @@
     nvim-treesitter-parsers.latex
   ];
   config = ''
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
     require("nvim-treesitter.configs").setup({
       auto_install = true,
       parser_install_dir = vim.fn.stdpath("data") .. "/parsers",
@@ -45,5 +48,5 @@
       }
     })
   '';
-  deps = with pkgs; [ gcc nodejs tree-sitter ];
+  deps = with pkgs; [ gcc nodejs tree-sitter grc ];
 }

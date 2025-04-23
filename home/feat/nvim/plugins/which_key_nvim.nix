@@ -9,6 +9,7 @@
     wk.add({
       -- Miscellaneous
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
+      { "<leader>c", "<cmd>Commentary<cr>", desc = "Commentary" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },

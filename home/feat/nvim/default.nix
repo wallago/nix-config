@@ -19,7 +19,7 @@ let
     ./plugins/nvim_notify.nix
     ./plugins/render_markdown_nvim.nix
     ./plugins/rustaceanvim.nix
-    ./plugins/none_ls_nvim.nix
+    ./plugins/inc_rename_nvim.nix
   ];
 
   pluginModules = map (file: import file { inherit pkgs; }) rawPluginModules;
@@ -96,11 +96,40 @@ in {
       -- Miscellaneous
 
       -- Diagnostic 
-      vim.o.updatetime = 300
-      vim.cmd [[
-        autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-      ]]
+      local function define_diagnostic_sign(name, icon)
+        vim.fn.sign_define(name, {
+          text = icon,
+          texthl = name,
+          numhl = ""
+        })
+      end
 
+      define_diagnostic_sign("DiagnosticSignError", "󰅚")
+      define_diagnostic_sign("DiagnosticSignWarn",  "󰗖")
+      define_diagnostic_sign("DiagnosticSignHint",  "󰌶")
+      define_diagnostic_sign("DiagnosticSignInfo",  "󰋽")
+
+      vim.diagnostic.config({
+        signs = true,
+        underline = true,
+        virtual_text = false,
+        update_in_insert = true,
+        severity_sort = false,
+        float = {
+            border = 'rounded',
+            source = 'always',
+            header = "",
+            prefix = "",
+        },
+      })
+
+      vim.o.updatetime = 300
+      vim.opt.signcolumn = "yes"
+      vim.api.nvim_create_autocmd("CursorHold", {
+        callback = function()
+          vim.diagnostic.open_float(nil, { focusable = false })
+        end,
+      })
       ${allConfig}
     '';
   };
@@ -116,22 +145,13 @@ in {
 #   '';
 #   plugins = with pkgs.vimPlugins; [
 #     toggleterm-nvim # -------> floating terminal
-#     nvim-notify # -----------> notify
 #     vim-dadbod-ui # ---------> navigation database gui
 #     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
-#     plenary-nvim # ----------> All the lua functions I don't want to write twice.
 #     openscad-nvim # --------->
-#     coc-nvim # --------------> conquer of completion nvim
-#     coc-lua # ---------------> conquer of completion lua
-#     coc-rust-analyzer # -----> conquer of completion rust analyzer
-#     coc-tailwindcss # -------> conquer of completion of tailwindcss
-#     coc-fzf # ---------------> conquer of completion for fzf
 #     vim-nix # ---------------> writing Nix expressions
-#     conform-nvim # ----------> formating code
 #     markdown-nvim # ---------> beautify markdown
 #     markdown-preview-nvim # -> preview markdown file
 #     rest-nvim # -------------> asynchronous Neovim HTTP client
-#     rustaceanvim # ----------> Supercharge your Rust experience
 #     actions-preview-nvim # --> Better actions preview
 #     inc-rename-nvim # -------> LSP renaming with immediate visual feedback
 #     vim-flog # --------------> git graph
@@ -140,7 +160,6 @@ in {
 #     bufferline-nvim # -------> tabs behavior
 #     nvim-colorizer-lua # ----> show color by code
 #     nvim-tree-lua # ---------> file explorer
-#     nvim-web-devicons # -----> provide Nerd Font icons
 #   ];
 # };
 #
@@ -148,14 +167,7 @@ in {
 #   luajit # ----------------> Just-In-Time compiler for Lua programming language
 #   stylua # ----------------> Opinionated Lua code formatter
 #   nixfmt-rfc-style # ------> Formatter for Nix code following RFC style
-#   prettierd # -------------> Prettier daemon for faster formatting
 #   isort # -----------------> Python utility to sort imports alphabetically
 #   black # -----------------> The uncompromising Python code formatter
 #   grc # -------------------> Generic text colouriser
 # ];
-#
-# home.sessionVariables = {
-#   EDITOR = "nvim";
-# };
-# }
-
