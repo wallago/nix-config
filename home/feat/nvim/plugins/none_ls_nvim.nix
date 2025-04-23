@@ -5,9 +5,6 @@
 
     null_ls.setup({
       sources = {
-        -- Diagnostics
-        null_ls.builtins.diagnostics.shellcheck,
-
         -- Code actions
         null_ls.builtins.code_actions.gitsigns,
       },
