@@ -19,7 +19,7 @@ in {
   }];
 
   wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
-  colorscheme.type = "content";
+  colorscheme.type = "fidelity";
 
   fontProfiles = {
     enable = true;
