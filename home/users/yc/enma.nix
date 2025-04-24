@@ -16,8 +16,6 @@ in {
     height = 1080;
     workspace = "1";
     primary = true;
-    position = "0x0";
-    scale = "1";
   }];
 
   wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
