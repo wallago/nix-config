@@ -5,6 +5,7 @@
     local colors = {
       bg       = '${c.surface_container}',
       fg       = '${c.on_surface}',
+      primary  = '${c.primary}',
       yellow   = '${c.yellow}',
       cyan     = '${c.cyan}',
       darkblue = '${c.blue}',
@@ -85,13 +86,13 @@
     ins_left {
       -- mode component
       function()
-        return ' 󰜵 '
+        return '▊▊▊'
       end,
       color = function()
         -- auto change color according to neovims mode
         local mode_color = {
-          n = colors.red,
-          i = colors.green,
+          n = colors.primary,
+          i = colors.yellow,
           v = colors.cyan,
           [''] = colors.cyan,
           V = colors.cyan,
@@ -100,7 +101,7 @@
           s = colors.orange,
           S = colors.orange,
           [''] = colors.orange,
-          ic = colors.yellow,
+          ic = colors.green,
           R = colors.violet,
           Rv = colors.violet,
           cv = colors.red,
@@ -139,7 +140,7 @@
       diagnostics_color = {
         error = { fg = colors.red },
         warn = { fg = colors.yellow },
-        info = { fg = colors.cyan },
+        info = { fg = colors.green },
       },
     }
 
@@ -169,7 +170,7 @@
         return msg
       end,
       icon = ' LSP:',
-      color = { fg = '#ffffff', gui = 'bold' },
+      color = { fg = colors.fg, gui = 'bold' },
     }
 
     -- Add components to right sections
@@ -177,29 +178,29 @@
       'o:encoding', -- option component same as &encoding in viml
       fmt = string.upper, -- I'm not sure why it's upper case either ;)
       cond = conditions.hide_in_width,
-      color = { fg = colors.green, gui = 'bold' },
+      color = { fg = colors.cyan, gui = 'bold' },
     }
 
     ins_right {
       'fileformat',
       fmt = string.upper,
       icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-      color = { fg = colors.green, gui = 'bold' },
+      color = { fg = colors.cyan, gui = 'bold' },
     }
 
     ins_right {
       'branch',
       icon = '',
-      color = { fg = colors.violet, gui = 'bold' },
+      color = { fg = colors.magenta, gui = 'bold' },
     }
 
     ins_right {
       'diff',
       -- Is it me or the symbol for modified us really weird
-      symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+      symbols = { added = '󰐙 ', modified = '󰙧 ', removed = '󰍷 ' },
       diff_color = {
         added = { fg = colors.green },
-        modified = { fg = colors.orange },
+        modified = { fg = colors.yellow },
         removed = { fg = colors.red },
       },
       cond = conditions.hide_in_width,
@@ -207,9 +208,34 @@
 
     ins_right {
       function()
-        return '▊'
+        return '▊▊▊'
       end,
-      color = { fg = colors.blue },
+      color = function()
+        -- auto change color according to neovims mode
+        local mode_color = {
+          n = colors.primary,
+          i = colors.yellow,
+          v = colors.cyan,
+          [''] = colors.cyan,
+          V = colors.cyan,
+          c = colors.magenta,
+          no = colors.red,
+          s = colors.orange,
+          S = colors.orange,
+          [''] = colors.orange,
+          ic = colors.green,
+          R = colors.violet,
+          Rv = colors.violet,
+          cv = colors.red,
+          ce = colors.red,
+          r = colors.blue,
+          rm = colors.blue,
+          ['r?'] = colors.blue,
+          ['!'] = colors.red,
+          t = colors.red,
+        }
+        return { fg = mode_color[vim.fn.mode()] }
+      end,
       padding = { left = 1 },
     }
 

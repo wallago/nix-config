@@ -142,7 +142,7 @@ in {
       vim.o.background = "dark"
       vim.g.colors_name = "${hash}"
       vim.api.nvim_set_hl(0, "Normal",       { fg = "${c.on_surface}", bg = "${c.surface}" })
-      vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.outline_variant}", italic = true })
+      vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.surface_variant}", italic = true })
       vim.api.nvim_set_hl(0, "Constant",     { fg = "${c.cyan}" })
       vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
       vim.api.nvim_set_hl(0, "Function",     { fg = "${c.blue}" })
@@ -150,7 +150,7 @@ in {
       vim.api.nvim_set_hl(0, "Statement",    { fg = "${c.magenta}" })
       vim.api.nvim_set_hl(0, "Type",         { fg = "${c.yellow}" })
       vim.api.nvim_set_hl(0, "Visual",       { bg = "${c.surface_container_high}" })
-      vim.api.nvim_set_hl(0, "LineNr",       { fg = "${c.outline}" })
+      vim.api.nvim_set_hl(0, "LineNr",       { fg = "${c.surface_variant}" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "${c.yellow}", bold = true })
 
       ${allConfig}
