@@ -56,7 +56,6 @@
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      help = ./help.nix;
 
       # NixOS system configuration
       nixosConfigurations = {
