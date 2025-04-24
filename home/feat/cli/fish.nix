@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.sessionVariables = {
     PAGER = "less";
     VISUAL = "nvim";
@@ -89,23 +88,26 @@
       end
 
       # Load tide configuration
-      if type -q tide
-        tide configure \
-          --auto \
-          --style=Rainbow \
-          --prompt_colors='True color' \
-          --show_time=No \
-          --rainbow_prompt_separators=Angled \
-          --powerline_prompt_heads=Sharp \
-          --powerline_prompt_tails=Flat \
-          --powerline_prompt_style='Two lines, character' \
-          --powerline_prompt_style='One line' \
-          # --prompt_connection=Solid \
-          # --powerline_right_prompt_frame=No \
-          # --prompt_connection_andor_frame_color=Dark \
-          --prompt_spacing=Compact \
-          --icons='Many icons' \
-          --transient=No
+      # if type -q tide
+      #   tide configure \
+      #     --auto \
+      #     --style=Rainbow \
+      #     --prompt_colors='True color' \
+      #     --show_time=No \
+      #     --rainbow_prompt_separators=Angled \
+      #     --powerline_prompt_heads=Sharp \
+      #     --powerline_prompt_tails=Flat \
+      #     --powerline_prompt_style='Two lines, character' \
+      #     --powerline_prompt_style='One line' \
+      #     # --prompt_connection=Solid \
+      #     # --powerline_right_prompt_frame=No \
+      #     # --prompt_connection_andor_frame_color=Dark \
+      #     --prompt_spacing=Compact \
+      #     --icons='Many icons' \
+      #     --transient=No
+      # end
+
+      if type -q hydro
       end
     '';
   };
@@ -118,7 +120,8 @@
     fishPlugins.grc # -----------------> Generic Colouriser to add color to command output
     fishPlugins.z # -------------------> Directory jumping tool that learns your habits
     fishPlugins.forgit # --------------> Utility tool powered by fzf for using git interactively
-    fishPlugins.tide # ----------------> A modern, powerful and flexible prompt for fish
+    # fishPlugins.tide # ----------------> A modern, powerful and flexible prompt for fish
+    fishPlugins.hydro
     fishPlugins.pisces # --------------> Automagically adds matching pairs (parentheses, quotes, etc.)
     fishPlugins.sponge # --------------> Keeps your fish shell history clean from typos, incorrectly used commands and everything you don"t…
     fishPlugins.fish-bd # -------------> Fish plugin to quickly go back to a parent directory up in your current working directory tree

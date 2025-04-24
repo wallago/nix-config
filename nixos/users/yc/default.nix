@@ -1,15 +1,10 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
+{ pkgs, config, inputs, ... }:
 let
   username = "yc";
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  ifTheyExist = groups:
+    builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 
-in
-{
+in {
   imports = [
     # Includes the Home Manager module from the home-manager input in NixOS configuration
     inputs.home-manager.nixosModules.home-manager
