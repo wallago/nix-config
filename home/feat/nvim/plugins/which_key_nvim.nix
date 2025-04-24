@@ -55,6 +55,10 @@
       { "<leader>xD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics" },
       { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols" },
       { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP" },
+
+      -- Rust
+      { "<leader>r", group = "Rust" },
+      { "<leader>rr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
     })
   '';
 }
