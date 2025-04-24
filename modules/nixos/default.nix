@@ -1,0 +1,3 @@
+{ 
+  impermanence = import ./impermanence.nix;
+}
