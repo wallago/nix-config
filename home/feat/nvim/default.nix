@@ -15,7 +15,6 @@ let
     ./plugins/nvim_web_devicons.nix
     ./plugins/gitsigns_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/noice_nvim.nix
     ./plugins/nvim_notify.nix
     ./plugins/render_markdown_nvim.nix
     ./plugins/rustaceanvim.nix
@@ -23,9 +22,11 @@ let
     ./plugins/actions_preview_nvim.nix
     ./plugins/nvim_colorizer_lua.nix
     ./plugins/oil_nvim.nix
+    ./plugins/smear_cursor_nvim.nix
   ];
 
-  rawPluginColorModules = [ ./plugins/lualine_nvim.nix ];
+  rawPluginColorModules =
+    [ ./plugins/noice_nvim.nix ./plugins/lualine_nvim.nix ];
 
   pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
     ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules;
@@ -115,6 +116,15 @@ in {
       define_diagnostic_sign("DiagnosticSignHint",  "󰌶")
       define_diagnostic_sign("DiagnosticSignInfo",  "󰋽")
 
+      vim.api.nvim_set_hl(0, "DiagnosticError",   { fg = "${c.red}" })
+      vim.api.nvim_set_hl(0, "DiagnosticWarn",    { fg = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "DiagnosticInfo",    { fg = "${c.green}" })
+      vim.api.nvim_set_hl(0, "DiagnosticHint",    { fg = "${c.cyan}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "${c.red}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn",  { undercurl = true, sp = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo",  { undercurl = true, sp = "${c.green}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint",  { undercurl = true, sp = "${c.cyan}" })
+
       vim.diagnostic.config({
         signs = true,
         underline = true,
@@ -142,16 +152,20 @@ in {
       vim.o.background = "dark"
       vim.g.colors_name = "${hash}"
       vim.api.nvim_set_hl(0, "Normal",       { fg = "${c.on_surface}", bg = "${c.surface}" })
-      vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.surface_variant}", italic = true })
-      vim.api.nvim_set_hl(0, "Constant",     { fg = "${c.cyan}" })
-      vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
-      vim.api.nvim_set_hl(0, "Function",     { fg = "${c.blue}" })
       vim.api.nvim_set_hl(0, "Identifier",   { fg = "${c.red}" })
-      vim.api.nvim_set_hl(0, "Statement",    { fg = "${c.magenta}" })
-      vim.api.nvim_set_hl(0, "Type",         { fg = "${c.yellow}" })
       vim.api.nvim_set_hl(0, "Visual",       { bg = "${c.surface_container_high}" })
       vim.api.nvim_set_hl(0, "LineNr",       { fg = "${c.surface_variant}" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "${c.yellow}", bold = true })
+      vim.api.nvim_set_hl(0, "NormalFloat",  { bg = "${c.surface}", fg = "${c.on_surface}" })
+      vim.api.nvim_set_hl(0, "FloatBorder",  { bg = "${c.surface}", fg = "${c.primary}" })
+      vim.api.nvim_set_hl(0, "WinSeparator", { fg = "${c.primary}" })
+
+      vim.api.nvim_set_hl(0, "Constant",     { fg = "${c.cyan}" })
+      vim.api.nvim_set_hl(0, "Function",     { fg = "${c.blue}" })
+      vim.api.nvim_set_hl(0, "Type",         { fg = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "Statement",    { fg = "${c.magenta}" })
+      vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
+      vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.surface_variant}", italic = true })
 
       ${allConfig}
     '';

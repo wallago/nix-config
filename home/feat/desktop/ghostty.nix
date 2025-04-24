@@ -33,8 +33,8 @@ in {
         background = c.surface;
         foreground = c.on_surface;
 
-        cursor-color = c.primary;
-        cursor-text = c.on_surface;
+        cursor-color = c.outline;
+        cursor-text = c.surface;
 
         selection-background = c.surface_variant;
         selection-foreground = c.on_surface;
