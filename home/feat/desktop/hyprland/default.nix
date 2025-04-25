@@ -1,16 +1,6 @@
-{
-  lib,
-  config,
-  pkgs,
-  outputs,
-  ...
-}:
-let
-  getHostname = x: lib.last (lib.splitString "@" x);
-  rgb = color: "rgb(${lib.removePrefix "#" color})";
-  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-in
-{
+{ lib, config, pkgs, ... }:
+let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;

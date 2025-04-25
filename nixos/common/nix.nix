@@ -1,18 +1,9 @@
-{
-  inputs,
-  lib,
-  ...
-}:
-let
-  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-in
-{
+{ inputs, lib, ... }:
+let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+in {
   nix = {
     settings = {
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
+      trusted-users = [ "root" "@wheel" ];
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"

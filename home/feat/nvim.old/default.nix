@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -75,8 +74,8 @@
       nvim-web-devicons # -----> provide Nerd Font icons
       {
         # ---------------------> Better syntax highlighting, code parsing, and structural analysis
-        plugin = nvim-treesitter.withPlugins (
-          plugins: with plugins; [
+        plugin = nvim-treesitter.withPlugins (plugins:
+          with plugins; [
             tree-sitter-bash
             tree-sitter-c
             tree-sitter-cmake
@@ -101,8 +100,7 @@
             tree-sitter-vimdoc
             tree-sitter-yaml
             tree-sitter-http
-          ]
-        );
+          ]);
         type = "lua";
       }
     ];
@@ -118,7 +116,5 @@
     grc # -------------------> Generic text colouriser
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 }

@@ -1,40 +1,14 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ pkgs, lib, config, inputs, ... }:
 let
-  commonDeps = with pkgs; [
-    coreutils
-    gnugrep
-    systemd
-  ];
-  mkScript =
-    {
-      name ? "script",
-      deps ? [ ],
-      script ? "",
-    }:
-    lib.getExe (
-      pkgs.writeShellApplication {
-        inherit name;
-        text = script;
-        runtimeInputs = commonDeps ++ deps;
-      }
-    );
-  mkScriptJson =
-    {
-      name ? "script",
-      deps ? [ ],
-      script ? "",
-      text ? "",
-      tooltip ? "",
-      alt ? "",
-      class ? "",
-      percentage ? "",
-    }:
+  commonDeps = with pkgs; [ coreutils gnugrep systemd ];
+  mkScript = { name ? "script", deps ? [ ], script ? "", }:
+    lib.getExe (pkgs.writeShellApplication {
+      inherit name;
+      text = script;
+      runtimeInputs = commonDeps ++ deps;
+    });
+  mkScriptJson = { name ? "script", deps ? [ ], script ? "", text ? ""
+    , tooltip ? "", alt ? "", class ? "", percentage ? "", }:
     mkScript {
       inherit name;
       deps = [ pkgs.jq ] ++ deps;
@@ -50,8 +24,7 @@ let
       '';
     };
   hyprlandCfg = config.wayland.windowManager.hyprland;
-in
-{
+in {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
@@ -67,24 +40,12 @@ in
         margin = "6";
         position = "top";
 
-        modules-left =
-          [ "custom/menu" ]
-          ++ (lib.optionals hyprlandCfg.enable [
-            "hyprland/workspaces"
-            "hyprland/submap"
-          ])
-          ++ [
-            "custom/currentplayer"
-            "custom/player"
-            "custom/minicava"
-          ];
-        modules-center = [
-          "cpu"
-          "custom/gpu"
-          "memory"
-          "clock"
-          "custom/unread-mail"
-        ];
+        modules-left = [ "custom/menu" ] ++ (lib.optionals hyprlandCfg.enable [
+          "hyprland/workspaces"
+          "hyprland/submap"
+        ]) ++ [ "custom/currentplayer" "custom/player" "custom/minicava" ];
+        modules-center =
+          [ "cpu" "custom/gpu" "memory" "clock" "custom/unread-mail" ];
         modules-right = [
           "tray"
           "custom/rfkill"
@@ -103,13 +64,19 @@ in
         pulseaudio = import ./modules/pulseaudio.nix { inherit pkgs lib; };
         battery = import ./modules/battery.nix;
         network = import ./modules/network.nix;
-        "custom/menu" = import ./modules/menu.nix { inherit hyprlandCfg lib mkScriptJson; };
+        "custom/menu" =
+          import ./modules/menu.nix { inherit hyprlandCfg lib mkScriptJson; };
         "custom/hostname" = import ./modules/hostname.nix { inherit mkScript; };
-        "custom/unread-mail" = import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
-        "custom/rfkill" = import ./modules/rfkill.nix { inherit pkgs mkScript; };
-        "custom/player" = import ./modules/player.nix { inherit pkgs mkScript; };
-        "custom/currentplayer" = import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
-        "custom/minicava" = import ./modules/minicava.nix { inherit pkgs lib mkScript; };
+        "custom/unread-mail" =
+          import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
+        "custom/rfkill" =
+          import ./modules/rfkill.nix { inherit pkgs mkScript; };
+        "custom/player" =
+          import ./modules/player.nix { inherit pkgs mkScript; };
+        "custom/currentplayer" =
+          import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
+        "custom/minicava" =
+          import ./modules/minicava.nix { inherit pkgs lib mkScript; };
         "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
         "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
 

@@ -1,5 +1,4 @@
-{ pkgs, mkScript, ... }:
-{
+{ pkgs, mkScript, ... }: {
   exec-if = mkScript {
     deps = [ pkgs.playerctl ];
     script = ''

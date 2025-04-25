@@ -1,3 +1,1 @@
-{
-  format = "  {usage}%";
-}
+{ format = "  {usage}%"; }

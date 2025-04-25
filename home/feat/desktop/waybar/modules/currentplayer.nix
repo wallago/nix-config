@@ -1,5 +1,4 @@
-{ pkgs, mkScriptJson, ... }:
-{
+{ pkgs, mkScriptJson, ... }: {
   interval = 2;
   return-type = "json";
   exec = mkScriptJson {

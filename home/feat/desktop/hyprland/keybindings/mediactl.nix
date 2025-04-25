@@ -1,12 +1,8 @@
-{
-  lib,
-  config,
-}:
+{ lib, config, }:
 let
   playerctl = lib.getExe' config.services.playerctld.package "playerctl";
   playerctld = lib.getExe' config.services.playerctld.package "playerctld";
-in
-lib.optionals config.services.playerctld.enable [
+in lib.optionals config.services.playerctld.enable [
   ",XF86AudioNext,exec,${playerctl} next"
   ",XF86AudioPrev,exec,${playerctl} previous"
   ",XF86AudioPlay,exec,${playerctl} play-pause"

@@ -1,8 +1,6 @@
 { colorscheme }:
-let
-  c = colorscheme.colors;
-in
-{
+let c = colorscheme.colors;
+in {
   "attributes" = c.orange;
   "comment" = {
     fg = c.on_surface_variant;
@@ -13,29 +11,11 @@ in
   "constant.numeric" = c.orange;
   "constructor" = c.blue;
   "debug" = c.on_surface_variant;
-  "diagnostic" = {
-    modifiers = [ "underlined" ];
-  };
-  "diagnostic.error" = {
-    underline = {
-      style = "curl";
-    };
-  };
-  "diagnostic.hint" = {
-    underline = {
-      style = "curl";
-    };
-  };
-  "diagnostic.info" = {
-    underline = {
-      style = "curl";
-    };
-  };
-  "diagnostic.warning" = {
-    underline = {
-      style = "curl";
-    };
-  };
+  "diagnostic" = { modifiers = [ "underlined" ]; };
+  "diagnostic.error" = { underline = { style = "curl"; }; };
+  "diagnostic.hint" = { underline = { style = "curl"; }; };
+  "diagnostic.info" = { underline = { style = "curl"; }; };
+  "diagnostic.warning" = { underline = { style = "curl"; }; };
   "diff.delta" = c.orange;
   "diff.minus" = c.red;
   "diff.plus" = c.green;
@@ -62,17 +42,13 @@ in
   "markup.list" = c.red;
   "markup.quote" = c.cyan;
   "markup.raw" = c.green;
-  "markup.strikethrough" = {
-    modifiers = [ "crossed_out" ];
-  };
+  "markup.strikethrough" = { modifiers = [ "crossed_out" ]; };
   "namespace" = c.magenta;
   "operator" = c.on_surface;
   "special" = c.blue;
   "string" = c.green;
   "type" = c.yellow;
-  "ui.background" = {
-    bg = c.surface;
-  };
+  "ui.background" = { bg = c.surface; };
   "ui.bufferline" = {
     fg = c.on_primary_container;
     bg = c.primary_container;
@@ -102,9 +78,7 @@ in
     fg = c.on_secondary_container;
     bg = c.secondary_container;
   };
-  "ui.gutter" = {
-    bg = c.surface;
-  };
+  "ui.gutter" = { bg = c.surface; };
   "ui.help" = {
     fg = c.on_secondary_container;
     bg = c.secondary_container;
@@ -130,9 +104,7 @@ in
     fg = c.secondary_container;
     bg = c.on_primary_container;
   };
-  "ui.popup" = {
-    bg = c.secondary_container;
-  };
+  "ui.popup" = { bg = c.secondary_container; };
   "ui.selection" = {
     bg = c.primary_container;
     fg = c.on_primary_container;
@@ -163,18 +135,10 @@ in
   };
   "ui.text" = c.on_surface;
   "ui.text.focus" = c.on_surface;
-  "ui.virtual.indent-guide" = {
-    fg = c.inverse_on_surface;
-  };
-  "ui.virtual.ruler" = {
-    bg = c.secondary_container;
-  };
-  "ui.virtual.whitespace" = {
-    fg = c.secondary_container;
-  };
-  "ui.window" = {
-    bg = c.secondary_container;
-  };
+  "ui.virtual.indent-guide" = { fg = c.inverse_on_surface; };
+  "ui.virtual.ruler" = { bg = c.secondary_container; };
+  "ui.virtual.whitespace" = { fg = c.secondary_container; };
+  "ui.window" = { bg = c.secondary_container; };
   "variable" = c.red;
   "variable.other.member" = c.red;
   "warning" = c.orange;

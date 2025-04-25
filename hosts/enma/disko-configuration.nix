@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   disko.devices = {
     disk.disk1 = {
       device = "/dev/nvme0n1";
@@ -56,9 +55,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
             };
           };
           # Logical Volume for system logs, databases, etc.
@@ -73,9 +70,7 @@
           # Logical Volume for swap partition
           swap = {
             size = "16G";
-            content = {
-              type = "swap";
-            };
+            content = { type = "swap"; };
           };
         };
       };

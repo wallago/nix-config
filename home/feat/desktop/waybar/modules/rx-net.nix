@@ -1,9 +1,6 @@
-{ mkScript, ... }:
-{
+{ mkScript, ... }: {
   format = "{icon} {}";
-  format-icons = {
-    default = "";
-  };
+  format-icons = { default = ""; };
   return-type = "json";
   tooltip = false;
   interval = 1;

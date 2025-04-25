@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [
     ./hyprland # -- check deps for bindings
     ./firefox.nix # -> Browser

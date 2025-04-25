@@ -1,23 +1,11 @@
 # This file should be included when using hm standalone
-{
-  outputs,
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
-let
-  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-in
-{
+{ outputs, lib, inputs, pkgs, ... }:
+let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+in {
   nix = {
     package = pkgs.nix;
     settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "ca-derivations"
-      ];
+      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
       warn-dirty = false;
       flake-registry = ""; # Disable global flake registry
     };
@@ -25,7 +13,8 @@ in
   };
 
   home.sessionVariables = {
-    NIX_PATH = lib.concatStringsSep ":" (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs);
+    NIX_PATH = lib.concatStringsSep ":"
+      (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs);
   };
 
   nixpkgs = {

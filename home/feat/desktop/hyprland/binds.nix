@@ -1,3 +1,1 @@
-{
-  movefocus_cycles_fullscreen = false;
-}
+{ movefocus_cycles_fullscreen = false; }

@@ -1,12 +1,8 @@
-{
-  lib,
-  rgba,
-}:
+{ lib, rgba, }:
 let
   picture_in_picture = "title:Picture-in-Picture, class:firefox";
   rofi = "class:^(Rofi)$";
-in
-[
+in [
   "float, ${picture_in_picture}"
   "move 73.5% 8%, ${picture_in_picture}"
   "size 25% 25%, ${picture_in_picture}"

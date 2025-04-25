@@ -1,8 +1,5 @@
-{ pkgs, config, ... }:
-{
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-  };
+{ pkgs, config, ... }: {
+  services.xserver = { videoDrivers = [ "nvidia" ]; };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -10,7 +7,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  environment.systemPackages = with pkgs; [
-    linuxPackages.nvidia_x11 # NVIDIA X11 driver for Linux
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      linuxPackages.nvidia_x11 # NVIDIA X11 driver for Linux
+    ];
 }

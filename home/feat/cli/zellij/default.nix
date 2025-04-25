@@ -2,8 +2,7 @@
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
-in
-{
+in {
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;

@@ -2,8 +2,7 @@
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
-in
-{
+in {
   home.sessionVariables = {
     EDITOR = "hx";
     COLORTERM = "truecolor";
@@ -27,16 +26,11 @@ in
       };
     };
     languages = {
-      language = [
-        {
-          name = "nix";
-          language-servers = [
-            "nixd"
-            "nil"
-          ];
-          formatter.command = "alejandra";
-        }
-      ];
+      language = [{
+        name = "nix";
+        language-servers = [ "nixd" "nil" ];
+        formatter.command = "alejandra";
+      }];
       language-server.nixd.command = "nixd";
     };
     themes."nix-${hash}" = import ./theme.nix { inherit colorscheme; };

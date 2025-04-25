@@ -1,5 +1,4 @@
-{ config, rgba }:
-{
+{ config, rgba }: {
   gaps_in = 15;
   gaps_out = 20;
   border_size = 2;

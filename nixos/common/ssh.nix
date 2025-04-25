@@ -1,17 +1,11 @@
-{
-  lib,
-  outputs,
-  config,
-  ...
-}:
+{ lib, outputs, config, ... }:
 let
   hosts = lib.attrNames outputs.nixosConfigurations;
 
   # Sops needs acess to the keys before the persist dirs are even mounted; so
   # just persisting the keys won't work, we must point at /persistent
   hasOptinPersistence = config.environment.persistence ? "/persistent";
-in
-{
+in {
   services.openssh = {
     enable = true;
     ports = [ 2222 ];
@@ -20,12 +14,12 @@ in
       PermitRootLogin = "no";
       LogLevel = "VERBOSE";
     };
-    hostKeys = [
-      {
-        path = "${lib.optionalString hasOptinPersistence "/persistent"}/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-    ];
+    hostKeys = [{
+      path = "${
+          lib.optionalString hasOptinPersistence "/persistent"
+        }/etc/ssh/ssh_host_ed25519_key";
+      type = "ed25519";
+    }];
   };
 
   programs.ssh.knownHosts = lib.genAttrs hosts (hostname: {

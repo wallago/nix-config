@@ -1,15 +1,11 @@
-{
-  lib,
-  config,
-  inputs,
-}:
+{ lib, config, inputs, }:
 let
   inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
   inherit (config.colorscheme) colors;
-  toRGBA = color: opacity: "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
-in
-# css
-''
+  toRGBA = color: opacity:
+    "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
+  # css
+in ''
   * {
     font-family: "${config.fontProfiles.regular.name}, ${config.fontProfiles.monospace.name}";
     font-size: 12pt;

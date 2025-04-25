@@ -1,12 +1,9 @@
-{ username, config, ... }:
-{
+{ username, config, ... }: {
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
     sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables = {
-      FLAKE = "$HOME/Documents/NixConfig";
-    };
+    sessionVariables = { FLAKE = "$HOME/Documents/NixConfig"; };
     persistence = {
       "/persistent/${config.home.homeDirectory}" = {
         defaultDirectoryMethod = "symlink";

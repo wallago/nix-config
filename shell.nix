@@ -1,10 +1,7 @@
-{
-  pkgs ? import <nixpkgs> { },
-  ...
-}:
-{
+{ pkgs ? import <nixpkgs> { }, ... }: {
   default = pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
+    NIX_CONFIG =
+      "extra-experimental-features = nix-command flakes ca-derivations";
     nativeBuildInputs = with pkgs; [
       nix # ------------> The Nix package manager
       home-manager # ---> A tool to manage user environments with Nix

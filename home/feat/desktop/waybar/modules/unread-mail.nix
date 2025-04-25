@@ -1,12 +1,8 @@
-{ pkgs, mkScriptJson, ... }:
-{
+{ pkgs, mkScriptJson, ... }: {
   interval = 5;
   return-type = "json";
   exec = mkScriptJson {
-    deps = [
-      pkgs.findutils
-      pkgs.procps
-    ];
+    deps = [ pkgs.findutils pkgs.procps ];
     script = ''
       count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
       if pgrep mbsync &>/dev/null; then

@@ -1,5 +1,4 @@
-{ mkScript, ... }:
-{
+{ mkScript, ... }: {
   exec = mkScript {
     script = ''
       echo "$USER@$HOSTNAME"

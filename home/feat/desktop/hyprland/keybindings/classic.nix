@@ -35,8 +35,7 @@ let
     k = up;
     j = down;
   };
-in
-[
+in [
   "SUPERSHIFT,q,killactive"
   "SUPERSHIFT,e,exit"
 
@@ -64,27 +63,23 @@ in
   "SUPER,u,togglespecialworkspace"
   "SUPERSHIFT,u,movetoworkspacesilent,special"
   "SUPER,i,pseudo"
-]
-++
-  # Change workspace
-  (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
-++
-  # Move window to workspace
-  (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
-++
-  # Move focus
-  (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}") directions)
-++
-  # Swap windows
-  (lib.mapAttrsToList (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions)
-++
-  # Move windows
-  (lib.mapAttrsToList (key: direction: "SUPERCONTROL,${key},movewindow,${direction}") directions)
-++
-  # Move monitor focus
-  (lib.mapAttrsToList (key: direction: "SUPERALT,${key},focusmonitor,${direction}") directions)
-++
-  # Move workspace to other monitor
-  (lib.mapAttrsToList (
-    key: direction: "SUPERALTSHIFT,${key},movecurrentworkspacetomonitor,${direction}"
-  ) directions)
+] ++
+# Change workspace
+(map (n: "SUPER,${n},workspace,name:${n}") workspaces) ++
+# Move window to workspace
+(map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces) ++
+# Move focus
+(lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
+  directions) ++
+# Swap windows
+(lib.mapAttrsToList
+  (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions) ++
+# Move windows
+(lib.mapAttrsToList
+  (key: direction: "SUPERCONTROL,${key},movewindow,${direction}") directions) ++
+# Move monitor focus
+(lib.mapAttrsToList
+  (key: direction: "SUPERALT,${key},focusmonitor,${direction}") directions) ++
+# Move workspace to other monitor
+(lib.mapAttrsToList (key: direction:
+  "SUPERALTSHIFT,${key},movecurrentworkspacetomonitor,${direction}") directions)

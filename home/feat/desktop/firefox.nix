@@ -1,8 +1,5 @@
-{ ... }:
-{
-  home.sessionVariables = {
-    BROWSER = "firefox";
-  };
+{ ... }: {
+  home.sessionVariables = { BROWSER = "firefox"; };
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = [ "firefox.desktop" ];
@@ -11,7 +8,8 @@
     "x-scheme-handler/https" = [ "firefox.desktop" ];
   };
 
-  programs.browserpass.enable = true; # Browser extension designed to securely integrate the Unix-based password manager pass
+  programs.browserpass.enable =
+    true; # Browser extension designed to securely integrate the Unix-based password manager pass
 
   programs.firefox = {
     enable = true;
@@ -25,13 +23,18 @@
         Cryptomining = true;
         Fingerprinting = true;
       }; # --------------------------------> Configure tracking protection.
-      DisableTelemetry = true; # ----------> Prevent the upload of telemetry data.
+      DisableTelemetry =
+        true; # ----------> Prevent the upload of telemetry data.
       DisableFirefoxStudies = true; # -----> Disable Firefox studies (Shield).
       DisablePocket = true; # -------------> Remove Pocket in the Firefox UI.
-      DisableFirefoxAccounts = true; # ----> Disable Firefox Accounts integration (Sync).
-      DisableFirefoxScreenshots = true; # -> Remove access to Firefox Screenshots.
-      DontCheckDefaultBrowser = true; # ---> Don’t check if Firefox is the default browser at startup.
-      DisablePasswordReveal = true; # -----> Do not allow passwords to be shown in saved logins.
+      DisableFirefoxAccounts =
+        true; # ----> Disable Firefox Accounts integration (Sync).
+      DisableFirefoxScreenshots =
+        true; # -> Remove access to Firefox Screenshots.
+      DontCheckDefaultBrowser =
+        true; # ---> Don’t check if Firefox is the default browser at startup.
+      DisablePasswordReveal =
+        true; # -----> Do not allow passwords to be shown in saved logins.
       HttpsOnlyMode = "enabled"; # --------> Configure HTTPS-Only Mode.
       DNSOverHTTPS = {
         Enabled = true;
@@ -57,11 +60,8 @@
           ];
           placements = {
             PersonalToolbar = [ "personal-bookmarks" ];
-            TabsToolbar = [
-              "tabbrowser-tabs"
-              "new-tab-button"
-              "alltabs-button"
-            ];
+            TabsToolbar =
+              [ "tabbrowser-tabs" "new-tab-button" "alltabs-button" ];
             nav-bar = [
               "back-button"
               "forward-button"
@@ -124,15 +124,20 @@
         "extensions.screenshots.disabled" = true;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
-        "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
+          false;
         "browser.newtabpage.activity-stream.showSponsored" = false;
         "browser.newtabpage.activity-stream.system.showSponsored" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" =
+          false;
         "browser.topsites.contile.enabled" = false;
 
         # Download behavior
