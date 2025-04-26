@@ -37,7 +37,7 @@ in {
   ];
 
   wallpaper = pkgs.inputs.themes.wallpapers.purple-night-porsche-drawing-dark;
-  colorscheme.type = "content";
+  colorscheme.type = "fidelity";
 
   fontProfiles = {
     enable = true;
