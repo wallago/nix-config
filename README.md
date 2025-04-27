@@ -7,15 +7,15 @@
 │
 ├── nixos -> system configuration
 │   ├── common -> default params for all hosts
-│   ├── feat -> optional features  
-│   └── users 
-│       └── ${user} -> specific params for ${user} 
+│   ├── feat -> optional features
+│   └── users
+│       └── ${user} -> specific params for ${user}
 │
 ├── home -> user configuration
 │   ├── common -> default params for all users
-│   ├── feat -> optional features  
-│   └── users 
-│       └── ${user} -> specific params for ${user} 
+│   ├── feat -> optional features
+│   └── users
+│       └── ${user} -> specific params for ${user}
 │           ├── common -> default params for ${user}
 │           └── ${host} -> specific params for ${user} for ${host}
 │
@@ -23,7 +23,7 @@
 │   └── ${host} -> specific params for ${host}
 │
 ├── overlays -> modify or extend the Nix package set
-├── modules -> options for defines some params  
+├── modules -> options for defines some params
 │   ├── home -> specifc for home
 │   └── nixos -> specifc for system
 │
@@ -121,12 +121,16 @@ By default secrets are stored into `/run/secrets.d` and `/run/secrets-for-users.
 > To generate a GPG public key: Use `gpg --armor --export commandant.cousteau1997@gmail.com > home/pgp.asc`
 
 ### 📄 Add secrets file
+
 To create the file with the sops config, type:
+
 ```shell
 nix develop
 sops path/to/secrets.yaml
 ```
+
 It can be checked by typing:
+
 ```shell
 cat path/to/secrets.yaml
 ```
@@ -134,9 +138,10 @@ cat path/to/secrets.yaml
 ## 💾 Impermanence
 
 Choose what files and directories you want to keep between reboots - the rest are thrown away.\
-The persistent storage can be found at `/persistent`.
+The persistent storage can be found at `${config.persistPath}`.
 
 `directories`: All directories you want to bind mount to persistent storage.
+
 - `/var/lib/systemd`
 - `/var/lib/nixos`
 - `/var/log`
@@ -149,11 +154,11 @@ The persistent storage can be found at `/persistent`.
 - `/home/${user}/.local/share/nix`: trusted settings and repl history
 
 `files`: All files you want to link or bind to persistent storage.
+
 - `/etc/machine-id`
 - `/etc/ssh/ssh_host_ed25519_key`
 - `/etc/ssh/ssh_host_ed25519_key.pub`
 
 > [!NOTE]
-> The users option defines a set of submodules which correspond to the users’ names. 
+> The users option defines a set of submodules which correspond to the users’ names.
 > The directories and files options of each submodule work like their root counterparts, but the paths are automatically prefixed with with the user’s home directory.
-

@@ -17,6 +17,7 @@ in {
       height = 768;
       workspace = "3";
       position = "4480x0";
+      scale = "1";
     }
     {
       name = "DP-1";

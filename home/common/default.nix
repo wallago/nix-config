@@ -5,7 +5,8 @@
     ../feat/cli
     ../feat/nvim
     ./colorscheme.nix
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  ] ++ (builtins.attrValues outputs.homeManagerModules)
+    ++ [ outputs.nixosModules.persist ];
 
   # ---
 

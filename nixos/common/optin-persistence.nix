@@ -6,7 +6,7 @@
 { lib, inputs, config, ... }: {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
 
-  environment.persistence."/persistent" = {
+  environment.persistence.${config.persistPath} = {
     files = [ "/etc/machine-id" ];
     directories = [ "/var/lib/systemd" "/var/lib/nixos" "/var/log" "/srv" ];
   };
@@ -16,9 +16,9 @@
   system.activationScripts.persistent-dirs.text = let
     mkHomePersist = user:
       lib.optionalString user.createHome ''
-        mkdir -p /persistent/${user.home}
-        chown ${user.name}:${user.group} /persistent/${user.home}
-        chmod ${user.homeMode} /persistent/${user.home}
+        mkdir -p ${config.persistPath}/${user.home}
+        chown ${user.name}:${user.group} ${config.persistPath}/${user.home}
+        chmod ${user.homeMode} ${config.persistPath}/${user.home}
       '';
     users = lib.attrValues config.users.users;
   in lib.concatLines (map mkHomePersist users);

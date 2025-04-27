@@ -1,4 +1,4 @@
-{ config, outputs, pkgs, ... }: {
+{ config, outputs, ... }: {
   imports = [
     ./boot.nix
     ./ssh.nix
