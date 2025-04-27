@@ -1,4 +1,6 @@
-{ ... }: {
+{ config, ... }: {
+  fileSystems.${config.persistPath}.neededForBoot = true;
+
   disko.devices = {
     disk.disk1 = {
       device = "/dev/nvme0n1";
@@ -27,50 +29,37 @@
           root = {
             size = "100%";
             content = {
-              type = "lvm_pv";
-              vg = "pool";
+              type = "btrfs";
+              extraArgs = [ "-f" ]; # Override existing partition
+              # Subvolumes must set a mountpoint in order to be mounted,
+              # unless their parent is mounted
+              subvolumes = {
+                "@root" = {
+                  mountpoint = "/";
+                  mountOptions = [ "compress=zstd" ];
+                };
+                "@home" = {
+                  mountpoint = "/home";
+                  mountOptions = [ "compress=zstd" ];
+                };
+                "@persist" = {
+                  mountpoint = "${config.persistPath}";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "@nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "@swap" = {
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountpoint = "/swap";
+                  swap.swapfile = {
+                    size = "8196M";
+                    path = "swapfile";
+                  };
+                };
+              };
             };
-          };
-        };
-      };
-    };
-    # LVM Volume Group configuration with multiple logical volumes
-    lvm_vg = {
-      pool = {
-        type = "lvm_vg"; # Define volume group 'pool'
-        lvs = {
-          # Logical Volume for user home directories
-          home = {
-            size = "30%FREE";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/home";
-            };
-          };
-          # Logical Volume for the root filesystem
-          root = {
-            size = "50%FREE";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [ "defaults" ];
-            };
-          };
-          # Logical Volume for system logs, databases, etc.
-          var = {
-            size = "20%FREE";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/var";
-            };
-          };
-          # Logical Volume for swap partition
-          swap = {
-            size = "16G";
-            content = { type = "swap"; };
           };
         };
       };
