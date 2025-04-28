@@ -11,6 +11,7 @@
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
       { "<leader>c", "<cmd>Commentary<cr>", desc = "Commentary", mode = { "n", "v" } },
       { "<leader>d", "<cmd>Oil<cr>", desc = "Open parent directory" },
+      { "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Open web page for markdown preview" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },

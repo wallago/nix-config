@@ -22,7 +22,8 @@ in {
       "network"
       "plugdev"
     ];
-    hashedPasswordFile = config.sops.secrets.yc-password.path;
+    # hashedPasswordFile = config.sops.secrets.yc-password.path;
+    password = "yc";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
   };
@@ -30,14 +31,12 @@ in {
   home-manager.users.${username} =
     import ../../../home/users/${username}/${config.networking.hostName}.nix;
 
-  sops.secrets.yc-password = {
-    sopsFile = ../../common/secrets.yaml;
-    format = "yaml";
-    # Make this secret available early enough during system boot
-    neededForUsers = true;
-  };
+  # sops.secrets.yc-password = {
+  #   sopsFile = ../../common/secrets.yaml;
+  #   format = "yaml";
+  #   # Make this secret available early enough during system boot
+  #   neededForUsers = true;
+  # };
 
-  security.pam.services = {
-    swaylock = { };
-  };
+  security.pam.services = { swaylock = { }; };
 }

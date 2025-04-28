@@ -17,7 +17,6 @@ in {
       height = 768;
       workspace = "3";
       position = "4480x0";
-      scale = "1";
     }
     {
       name = "DP-1";
@@ -26,6 +25,7 @@ in {
       refreshRate = 240;
       workspace = "2";
       position = "0x0";
+      scale = "0.8";
     }
     {
       name = "HDMI-A-1";

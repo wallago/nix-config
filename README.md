@@ -49,13 +49,17 @@ The behavior for someone who used NixOs, if it reload only Home-Manager with a u
 
 #### Nixos
 
-[Configuration ➖ nixos/common/](doc/nixos/common.md)\
-[Configuration ➖ nixos/feat/cli](doc/nixos/feat/cli.md)\
-[Configuration ➖ nixos/feat/nvim](doc/nixos/feat/nvim.md)
+[Configuration ➖ nixos/common](doc/nixos/common.md)\
+[Configuration ➖ nixos/feat/gpu](doc/nixos/feat/gpu.md)\
+[Configuration ➖ nixos/feat/desktop](doc/nixos/feat/desktop.md)
 
 #### Home Manager
 
 [Configuration ➖ home/common/](doc/home/common.md)
+
+<!-- [Configuration ➖ home/feat/cli](doc/home/feat/cli.md)\ -->
+<!-- [Configuration ➖ home/feat/nvim](doc/home/feat/nvim.md) -->
+<!-- [Configuration ➖ home/feat/cli](doc/home/feat/desktop.md)\ -->
 
 #### Misc
 

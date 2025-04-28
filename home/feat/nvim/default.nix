@@ -16,7 +16,6 @@ let
     ./plugins/gitsigns_nvim.nix
     ./plugins/trouble_nvim.nix
     ./plugins/nvim_notify.nix
-    ./plugins/render_markdown_nvim.nix
     ./plugins/rustaceanvim.nix
     ./plugins/inc_rename_nvim.nix
     ./plugins/actions_preview_nvim.nix
@@ -52,7 +51,7 @@ in {
     vimdiffAlias = true;
     plugins = allPlugins ++ (with pkgs.vimPlugins; [
       # stand alone
-      rustaceanvim
+      markdown-preview-nvim
       vim-commentary
     ]);
 

@@ -1,13 +1,13 @@
 { pkgs, ... }: {
   imports = [
     ./fish.nix
-    ./bat.nix # -----> Better cat
-    ./eza.nix # -----> Better ls
-    ./ripgrep.nix # -> Better grep
-    ./fzf.nix # -----> Fuzzy finder for fast searching in the terminal
-    ./gpg.nix # -----> GnuPG
-    ./ssh.nix # -----> -- WIP
-    ./zellij # ------> Terminal multiplexer
+    ./bat.nix
+    ./eza.nix
+    ./ripgrep.nix
+    ./fzf.nix
+    ./gpg.nix
+    ./ssh.nix
+    ./zellij
   ];
 
   home.packages = with pkgs; [
