@@ -5,7 +5,7 @@
     sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = { FLAKE = "$HOME/Documents/NixConfig"; };
     persistence = {
-      "${config.persistPath}/${config.home.homeDirectory}" = {
+      "/persist/${config.home.homeDirectory}" = {
         defaultDirectoryMethod = "symlink";
         directories = [
           "Documents"

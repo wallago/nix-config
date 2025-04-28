@@ -142,7 +142,7 @@ cat path/to/secrets.yaml
 ## 💾 Impermanence
 
 Choose what files and directories you want to keep between reboots - the rest are thrown away.\
-The persistent storage can be found at `${config.persistPath}`.
+The persistent storage can be found at `/persist`.
 
 `directories`: All directories you want to bind mount to persistent storage.
 

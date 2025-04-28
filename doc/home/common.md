@@ -19,7 +19,7 @@
   - `sessionVariables`\
     ▶️ defines environment variables for the user session + `FLAKE = "$HOME/Documents/NixConfig"`\
      ▶️ variable pointing to the flake path
-  - `persist."${config.persistPath}/\${home.homeDirectory}"`\
+  - `persist."/persist/${home.homeDirectory}"`\
     ▶️ sets up persistent directories with impermanence module + `defaultDirectoryMethod = "symlink"`\
      ▶️ uses symbolic links to restore persistent directories + `directories = [ Documents Downloads Pictures Videos .local/bin .local/share/nix ]`\
      ▶️ list of directories to persist across reboots:

@@ -1,7 +1,10 @@
 # 📺 Video drivers
 
-- `services.xserver.videoDrivers = nvidia`\
-  ▶️ NVIDIA video driver
+- `services.xserver.videoDrivers`
+  - `nvidia`\
+    ▶️ NVIDIA video driver
+  - `intel`\
+    ▶️ Intel video driver
 
 # Hardware
 

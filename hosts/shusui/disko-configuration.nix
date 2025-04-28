@@ -1,5 +1,5 @@
 { config, ... }: {
-  fileSystems.${config.persistPath}.neededForBoot = true;
+  fileSystems."/persist".neededForBoot = true;
 
   disko.devices = {
     disk.disk1 = {
@@ -43,7 +43,7 @@
                   mountOptions = [ "compress=zstd" ];
                 };
                 "@persist" = {
-                  mountpoint = "${config.persistPath}";
+                  mountpoint = "/persist";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
                 "@nix" = {

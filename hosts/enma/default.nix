@@ -11,8 +11,8 @@ in {
     ../../nixos/common
     ../../nixos/users/yc
 
+    ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/desktop
-    ../../nixos/feat/code/rust.nix
   ];
 
   time.timeZone = "Europe/Paris";

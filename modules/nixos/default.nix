@@ -1,1 +1,1 @@
-{ persist = import ./impermanence.nix; }
+{ }

@@ -13,7 +13,6 @@ in {
 
     ../../nixos/feat/gpu/nvidia.nix
     ../../nixos/feat/desktop
-    ../../nixos/feat/code/rust.nix
   ];
 
   time.timeZone = "Europe/Paris";

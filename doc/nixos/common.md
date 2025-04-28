@@ -104,7 +104,7 @@
 
 ---
 
-- `environment.persistence."${config.persistPath}"` \
+- `environment.persistence."/persist"` \
   ▶️ define persistent directory + `files = [ "/etc/machine-id" ]`\
    ▶️ list of files to persist + `directories = [ "/var/lib/systemd", "/var/lib/nixos", "/var/log", "/srv" ]`\
    ▶️ list of directories to persist
@@ -147,7 +147,7 @@
   - `hostKeys`\
     ▶️ specify the host key and its type + `type = "ed25519"`\
      ▶️ use the ed25519 key type + `path = "${lib.optionalString hasOptinPersistence "/persistent"}/etc/ssh/ssh_host_ed25519_key"`\`\
-     ▶️ conditionally use a path under `${config.persistPath}` if persistence is enabled
+     ▶️ conditionally use a path under `/persist` if persistence is enabled
 - `programs.ssh.knownHosts = lib.genAttrs hosts (hostname: {`\
   ▶️ configure known SSH host keys for each host in the deployment + `publicKeyFile = ../../hosts/${hostname}/ssh_host_ed25519_key.pub`\
    ▶️ reference the corresponding public key for each host + `extraHostNames = (lib.optional (hostname == config.networking.hostName) "localhost")`
