@@ -1,15 +1,11 @@
-{ pkgs, config, ... }:
-let hyprlandCfg = config.wayland.windowManager.hyprland;
-in {
+{ pkgs, ... }: {
   # GnuPG private key agent
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
     enableExtraSocket = true;
     enableFishIntegration = true;
-    sshKeys = [
-      "7D03D56D2750F82854633104369968155A8320A4"
-    ]; # Keygrip of your YubiKey GPG key
+    sshKeys = [ "BFCFF7BFE837D391" ]; # Keygrip of your YubiKey GPG auth key
     pinentryPackage = pkgs.pinentry-tty;
   };
 

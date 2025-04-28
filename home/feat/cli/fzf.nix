@@ -1,6 +1,7 @@
 {
   programs.fzf = {
     enable = true;
-    defaultOptions = [ "--color 16" ];
+    defaultOptions = [ "--height 40%" "--border" "--color 16" ];
+    enableFishIntegration = true;
   };
 }
