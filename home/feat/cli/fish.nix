@@ -29,8 +29,8 @@
 
       ls = lib.mkIf config.programs.eza.enable "eza";
       cat = lib.mkIf config.programs.bat.enable "bat";
-      top = lib.mkIf config.programs.bottom.enable "bottom";
-      grep = lib.mkIf config.programs.ripgrep.enable "ripgrep";
+      top = lib.mkIf config.programs.bottom.enable "btm";
+      grep = lib.mkIf config.programs.ripgrep.enable "rg";
     };
     shellAliases = { clear = "printf '\\033[2J\\033[3J\\033[1;1H'"; };
   };
