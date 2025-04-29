@@ -11,7 +11,6 @@
       gnupg
       age
       nixos-anywhere
-      rust-bin.beta.latest.default
     ];
   };
 }

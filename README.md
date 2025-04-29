@@ -51,6 +51,7 @@ The behavior for someone who used NixOs, if it reload only Home-Manager with a u
 
 [Configuration ➖ nixos/common](doc/nixos/common.md)\
 [Configuration ➖ nixos/feat/gpu](doc/nixos/feat/gpu.md)\
+[Configuration ➖ nixos/feat/code](doc/nixos/feat/code.md)\
 [Configuration ➖ nixos/feat/desktop](doc/nixos/feat/desktop.md)
 
 #### Home Manager

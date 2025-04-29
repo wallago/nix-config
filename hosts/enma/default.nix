@@ -13,6 +13,7 @@ in {
 
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/desktop
+    ../../nixos/feat/code
   ];
 
   time.timeZone = "Europe/Paris";
