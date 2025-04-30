@@ -175,13 +175,10 @@ in {
   home.packages = allDeps;
 }
 
-#     toggleterm-nvim # -------> floating terminal
 #     vim-dadbod-ui # ---------> navigation database gui
-#     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
 #     openscad-nvim # --------->
 #     vim-nix # ---------------> writing Nix expressions
 #     markdown-nvim # ---------> beautify markdown
-#     markdown-preview-nvim # -> preview markdown file
 #     rest-nvim # -------------> asynchronous Neovim HTTP client
 #     vim-flog # --------------> git graph
 #     fugitive # --------------> git commands

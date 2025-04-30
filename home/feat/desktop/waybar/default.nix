@@ -37,7 +37,10 @@ in {
         exclusive = false;
         passthrough = false;
         height = 40;
-        margin = "6";
+        margin-top = 10;
+        margin-bottom = 10;
+        margin-left = 20;
+        margin-right = 20;
         position = "top";
 
         modules-left = [ "custom/menu" ] ++ (lib.optionals hyprlandCfg.enable [

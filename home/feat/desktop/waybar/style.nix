@@ -17,6 +17,7 @@ in ''
     padding: 0;
     border-radius: 0.5em;
     background-color: ${toRGBA colors.surface "0.7"};
+    border: 2px solid ${colors.primary};
     color: ${colors.on_surface};
   }
 
