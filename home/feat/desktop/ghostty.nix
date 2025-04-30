@@ -4,17 +4,20 @@ let
   c = colorscheme.colors;
 in {
   # Set as default terminal
-  xdg.mimeApps = {
-    associations.added = { "x-scheme-handler/terminal" = "Ghostty.desktop"; };
-    defaultApplications = { "x-scheme-handler/terminal" = "Ghostty.desktop"; };
-  };
-
-  xdg.desktopEntries.Ghostty = {
-    name = "Ghostty";
-    exec = "ghostty";
-    terminal = false;
-    mimeType = [ "x-scheme-handler/terminal" ];
-    categories = [ "System" "Utility" ];
+  xdg = {
+    mimeApps = {
+      associations.added = { "x-scheme-handler/terminal" = "Ghostty.desktop"; };
+      defaultApplications = {
+        "x-scheme-handler/terminal" = "Ghostty.desktop";
+      };
+    };
+    desktopEntries.Ghostty = {
+      name = "Ghostty";
+      exec = "ghostty";
+      terminal = false;
+      mimeType = [ "x-scheme-handler/terminal" ];
+      categories = [ "System" "Utility" ];
+    };
   };
 
   programs.ghostty = {

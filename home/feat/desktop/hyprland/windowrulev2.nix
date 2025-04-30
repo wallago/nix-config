@@ -1,4 +1,4 @@
-{ lib, rgba, }:
+{ ... }:
 let
   picture_in_picture = "title:Picture-in-Picture, class:firefox";
   rofi = "class:^(Rofi)$";

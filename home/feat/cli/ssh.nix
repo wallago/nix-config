@@ -10,7 +10,7 @@ in {
   # which is persisted.
   home.persistence = {
     "/persist/${config.home.homeDirectory}".directories =
-      [ ".ssh/known_hosts.d" ];
+      [ ".ssh/known_hosts.d/" ];
   };
 
   programs.ssh = {
@@ -31,7 +31,7 @@ in {
 
   # Compatibility with programs that don't respect SSH configurations (e.g. jujutsu's libssh2)
   systemd.user.tmpfiles.rules = [
-    "L ${config.home.homeDirectory}/.ssh/known_hosts - - - - ${config.programs.ssh.userKnownHostsFile}"
+    "L+ ${config.home.homeDirectory}/.ssh/known_hosts - - - - ${config.programs.ssh.userKnownHostsFile}"
   ];
 }
 

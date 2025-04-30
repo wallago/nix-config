@@ -79,7 +79,6 @@ in {
           import ./modules/minicava.nix { inherit pkgs lib mkScript; };
         "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
         "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
-
       };
     };
   };

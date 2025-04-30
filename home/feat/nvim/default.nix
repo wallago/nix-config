@@ -15,7 +15,6 @@ let
     ./plugins/nvim_web_devicons.nix
     ./plugins/gitsigns_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/nvim_notify.nix
     ./plugins/rustaceanvim.nix
     ./plugins/inc_rename_nvim.nix
     ./plugins/actions_preview_nvim.nix
@@ -24,8 +23,11 @@ let
     ./plugins/smear_cursor_nvim.nix
   ];
 
-  rawPluginColorModules =
-    [ ./plugins/noice_nvim.nix ./plugins/lualine_nvim.nix ];
+  rawPluginColorModules = [
+    ./plugins/noice_nvim.nix
+    ./plugins/lualine_nvim.nix
+    ./plugins/nvim_notify.nix
+  ];
 
   pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
     ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules;

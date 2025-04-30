@@ -87,7 +87,7 @@
 
 # 💾 Impermanence
 
-- `home.persistence."/persist/${config.home.homeDirectory}".directories = [ ".ssh/known_hosts.d" ]`\
+- `home.persistence."/persist/${config.home.homeDirectory}".directories = [ ".ssh/known_hosts.d/" ]`\
   ▶️ persists the `known_hosts.d` directory through reboots, avoiding issues where SSH overwrites files unexpectedly
 
 # 🔧 System Configuration
