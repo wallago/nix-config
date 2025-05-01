@@ -22,63 +22,51 @@ in ''
   }
 
   .modules-left {
-    margin-left: -0.65em;
+    margin-left: 0em;
   }
   .modules-right {
-    margin-right: -0.65em;
+    margin-right: 0em;
   }
 
   #workspaces button {
     background-color: ${colors.surface};
-    color: ${colors.on_surface};
+    color: ${colors.primary};
     padding-left: 0.4em;
     padding-right: 0.4em;
-    margin-top: 0.15em;
-    margin-bottom: 0.15em;
+    margin: 0.6em;
+    border: 2px solid ${colors.primary};
   }
-  #workspaces button.hidden {
-    background-color: ${colors.surface};
-    color: ${colors.on_surface_variant};
-  }
-  #workspaces button.focused,
   #workspaces button.active {
     background-color: ${colors.primary};
     color: ${colors.on_primary};
   }
 
   #clock {
-    padding-right: 1em;
-    padding-left: 1em;
-    border-radius: 0.5em;
-  }
-  #custom-menu {
-    background-color: ${colors.surface_container};
+    padding-right: 0.4em;
     color: ${colors.primary};
-    padding-right: 1.5em;
-    padding-left: 1em;
-    margin-right: 0;
-    border-radius: 0.5em;
   }
-  #custom-menu.fullscreen {
-    background-color: ${colors.primary};
-    color: ${colors.on_primary};
+  #custom-os {
+    color: ${colors.primary};
+    padding-right: 1em;
+    border-radius: 0.5em;
   }
   #custom-hostname {
-    background-color: ${colors.surface_container};
     color: ${colors.primary};
-    padding-right: 1em;
     padding-left: 1em;
-    margin-left: 0;
     border-radius: 0.5em;
-  }
-  #custom-currentplayer {
-    padding-right: 0;
   }
   #tray {
     color: ${colors.on_surface};
   }
-  #custom-gpu, #cpu, #memory {
-    margin-left: 0.05em;
-    margin-right: 0.55em;
+  #custom-gpu, 
+  #cpu, 
+  #memory 
+  #custom-currentplayer, 
+  #pulseaudio, 
+  #battery, 
+  #custom-tx-net, 
+  #custom-rx-net, 
+  #network  {
+    padding-left: 0.4em;
   }
 ''

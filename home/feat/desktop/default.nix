@@ -1,12 +1,16 @@
 { pkgs, ... }: {
   imports = [
-    ./hyprland # -- check deps for bindings
-    ./firefox.nix # -> Browser
-    ./waybar # ------> Status bar
-    ./ghostty.nix # -> Terminal emulator
-
-    # ./wofi.nix # ----> Launcher and window switcher
-    # ./mako.nix # ----> Lightweight notification daemon
+    ./hyprland
+    ./firefox.nix
+    ./waybar
+    ./ghostty.nix
+    ./cliphist.nix
+    ./gammastep.nix
+    ./imv.nix
+    ./mako.nix
+    ./zathura.nix
+    ./swayidle.nix
+    ./swaylock.nix
   ];
 
   xdg = {
@@ -23,12 +27,5 @@
     LIBSEAT_BACKEND = "logind";
   };
 
-  # home.packages = with pkgs;
-  #   [
-  #     # grimblast # ----> Helper for screenshots within Hyprland, based on grimshot.
-  #     # pulseaudio # ---> Sound server for POSIX and Win32 systems -- WIP
-  #     # swaylock # -----> Screen locker for Wayland
-  #     # pass-wofi # ----> Script to make wofi work with password-store
-  #     # cliphist # -----> Wayland clipboard manager
-  #   ];
+  home.packages = with pkgs; [ wf-recorder wl-clipboard ];
 }

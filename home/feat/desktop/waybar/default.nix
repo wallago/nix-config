@@ -43,16 +43,22 @@ in {
         margin-right = 20;
         position = "top";
 
-        modules-left = [ "custom/menu" ] ++ (lib.optionals hyprlandCfg.enable [
-          "hyprland/workspaces"
-          "hyprland/submap"
-        ]) ++ [ "custom/currentplayer" "custom/player" "custom/minicava" ];
+        modules-left = [ "custom/os" "clock" ]
+          ++ (lib.optionals hyprlandCfg.enable [
+            "hyprland/workspaces"
+            "hyprland/submap"
+          ]) ++ [
+            "custom/currentplayer"
+            "custom/player"
+            "custom/minicava"
+            "network"
+            "custom/unread-mail"
+          ];
         modules-center =
-          [ "cpu" "custom/gpu" "memory" "clock" "custom/unread-mail" ];
+          [ "cpu" "custom/intel-gpu" "custom/nvidia-gpu" "memory" ];
         modules-right = [
           "tray"
           "custom/rfkill"
-          "network"
           "custom/rx-net"
           "custom/tx-net"
           "pulseaudio"
@@ -62,18 +68,20 @@ in {
 
         clock = import ./modules/clock.nix;
         cpu = import ./modules/cpu.nix;
-        "custom/gpu" = import ./modules/gpu.nix { inherit mkScript; };
         memory = import ./modules/memory.nix;
         pulseaudio = import ./modules/pulseaudio.nix { inherit pkgs lib; };
         battery = import ./modules/battery.nix;
         network = import ./modules/network.nix;
-        "custom/menu" =
-          import ./modules/menu.nix { inherit hyprlandCfg lib mkScriptJson; };
+        "custom/os" = import ./modules/os.nix { inherit mkScript; };
         "custom/hostname" = import ./modules/hostname.nix { inherit mkScript; };
         "custom/unread-mail" =
           import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
         "custom/rfkill" =
           import ./modules/rfkill.nix { inherit pkgs mkScript; };
+        "custom/nvidia-gpu" =
+          import ./modules/nvidia-gpu.nix { inherit mkScript; };
+        "custom/intel-gpu" =
+          import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
         "custom/player" =
           import ./modules/player.nix { inherit pkgs mkScript; };
         "custom/currentplayer" =

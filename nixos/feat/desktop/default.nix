@@ -11,5 +11,5 @@
 
   programs.hyprland.enable = true;
 
-  environment.systemPackages = with pkgs; [ wayland xwayland wl-clipboard ];
+  environment.systemPackages = with pkgs; [ wayland xwayland ];
 }
