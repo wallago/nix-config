@@ -4,5 +4,5 @@
     script =
       "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits -i 0";
   };
-  format = "󰒋  {}%";
+  format = "(nvi) 󰒋  {}%";
 }
