@@ -32,4 +32,10 @@ in {
       package = pkgs.nerd-fonts.fira-code;
     };
   };
+
+  # Paris
+  services.wlsunset = {
+    latitude = 48.8575;
+    longitude = 2.3514;
+  };
 }

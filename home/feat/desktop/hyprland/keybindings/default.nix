@@ -13,3 +13,4 @@ in [
 ++ import ./clipboard.nix { inherit lib config; }
 ++ import ./launcher.nix { inherit lib config; }
 ++ import ./classic.nix { inherit lib; }
+++ import ./colorpicker.nix { inherit pkgs lib; }

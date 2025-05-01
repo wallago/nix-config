@@ -1,9 +1,7 @@
 { lib, config, }:
 let
   cliphist = lib.getExe config.services.cliphist.package;
-  wofi = lib.getExe config.programs.wofi.package;
+  tofi = lib.getExe' config.programs.tofi.package "tofi";
 in lib.optionals
-(config.services.cliphist.enable && config.programs.wofi.enable) [
-  ''
-    SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-]
+(config.services.cliphist.enable && config.programs.tofi.enable)
+[ "SUPER,c,exec,${cliphist} list | ${tofi} | ${cliphist} decode | wl-copy" ]

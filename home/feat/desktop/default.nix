@@ -1,16 +1,21 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   imports = [
     ./hyprland
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+    ./cursor.nix
     ./firefox.nix
+    ./discord.nix
+    ./dragon.nix
     ./waybar
+    ./tofi.nix
     ./ghostty.nix
     ./cliphist.nix
     ./gammastep.nix
     ./imv.nix
     ./mako.nix
     ./zathura.nix
-    ./swayidle.nix
-    ./swaylock.nix
   ];
 
   xdg = {
@@ -27,5 +32,19 @@
     LIBSEAT_BACKEND = "logind";
   };
 
-  home.packages = with pkgs; [ wf-recorder wl-clipboard ];
+  # Also sets org.freedesktop.appearance color-scheme
+  dconf.settings."org/gnome/desktop/interface".color-scheme =
+    if config.colorscheme.mode == "dark" then
+      "prefer-dark"
+    else if config.colorscheme.mode == "light" then
+      "prefer-light"
+    else
+      "default";
+
+  home.packages = with pkgs; [
+    wf-recorder
+    wl-clipboard
+    libnotify
+    handlr-regex
+  ];
 }
