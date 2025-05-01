@@ -69,6 +69,11 @@
           modules = [ ./hosts/enma ];
           specialArgs = { inherit inputs outputs; };
         };
+        # Sandbox
+        tuna = lib.nixosSystem {
+          modules = [ ./hosts/tuna ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       # Home Manager system configuration
@@ -83,6 +88,12 @@
         "yc@enma" = lib.homeManagerConfiguration {
           modules = [ ./home/users/yc/enma.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        # Sandbox
+        "yc@tuna" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/yc/tuna.nix ./home/nixpkgs.nix ];
+          pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };

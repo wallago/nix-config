@@ -1,4 +1,4 @@
-{ config, ... }: {
+{
   fileSystems."/persist".neededForBoot = true;
 
   disko.devices = {

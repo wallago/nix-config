@@ -15,7 +15,5 @@
     ./optin-persistence.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
-  # ---
-
   system.stateVersion = "${config.system.nixos.release}";
 }
