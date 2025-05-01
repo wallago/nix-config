@@ -12,7 +12,7 @@
     ./tofi.nix
     ./ghostty.nix
     ./cliphist.nix
-    ./gammastep.nix
+    ./wlsunset.nix
     ./imv.nix
     ./mako.nix
     ./zathura.nix
