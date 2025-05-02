@@ -31,6 +31,7 @@
       url = "github:YvesCousteau/nix-themes";
       inputs.systems.follows = "systems";
     };
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:

@@ -4,10 +4,10 @@ in {
   imports = [
     ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
-    ../../feat/desktop
+    # ../../feat/desktop
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.numerical-earth-drawing-dark;
+  wallpaper = pkgs.inputs.themes.wallpapers.purple-night-porsche-drawing-dark;
   colorscheme.type = "fidelity";
 
   fontProfiles = {

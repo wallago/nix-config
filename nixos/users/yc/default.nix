@@ -16,6 +16,7 @@ in {
       "wheel"
       "video"
       "audio"
+      "disk"
       "docker"
       "git"
       "i2c"
@@ -37,11 +38,4 @@ in {
   #   # Make this secret available early enough during system boot
   #   neededForUsers = true;
   # };
-
-  security.pam.services.hyprlock = {
-    text = ''
-      auth include login
-      account include login
-    '';
-  };
 }

@@ -54,8 +54,12 @@ in {
             "network"
             "custom/unread-mail"
           ];
-        modules-center =
-          [ "cpu" "custom/intel-gpu" "custom/nvidia-gpu" "memory" ];
+        modules-center = [
+          "cpu"
+          # "custom/intel-gpu" 
+          # "custom/nvidia-gpu" 
+          "memory"
+        ];
         modules-right = [
           "tray"
           "custom/rfkill"
@@ -78,10 +82,10 @@ in {
           import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
         "custom/rfkill" =
           import ./modules/rfkill.nix { inherit pkgs mkScript; };
-        "custom/nvidia-gpu" =
-          import ./modules/nvidia-gpu.nix { inherit mkScript; };
-        "custom/intel-gpu" =
-          import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
+        # "custom/nvidia-gpu" =
+        #   import ./modules/nvidia-gpu.nix { inherit mkScript; };
+        # "custom/intel-gpu" =
+        #   import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
         "custom/player" =
           import ./modules/player.nix { inherit pkgs mkScript; };
         "custom/currentplayer" =
