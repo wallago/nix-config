@@ -1,16 +1,38 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, config, ... }: {
+  imports = [ ../../feat/mail.nix ];
+
   programs.git = {
-    userName = "YvesCousteau";
-    userEmail = "45556867+YvesCousteau@users.noreply.github.com";
+    userName = "wallago";
+    userEmail = "45556867+wallago@users.noreply.github.com";
   };
 
   programs.firefox.profiles.yc = {
     extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-      ublock-origin # ----> Content blocker
-      browserpass # ------> Password manager
-      vimium # -----------> Keyboard shortcuts
-      privacy-badger # ---> Block invisible trackers
-      new-tab-override # -> Set the page that shows whenever you open a new tab
+      ublock-origin
+      browserpass
+      vimium
+      privacy-badger
+      new-tab-override
     ];
+  };
+
+  accounts.email = {
+    accounts.yc = {
+      primary = true;
+      address = "commandant.cousteau1997@gmail.com";
+      realName = config.programs.git.userName;
+      gpg = {
+        key = "C6C581A860F158EB";
+        signByDefault = true;
+      };
+      signature = {
+        showSignature = "append";
+        text = ''
+          ${config.accounts.email.accounts.yc.realName}
+
+          PGP: ${config.accounts.email.accounts.yc.gpg.key}
+        '';
+      };
+    };
   };
 }

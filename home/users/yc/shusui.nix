@@ -2,9 +2,10 @@
 let username = "yc";
 in {
   imports = [
-    ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
     ../../feat/desktop
+    ../../feat/pass.nix
+    ./common.nix
   ];
 
   #  ------   ----------   ------ 
