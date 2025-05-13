@@ -55,6 +55,7 @@ in {
       # stand alone
       markdown-preview-nvim
       vim-commentary
+      sort-nvim
     ]);
 
     extraLuaConfig = ''
