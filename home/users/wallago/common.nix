@@ -1,7 +1,7 @@
 { inputs, pkgs, config, ... }: {
   imports = [ ../../feat/mail.nix ];
 
-  persistence = {
+  home.persistence = {
     "/persist/${config.home.homeDirectory}".directories =
       [ "Project/" "Work/" ];
   };
