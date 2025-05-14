@@ -1,6 +1,11 @@
 { inputs, pkgs, config, ... }: {
   imports = [ ../../feat/mail.nix ];
 
+  persistence = {
+    "/persist/${config.home.homeDirectory}".directories =
+      [ "Project/" "Work/" ];
+  };
+
   programs.git = {
     userName = "wallago";
     userEmail = "45556867+wallago@users.noreply.github.com";
