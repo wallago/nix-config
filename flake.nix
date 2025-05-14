@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     themes = {
-      url = "github:YvesCousteau/nix-themes";
+      url = "github:wallago/nix-themes";
       inputs.systems.follows = "systems";
     };
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
@@ -80,20 +80,20 @@
       # Home Manager system configuration
       homeConfigurations = {
         # Main desktop
-        "yc@shusui" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/yc/shusui.nix ./home/nixpkgs.nix ];
+        "wallago@shusui" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/shusui.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # Main laptop
-        "yc@enma" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/yc/enma.nix ./home/nixpkgs.nix ];
+        "wallago@enma" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/enma.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # Sandbox
-        "yc@tuna" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/yc/tuna.nix ./home/nixpkgs.nix ];
+        "wallago@tuna" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/tuna.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

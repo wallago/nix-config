@@ -1,13 +1,25 @@
 { lib, config, pkgs, inputs, outputs, ... }:
-let username = "yc";
+let username = "waalgo";
 in {
   imports = [
-    ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
-    # ../../feat/desktop
+    ../../feat/desktop
+    ../../feat/pass.nix
+    ./common.nix
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.purple-night-porsche-drawing-dark;
+  #  -------  
+  # | eDP-1 |
+  #  ------- 
+  monitors = [{
+    name = "eDP-1";
+    width = 1920;
+    height = 1080;
+    workspace = "1";
+    primary = true;
+  }];
+
+  wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
   colorscheme.type = "fidelity";
 
   fontProfiles = {

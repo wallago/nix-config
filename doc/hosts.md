@@ -18,7 +18,7 @@
   - Case: Corsair 5000D
   - Cooling: Corsair iCUE H100i RGB PRO XT Liquid CPU Cooler
 - **Users**:
-  - **yc**: `home/users/yc/shusui/default.nix`
+  - **wallago**: `home/users/wallago/shusui/default.nix`
 
 ## 💻 Host: enma
 
@@ -30,8 +30,8 @@
     - 1 To SSD
   - GPU: Intel Alder Lake-UP3 GT2 [Iris Xe Graphics]
 - **Users**:
-  - **yc**
-    - User-specific Configuration: `home/yc/enma/config.nix`
+  - **wallago**
+    - User-specific Configuration: `home/wallago/enma/config.nix`
 
 <!-- ### 🌐 Host: murakumogiri -->
 <!---->
@@ -40,4 +40,3 @@
 <!-- - **Users**: -->
 <!--   - **guest** -->
 <!--     - User-specific Configuration: `home/guest/murakumogiri/config.nix` -->
-

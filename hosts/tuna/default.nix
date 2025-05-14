@@ -10,7 +10,7 @@ in {
     ./disko-configuration.nix
 
     ../../nixos/common
-    ../../nixos/users/yc
+    ../../nixos/users/wallago
 
     # ../../nixos/feat/desktop
     # ../../nixos/feat/code

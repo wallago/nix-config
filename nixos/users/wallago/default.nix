@@ -1,6 +1,6 @@
 { pkgs, config, inputs, ... }:
 let
-  username = "yc";
+  username = "wallago";
   ifTheyExist = groups:
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 
@@ -23,8 +23,8 @@ in {
       "network"
       "plugdev"
     ];
-    # hashedPasswordFile = config.sops.secrets.yc-password.path;
-    password = "yc";
+    # hashedPasswordFile = config.sops.secrets.wallago-password.path;
+    password = "wallago";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
   };
@@ -32,7 +32,7 @@ in {
   home-manager.users.${username} =
     import ../../../home/users/${username}/${config.networking.hostName}.nix;
 
-  # sops.secrets.yc-password = {
+  # sops.secrets.wallago-password = {
   #   sopsFile = ../../common/secrets.yaml;
   #   format = "yaml";
   #   # Make this secret available early enough during system boot

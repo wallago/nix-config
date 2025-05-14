@@ -2,16 +2,16 @@
 let hostname = "enma";
 in {
   imports = [
+    # Includes the Disko module from the disko input in NixOS configuration
+    inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/feat/code
     ../../nixos/feat/desktop
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/tlp.nix
-    ../../nixos/users/yc
+    ../../nixos/users/wallago
     ./disko-configuration.nix
     ./hardware-configuration.nix
-    # Includes the Disko module from the disko input in NixOS configuration
-    inputs.disko.nixosModules.disko
   ];
 
   time.timeZone = "Europe/Paris";
