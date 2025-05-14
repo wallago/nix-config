@@ -2,8 +2,7 @@
   imports = [ ../../feat/mail.nix ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories =
-      [ "Project/" "Work/" ];
+    "/persist/${config.home.homeDirectory}".directories = [ "Perso/" "Work/" ];
   };
 
   programs.git = {

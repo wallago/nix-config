@@ -6,7 +6,7 @@
     enableExtraSocket = true;
     enableFishIntegration = true;
     sshKeys = [ "BFCFF7BFE837D391" ]; # Keygrip of your YubiKey GPG auth key
-    pinentryPackage = pkgs.pinentry-tty;
+    pinentry.package = pkgs.pinentry-tty;
     extraConfig = ''
       allow-loopback-pinentry
     '';
