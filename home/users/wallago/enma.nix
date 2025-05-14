@@ -1,5 +1,5 @@
 { lib, config, pkgs, inputs, outputs, ... }:
-let username = "waalgo";
+let username = "wallgo";
 in {
   imports = [
     (import ../../common { inherit username lib config pkgs outputs inputs; })

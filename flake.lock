@@ -452,13 +452,13 @@
       "locked": {
         "lastModified": 1745056792,
         "narHash": "sha256-mFriZFqCEc2Sy2pDmY0s0xXYjTWk1z33ls0n4bYxZ9Q=",
-        "owner": "YvesCousteau",
+        "owner": "wallago",
         "repo": "nix-themes",
         "rev": "19d58f14344cbfcffb72344f8048a009894e367e",
         "type": "github"
       },
       "original": {
-        "owner": "YvesCousteau",
+        "owner": "wallago",
         "repo": "nix-themes",
         "type": "github"
       }
