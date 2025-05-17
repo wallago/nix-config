@@ -9,8 +9,8 @@
   "blur,notifications"
   "ignorezero,notifications"
 
-  "blur,wofi"
-  "ignorezero,wofi"
+  "blur,tofi"
+  "ignorezero,tofi"
 
   "noanim,wallpaper"
 ]

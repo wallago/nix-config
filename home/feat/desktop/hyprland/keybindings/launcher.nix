@@ -1,7 +1,10 @@
 { lib, config, }:
-let wofi = lib.getExe config.programs.wofi.package;
-in lib.optionals config.programs.wofi.enable [
-  "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-  "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
-  "SUPER,d,exec,${wofi} -S run"
+let
+  tofidrun = lib.getExe' config.programs.tofi.package "tofi-drun";
+  tofirun = lib.getExe' config.programs.tofi.package "tofi-run";
+  tofi = lib.getExe' config.programs.tofi.package "tofi";
+in lib.optionals config.programs.tofi.enable [
+  "SUPER,x,exec,${tofidrun} --drun-launch=true"
+  "SUPER,d,exec,${tofirun}/"
+  "SUPER,s,exec,specialisation=$(specialisation | ${tofi})"
 ]

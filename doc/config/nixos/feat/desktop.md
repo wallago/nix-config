@@ -21,5 +21,3 @@
     ▶️ core Wayland protocol libraries
   - `xwayland`\
     ▶️ compatibility for running X11 apps under Wayland
-  - `wl-clipboard`\
-    ▶️ clipboard utilities (copy/paste support under Wayland)

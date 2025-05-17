@@ -6,7 +6,10 @@
     enableExtraSocket = true;
     enableFishIntegration = true;
     sshKeys = [ "BFCFF7BFE837D391" ]; # Keygrip of your YubiKey GPG auth key
-    pinentryPackage = pkgs.pinentry-tty;
+    pinentry.package = pkgs.pinentry-tty;
+    extraConfig = ''
+      allow-loopback-pinentry
+    '';
   };
 
   home.packages = with pkgs; [ pinentry-tty ];
@@ -15,9 +18,11 @@
   programs.gpg = {
     enable = true;
     settings = {
-      # "TOFU" = Trust On First Use
+      # "TOFU" = trust On First Use
       # "PGP" = classic PGP Web of Trust
       trust-model = "tofu+pgp";
+      # enable pinentry for neovim usage
+      pinentry-mode = "loopback";
     };
     publicKeys = [{
       source = ../../pgp.asc;

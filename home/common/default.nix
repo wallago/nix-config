@@ -1,10 +1,10 @@
 { username, config, outputs, inputs, ... }: {
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
-    (import ./home.nix { inherit username config; })
-    ../feat/cli
-    ../feat/nvim
     ./colorscheme.nix
+    ../feat/nvim
+    ../feat/cli
+    (import ./home.nix { inherit username config; })
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   # ---

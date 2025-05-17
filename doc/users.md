@@ -1,5 +1,5 @@
 # 👤 Users
 
-## User: yc
+## User: wallago
 
-- **Home Directory**: `/home/users/yc`
+- **Home Directory**: `/home/users/wallago`

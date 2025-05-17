@@ -12,11 +12,10 @@ in {
       input = import ./input.nix;
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix;
-      windowrulev2 = import ./windowrulev2.nix { inherit lib rgba; };
+      windowrulev2 = import ./windowrulev2.nix;
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;
-      exec = import ./exec.nix { inherit pkgs config; };
       monitor = import ./monitor.nix { inherit config; };
       workspace = import ./workspace.nix { inherit config lib; };
       bind = import ./keybindings { inherit config lib pkgs; };

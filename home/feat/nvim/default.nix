@@ -5,27 +5,29 @@ let
   c = colorscheme.colors;
 
   rawPluginModules = [
-    ./plugins/nvim_treesitter.nix
-    ./plugins/nvim_lspconfig.nix
-    ./plugins/nvim_cmp.nix
-    ./plugins/telescope_nvim.nix
-    ./plugins/neogit.nix
-    ./plugins/which_key_nvim.nix
-    ./plugins/conform_nvim.nix
-    ./plugins/nvim_web_devicons.nix
-    ./plugins/gitsigns_nvim.nix
-    ./plugins/trouble_nvim.nix
-    ./plugins/rustaceanvim.nix
-    ./plugins/inc_rename_nvim.nix
     ./plugins/actions_preview_nvim.nix
+    ./plugins/conform_nvim.nix
+    ./plugins/gitsigns_nvim.nix
+    ./plugins/inc_rename_nvim.nix
+    ./plugins/neogit.nix
+    ./plugins/nvim_cmp.nix
     ./plugins/nvim_colorizer_lua.nix
+    ./plugins/nvim_lspconfig.nix
+    ./plugins/nvim_treesitter.nix
+    ./plugins/nvim_web_devicons.nix
     ./plugins/oil_nvim.nix
+    ./plugins/rustaceanvim.nix
     ./plugins/smear_cursor_nvim.nix
+    ./plugins/telescope_nvim.nix
+    ./plugins/trouble_nvim.nix
+    ./plugins/which_key_nvim.nix
+    ./plugins/mermaid_nvim.nix
+    ./plugins/hunk_nvim.nix
   ];
 
   rawPluginColorModules = [
-    ./plugins/noice_nvim.nix
     ./plugins/lualine_nvim.nix
+    ./plugins/noice_nvim.nix
     ./plugins/nvim_notify.nix
   ];
 
@@ -175,13 +177,10 @@ in {
   home.packages = allDeps;
 }
 
-#     toggleterm-nvim # -------> floating terminal
 #     vim-dadbod-ui # ---------> navigation database gui
-#     oil-nvim # --------------> file explorer that lets you edit your filesystem like a normal Neovim buffer.
 #     openscad-nvim # --------->
 #     vim-nix # ---------------> writing Nix expressions
 #     markdown-nvim # ---------> beautify markdown
-#     markdown-preview-nvim # -> preview markdown file
 #     rest-nvim # -------------> asynchronous Neovim HTTP client
 #     vim-flog # --------------> git graph
 #     fugitive # --------------> git commands

@@ -3,6 +3,7 @@
     ./fish.nix
     ./bat.nix
     ./eza.nix
+    ./jujutsu.nix
     ./ripgrep.nix
     ./fzf.nix
     ./gpg.nix

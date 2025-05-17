@@ -1,6 +1,6 @@
 { lib, config, }:
-let swaylock = lib.getExe config.programs.swaylock.package;
-in lib.optionals config.programs.swaylock.enable [
-  "SUPER,backspace,exec,${swaylock} -S --grace 2 --grace-no-mouse"
-  "SUPER,XF86Calculator,exec,${swaylock} -S --grace 2 --grace-no-mouse"
+let hyprlock = lib.getExe config.programs.hyprlock.package;
+in lib.optionals config.programs.hyprlock.enable [
+  "SUPER,backspace,exec,${hyprlock}"
+  "SUPER,XF86Calculator,exec,${hyprlock}"
 ]

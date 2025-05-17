@@ -1,6 +1,10 @@
 # 📦 System packages
 
 - `environment.systemPackdages`
+  - `wl-clipboard`\
+    ▶️ clipboard utilities (copy/paste support under Wayland)
+  - `wf-recorder`\
+    ▶️ screen recording of wlroots-based compositors
   - `pkgs.handlr-regex`\
     ▶️ manage default applications
   - `pkgs.swaybg`\
@@ -25,6 +29,8 @@
     ▶️ set of system utilities for Linux
   - `pkgs.procps`\
     ▶️ utilities that give information about processes using the /proc filesystem
+  - `pkgs.swaylock-effects`\
+    ▶️ screen locker for Wayland
 
 # 🖼️ XDG Integration
 
@@ -217,3 +223,102 @@
 
 - `programs.browserpass.enable = true`\
   ▶️ enables `browserpass`, which integrates the Unix `pass` password manager with the browser
+
+# 📋 Cliphist Configuration
+
+- `services.cliphist.enable = true`\
+  ▶️ enables a clipboard history “manager” for wayland
+
+  # 🌇 GammaStep Configuration
+
+- `services.gammastep`
+  - `enable = true`\
+    ▶️ enables adjustement screen coloration temperature based on time of day
+  - `enableVerboseLogging = true`\
+    ▶️ logs detailed debug output (helpful for troubleshooting)
+  - `provider = "geoclue2"`\
+    ▶️ uses GeoClue to automatically detect your location for sunrise/sunset times
+  - `temperature`
+    - `day = 6000`\
+      ▶️ sets color temperature to 6000K during daytime (neutral white)
+    - `night = 4600`\
+      ▶️ sets color temperature to 4600K at night (warmer tones for eye comfort)
+  - `settings.general.adjustment-method = "wayland"`\
+    ▶️ specifies Wayland as the screen adjustment method
+
+# 🖼️ imv Image Viewer Configuration
+
+- `programs.imv.enable = true`\
+  ▶️ enables `imv`, a lightweight and minimal image viewer for X11 and Wayland
+
+# 📄 Zathura PDF Viewer Configuration
+
+- `programs.zathura`
+  - `enable = true`  
+    ▶️ enables `zathura`, a lightweight and highly customizable PDF viewer
+  - `options = { ... }`
+
+# 🔒 Swaylock Configuration
+
+- `programs.swaylock`
+  - `enable = true`  
+    ▶️ enables `swaylock`, the screen locker for Wayland
+  - `package = pkgs.swaylock-effects`  
+    ▶️ uses the `swaylock-effects` fork to enable visual enhancements like blur
+  - `settings = { ... }`
+
+# 💤 Swayidle configuration
+
+- `services.swayidle`
+  - `enable = true`  
+    ▶️ enables `swayidle`, a daemon that runs commands when idle (lock, dim, turn off screen)
+  - `systemdTarget = "graphical-session.target"`  
+    ▶️ ensures swayidle is started with the graphical session
+  - `timeouts`
+    - `timeout = 240`
+    - `command = "${swaylock} -i ${config.wallpaper} --daemonize --grace 15 --grace-no-mouse"`  
+      ▶️ invokes `swaylock` with a wallpaper and a 15s grace period without mouse movement
+    - `timeout = 280` (i.e., 240s lockTime + 40s)
+    - `command = "${hyprctl} dispatch dpms off"`
+    - `resumeCommand = "${hyprctl} dispatch dpms on"`  
+      ▶️ powers off and back on displays after lock if idle continues
+    - `timeout = 40`
+    - `command = "${isLocked} && ${hyprctl} dispatch dpms off"`  
+      ▶️ double-checks if already locked before DPMS off
+    - `timeout = 280`
+    - `command = "${swaymsg} 'output * dpms off'"`
+    - `resumeCommand = "${swaymsg} 'output * dpms on'"`  
+      ▶️ same logic but using `swaymsg` for Sway
+    - `timeout = 40`
+    - `command = "${isLocked} && ${swaymsg} 'output * dpms off'"`  
+      ▶️ conditional display off if locked
+
+# 🔔 Mako Notification Daemon Configuration
+
+- `services.mako`
+  - `enable = true`  
+    ▶️ enables the `mako` notification daemon for Wayland compositors
+  - `font = "${config.fontProfiles.regular.name} ${config.fontProfiles.regular.size}"`  
+    ▶️ sets the font used in notifications
+  - `padding = "10,20"`  
+    ▶️ adds vertical and horizontal padding around the notification content
+  - `anchor = "top-center"`  
+    ▶️ positions notifications at the top center of the screen
+  - `width = 400`  
+    ▶️ sets the maximum notification width
+  - `height = 150`  
+    ▶️ sets the maximum notification height
+  - `borderSize = 2`  
+    ▶️ defines the border thickness around notifications
+  - `defaultTimeout = 12000`  
+    ▶️ sets default timeout for notifications to 12 seconds (in milliseconds)
+  - `backgroundColor = "${colors.surface}dd"`  
+    ▶️ sets the semi-transparent background color using the colorscheme
+  - `borderColor = "${colors.secondary}dd"`  
+    ▶️ sets the border color of notifications
+  - `textColor = "${colors.on_surface}dd"`  
+    ▶️ sets the text color
+  - `layer = "overlay"`  
+    ▶️ places notifications on the overlay layer (above other windows)
+  - `extraConfig = "max-history=50"`  
+    ▶️ keeps up to 50 notifications in history

@@ -1,6 +1,6 @@
-{ ... }: {
+{ lib, ... }: {
   boot.loader.grub = {
-    enable = true;
+    enable = lib.mkDefault true;
     efiSupport = true;
     efiInstallAsRemovable = true;
   };

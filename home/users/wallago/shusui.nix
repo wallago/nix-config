@@ -1,10 +1,11 @@
 { lib, config, pkgs, inputs, outputs, ... }:
-let username = "yc";
+let username = "wallago";
 in {
   imports = [
-    ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
     ../../feat/desktop
+    ../../feat/pass.nix
+    ./common.nix
   ];
 
   #  ------   ----------   ------ 
@@ -25,7 +26,7 @@ in {
       refreshRate = 240;
       workspace = "2";
       position = "0x0";
-      scale = "0.8";
+      scale = "1";
     }
     {
       name = "HDMI-A-1";
@@ -50,5 +51,11 @@ in {
       name = "0xProto Sans";
       package = pkgs.nerd-fonts.fira-code;
     };
+  };
+
+  # Paris
+  services.wlsunset = {
+    latitude = 48.8575;
+    longitude = 2.3514;
   };
 }

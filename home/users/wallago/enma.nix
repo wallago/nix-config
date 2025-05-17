@@ -1,10 +1,11 @@
 { lib, config, pkgs, inputs, outputs, ... }:
-let username = "yc";
+let username = "wallago";
 in {
   imports = [
-    ./common.nix
     (import ../../common { inherit username lib config pkgs outputs inputs; })
     ../../feat/desktop
+    ../../feat/pass.nix
+    ./common.nix
   ];
 
   #  -------  
@@ -18,7 +19,7 @@ in {
     primary = true;
   }];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.pipes-drawing-light;
+  wallpaper = pkgs.inputs.themes.wallpapers."green-forest-light";
   colorscheme.type = "fidelity";
 
   fontProfiles = {
@@ -31,5 +32,11 @@ in {
       name = "0xProto Sans";
       package = pkgs.nerd-fonts.fira-code;
     };
+  };
+
+  # Paris
+  services.wlsunset = {
+    latitude = 48.8575;
+    longitude = 2.3514;
   };
 }

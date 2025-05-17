@@ -1,21 +1,20 @@
 { config, outputs, ... }: {
   imports = [
     ./boot.nix
-    ./ssh.nix
-    ./nix.nix
-    ./sops.nix
+    ./fail2ban.nix
+    ./fish.nix
     ./grub.nix
     ./home.nix
-    ./fish.nix
     ./login.nix
-    ./upower.nix
-    ./nixpkgs.nix
     ./network.nix
-    ./systemd-initrd.nix
+    ./nix.nix
+    ./nixpkgs.nix
     ./optin-persistence.nix
+    ./sops.nix
+    ./ssh.nix
+    ./systemd-initrd.nix
+    ./upower.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
-
-  # ---
 
   system.stateVersion = "${config.system.nixos.release}";
 }

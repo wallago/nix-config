@@ -1,15 +1,9 @@
-{ pkgs, ... }: {
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
+{
+  imports = [ ./wayland.nix ./hyprland.nix ];
+  security.pam.services.hyprlock = {
+    text = ''
+      auth include login
+      account include login
+    '';
   };
-
-  programs.hyprland.enable = true;
-
-  environment.systemPackages = with pkgs; [ wayland xwayland wl-clipboard ];
 }
