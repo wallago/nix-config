@@ -52,7 +52,6 @@
       inherit lib;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
-      formatter = forEachSystem (pkgs: pkgs.alejandra);
       overlays = import ./overlays { inherit inputs outputs; };
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
@@ -61,18 +60,18 @@
       # NixOS system configuration
       nixosConfigurations = {
         # Main desktop
-        shusui = lib.nixosSystem {
-          modules = [ ./hosts/shusui ];
+        sponge = lib.nixosSystem {
+          modules = [ ./hosts/sponge ];
           specialArgs = { inherit inputs outputs; };
         };
         # Main laptop
-        enma = lib.nixosSystem {
-          modules = [ ./hosts/enma ];
+        squid = lib.nixosSystem {
+          modules = [ ./hosts/squid ];
           specialArgs = { inherit inputs outputs; };
         };
-        # Sandbox
-        tuna = lib.nixosSystem {
-          modules = [ ./hosts/tuna ];
+        # VPS
+        octopus = lib.nixosSystem {
+          modules = [ ./hosts/octopus ];
           specialArgs = { inherit inputs outputs; };
         };
       };
@@ -80,21 +79,21 @@
       # Home Manager system configuration
       homeConfigurations = {
         # Main desktop
-        "wallago@shusui" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/wallago/shusui.nix ./home/nixpkgs.nix ];
+        "wallago@sponge" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/sponge.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # Main laptop
-        "wallago@enma" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/wallago/enma.nix ./home/nixpkgs.nix ];
+        "wallago@squid" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/squid.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
-        # Sandbox
-        "wallago@tuna" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/wallago/tuna.nix ./home/nixpkgs.nix ];
-          pkgs = pkgsFor.aarch64-linux;
+        # VPS
+        "wallago@octopus" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/wallago/octopus.nix ./home/nixpkgs.nix ];
+          pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
