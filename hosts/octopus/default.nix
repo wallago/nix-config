@@ -5,7 +5,6 @@ in {
     # Includes the Disko module from the disko input in NixOS configuration
     inputs.disko.nixosModules.disko
     ../../nixos/common
-    ../../nixos/feat/code
     ../../nixos/users/wallago
     ./disko-configuration.nix
     ./hardware-configuration.nix
