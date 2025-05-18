@@ -22,8 +22,10 @@ in {
         host = lib.concatStringsSep " "
           (lib.flatten (map (host: [ host ]) hostnames));
         remoteForwards = [{
-          bind.address = "/%d/.gnupg-sockets/S.gpg-agent";
-          host.address = "/%d/.gnupg-sockets/S.gpg-agent.extra";
+          bind.address =
+            "/${config.home.homeDirectory}/.gnupg-sockets/S.gpg-agent";
+          host.address =
+            "/${config.home.homeDirectory}/.gnupg-sockets/S.gpg-agent.extra";
         }];
       };
     };

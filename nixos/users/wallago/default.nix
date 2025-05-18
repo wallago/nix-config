@@ -27,6 +27,8 @@ in {
     password = "wallago";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
+    openssh.authorizedKeys.keys =
+      [ (builtins.readFile ../../feat/yubikey/ssh.pub) ];
   };
 
   home-manager.users.${username} =

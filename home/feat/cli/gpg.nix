@@ -2,10 +2,11 @@
   # GnuPG private key agent
   services.gpg-agent = {
     enable = true;
-    enableSshSupport = true;
-    enableExtraSocket = true;
+    enableSshSupport = true; # Allows GPG agent to act as an SSH agent
+    enableExtraSocket =
+      true; # Creates a special-purpose socket (S.gpg-agent.extra)
     enableFishIntegration = true;
-    sshKeys = [ "BFCFF7BFE837D391" ]; # Keygrip of your YubiKey GPG auth key
+    sshKeys = [ "BFCFF7BFE837D391" ]; # YubiKey GPG auth key
     pinentry.package = pkgs.pinentry-tty;
     extraConfig = ''
       allow-loopback-pinentry
@@ -24,8 +25,9 @@
       # enable pinentry for neovim usage
       pinentry-mode = "loopback";
     };
+    scdaemonSettings = { disable-ccid = true; };
     publicKeys = [{
-      source = ../../pgp.asc;
+      source = ../../../nixos/feat/yubikey/pgp.asc;
       trust = 5;
     }];
   };
