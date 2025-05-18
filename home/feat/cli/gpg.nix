@@ -25,8 +25,9 @@
       # enable pinentry for neovim usage
       pinentry-mode = "loopback";
     };
+    scdaemonSettings = { disable-ccid = true; };
     publicKeys = [{
-      source = ../../pgp.asc;
+      source = ../../../nixos/feat/yubikey/pgp.asc;
       trust = 5;
     }];
   };

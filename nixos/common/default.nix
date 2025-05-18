@@ -14,6 +14,7 @@
     ./ssh.nix
     ./systemd-initrd.nix
     ./upower.nix
+    ../feat/yubikey
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   system.stateVersion = "${config.system.nixos.release}";
