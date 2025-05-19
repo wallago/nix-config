@@ -23,6 +23,7 @@ let
     ./plugins/which_key_nvim.nix
     ./plugins/mermaid_nvim.nix
     ./plugins/hunk_nvim.nix
+    ./plugins/vim_hardtime.nix
   ];
 
   rawPluginColorModules = [
