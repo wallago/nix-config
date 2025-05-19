@@ -70,6 +70,6 @@ in {
     emphasis_0 = c.primary;
     emphasis_1 = "#FFFF00";
     emphasis_2 = c.primary;
-    emphasis_3 = "#FFFF00";
+    emphasis_3 = c.primary;
   };
 }
