@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }:
+let hyprlandCfg = config.wayland.windowManager.hyprland;
+in {
   # GnuPG private key agent
   services.gpg-agent = {
     enable = true;
@@ -7,13 +9,12 @@
       true; # Creates a special-purpose socket (S.gpg-agent.extra)
     enableFishIntegration = true;
     sshKeys = [ "BFCFF7BFE837D391" ]; # YubiKey GPG auth key
-    pinentry.package = pkgs.pinentry-tty;
+    pinentry.package =
+      if hyprlandCfg.enable then pkgs.pinentry-tty else pkgs.pinentry-qt;
     extraConfig = ''
       allow-loopback-pinentry
     '';
   };
-
-  home.packages = with pkgs; [ pinentry-tty ];
 
   # GPG system-wide
   programs.gpg = {
