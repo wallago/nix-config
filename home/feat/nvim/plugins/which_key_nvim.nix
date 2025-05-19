@@ -9,8 +9,6 @@
     wk.add({
       -- Miscellaneous
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
-      { "<leader>c", "<cmd>Commentary<cr>", desc = "Commentary", mode = "n" },
-      { "<leader>c", "<cmd>'<,'>Commentary<cr>", desc = "Commentary", mode =  "v" },
       { "<leader>d", "<cmd>Oil<cr>", desc = "Open parent directory" },
       { "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Open web page for markdown preview" },
       { "<leader>s", "<cmd>'<,'>sort<cr>", desc = "Sort selected stuff", mode = "v" },

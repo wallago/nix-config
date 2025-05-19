@@ -8,7 +8,6 @@
       background_colour = "${c.surface}",
       timeout = 3000,
       render = "compact",
-      max_width = 60,
       icons = {
         ERROR = "",
         WARN = "",
