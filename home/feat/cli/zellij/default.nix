@@ -35,7 +35,7 @@ in {
         };
         "shared_except \"move\" \"locked\"" = {
           "unbind" = "Ctrl h";
-          "bind \"Alt h\"" = { SwitchToMode = "Move"; };
+          "bind \"Alt m\"" = { SwitchToMode = "Move"; };
         };
         "shared_except \"tmux\" \"locked\"" = {
           "unbind" = "Ctrl b";
@@ -47,8 +47,8 @@ in {
           "bind \"Alt q\"" = { Quit = { }; };
           "bind \"Alt f\"" = { ToggleFloatingPanes = { }; };
           "bind \"Alt n\"" = { NewPane = { }; };
-          "bind \"Alt i\"" = { MoveTab = "Left"; };
-          "bind \"Alt o\"" = { MoveTab = "Right"; };
+          "bind \"Alt y\"" = { MoveTab = "Left"; };
+          "bind \"Alt i\"" = { MoveTab = "Right"; };
           "bind \"Alt h\"" = { MoveFocusOrTab = "Left"; };
           "bind \"Alt l\"" = { MoveFocusOrTab = "Right"; };
           "bind \"Alt j\"" = { MoveFocusOrTab = "Down"; };

@@ -16,9 +16,6 @@ in {
     '';
   };
 
-  # home.packages = with pkgs;
-  #   [ (if hyprlandCfg.enable then pinentry-qt else pinentry-tty) ];
-
   # GPG system-wide
   programs.gpg = {
     enable = true;
