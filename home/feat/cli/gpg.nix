@@ -10,11 +10,14 @@ in {
     enableFishIntegration = true;
     sshKeys = [ "BFCFF7BFE837D391" ]; # YubiKey GPG auth key
     pinentry.package =
-      if hyprlandCfg.enable then pkgs.pinentry-tty else pkgs.pinentry-qt;
+      if hyprlandCfg.enable then pkgs.pinentry-qt else pkgs.pinentry-tty;
     extraConfig = ''
       allow-loopback-pinentry
     '';
   };
+
+  # home.packages = with pkgs;
+  #   [ (if hyprlandCfg.enable then pinentry-qt else pinentry-tty) ];
 
   # GPG system-wide
   programs.gpg = {
