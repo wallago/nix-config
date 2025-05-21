@@ -6,5 +6,5 @@ let
 in lib.optionals config.programs.tofi.enable [
   "SUPER,x,exec,${tofidrun} --drun-launch=true"
   "SUPER,d,exec,${tofirun}/"
-  "SUPER,s,exec,specialisation=$(specialisation | ${tofi})"
+  "SUPER,t,exec,specialisation=$(specialisation | ${tofi})"
 ]

@@ -24,7 +24,6 @@ let
     "F11"
     "F12"
   ];
-  # Map keys (arrows and hjkl) to hyprland directions (l, r, u, d)
   directions = rec {
     left = "l";
     right = "r";
@@ -37,49 +36,13 @@ let
   };
 in [
   "SUPERSHIFT,q,killactive"
-  "SUPERSHIFT,e,exit"
-
-  "SUPER,s,togglesplit"
-  "SUPER,f,fullscreen,1"
-  "SUPERSHIFT,f,fullscreen,0"
-  "SUPERSHIFT,space,togglefloating"
-
-  "SUPER,minus,splitratio,-0.25"
-  "SUPERSHIFT,minus,splitratio,-0.3333333"
-
-  "SUPER,equal,splitratio,0.25"
-  "SUPERSHIFT,equal,splitratio,0.3333333"
-
-  "SUPER,g,togglegroup"
-  "SUPER,t,lockactivegroup,toggle"
-  "SUPER,tab,changegroupactive,f"
-  "SUPERSHIFT,tab,changegroupactive,b"
-
-  "SUPER,apostrophe,workspace,previous"
-  "SUPERSHIFT,apostrophe,workspace,next"
-  "SUPER,dead_grave,workspace,previous"
-  "SUPERSHIFT,dead_grave,workspace,next"
-
-  "SUPER,u,togglespecialworkspace"
-  "SUPERSHIFT,u,movetoworkspacesilent,special"
-  "SUPER,i,pseudo"
-] ++
-# Change workspace
-(map (n: "SUPER,${n},workspace,name:${n}") workspaces) ++
-# Move window to workspace
-(map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces) ++
-# Move focus
-(lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
-  directions) ++
-# Swap windows
-(lib.mapAttrsToList
-  (key: direction: "SUPERSHIFT,${key},swapwindow,${direction}") directions) ++
-# Move windows
-(lib.mapAttrsToList
-  (key: direction: "SUPERCONTROL,${key},movewindow,${direction}") directions) ++
-# Move monitor focus
-(lib.mapAttrsToList
-  (key: direction: "SUPERALT,${key},focusmonitor,${direction}") directions) ++
-# Move workspace to other monitor
-(lib.mapAttrsToList (key: direction:
-  "SUPERALTSHIFT,${key},movecurrentworkspacetomonitor,${direction}") directions)
+  "SUPER,f,fullscreen,0"
+  "SUPERSHIFT,l,workspace,e+1"
+  "SUPERSHIFT,h,workspace,e-1"
+] ++ (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
+++ (map (n: "SUPERSHIFT,${n},movetoworkspace,name:${n}") workspaces)
+++ (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
+  directions) ++ (lib.mapAttrsToList
+    (key: direction: "SUPERALT,${key},swapwindow,${direction}") directions)
+++ (lib.mapAttrsToList
+  (key: direction: "SUPERCONTROL,${key},movewindow,${direction}") directions)
