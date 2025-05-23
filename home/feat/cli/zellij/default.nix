@@ -51,8 +51,8 @@ in {
           "bind \"Alt i\"" = { MoveTab = "Right"; };
           "bind \"Alt h\"" = { MoveFocusOrTab = "Left"; };
           "bind \"Alt l\"" = { MoveFocusOrTab = "Right"; };
-          "bind \"Alt j\"" = { MoveFocusOrTab = "Down"; };
-          "bind \"Alt k\"" = { MoveFocusOrTab = "Up"; };
+          "bind \"Alt j\"" = { MoveFocus = "Down"; };
+          "bind \"Alt k\"" = { MoveFocus = "Up"; };
           "bind \"Alt =\" \"Alt +\"" = { Resize = "Increase"; };
           "bind \"Alt -\"" = { Resize = "Decrease"; };
         };

@@ -4,7 +4,7 @@
     require("conform").setup({
     	formatters_by_ft = {
     		json = { "prettier" },
-    		yaml = { "prettier" },
+        yaml = { "yamlfmt" },
     		markdown = { "prettier" },
         rust = { "rustfmt", lsp_format = "fallback" },
     	},
@@ -20,6 +20,6 @@
     	notify_no_formatters = true,
     })
   '';
-  deps = with pkgs; [ nodePackages.prettier ];
+  deps = with pkgs; [ nodePackages.prettier yamlfmt ];
 }
 
