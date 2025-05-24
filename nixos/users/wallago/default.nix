@@ -22,6 +22,7 @@ in {
       "i2c"
       "network"
       "plugdev"
+      "tss"
     ];
     # hashedPasswordFile = config.sops.secrets.wallago-password.path;
     password = "wallago";
