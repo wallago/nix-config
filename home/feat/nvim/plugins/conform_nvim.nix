@@ -7,12 +7,18 @@
         yaml = { "yamlfmt" },
     		markdown = { "prettier" },
         rust = { "rustfmt", lsp_format = "fallback" },
+        typescript = { "prettier" },
+        javascript = { "prettier" },
+        typescriptreact = { "prettier" },
+        javascriptreact = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
     	},
     	format_on_save = {
     		enabled = true,
     		timeout_ms = 1000,
     		lsp_format = "fallback",
-    		callback = function(bufnr)
+    		callback = function(bufnr, result)
     			require("notify")("File formatted successfully: " .. result, "info")
     		end,
     	},
