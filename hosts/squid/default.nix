@@ -23,4 +23,11 @@ in {
 
   boot.binfmt.emulatedSystems =
     [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
+
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "lock";
+    powerKey = "suspend";
+    powerKeyLongPress = "poweroff";
+  };
 }
