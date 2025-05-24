@@ -61,7 +61,7 @@ in {
           "memory"
         ];
         modules-right = [
-          "tray"
+          "custom/gpg-status"
           "custom/rfkill"
           "custom/rx-net"
           "custom/tx-net"
@@ -94,6 +94,9 @@ in {
           import ./modules/minicava.nix { inherit pkgs lib mkScript; };
         "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
         "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
+        "custom/gpg-status" = import ./modules/gpg-status.nix {
+          inherit mkScript mkScriptJson pkgs config lib;
+        };
       };
     };
   };
