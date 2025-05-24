@@ -18,5 +18,7 @@
     ../feat/yubikey
   ] ++ (builtins.attrValues outputs.nixosModules);
 
+  services.automatic-timezoned.enable = true;
+
   system.stateVersion = "${config.system.nixos.release}";
 }
