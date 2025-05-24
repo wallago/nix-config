@@ -11,7 +11,7 @@ in {
       binds = import ./binds.nix;
       input = import ./input.nix;
       dwindle = import ./dwindle.nix;
-      misc = import ./misc.nix;
+      misc = import ./misc.nix { inherit config lib; };
       windowrulev2 = import ./windowrulev2.nix;
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
