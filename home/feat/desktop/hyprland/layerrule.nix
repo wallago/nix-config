@@ -1,8 +1,8 @@
 [
   "animation fade,hyprpicker"
   "animation fade,selection"
-
-  "animation fade,waybar"
+  "animation fade,hyprpaper"
+  "animation slide,waybar"
   "blur,waybar"
   "ignorezero,waybar"
 

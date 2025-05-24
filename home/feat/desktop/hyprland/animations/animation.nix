@@ -1,18 +1,19 @@
 [
   "fadeIn,1,3,easeout"
-  "fadeLayersIn,1,3,easeoutback"
+  "fadeLayersIn,1,3,easeout"
+  "fadeOut,1,3,easeout"
+  "fadeLayersOut,1,3,easeout"
+  "fadeSwitch,1,2,easeout"
+  "fadeDim,1,3,easeout"
+  "fadeShadow,1,2,easeout"
+  "border,1,2,easeout"
+
   "layersIn,1,3,easeoutback,slide"
+  "layersOut,1,3,easeoutback,slide"
+
+  "windowsOut,1,3,easeout,slide"
+  "windowsMove,1,3,easeoutback"
   "windowsIn,1,3,easeoutback,slide"
 
-  "fadeLayersOut,1,3,easeinback"
-  "fadeOut,1,3,easein"
-  "layersOut,1,3,easeinback,slide"
-  "windowsOut,1,3,easeinback,slide"
-
-  "border,1,3,easeout"
-  "fadeDim,1,3,easeinout"
-  "fadeShadow,1,3,easeinout"
-  "fadeSwitch,1,3,easeinout"
-  "windowsMove,1,3,easeoutback"
-  "workspaces,1,2.6,easeoutback,slide"
+  "workspaces,1,2.5,easeoutback,slidefade"
 ]
