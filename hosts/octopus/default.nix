@@ -10,8 +10,6 @@ in {
     ./hardware-configuration.nix
   ];
 
-  time.timeZone = "Europe/Paris";
-
   networking = { hostName = "${hostname}"; };
 
   services.xserver.displayManager.gdm = { banner = "go fuck your self"; };
