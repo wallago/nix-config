@@ -13,6 +13,7 @@
     ./optin-persistence.nix
     ./sops.nix
     ./ssh.nix
+    ./usb.nix
     ./systemd-initrd.nix
     ./upower.nix
     ../feat/yubikey
