@@ -10,6 +10,7 @@ in {
     ../../nixos/feat/desktop
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/tlp.nix
+    ../../nixos/feat/peripherals.nix
     ../../nixos/users/wallago
     ./disko-configuration.nix
     ./hardware-configuration.nix
