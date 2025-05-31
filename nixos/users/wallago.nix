@@ -29,16 +29,16 @@ in {
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
     openssh.authorizedKeys.keys =
-      [ (builtins.readFile ../../feat/yubikey/ssh.pub) ];
+      [ (builtins.readFile ../feat/yubikey/ssh.pub) ];
   };
 
   home-manager.users.${username} =
-    import ../../../home/users/${username}/${config.networking.hostName}.nix;
+    import ../../home/users/${username}/${config.networking.hostName}.nix;
 
-  # sops.secrets.wallago-password = {
-  #   sopsFile = ../../common/secrets.yaml;
-  #   format = "yaml";
-  #   # Make this secret available early enough during system boot
-  #   neededForUsers = true;
-  # };
+  sops.secrets.wallago-password = {
+    sopsFile = ../../common/secrets.yaml;
+    format = "yaml";
+    # Make this secret available early enough during system boot
+    neededForUsers = true;
+  };
 }

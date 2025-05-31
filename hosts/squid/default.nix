@@ -11,7 +11,7 @@ in {
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/tlp.nix
     ../../nixos/feat/peripherals.nix
-    ../../nixos/users/wallago
+    ../../nixos/users/wallago.nix
     ./disko-configuration.nix
     ./hardware-configuration.nix
   ];
