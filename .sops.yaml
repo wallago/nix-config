@@ -1,6 +1,6 @@
 keys:
   users: &age_keys
-    - &wallago_squid age1rr4gyh2dmpaplgcxswm4xt4t449z2tcyc8a7q0ql8we6vzkevpvsd6fzce
+    - &wallago_squid age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
   yubikey: &pgp_keys
     - &yubikey_001 7E60EC8F165F780F
 creation_rules:
