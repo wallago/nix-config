@@ -36,7 +36,7 @@ in {
     import ../../home/users/${username}/${config.networking.hostName}.nix;
 
   sops.secrets.wallago-password = {
-    sopsFile = ../../common/secrets.yaml;
+    sopsFile = ../common/secrets.yaml;
     format = "yaml";
     # Make this secret available early enough during system boot
     neededForUsers = true;
