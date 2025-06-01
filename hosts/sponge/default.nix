@@ -10,9 +10,11 @@ in {
     ../../nixos/feat/gpu/nvidia.nix
     ../../nixos/feat/peripherals.nix
     ../../nixos/users/wallago.nix
-    ./disko-configuration.nix
+    ../../nixos/feat/disko-configuration.nix
     ./hardware-configuration.nix
   ];
+
+  disk.path = "/dev/nvme0n1";
 
   networking = { hostName = "${hostname}"; };
 

@@ -1,0 +1,14 @@
+{ lib, ... }:
+let inherit (lib) mkOption types;
+in {
+  options.disk = {
+    path = mkOption {
+      type = types.str;
+      example = "/dev/sda";
+    };
+    swapSize = mkOption {
+      type = types.str;
+      default = "8196M";
+    };
+  };
+}

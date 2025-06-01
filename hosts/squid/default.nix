@@ -1,4 +1,4 @@
-{ inputs, modulesPath, ... }:
+{ inputs, ... }:
 let hostname = "squid";
 in {
   imports = [
@@ -12,9 +12,11 @@ in {
     ../../nixos/feat/tlp.nix
     ../../nixos/feat/peripherals.nix
     ../../nixos/users/wallago.nix
-    ./disko-configuration.nix
+    ../../nixos/feat/disko-configuration.nix
     ./hardware-configuration.nix
   ];
+
+  disk.path = "/dev/nvme0n1";
 
   networking = { hostName = "${hostname}"; };
 

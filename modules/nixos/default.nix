@@ -1,1 +1,1 @@
-{ }
+{ disk = import ./disk.nix; }

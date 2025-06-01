@@ -1,9 +1,13 @@
-{
+{ config, ... }:
+let
+  diskDevice = config.diskDevice or null;
+  swapSize = config.swapSize or "8196M";
+in {
   fileSystems."/persist".neededForBoot = true;
 
   disko.devices = {
     disk.disk1 = {
-      device = "/dev/nvme0n1";
+      device = config.disk.path;
       type = "disk";
       content = {
         type = "gpt";
@@ -54,7 +58,7 @@
                   mountOptions = [ "compress=zstd" "noatime" ];
                   mountpoint = "/swap";
                   swap.swapfile = {
-                    size = "8196M";
+                    size = config.disk.swapSize;
                     path = "swapfile";
                   };
                 };

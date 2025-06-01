@@ -6,7 +6,7 @@ in {
     inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/users/wallago.nix
-    ./disko-configuration.nix
+    ../../nixos/feat/disko-configuration.nix
     ./hardware-configuration.nix
   ];
 
