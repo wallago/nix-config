@@ -18,7 +18,7 @@ in {
 
   networking = { hostName = "${hostname}"; };
 
-  services.xserver.displayManager.gdm = { banner = "go fuck your self"; };
+  services.displayManager.gdm.banner = "go fuck your self";
 
   boot = {
     loader.grub.useOSProber = true;

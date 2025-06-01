@@ -20,7 +20,7 @@ in {
 
   networking = { hostName = "${hostname}"; };
 
-  services.xserver.displayManager.gdm = { banner = "go fuck your self"; };
+  services.displayManager.gdm.banner = "go fuck your self";
 
   boot.binfmt.emulatedSystems =
     [ "aarch64-linux" "i686-linux" "riscv64-linux" ];

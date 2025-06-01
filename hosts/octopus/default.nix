@@ -10,7 +10,7 @@ in {
     ./hardware-configuration.nix
   ];
 
-  networking = { hostName = "${hostname}"; };
+  disk.path = "/dev/sda";
 
-  services.xserver.displayManager.gdm = { banner = "go fuck your self"; };
+  networking = { hostName = "${hostname}"; };
 }
