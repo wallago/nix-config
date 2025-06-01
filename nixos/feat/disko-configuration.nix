@@ -1,8 +1,4 @@
-{ config, ... }:
-let
-  diskDevice = config.diskDevice or null;
-  swapSize = config.swapSize or "8196M";
-in {
+{ config, ... }: {
   fileSystems."/persist".neededForBoot = true;
 
   disko.devices = {
