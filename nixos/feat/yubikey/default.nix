@@ -19,9 +19,10 @@
     };
   };
 
+  # run pamu2fcfg with pam_u2f
   environment.etc."u2f-mappings" = {
     text = ''
-      wallago:l4B3tr+qm3fiZLz5yr5grjSl2+m3bPNncM3boLFOVZoBLaDdtRq9J269f29KVEUKfEQLbaT8t3qixZzg+vzcYw==,fyDGgAk9F6pdwGBXyuezaRA62uT8ToufyZyO/5KeoFRyyh9J41YEqtgN4VpJ/3bzSReequnwX74qEYakOeky2g==,es256,+presence
+      wallago:Ge4frHnYZmClZvjgXUiiSkUd2cubTHFrVQDe4AHUXe7yet0Yw2pkqSc9ZL7jiMQ1IhtfJikxRtWjCNMIFgDu3Q==,ks5uwCN0k7KGqDP5Qbwxl4hM3m/0RioASk7B6n+vXqXPhJTy+s1PgtbhLD6KYOmu2Lyjw84enH/Cg79zruOOug==,es256,+presence
     '';
     mode = "0600";
   };

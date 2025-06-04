@@ -26,7 +26,7 @@
       address = "commandant.cousteau1997@gmail.com";
       realName = config.programs.git.userName;
       gpg = {
-        key = "C6C581A860F158EB";
+        key = "8729F3B886177D5D"; # YubiKey 001 GPG signing key
         signByDefault = true;
       };
       signature = {

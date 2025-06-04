@@ -8,7 +8,7 @@ in {
     enableExtraSocket =
       true; # Creates a special-purpose socket (S.gpg-agent.extra)
     enableFishIntegration = true;
-    sshKeys = [ "BFCFF7BFE837D391" ]; # YubiKey GPG auth key
+    sshKeys = [ "0508681DD204CD2B" ]; # YubiKey 001 GPG auth key
     pinentry.package =
       if hyprlandCfg.enable then pkgs.pinentry-qt else pkgs.pinentry-tty;
     extraConfig = ''
