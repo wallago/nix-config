@@ -11,8 +11,9 @@ in {
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/tlp.nix
     ../../nixos/feat/peripherals.nix
-    ../../nixos/users/wallago.nix
     ../../nixos/feat/disko-configuration.nix
+    ../../nixos/feat/bluetooth.nix
+    ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
 
