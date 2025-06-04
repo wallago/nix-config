@@ -11,6 +11,7 @@
       gnupg
       age
       nixos-anywhere
+      pam_u2f
     ];
   };
 }
