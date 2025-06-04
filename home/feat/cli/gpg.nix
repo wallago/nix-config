@@ -28,7 +28,7 @@ in {
     };
     scdaemonSettings = { disable-ccid = true; };
     publicKeys = [{
-      source = ../../../nixos/feat/yubikey/pgp.asc;
+      source = ../../../nixos/feat/yubikey/001.asc;
       trust = 5;
     }];
   };
