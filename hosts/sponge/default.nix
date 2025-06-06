@@ -20,6 +20,11 @@ in {
 
   services.displayManager.gdm.banner = "go fuck your self";
 
+  u2f.mappings = {
+    wallago =
+      "wallago:DMNXFaX1pYytbV6E8dJ2ukVYMGtleF/oWsyOeZAM87pYTFDQ4pOW8C04CcZjO8JzvwKQOqV6c+rmUxrhGrrcyQ==,rAo3pKpbfYgx/8qvxr1qve5GrYykcegOmVw6kf4JVG0t8n5dONyWwyS8xFD5qD0yBzw+mKOovB4BwX9tJ0BeGw==,es256,+presence";
+  };
+
   boot = {
     loader.grub.useOSProber = true;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
