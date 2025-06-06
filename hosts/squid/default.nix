@@ -26,6 +26,11 @@ in {
   boot.binfmt.emulatedSystems =
     [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
 
+  u2f.mappings = {
+    wallago =
+      "wallago:Ge4frHnYZmClZvjgXUiiSkUd2cubTHFrVQDe4AHUXe7yet0Yw2pkqSc9ZL7jiMQ1IhtfJikxRtWjCNMIFgDu3Q==,ks5uwCN0k7KGqDP5Qbwxl4hM3m/0RioASk7B6n+vXqXPhJTy+s1PgtbhLD6KYOmu2Lyjw84enH/Cg79zruOOug==,es256,+presence";
+  };
+
   services.logind = {
     lidSwitch = "suspend";
     lidSwitchExternalPower = "lock";
