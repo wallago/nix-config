@@ -59,6 +59,11 @@
 
       # NixOS system configuration
       nixosConfigurations = {
+        # Minimal config
+        plankton = lib.nixosSystem {
+          modules = [ ./hosts/plankton ];
+          specialArgs = { inherit inputs outputs; };
+        };
         # Main desktop
         sponge = lib.nixosSystem {
           modules = [ ./hosts/sponge ];
