@@ -22,4 +22,14 @@
       '';
     users = lib.attrValues config.users.users;
   in lib.concatLines (map mkHomePersist users);
+
+  system.activationScripts.ensureMachineId = {
+    text = ''
+      if [ ! -f /persist/etc/machine-id ]; then
+        echo "Generating /persist/etc/machine-id"
+        mkdir -p /persist/etc
+        systemd-machine-id-setup --root=/persist
+      fi
+    '';
+  };
 }
