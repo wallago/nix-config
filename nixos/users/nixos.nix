@@ -17,7 +17,7 @@ in {
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
     openssh.authorizedKeys.keys =
-      [ (builtins.readFile ../feat/yubikey/ssh.pub) ];
+      [ (builtins.readFile ../feat/yubikey/001.pub) ];
   };
 
   home-manager.users.${username} =
