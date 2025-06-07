@@ -11,7 +11,7 @@ in {
   ];
 
   # To set
-  disk.path = "";
+  disk.path = "/dev/sda";
 
-  networking = { hostName = "${hostname}"; };
+  networking.hostName = "${hostname}";
 }
