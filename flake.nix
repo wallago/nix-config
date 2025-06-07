@@ -53,7 +53,7 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
       overlays = import ./overlays { inherit inputs; };
-      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
@@ -62,21 +62,25 @@
         # Minimal config
         plankton = lib.nixosSystem {
           modules = [ ./hosts/plankton ];
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
         };
         # Main desktop
         sponge = lib.nixosSystem {
           modules = [ ./hosts/sponge ];
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
         };
         # Main laptop
         squid = lib.nixosSystem {
           modules = [ ./hosts/squid ];
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
         };
         # VPS
         octopus = lib.nixosSystem {
           modules = [ ./hosts/octopus ];
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
         };
       };
