@@ -16,7 +16,7 @@ in {
         "big-parallel" # -> Enable support for parallel builds
         "nixos-test" # ---> Enable features related to NixOS testing
       ];
-      flake-registry = ""; # Disable global flake registry
+      flake-registry = false; # Disable global flake registry
     };
     gc = {
       automatic = true;
@@ -25,8 +25,11 @@ in {
     };
 
     # Add each flake input as a registry and nix_path
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    # Add each flake input as a registry and nix_path
+    registry =
+      lib.mkDefault (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs);
+    nixPath =
+      lib.mkDefault (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs);
   };
 
   programs.nix-ld.enable = true; # Run unpatched dynamic
