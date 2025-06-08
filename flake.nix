@@ -9,7 +9,7 @@
     ];
     extra-trusted-public-keys = [
       "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-      "nix-community.cachix.org-1:ZWb2cES3vH4WvjfDH0rHZOSRJdKt6Ffx3+X7FNy3YRU="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
     connect-timeout = 5;
   };
