@@ -1,6 +1,19 @@
 {
   description = "My NixOS configuration";
 
+  nixConfig = {
+    bash-prompt = "[nixos-raspberrypi-demo] ➜ ";
+    extra-substituters = [
+      "https://nixos-raspberrypi.cachix.org"
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+      "nix-community.cachix.org-1:ZWb2cES3vH4WvjfDH0rHZOSRJdKt6Ffx3+X7FNy3YRU="
+    ];
+    connect-timeout = 5;
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -31,7 +44,7 @@
       url = "github:wallago/nix-themes";
       inputs.systems.follows = "systems";
     };
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
