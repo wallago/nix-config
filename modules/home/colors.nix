@@ -1,7 +1,14 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, ... }:
 let
+  cfg = config.colorscheme;
   inherit (lib) types mkOption;
   hexColor = types.strMatching "#([0-9a-fA-F]{3}){1,2}";
+
+  generatedDrv =
+    pkgs.inputs.themes.generateColorscheme (cfg.source.name or "default")
+    cfg.source;
+  rawColorscheme = import (builtins.toString generatedDrv + "/colorscheme.nix");
+  colors = rawColorscheme.colors.${cfg.mode};
 in {
   options.colorscheme = {
     source = mkOption {
@@ -20,20 +27,42 @@ in {
 
     generatedDrv = mkOption {
       type = types.package;
-      default = inputs.themes.packages.${pkgs.system}.generateColorscheme
-        (config.colorscheme.source.name or "default") config.colorscheme.source;
+      default = null;
+      description = "Generated colorscheme derivation";
     };
+
     rawColorscheme = mkOption {
       type = types.attrs;
-      default =
-        config.colorscheme.generatedDrv.imported.${config.colorscheme.type};
+      default = { };
+      description = "Raw colorscheme data imported from generatedDrv";
     };
 
     colors = mkOption {
-      readOnly = true;
       type = types.attrsOf hexColor;
-      default =
-        config.colorscheme.rawColorscheme.colors.${config.colorscheme.mode};
+      default = { };
+      description = "Colors extracted from rawColorscheme";
+    };
+  };
+
+  config = lib.mkIf true { # always apply (or add your condition)
+    # Compute the generatedDrv path using resolved options:
+    colorscheme = let
+      # Resolve source, fallback to "default" string if no name attr
+      sourceName = if (config.colorscheme.source != null)
+      && (builtins.isAttrs config.colorscheme.source)
+      && (config.colorscheme.source.name != null) then
+        config.colorscheme.source.name
+      else
+        "default";
+
+      drv = pkgs.inputs.themes.generateColorscheme sourceName
+        config.colorscheme.source;
+      raw = import (builtins.toString drv + "/colorscheme.nix");
+      colors = raw.colors.${config.colorscheme.mode};
+    in {
+      generatedDrv = drv;
+      rawColorscheme = raw;
+      colors = colors;
     };
   };
 }

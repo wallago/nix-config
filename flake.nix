@@ -61,37 +61,40 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
       overlays = import ./overlays { inherit inputs; };
-      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
       # NixOS system configuration
-      nixosConfigurations = {
-        # Minimal config
-        plankton = lib.nixosSystem {
-          modules = [ ./hosts/plankton ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
+      nixosConfigurations =
+        # Minimal config for each systems
+        lib.listToAttrs (map (system: {
+          name = "plankton-${system}";
+          value = lib.nixosSystem {
+            inherit system;
+            modules = [ ./hosts/plankton ];
+            specialArgs = { inherit inputs outputs; };
+          };
+        }) (import systems)) // {
+          # Main desktop
+          sponge = lib.nixosSystem {
+            modules = [ ./hosts/sponge ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
+          # Main laptop
+          squid = lib.nixosSystem {
+            modules = [ ./hosts/squid ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
+          # VPS
+          octopus = lib.nixosSystem {
+            modules = [ ./hosts/octopus ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
         };
-        # Main desktop
-        sponge = lib.nixosSystem {
-          modules = [ ./hosts/sponge ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-        # Main laptop
-        squid = lib.nixosSystem {
-          modules = [ ./hosts/squid ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-        # VPS
-        octopus = lib.nixosSystem {
-          modules = [ ./hosts/octopus ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-      };
 
       # Home Manager system configuration
       homeConfigurations = {
