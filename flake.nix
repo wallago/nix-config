@@ -3,9 +3,13 @@
 
   nixConfig = {
     bash-prompt = "[nixos-raspberrypi-demo] ➜ ";
-    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://nixos-raspberrypi.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
     ];
     connect-timeout = 5;
   };
@@ -40,6 +44,7 @@
       inputs.systems.follows = "systems";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
@@ -93,6 +98,11 @@
             modules = [ ./hosts/octopus ];
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
+          };
+          # RPI5
+          rpi5 = inputs.nixos-raspberrypi.lib.nixosSystem {
+            modules = [ ./hosts/rpi5 ];
+            specialArgs = inputs;
           };
         };
 
