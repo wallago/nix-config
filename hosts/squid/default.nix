@@ -4,7 +4,6 @@ in {
   imports = [
     inputs.disko.nixosModules.disko
     ../../nixos/common
-    ../../nixos/feat/code
     ../../nixos/feat/desktop
     ../../nixos/feat/gpu/intel.nix
     ../../nixos/feat/tlp.nix

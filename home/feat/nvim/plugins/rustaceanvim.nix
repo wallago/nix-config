@@ -16,5 +16,4 @@
       },
     }
   '';
-  deps = with pkgs; [ rust-bin.nightly.latest.complete ];
 }

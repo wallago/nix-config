@@ -17,6 +17,4 @@
 
   # Adds custom packages
   additions = final: prev: import ../pkgs { pkgs = final; };
-
-  rust = inputs.rust-overlay.overlays.default;
 }
