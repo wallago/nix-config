@@ -19,7 +19,7 @@ in {
     primary = true;
   }];
 
-  wallpaper = "green-forest-light";
+  wallpaper = pkgs.inputs.themes.wallpapers."green-forest-light";
   colorscheme.type = "fidelity";
 
   fontProfiles = {

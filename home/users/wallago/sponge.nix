@@ -38,7 +38,7 @@ in {
     }
   ];
 
-  wallpaper = "purple-night-porsche-drawing-dark";
+  wallpaper = pkgs.inputs.themes.wallpapers.knight-on-bike-light;
   colorscheme.type = "fidelity";
 
   fontProfiles = {
