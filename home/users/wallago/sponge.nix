@@ -38,7 +38,7 @@ in {
     }
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.purple-night-porsche-drawing-dark;
+  wallpaper = "purple-night-porsche-drawing-dark";
   colorscheme.type = "fidelity";
 
   fontProfiles = {

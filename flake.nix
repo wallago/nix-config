@@ -1,12 +1,20 @@
 {
   description = "My NixOS configuration";
 
+  nixConfig = {
+    bash-prompt = "[nixos-raspberrypi-demo] ➜ ";
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+    connect-timeout = 5;
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     systems.url = "github:nix-systems/default-linux";
     impermanence.url = "github:nix-community/impermanence";
-    nix-colors.url = "github:misterio77/nix-colors";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +39,7 @@
       url = "github:wallago/nix-themes";
       inputs.systems.follows = "systems";
     };
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
@@ -53,37 +61,40 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home;
       overlays = import ./overlays { inherit inputs; };
-      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
       # NixOS system configuration
-      nixosConfigurations = {
-        # Minimal config
-        plankton = lib.nixosSystem {
-          modules = [ ./hosts/plankton ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
+      nixosConfigurations =
+        # Minimal config for each systems
+        lib.listToAttrs (map (system: {
+          name = "plankton-${system}";
+          value = lib.nixosSystem {
+            inherit system;
+            modules = [ ./hosts/plankton ];
+            specialArgs = { inherit inputs outputs; };
+          };
+        }) (import systems)) // {
+          # Main desktop
+          sponge = lib.nixosSystem {
+            modules = [ ./hosts/sponge ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
+          # Main laptop
+          squid = lib.nixosSystem {
+            modules = [ ./hosts/squid ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
+          # VPS
+          octopus = lib.nixosSystem {
+            modules = [ ./hosts/octopus ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
         };
-        # Main desktop
-        sponge = lib.nixosSystem {
-          modules = [ ./hosts/sponge ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-        # Main laptop
-        squid = lib.nixosSystem {
-          modules = [ ./hosts/squid ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-        # VPS
-        octopus = lib.nixosSystem {
-          modules = [ ./hosts/octopus ];
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
-        };
-      };
 
       # Home Manager system configuration
       homeConfigurations = {

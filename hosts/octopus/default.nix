@@ -2,7 +2,6 @@
 let hostname = "octopus";
 in {
   imports = [
-    # Includes the Disko module from the disko input in NixOS configuration
     inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/users/wallago.nix
@@ -12,5 +11,5 @@ in {
 
   disk.path = "/dev/sda";
 
-  networking = { hostName = "${hostname}"; };
+  networking.hostName = "${hostname}";
 }

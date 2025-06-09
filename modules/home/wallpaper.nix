@@ -1,7 +1,7 @@
 { lib, ... }: {
   options.wallpaper = lib.mkOption {
-    type = lib.types.nullOr lib.types.path;
-    default = null;
+    type = lib.types.str;
+    default = "default";
     description = ''
       Wallpaper path
     '';

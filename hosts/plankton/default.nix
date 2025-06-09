@@ -2,7 +2,6 @@
 let hostname = "plankton";
 in {
   imports = [
-    # Includes the Disko module from the disko input in NixOS configuration
     inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/users/nixos.nix
@@ -10,7 +9,6 @@ in {
     ./hardware-configuration.nix
   ];
 
-  # To set
   disk.path = "/dev/sda";
 
   networking.hostName = "${hostname}";

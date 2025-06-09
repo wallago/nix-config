@@ -2,8 +2,6 @@
 let hostname = "squid";
 in {
   imports = [
-    # (modulesPath + "/profiles/qemu-guest.nix")
-    # Includes the Disko module from the disko input in NixOS configuration
     inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/feat/code
@@ -19,7 +17,7 @@ in {
 
   disk.path = "/dev/nvme0n1";
 
-  networking = { hostName = "${hostname}"; };
+  networking.hostName = "${hostname}";
 
   services.displayManager.gdm.banner = "go fuck your self";
 
