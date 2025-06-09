@@ -253,11 +253,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747261694,
-        "narHash": "sha256-b4frM+z1pFOKK5QCqdRR+WxGv3pdiv95WlzuZwmOUUk=",
+        "lastModified": 1749428460,
+        "narHash": "sha256-sKOM3hA7+8XszRgYYYynxgqpdqsoh1FBEoUeJ73wSew=",
         "owner": "wallago",
         "repo": "nix-themes",
-        "rev": "fd535b0453f31dbee5ce2cefc067d62fafe385a5",
+        "rev": "dc49b751d9289330c9e6ca39a738901a5439041e",
         "type": "github"
       },
       "original": {
