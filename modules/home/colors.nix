@@ -21,15 +21,10 @@ in {
         pkgs.inputs.themes.selectColorscheme (config.wallpaper) cfg.type;
     };
 
-    rawColorscheme = mkOption {
-      type = types.attrs;
-      default = cfg.generatedDrv.parsed;
-    };
-
     colors = mkOption {
       readOnly = true;
       type = types.attrsOf hexColor;
-      default = cfg.rawColorscheme.colors.${cfg.mode};
+      default = cfg.generatedDrv.parsed.colors.${cfg.mode};
     };
   };
 }
