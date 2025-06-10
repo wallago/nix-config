@@ -9,10 +9,8 @@ in {
     ./hardware-configuration.nix
   ];
 
-  disk = {
-    path = "/dev/sda";
-    swapSize = "512M";
-  };
+  disk.path = "/dev/sda";
+  disk.swapSize = "512M";
 
   networking.hostName = "${hostname}";
 }
