@@ -13,6 +13,7 @@
         javascriptreact = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
+        sql = { "sql-formatter" },
     	},
     	format_on_save = {
     		enabled = true,
@@ -26,6 +27,6 @@
     	notify_no_formatters = true,
     })
   '';
-  deps = with pkgs; [ nodePackages.prettier yamlfmt ];
+  deps = with pkgs; [ nodePackages.prettier yamlfmt sql-formatter ];
 }
 
