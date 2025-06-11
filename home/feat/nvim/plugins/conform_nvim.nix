@@ -15,6 +15,13 @@
         html = { "prettier" },
         sql = { "sql-formatter" },
     	},
+      formatters = {
+        ["sql-formatter"] = {
+          command = "sql-formatter",
+          args = { "" },
+          stdin = true,
+        },
+      },
     	format_on_save = {
     		enabled = true,
     		timeout_ms = 1000,
