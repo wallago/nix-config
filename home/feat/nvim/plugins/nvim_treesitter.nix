@@ -23,6 +23,7 @@
     nvim-treesitter-parsers.python
     nvim-treesitter-parsers.regex
     nvim-treesitter-parsers.rust
+    nvim-treesitter-parsers.sql
     nvim-treesitter-parsers.toml
     nvim-treesitter-parsers.tsx
     nvim-treesitter-parsers.vim
