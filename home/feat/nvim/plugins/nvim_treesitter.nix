@@ -12,6 +12,7 @@
     nvim-treesitter-parsers.go
     nvim-treesitter-parsers.gpg
     nvim-treesitter-parsers.html
+    nvim-treesitter-parsers.http
     nvim-treesitter-parsers.json
     nvim-treesitter-parsers.latex
     nvim-treesitter-parsers.lua

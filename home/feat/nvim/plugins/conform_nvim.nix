@@ -14,6 +14,7 @@
         css = { "prettier" },
         html = { "prettier" },
         sql = { "sql-formatter" },
+        http = { "prettier" },
     	},
       formatters = {
         ["sql-formatter"] = {
