@@ -16,7 +16,7 @@
       lightbulb = {
         enable = true,
         sign = true,        
-        virtual_text = true,
+        virtual_text = false,
       },
       symbol_in_winbar = {
         enable = true,
