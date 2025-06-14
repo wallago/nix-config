@@ -14,7 +14,7 @@
         css = { "prettier" },
         html = { "prettier" },
         sql = { "sql-formatter" },
-        http = { "prettier" },
+        http = { "kulala" },
     	},
       formatters = {
         ["sql-formatter"] = {
@@ -22,6 +22,11 @@
           args = { "" },
           stdin = true,
         },
+        kulala = {
+          command = "kulala-fmt",
+          args = { "format", "$FILENAME" },
+          stdin = false,
+        }
       },
     	format_on_save = {
     		enabled = true,
@@ -35,6 +40,6 @@
     	notify_no_formatters = true,
     })
   '';
-  deps = with pkgs; [ nodePackages.prettier yamlfmt sql-formatter ];
+  deps = with pkgs; [ nodePackages.prettier yamlfmt sql-formatter kulala-fmt ];
 }
 
