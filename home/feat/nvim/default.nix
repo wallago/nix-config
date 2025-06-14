@@ -25,6 +25,7 @@ let
     ./plugins/hunk_nvim.nix
     ./plugins/neoscroll_nvim.nix
     ./plugins/lspsaga-nvim.nix
+    ./plugins/rest-nvim.nix
   ];
 
   rawPluginColorModules = [
@@ -59,7 +60,6 @@ in {
       # stand alone
       markdown-preview-nvim
       vim-commentary
-      rest-nvim
     ]);
 
     extraLuaConfig = ''
