@@ -24,6 +24,7 @@ let
     ./plugins/mermaid_nvim.nix
     ./plugins/hunk_nvim.nix
     ./plugins/neoscroll_nvim.nix
+    ./plugins/lspsaga-nvim.nix
   ];
 
   rawPluginColorModules = [
@@ -171,6 +172,7 @@ in {
       vim.api.nvim_set_hl(0, "Statement",    { fg = "${c.magenta}" })
       vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
       vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.surface_variant}", italic = true })
+      vim.api.nvim_set_hl(0, "WinBar", { fg = "${c.on_surface}", bg = "${c.surface}" })
 
       ${allConfig}
     '';
