@@ -180,19 +180,3 @@ in {
 
   home.packages = allDeps;
 }
-
-#     vim-dadbod-ui # ---------> navigation database gui
-#     openscad-nvim # --------->
-#     vim-nix # ---------------> writing Nix expressions
-#     markdown-nvim # ---------> beautify markdown
-#     rest-nvim # -------------> asynchronous Neovim HTTP client
-#     vim-flog # --------------> git graph
-#     fugitive # --------------> git commands
-#     lazygit-nvim # ----------> git interface
-#     bufferline-nvim # -------> tabs behavior
-#     nvim-colorizer-lua # ----> show color by code
-#     nvim-tree-lua # ---------> file explorer
-
-#   luajit # ----------------> Just-In-Time compiler for Lua programming language
-#   isort # -----------------> Python utility to sort imports alphabetically
-#   black # -----------------> The uncompromising Python code formatter
