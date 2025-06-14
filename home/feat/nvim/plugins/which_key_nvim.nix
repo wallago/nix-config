@@ -7,11 +7,18 @@
     local wk = require("which-key")
     wk.setup {}
     wk.add({
-      -- Miscellaneous
+      -- General
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
-      { "<leader>d", "<cmd>Oil<cr>", desc = "Open parent directory" },
+
+      -- Miscellaneous
       { "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Open web page for markdown preview" },
       { "<leader>s", "<cmd>'<,'>sort<cr>", desc = "Sort selected stuff", mode = "v" },
+
+      -- Oil
+      { "<leader>r", group = "Rust" },
+      { "<leader>od", "<cmd>Oil<cr>", desc = "Open parent directory" },
+      { "<leader>or", "<C-l>", desc = "refresh directories" },
+      { "<leader>oc", "<C-c>", desc = "close directories" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },
@@ -43,12 +50,20 @@
       { "<leader>l", "<C-w>l", desc = "Move to Right Window" },
 
       -- LSP
-      { "<leader>p", proxy = "gr", group = "LSP" },
-      { "<leader>pr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "LSP References" },
-      { "<leader>pd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "LSP Definition" },
+      { "<leader>p", group = "LSP" },
+      -- { "<leader>p", proxy = "gr", group = "LSP" },
+      -- { "<leader>pr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "LSP References" },
+      -- { "<leader>pi", "lua vim.lsp.buf.implementation()", desc = "LSP Implementation" },
+      { "<leader>pd", "<cmd>Lspsaga peek_definition<cr>", desc = "LSP Definition" },
+      { "<leader>pt", "<cmd>Lspsaga peek_type_definition<cr>", desc = "LSP Type Definition" },
+      { "<leader>pf", "<cmd>Lspsaga finder<cr>", desc = "LSP Finder" },
       { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
-      { "<leader>pn", ":IncRename ", desc = "LSP Rename" },
+      { "<leader>pn", "<cmd>IncRename<cr>", desc = "LSP Rename" },
       { "<leader>pa", require("actions-preview").code_actions, desc = "LSP Code Actions" },
+      { "<leader>po", "<cmd>Lspsaga outline<cr>", desc = "LSP Outline" },
+      -- { "<C-f>", require("lspsaga.util").scroll_in_preview(1), desc = "LSP Code Actions" },
+      -- { "<C-b>", require("lspsaga.util").scroll_in_preview(-1), desc = "LSP Code Actions" },
+
       
       -- Trouble
       { "<leader>x", group = "Trouble" },
@@ -60,6 +75,15 @@
       -- Rust
       { "<leader>r", group = "Rust" },
       { "<leader>rr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+
+      -- Neoscroll
+      { "<leader>s", group = "Neoscroll" },
+      { "<leader>u", "<C-u>", desc = "Scroll top semi" },
+      { "<leader>d", "<C-d>", desc = "Scroll bottom semi" },
+      { "<leader>b", "<C-b>", desc = "Scroll top full" },
+      { "<leader>f", "<C-f>", desc = "Scroll bottom full" },
+      { "<leader>e", "<C-e>", desc = "Scroll top" },
+      { "<leader>y", "<C-y>", desc = "Scroll bottom" },
     })
   '';
 }
