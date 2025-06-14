@@ -106,44 +106,29 @@ in {
         "noselect", -- except that no menu item is pre-selected
         "noinsert", -- do not insert any text for a match until the user selects a match from the menu
       }
-      -- Miscellaneous
 
       -- Diagnostic 
-      local function define_diagnostic_sign(name, icon)
-        vim.fn.sign_define(name, {
-          text = icon,
-          texthl = name,
-          numhl = ""
-        })
-      end
-
-      define_diagnostic_sign("DiagnosticSignError", "󰅚")
-      define_diagnostic_sign("DiagnosticSignWarn",  "󰗖")
-      define_diagnostic_sign("DiagnosticSignHint",  "󰌶")
-      define_diagnostic_sign("DiagnosticSignInfo",  "󰋽")
-
-      vim.api.nvim_set_hl(0, "DiagnosticError",   { fg = "${c.red}" })
-      vim.api.nvim_set_hl(0, "DiagnosticWarn",    { fg = "${c.yellow}" })
-      vim.api.nvim_set_hl(0, "DiagnosticInfo",    { fg = "${c.green}" })
-      vim.api.nvim_set_hl(0, "DiagnosticHint",    { fg = "${c.cyan}" })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "${c.red}" })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn",  { undercurl = true, sp = "${c.yellow}" })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo",  { undercurl = true, sp = "${c.green}" })
-      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint",  { undercurl = true, sp = "${c.cyan}" })
-
       vim.diagnostic.config({
-        signs = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚",
+            [vim.diagnostic.severity.WARN]  = "󰗖",
+            [vim.diagnostic.severity.HINT]  = "󰌶",
+            [vim.diagnostic.severity.INFO]  = "󰋽",
+          }
+        },
         underline = true,
         virtual_text = false,
         update_in_insert = true,
         severity_sort = false,
         float = {
-            border = 'rounded',
-            source = 'always',
-            header = "",
-            prefix = "",
+          border = 'rounded',
+          source = 'always',
+          header = "",
+          prefix = "",
         },
       })
+
 
       vim.o.updatetime = 300
       vim.opt.signcolumn = "yes"
@@ -165,7 +150,6 @@ in {
       vim.api.nvim_set_hl(0, "NormalFloat",  { bg = "${c.surface}", fg = "${c.on_surface}" })
       vim.api.nvim_set_hl(0, "FloatBorder",  { bg = "${c.surface}", fg = "${c.primary}" })
       vim.api.nvim_set_hl(0, "WinSeparator", { fg = "${c.primary}" })
-
       vim.api.nvim_set_hl(0, "Constant",     { fg = "${c.cyan}" })
       vim.api.nvim_set_hl(0, "Function",     { fg = "${c.blue}" })
       vim.api.nvim_set_hl(0, "Type",         { fg = "${c.yellow}" })
@@ -173,6 +157,15 @@ in {
       vim.api.nvim_set_hl(0, "String",       { fg = "${c.green}" })
       vim.api.nvim_set_hl(0, "Comment",      { fg = "${c.surface_variant}", italic = true })
       vim.api.nvim_set_hl(0, "WinBar", { fg = "${c.on_surface}", bg = "${c.surface}" })
+      vim.api.nvim_set_hl(0, "DiagnosticError",   { fg = "${c.red}" })
+      vim.api.nvim_set_hl(0, "DiagnosticWarn",    { fg = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "DiagnosticInfo",    { fg = "${c.green}" })
+      vim.api.nvim_set_hl(0, "DiagnosticHint",    { fg = "${c.cyan}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "${c.red}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn",  { undercurl = true, sp = "${c.yellow}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo",  { undercurl = true, sp = "${c.green}" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint",  { undercurl = true, sp = "${c.cyan}" })
+
 
       ${allConfig}
     '';
