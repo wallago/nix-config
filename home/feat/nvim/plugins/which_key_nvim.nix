@@ -16,7 +16,7 @@
       { "<leader>s", "<cmd>'<,'>sort<cr>", desc = "Sort selected stuff", mode = "v" },
 
       -- Oil
-      { "<leader>r", group = "Rust" },
+      { "<leader>r", group = "Oil" },
       { "<leader>od", "<cmd>Oil<cr>", desc = "Open parent directory" },
       { "<leader>or", "<C-l>", desc = "refresh directories" },
       { "<leader>oc", "<C-c>", desc = "close directories" },
