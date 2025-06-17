@@ -1,7 +1,37 @@
 { config, pkgs, lib, ... }:
 let
-  oama = "${config.programs.oama.package}/bin/oama";
-  gmail_channels = {
+  oama = lib.getExe config.programs.oama.package;
+
+  common = { name, mailbox, title }: rec {
+    realName = name;
+    userName = mailbox;
+    address = mailbox;
+    mbsync = {
+      enable = true;
+      create = "maildir";
+      expunge = "both";
+    };
+    msmtp.enable = true;
+    neomutt = {
+      enable = true;
+      mailboxName = "=== ${title} ===";
+      extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" ];
+    };
+    gpg = {
+      key = config.yubikeys.primary.signing;
+      signByDefault = true;
+    };
+    signature = {
+      showSignature = "append";
+      text = ''
+        ${realName}
+
+        PGP: ${gpg.key}
+      '';
+    };
+  };
+
+  channels = {
     Inbox = {
       farPattern = "INBOX";
       nearPattern = "Inbox";
@@ -73,42 +103,42 @@ in {
 
   accounts.email = {
     maildirBasePath = "Mail";
-    accounts."wallago-dev" = {
-      primary = true;
-      address = "commandant.cousteau1997@gmail.com";
-      realName = "Wallago Dev";
-      userName = config.accounts.email.accounts."wallago-dev".address;
-      passwordCommand = "${oama} access commandant.cousteau1997@gmail.com";
-      flavor = "gmail.com";
-      mbsync = {
-        enable = true;
-        create = "maildir";
-        expunge = "both";
-        groups.usp.channels = gmail_channels;
-        extraConfig.account.AuthMechs = "XOAUTH2";
+    accounts = {
+      dev = let mailbox = "commandant.cousteau1997@gmail.com";
+      in {
+        primary = true;
+        passwordCommand = "${oama} access ${mailbox}";
+        flavor = "gmail.com";
+        mbsync = {
+          groups.usp.channels = channels;
+          extraConfig.account.AuthMechs = "XOAUTH2";
+        };
+        imap.host =
+          "imap.gmail.com"; # retrieving and managing emails on the mail server.
+        smtp.host = "smtp.gmail.com"; # sending emails
+        msmtp.extraConfig.auth = "oauthbearer";
+      } // common {
+        name = "Wallago";
+        title = "Dev";
+        inherit mailbox;
       };
-      imap.host =
-        "imap.gmail.com"; # retrieving and managing emails on the mail server.
-      smtp.host = "smtp.gmail.com"; # sending emails
-      msmtp = {
-        extraConfig.auth = "oauthbearer";
-        enable = true;
-      };
-      neomutt = {
-        enable = true;
-        mailboxName = "=== Wallago Dev ===";
-        extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" ];
-      };
-      gpg = {
-        key = config.yubikeys.primary.signing;
-        signByDefault = true;
-      };
-      signature = {
-        showSignature = "append";
-        text = ''
-          ${config.accounts.email.accounts."wallago-dev".realName}
-          PGP: ${config.accounts.email.accounts."wallago-dev".gpg.key}
-        '';
+
+      perso = let mailbox = "henrotte.hugo@gmail.com";
+      in {
+        passwordCommand = "${oama} access ${mailbox}";
+        flavor = "gmail.com";
+        mbsync = {
+          groups.usp.channels = channels;
+          extraConfig.account.AuthMechs = "XOAUTH2";
+        };
+        imap.host =
+          "imap.gmail.com"; # retrieving and managing emails on the mail server.
+        smtp.host = "smtp.gmail.com"; # sending emails
+        msmtp.extraConfig.auth = "oauthbearer";
+      } // common {
+        name = "Hugo Henrotte";
+        title = "Perso";
+        inherit mailbox;
       };
     };
   };
