@@ -16,8 +16,10 @@
     ./usb.nix
     ./systemd-initrd.nix
     ./upower.nix
-    ../feat/yubikey
-  ] ++ (builtins.attrValues outputs.nixosModules);
+    ../feat/yubikey.nix
+    ../../yubikeys
+  ] ++ (builtins.attrValues outputs.nixosModules)
+    ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 
   services.automatic-timezoned.enable = true;
 
