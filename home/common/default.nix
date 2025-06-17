@@ -4,8 +4,10 @@
     ./colorscheme.nix
     ../feat/nvim
     ../feat/cli
+    ../../yubikeys
     (import ./home.nix { inherit username config; })
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  ] ++ (builtins.attrValues outputs.homeManagerModules)
+    ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 
   # ---
 
