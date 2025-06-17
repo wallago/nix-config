@@ -15,8 +15,8 @@ in {
   monitors = [
     {
       name = "DP-2";
-      width = 1280;
-      height = 768;
+      width = 1920;
+      height = 1080;
       workspace = "3";
       position = "4480x0";
     }
