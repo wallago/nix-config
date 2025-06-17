@@ -15,6 +15,7 @@
         html = { "prettier" },
         sql = { "sql-formatter" },
         http = { "kulala" },
+        toml = { "taplo" },
     	},
       formatters = {
         ["sql-formatter"] = {
@@ -40,6 +41,12 @@
     	notify_no_formatters = true,
     })
   '';
-  deps = with pkgs; [ nodePackages.prettier yamlfmt sql-formatter kulala-fmt ];
+  deps = with pkgs; [
+    nodePackages.prettier
+    yamlfmt
+    sql-formatter
+    kulala-fmt
+    taplo
+  ];
 }
 
