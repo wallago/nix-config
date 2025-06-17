@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, inputs, lib, ... }:
 let
   username = "wallago";
   ifTheyExist = groups:
@@ -24,12 +24,12 @@ in {
       "plugdev"
       "tss"
     ];
-    # hashedPasswordFile = config.sops.secrets.wallago-password.path;
-    password = "wallago";
+    hashedPasswordFile = config.sops.secrets.wallago-password.path;
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
     openssh.authorizedKeys.keys =
-      [ (builtins.readFile ../feat/yubikey/001.pub) ];
+      builtins.map (key: builtins.readFile key.sshPub)
+      (lib.attrValues config.yubikeys);
   };
 
   home-manager.users.${username} =
