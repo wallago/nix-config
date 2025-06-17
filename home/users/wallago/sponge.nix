@@ -5,6 +5,7 @@ in {
     (import ../../common { inherit username lib config pkgs outputs inputs; })
     ../../feat/desktop
     ../../feat/pass.nix
+    ../../feat/productivity
     ./common.nix
   ];
 
