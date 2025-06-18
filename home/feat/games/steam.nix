@@ -3,14 +3,16 @@ let
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs = pkgs:
       with pkgs; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
         libpng
         libpulseaudio
         libvorbis
-        libglvnd
         stdenv.cc.cc.lib
         libkrb5
         keyutils
-        xdg-utils
         gamescope
       ];
   };
@@ -38,14 +40,13 @@ let
     Type=Application
   '';
 in {
-  home = {
-    packages = [ steam-with-pkgs steam-session pkgs.protontricks ];
-
-    persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        allowOther = true;
-        directories = [ ".local/share/Steam" ];
-      };
+  home.packages =
+    [ steam-with-pkgs steam-session pkgs.gamescope pkgs.protontricks ];
+  home.persistence = {
+    "/persist/${config.home.homeDirectory}" = {
+      allowOther = true;
+      directories = [ ".local/share/Steam/" ];
     };
   };
 }
+

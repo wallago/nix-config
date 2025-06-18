@@ -6,6 +6,7 @@ in {
     ../../feat/desktop
     ../../feat/pass.nix
     ../../feat/productivity
+    ../../feat/games
     ./common.nix
   ];
 
