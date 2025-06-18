@@ -15,10 +15,10 @@
       # Hide until toggled
       no_display = true;
 
-      toggle_hud = "Alt+F1";
-      toggle_hud_position = "Alt+F2";
-      toggle_logging = "Alt+F3";
-      reload_cfg = "Alt+F4";
+      toggle_hud = "Alt_L+F1";
+      toggle_hud_position = "Alt_L+F2";
+      toggle_logging = "Alt_L+F3";
+      reload_cfg = "Alt_L+F4";
     };
   };
 }
