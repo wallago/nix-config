@@ -1,1 +1,4 @@
-{ ... }: { services.xserver.videoDrivers = [ "intel" ]; }
+{ ... }: {
+  imports = [ ./default.nix ];
+  services.xserver.videoDrivers = [ "intel" ];
+}
