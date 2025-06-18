@@ -1,0 +1,2 @@
+{ programs.gamemode.enable = true; }
+

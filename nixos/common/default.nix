@@ -2,6 +2,7 @@
   imports = [
     ./boot.nix
     ./fail2ban.nix
+    ./gamemode.nix
     ./tpm.nix
     ./fish.nix
     ./grub.nix
