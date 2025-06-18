@@ -10,5 +10,10 @@
       nixos-anywhere
       pam_u2f
     ];
+    shellHook = ''
+      echo "Helpers: 
+      -  nix-store --verify --check-contents --repair
+      "
+    '';
   };
 }
