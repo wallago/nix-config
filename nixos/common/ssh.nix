@@ -25,6 +25,8 @@ in {
     }];
   };
 
+  networking.firewall.allowedTCPPorts = [ 2222 ];
+
   programs.ssh.knownHosts =
     lib.genAttrs (lib.filter (host: !startsWith "plankton" host) hosts) (host: {
       publicKeyFile = ../../hosts/${host}/ssh_host_ed25519_key.pub;
