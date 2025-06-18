@@ -7,6 +7,7 @@ in {
     ../../nixos/users/wallago.nix
     ../../nixos/feat/disko-configuration.nix
     ./hardware-configuration.nix
+    ./services
   ];
 
   disk.path = "/dev/vda";
