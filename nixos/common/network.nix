@@ -1,1 +1,6 @@
-{ ... }: { networking.networkmanager.enable = true; }
+{ ... }: {
+  networking = {
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
+}
