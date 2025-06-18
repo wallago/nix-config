@@ -2,13 +2,15 @@ keys:
   users: &age_keys
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1vxct33xvtg6djlc3gqey6zs5x739hw02h0yr592yxgpfq8mxl9kszaz50y
+    - &octopus age1p7gcqz7upx980aac9td4lgm8lael2atsaeme03n03h5hq5jrrvpst3j9rp
   yubikey: &pgp_keys
     - &yubikey_001 D0787BA56F51977F
 creation_rules:
   - path_regex: nixos/common/secrets.ya?ml$
     key_groups:
       - age:
-          - *sponge
-          - *squid
+          - *sponge 
+          - *squid 
+          - *octopus 
         pgp:
-          - *yubikey_001
+          - *yubikey_001 
