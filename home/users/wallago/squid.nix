@@ -5,6 +5,7 @@ in {
     (import ../../common { inherit username lib config pkgs outputs inputs; })
     ../../feat/desktop
     ../../feat/pass.nix
+    ../../feat/productivity
     ./common.nix
   ];
 
@@ -19,7 +20,7 @@ in {
     primary = true;
   }];
 
-  wallpaper = pkgs.inputs.themes.wallpapers."green-forest-light";
+  wallpaper = pkgs.inputs.themes.wallpapers.knight-on-bike-light;
   colorscheme.type = "fidelity";
 
   fontProfiles = {
