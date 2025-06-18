@@ -92,7 +92,7 @@
           };
         };
 
-      # Home Manager system configuration
+      # Standalone Home Manager only
       homeConfigurations = {
         # Main desktop
         "wallago@sponge" = lib.homeManagerConfiguration {
@@ -103,12 +103,6 @@
         # Main laptop
         "wallago@squid" = lib.homeManagerConfiguration {
           modules = [ ./home/users/wallago/squid.nix ./home/nixpkgs.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # VPS
-        "wallago@octopus" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/wallago/octopus.nix ./home/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
