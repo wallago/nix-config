@@ -2,7 +2,10 @@
   # enables the pass program
   programs.password-store = {
     enable = true;
-    settings = { PASSWORD_STORE_DIR = "$HOME/.password-store"; };
+    settings = {
+      PASSWORD_STORE_DIR = "$HOME/.password-store";
+      PASSWORD_STORE_KEY = config.yubikeys.primary.signing;
+    };
   };
 
   # enables the pass-secret-service background daemon
