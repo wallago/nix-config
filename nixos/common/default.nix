@@ -10,6 +10,7 @@
     ./login.nix
     ./network.nix
     ./nix.nix
+    ./local.nix
     ./nixpkgs.nix
     ./optin-persistence.nix
     ./sops.nix
@@ -21,8 +22,6 @@
     ../../yubikeys
   ] ++ (builtins.attrValues outputs.nixosModules)
     ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
-
-  services.automatic-timezoned.enable = true;
 
   system.stateVersion = "${config.system.nixos.release}";
 }
