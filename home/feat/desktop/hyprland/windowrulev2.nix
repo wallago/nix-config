@@ -1,6 +1,8 @@
 let
   picture_in_picture = "title:Picture-in-Picture, class:firefox";
   rofi = "class:^(Rofi)$";
+  steamGame = "class:steam_app_[0-9]*";
+  steamBigPicture = "title:Steam Big Picture Mode";
 in [
   "float, ${picture_in_picture}"
   "move 73.5% 8%, ${picture_in_picture}"
@@ -17,4 +19,7 @@ in [
   "noborder, ${rofi}"
   "norounding, ${rofi}"
   "dimaround, ${rofi}"
+
+  "immediate, ${steamGame}"
+  "fullscreen, ${steamBigPicture}"
 ]
