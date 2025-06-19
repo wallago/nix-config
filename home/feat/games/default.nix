@@ -1,8 +1,5 @@
 { config, ... }: {
-  imports = [
-    ./steam.nix
-    # ./mangohud.nix
-  ];
+  imports = [ ./steam.nix ];
 
   home.persistence = {
     "/persist/${config.home.homeDirectory}" = {
