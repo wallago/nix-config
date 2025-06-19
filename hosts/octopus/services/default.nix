@@ -1,1 +1,1 @@
-{ imports = [ ]; }
+{ imports = [ ./postgre.nix ]; }
