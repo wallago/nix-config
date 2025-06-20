@@ -10,6 +10,7 @@
   };
 
   inputs = {
+    # core
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     systems.url = "github:nix-systems/default-linux";
@@ -26,6 +27,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # feat
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +38,8 @@
       inputs.systems.follows = "systems";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nix-bootstrap.url = "github:wallago/nix-bootstrap?dir=nix";
+    nix-deployer.url = "github:wallago/nix-deployer?dir=nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
@@ -58,7 +63,8 @@
       nixosAndHomeManagerModules = import ./modules/nixos-home;
       overlays = import ./overlays { inherit inputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      devShells =
+        forEachSystem (pkgs: import ./shell.nix { inherit pkgs inputs; });
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
       # NixOS system configuration
