@@ -12,6 +12,7 @@ in {
       pkgs.nixos-anywhere
       pkgs.pam_u2f
       inputs.nix-bootstrap.packages.${pkgs.system}.default
+      inputs.nix-deployer.packages.${pkgs.system}.default
     ];
     shellHook = ''
       echo "Helpers: 
