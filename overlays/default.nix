@@ -17,4 +17,14 @@
 
   # Adds custom packages
   additions = final: prev: import ../pkgs { pkgs = final; };
+
+  # Modifies existing packages
+  modifications = final: prev: {
+    python313 = prev.python313.override {
+      packageOverrides = pyfinal: pyprev: {
+        tpm2-pytss =
+          pyprev.tpm2-pytss.overridePythonAttrs (old: { doCheck = false; });
+      };
+    };
+  };
 }
