@@ -178,11 +178,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1750437785,
-        "narHash": "sha256-yXveYaArZMUTghEjb+wUaLJAdu0uXAHn1YQM3ylFaLY=",
+        "lastModified": 1750518079,
+        "narHash": "sha256-gmv3O43yYYgYhWuOhIRynWf7FxqnYV40cV9D4KDWKT8=",
         "owner": "wallago",
         "repo": "nix-deployer",
-        "rev": "6fb27b772e962c9f39f24f9cd6b5a2333154e232",
+        "rev": "7d4e9f481bfbb951768628e85908aca55b192c29",
         "type": "github"
       },
       "original": {
