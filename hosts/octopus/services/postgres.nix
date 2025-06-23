@@ -35,7 +35,7 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [ "/var/lib/postgresql" ];
+    "/persist".directories = [ "/var/lib/postgresql/" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 5432 ];
