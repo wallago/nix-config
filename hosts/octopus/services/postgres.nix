@@ -35,8 +35,15 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [ "/var/lib/postgresql/" ];
+    "/persist".directories =
+      [ "/var/lib/postgresql/" "/var/backup/postgresql/" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 5432 ];
+
+  services.postgresqlBackup = {
+    enable = true;
+    compression = "zstd";
+    databases = [ "rewind" ];
+  };
 }
