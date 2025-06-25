@@ -14,3 +14,9 @@ creation_rules:
           - *octopus 
         pgp:
           - *yubikey_001 
+  - path_regex: hosts/octopus/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *octopus 
+        pgp:
+          - *yubikey_001 
