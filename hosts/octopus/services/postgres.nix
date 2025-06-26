@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }: {
+{ lib, pkgs, config, ... }:
+let
+  postgres-passwd = config.sops.secrets.postgres-db-password.path;
+  rewind-passwd = config.sops.secrets.rewind-db-password.path;
+  psql = "${pkgs.postgresql}/bin/psql";
+in {
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
@@ -9,10 +14,6 @@
       host   all       all     ::1/128         md5
       host   rewind    rewind  0.0.0.0/0       md5
       host   rewind    rewind  ::/0            md5
-    '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      alter user postgres with password '${config.sops.secrets.postgres-db-password.path}';
-      alter user rewind with password '${config.sops.secrets.rewind-db-password.path}';
     '';
     settings = {
       log_connections = true;
@@ -34,6 +35,23 @@
         createdb = true;
       };
     }];
+  };
+
+  systemd.services.postgres-init-passwords = {
+    description = "Set PostgreSQL passwords after database is ready";
+    after = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "postgres";
+      LoadCredential =
+        [ "pgpass:${postgres-passwd}" "rewindpass:${rewind-passwd}" ];
+      ExecStart = pkgs.writeShellScript "set-postgres-passwords" ''
+        ${psql} -c "ALTER USER postgres WITH ENCRYPTED PASSWORD '$(cat "$CREDENTIALS_DIRECTORY/pgpass")';"
+        ${psql} -c "ALTER USER rewind WITH ENCRYPTED PASSWORD '$(cat "$CREDENTIALS_DIRECTORY/rewindpass")';"
+      '';
+    };
   };
 
   environment.persistence = {
