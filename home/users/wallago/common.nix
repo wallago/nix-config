@@ -1,6 +1,7 @@
 { inputs, pkgs, config, ... }: {
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories = [ "Perso/" "Work/" ];
+    "/persist/${config.home.homeDirectory}".directories =
+      [ "Perso/" "Work/" "Team/" ];
   };
 
   programs.git = {
