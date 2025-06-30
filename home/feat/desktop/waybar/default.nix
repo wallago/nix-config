@@ -65,7 +65,7 @@ in {
           "custom/rfkill"
           "custom/rx-net"
           "custom/tx-net"
-          "pulseaudio"
+          "sound"
           "battery"
           "custom/hostname"
         ];
@@ -73,7 +73,7 @@ in {
         clock = import ./modules/clock.nix;
         cpu = import ./modules/cpu.nix;
         memory = import ./modules/memory.nix;
-        pulseaudio = import ./modules/pulseaudio.nix { inherit pkgs lib; };
+        sound = import ./modules/sound.nix { inherit pkgs lib; };
         battery = import ./modules/battery.nix;
         network = import ./modules/network.nix;
         "custom/os" = import ./modules/os.nix { inherit mkScript; };

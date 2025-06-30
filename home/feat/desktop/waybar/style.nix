@@ -62,7 +62,7 @@ in ''
   #cpu, 
   #memory 
   #custom-currentplayer, 
-  #pulseaudio, 
+  #sound, 
   #battery, 
   #custom-tx-net, 
   #custom-rx-net, 
