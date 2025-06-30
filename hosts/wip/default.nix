@@ -6,6 +6,7 @@ in {
     ../../nixos/common
     ../../nixos/users/wallago.nix
     ../../nixos/feat/disko-configuration.nix
+    ../../nixos/feat/sound.nix
     ./hardware-configuration.nix
   ];
 

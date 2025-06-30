@@ -7,8 +7,9 @@ in {
     ../../nixos/feat/desktop
     ../../nixos/feat/gpu/nvidia.nix
     ../../nixos/feat/peripherals.nix
-    ../../nixos/users/wallago.nix
     ../../nixos/feat/disko-configuration.nix
+    ../../nixos/feat/sound.nix
+    ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
 
