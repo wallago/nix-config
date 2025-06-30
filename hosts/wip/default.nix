@@ -9,7 +9,7 @@ in {
     ./hardware-configuration.nix
   ];
 
-  disk.path = "/dev/sda";
+  disk.path = "/dev/nvme0n1";
 
   networking.hostName = "${hostname}";
 }

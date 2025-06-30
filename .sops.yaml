@@ -3,6 +3,7 @@ keys:
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1vxct33xvtg6djlc3gqey6zs5x739hw02h0yr592yxgpfq8mxl9kszaz50y
     - &octopus age1gxeewr0vqtxdkjgqvkzhc7kem9fatxyqvk52xpg7cp2rrc4u84hsanmtgs
+    - &wip age1dhs5xn36apr6fe4dum298m8ytqtqrlvcdcpmvjat5mv3tjdalv2qt8sywk
   yubikey: &pgp_keys
     - &yubikey_001 D0787BA56F51977F
 creation_rules:
@@ -12,6 +13,7 @@ creation_rules:
           - *sponge 
           - *squid 
           - *octopus 
+          - *wip 
         pgp:
           - *yubikey_001 
   - path_regex: hosts/octopus/secrets.ya?ml$
