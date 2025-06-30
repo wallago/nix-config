@@ -96,6 +96,12 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
           };
+          # WIP
+          wip = lib.nixosSystem {
+            modules = [ ./hosts/wip ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
         };
 
       # Standalone Home Manager only
