@@ -16,7 +16,8 @@ in {
     ];
     shellHook = ''
       echo "Helpers: 
-      -  nix-store --verify --check-contents --repair
+      - nix-store --verify --check-contents --repair
+      - find /nix/store -name \$name
       "
     '';
   };
