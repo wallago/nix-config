@@ -40,6 +40,10 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-bootstrap.url = "github:wallago/nix-bootstrap?dir=nix";
     nix-deployer.url = "github:wallago/nix-deployer?dir=nix";
+
+    # project
+    rewind-backend.url =
+      "git+ssh://git@github.com/wallago/rewind-backend?dir=nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
