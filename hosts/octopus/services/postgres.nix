@@ -71,13 +71,11 @@ in {
     postgres-db-password = {
       sopsFile = ../secrets.yaml;
       format = "yaml";
-      # Make this secret available early enough during system boot
       neededForUsers = true;
     };
     rewind-db-password = {
       sopsFile = ../secrets.yaml;
       format = "yaml";
-      # Make this secret available early enough during system boot
       neededForUsers = true;
     };
   };
