@@ -8,32 +8,35 @@
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
     '';
-    shellAbbrs = {
-      n = "nix";
-      nd = "nix develop -c $SHELL";
-      ns = "nix shell";
-      nsn = "nix shell nixpkgs#";
-      nb = "nix build";
-      nbn = "nix build nixpkgs#";
-      nf = "nix flake";
-      npu = "nix-prefetch-url";
-
-      nr = "nixos-rebuild --flake .";
-      nrs = "nixos-rebuild --flake . switch";
-      snr = "sudo nixos-rebuild --flake .";
-      snrs = "sudo nixos-rebuild --flake . switch";
-      hm = "home-manager --flake .";
-      hms = "home-manager --flake . switch";
-
-      gco = "git checkout";
-
+    shellAliases = {
+      # List directory contents
+      l = lib.mkIf config.programs.eza.enable "eza -lah";
       ls = lib.mkIf config.programs.eza.enable "eza";
+      tree = lib.mkIf config.programs.eza.enable "eza --tree --git-ignore";
+
+      # Utilities
       cat = lib.mkIf config.programs.bat.enable "bat";
       top = lib.mkIf config.programs.bottom.enable "btm";
-      grep = lib.mkIf config.programs.ripgrep.enable "rg";
+      man = lib.mkIf config.programs.bat.enable "batman";
+      watch = lib.mkIf config.programs.bat.enable "batwatch";
+      less = lib.mkIf config.programs.bat.enable "batpipe";
+      grep = lib.mkIf config.programs.ripgrep.enable "ripgrep";
+
+      # Misc
+      c = "printf '\\033[2J\\033[3J\\033[1;1H'";
+      h = "history";
+      cdp = "pwd | xclip -selection clipboard";
+      ports = "netstat -tulamp";
+      j = "just";
+
+      # NixOS system management
+      ns = "sudo nixos-rebuild switch --flake ";
+      nb = "sudo nixos-rebuild build --flake ";
+      ndb = "sudo nixos-rebuild dry-build --flake ";
+      nfu = "nix flake update";
+      npu = "nix-prefetch-url";
     };
-    shellAliases = { clear = "printf '\\033[2J\\033[3J\\033[1;1H'"; };
   };
 
-  home.packages = with pkgs.fishPlugins; [ fzf hydro ];
+  home.packages = with pkgs; [ fishPlugins.fzf fishPlugins.hydro nettools ];
 }
