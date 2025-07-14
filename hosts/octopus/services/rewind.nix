@@ -3,25 +3,49 @@ let
   rewind.backend = "${
       inputs.rewind-backend.packages.${pkgs.system}.default
     }/bin/rewind-backend";
-  rewind-passwd = config.sops.secrets.rewind-db-password.path;
+  rewind-db-passwd = config.sops.secrets.rewind-db-password.path;
+  ssl-crt = config.sops.secrets."henrotte.work-ssl-crt".path;
+  ssl-key = config.sops.secrets."henrotte.work-ssl-key".path;
+  server-port = 443;
 in {
   systemd.services.rewind-backend = {
     description = "Run rewind backend";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
+    environment = { APP_PORT = toString server-port; };
     serviceConfig = {
-      LoadCredential = [ "rewindpass:${rewind-passwd}" ];
+      LoadCredential = [
+        "rewindDbPass:${rewind-db-passwd}"
+        "sslCrt:${ssl-crt}"
+        "sslKey:${ssl-key}"
+      ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
-        /bin/sh -c "export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindpass)@localhost:5432 && ${rewind.backend}"
+        export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
+        export SSL_CRT=$CREDENTIALS_DIRECTORY/sslCrt
+        export SSL_KEY=$CREDENTIALS_DIRECTORY/sslKey
+        ${rewind.backend}
       '';
-      EnvironmentVariables = [ "APP_PORT=8081" ];
       Restart = "on-failure";
     };
   };
 
-  sops.secrets.rewind-db-password = {
-    sopsFile = ../secrets.yaml;
-    format = "yaml";
-    neededForUsers = true;
+  networking.firewall.allowedTCPPorts = [ server-port ];
+
+  sops.secrets = {
+    rewind-db-password = {
+      sopsFile = ../secrets.yaml;
+      format = "yaml";
+      neededForUsers = true;
+    };
+    "henrotte.work-ssl-crt" = {
+      sopsFile = ../secrets.yaml;
+      format = "yaml";
+      neededForUsers = true;
+    };
+    "henrotte.work-ssl-key" = {
+      sopsFile = ../secrets.yaml;
+      format = "yaml";
+      neededForUsers = true;
+    };
   };
 }
