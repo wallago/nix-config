@@ -1,16 +1,15 @@
 let
-  picture_in_picture = "title:Picture-in-Picture, class:firefox";
   rofi = "class:^(Rofi)$";
   steamGame = "class:steam_app_[0-9]*";
   steamBigPicture = "title:Steam Big Picture Mode";
+  firefox = "class:firefox";
+  firefoxPictureInPicture = "${firefox},title:Picture-in-Picture";
 in [
-  "float, ${picture_in_picture}"
-  "move 73.5% 8%, ${picture_in_picture}"
-  "size 25% 25%, ${picture_in_picture}"
-  "pin, ${picture_in_picture}"
-  "noinitialfocus, ${picture_in_picture}"
-  "noborder, ${picture_in_picture}"
-  "nofocus, ${picture_in_picture}"
+  "syncfullscreen off, ${firefox}"
+  "float, ${firefoxPictureInPicture}"
+  "pin, ${firefoxPictureInPicture}"
+  "noborder, ${firefoxPictureInPicture}"
+  "noinitialfocus, ${firefoxPictureInPicture}"
 
   "float, ${rofi}"
   "pin, ${rofi}"
