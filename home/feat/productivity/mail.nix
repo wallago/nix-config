@@ -15,7 +15,7 @@ let
     neomutt = {
       enable = true;
       mailboxName = "=== ${title} ===";
-      extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" ];
+      extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" "[Gmail]/All Mail" ];
     };
     gpg = {
       key = config.yubikeys.primary.signing;
@@ -30,7 +30,6 @@ let
       '';
     };
   };
-
   channels = {
     Inbox = {
       farPattern = "INBOX";
@@ -41,8 +40,8 @@ let
       };
     };
     Archive = {
-      farPattern = "Archived Mail";
-      nearPattern = "Archive";
+      farPattern = "[Gmail]/All Mail";
+      nearPattern = "[Gmail]/All Mail";
       extraConfig = {
         Create = "Both";
         Expunge = "Both";
