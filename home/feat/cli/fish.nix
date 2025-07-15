@@ -20,7 +20,7 @@
       man = lib.mkIf config.programs.bat.enable "batman";
       watch = lib.mkIf config.programs.bat.enable "batwatch";
       less = lib.mkIf config.programs.bat.enable "batpipe";
-      grep = lib.mkIf config.programs.ripgrep.enable "ripgrep";
+      grep = lib.mkIf config.programs.ripgrep.enable "rg";
 
       # Misc
       c = "printf '\\033[2J\\033[3J\\033[1;1H'";
@@ -28,6 +28,7 @@
       cdp = "pwd | xclip -selection clipboard";
       ports = "netstat -tulamp";
       j = "just";
+      mail-refresher = "mbsync -a -V";
 
       # NixOS system management
       ns = "sudo nixos-rebuild switch --flake ";
@@ -35,6 +36,8 @@
       ndb = "sudo nixos-rebuild dry-build --flake ";
       nfu = "nix flake update";
       npu = "nix-prefetch-url";
+      ns-fix = "nix-store --verify --check-contents --repair";
+      find-ns = "find /nix/store -name";
     };
   };
 
