@@ -14,11 +14,5 @@ in {
       inputs.nix-bootstrap.packages.${pkgs.system}.default
       inputs.nix-deployer.packages.${pkgs.system}.default
     ];
-    shellHook = ''
-      echo "Helpers: 
-      - nix-store --verify --check-contents --repair
-      - find /nix/store -name \$name
-      "
-    '';
   };
 }
