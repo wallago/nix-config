@@ -1,5 +1,4 @@
 { config, ... }: {
-  # enables the pass program
   programs.password-store = {
     enable = true;
     settings = {
@@ -8,7 +7,6 @@
     };
   };
 
-  # enables the pass-secret-service background daemon
   services.pass-secret-service = {
     enable = true;
     storePath = "${config.home.homeDirectory}/.password-store";
