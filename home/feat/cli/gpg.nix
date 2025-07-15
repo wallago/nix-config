@@ -11,9 +11,11 @@ in {
     sshKeys = builtins.map (key: key.auth) (lib.attrValues config.yubikeys);
     pinentry.package =
       if hyprlandCfg.enable then pkgs.pinentry-qt else pkgs.pinentry-tty;
-    extraConfig = ''
-      allow-loopback-pinentry
-    '';
+    defaultCacheTtl = 600;
+    maxCacheTtl = 7200;
+    defaultCacheTtlSsh = 600;
+    maxCacheTtlSsh = 7200;
+    verbose = true;
   };
 
   # GPG system-wide
@@ -23,9 +25,8 @@ in {
       # "TOFU" = trust On First Use
       # "PGP" = classic PGP Web of Trust
       trust-model = "tofu+pgp";
-      # enable pinentry for neovim usage
-      pinentry-mode = "loopback";
     };
+    # NOTE: yubikey => for compatibility with pcscd
     scdaemonSettings = { disable-ccid = true; };
     publicKeys = builtins.map (key: {
       source = key.asc;
