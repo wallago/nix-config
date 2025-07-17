@@ -29,6 +29,7 @@
       ports = "netstat -tulamp";
       j = "just";
       mail-refresher = "mbsync -a -V";
+      gpg-keys = "gpg --list-keys";
 
       # NixOS system management
       ns = "sudo nixos-rebuild switch --flake ";
