@@ -37,6 +37,7 @@
       ndb = "sudo nixos-rebuild dry-build --flake ";
       nfu = "nix flake update";
       npu = "nix-prefetch-url";
+      ncg = "sudo nix-collect-garbage -d";
       ns-fix = "nix-store --verify --check-contents --repair";
       find-ns = "find /nix/store -name";
     };
