@@ -23,5 +23,5 @@
   ] ++ (builtins.attrValues outputs.nixosModules)
     ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 
-  system.stateVersion = "${config.system.nixos.release}";
+  system.stateVersion = "25.05";
 }
