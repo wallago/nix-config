@@ -55,8 +55,9 @@
       { "<leader>pd", "<cmd>Lspsaga peek_definition<cr>", desc = "LSP Definition" },
       { "<leader>pt", "<cmd>Lspsaga peek_type_definition<cr>", desc = "LSP Type Definition" },
       { "<leader>pf", "<cmd>Lspsaga finder<cr>", desc = "LSP Finder" },
-      { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
-      { "<leader>pn", "<cmd>IncRename<cr>", desc = "LSP Rename" },
+      -- { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
+      { "<leader>ph", "<cmd>Lspsaga hover_doc<cr>", desc = "LSP Hover" },
+      { "<leader>pn", ":IncRename ", desc = "LSP Rename" },
       { "<leader>pa", require("actions-preview").code_actions, desc = "LSP Code Actions" },
       { "<leader>po", "<cmd>Lspsaga outline<cr>", desc = "LSP Outline" },
       
