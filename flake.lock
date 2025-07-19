@@ -18,7 +18,9 @@
     },
     "disko": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1752113600,
@@ -36,7 +38,9 @@
     },
     "firefox-addons": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
@@ -110,7 +114,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1752467539,
@@ -371,11 +377,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1752508668,
-        "narHash": "sha256-inONFpmb4fgR9P/n3mB11aYQuw/M2RUDk7wQg9qU3DM=",
+        "lastModified": 1752880602,
+        "narHash": "sha256-cKgbcYnqSeXAsEmFKwouZqw5tuuZwGIDGhsdUGHchAc=",
         "ref": "refs/heads/main",
-        "rev": "b7371426a6fc9139c21f29477b8f516db0f71876",
-        "revCount": 60,
+        "rev": "71334c97abfa63275e5751c7b1d13ed0cb3e127e",
+        "revCount": 71,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
@@ -458,7 +464,9 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1751606940,
@@ -537,7 +545,9 @@
     "themes": {
       "inputs": {
         "nixpkgs": "nixpkgs_8",
-        "systems": ["systems"]
+        "systems": [
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1749463039,
