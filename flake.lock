@@ -377,11 +377,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1752880602,
-        "narHash": "sha256-cKgbcYnqSeXAsEmFKwouZqw5tuuZwGIDGhsdUGHchAc=",
+        "lastModified": 1752960980,
+        "narHash": "sha256-et35mt7kTPKTi97Dx+sCxp3LC9DAVPxVGyCAnBok9ww=",
         "ref": "refs/heads/main",
-        "rev": "71334c97abfa63275e5751c7b1d13ed0cb3e127e",
-        "revCount": 71,
+        "rev": "200fdb2e10d0c4fb8c725a483f337b727305337a",
+        "revCount": 72,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
