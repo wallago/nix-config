@@ -1,8 +1,11 @@
 { pkgs, inputs, config, ... }:
 let
-  rewind.backend = "${
-      inputs.rewind-backend.packages.${pkgs.system}.default
-    }/bin/rewind-backend";
+  rewind = {
+    backend = "${
+        inputs.rewind-backend.packages.${pkgs.system}.default
+      }/bin/rewind-backend";
+    frontend = "${inputs.rewind-frontend.packages.${pkgs.system}.default}";
+  };
   rewind-db-passwd = config.sops.secrets.rewind-db-password.path;
   ssl-crt = config.sops.secrets."henrotte.work-ssl-crt".path;
   ssl-key = config.sops.secrets."henrotte.work-ssl-key".path;
@@ -21,6 +24,7 @@ in {
       ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
         export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
+        export FRONTEND=${rewind.frontend}
         export SSL_CRT=$CREDENTIALS_DIRECTORY/sslCrt
         export SSL_KEY=$CREDENTIALS_DIRECTORY/sslKey
         ${rewind.backend}

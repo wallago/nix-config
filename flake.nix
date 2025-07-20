@@ -44,6 +44,8 @@
     # project
     rewind-backend.url =
       "git+ssh://git@github.com/wallago/rewind-backend?dir=nix";
+    rewind-frontend.url =
+      "git+ssh://git@github.com/wallago/rewind-frontend?dir=nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
