@@ -427,11 +427,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1752960980,
-        "narHash": "sha256-et35mt7kTPKTi97Dx+sCxp3LC9DAVPxVGyCAnBok9ww=",
+        "lastModified": 1753052443,
+        "narHash": "sha256-y0+GwtDtQJMm7lWRW9Pfnp/xHLOb0Dyh+vF0bpRDlks=",
         "ref": "refs/heads/main",
-        "rev": "200fdb2e10d0c4fb8c725a483f337b727305337a",
-        "revCount": 72,
+        "rev": "ddc7e5ce11eec9e1b3c799590db7c8c85bf53366",
+        "revCount": 80,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
@@ -449,11 +449,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753051792,
-        "narHash": "sha256-ooM+M/bK8AA46YyKRtlLtYNGxB+aODDbC/xONRfvMmY=",
+        "lastModified": 1753092146,
+        "narHash": "sha256-ziOQGyIpHTMnTzi07gOfgrH5K+1IrJeVFAczXXlW/+0=",
         "ref": "refs/heads/main",
-        "rev": "7c91030136701d7c3b4f73dc675d1ee0aa7bec68",
-        "revCount": 105,
+        "rev": "1d35319612e4bb548c34b608269a1b52d5381690",
+        "revCount": 106,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-frontend"
       },
