@@ -42,7 +42,6 @@ in ''
   }
 
   #clock {
-    padding-right: 0.4em;
     color: ${colors.primary};
   }
   #custom-os {
@@ -52,7 +51,6 @@ in ''
   }
   #custom-hostname {
     color: ${colors.primary};
-    padding-left: 1em;
     border-radius: 0.5em;
   }
   #tray {
@@ -62,7 +60,9 @@ in ''
   #cpu, 
   #memory 
   #custom-currentplayer, 
-  #sound, 
+  #custom-unread-mail, 
+  #custom-player, 
+  #pulseaudio, 
   #battery, 
   #custom-tx-net, 
   #custom-rx-net, 

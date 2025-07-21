@@ -4,5 +4,5 @@
   format = "{icon} {volume}%   {format_source}";
   format-muted = "󰸈 0% {format_source}";
   format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
-  on-click = lib.getExe pkgs.pavucontrol;
+  on-click = "${lib.getExe pkgs.pavucontrol}";
 }

@@ -11,7 +11,7 @@
     script = ''
       selected_player="$(playerctl status -f "{{playerName}}" 2>/dev/null || true)"
       playerctl metadata -p "$selected_player" \
-        --format '{"text": "{{artist}} - {{title}}", "alt": "{{status}}", "tooltip": "{{artist}} - {{title}} ({{album}})"}' 2>/dev/null
+        --format '{"alt": "{{status}}"}' 2>/dev/null
     '';
   };
   return-type = "json";
