@@ -19,6 +19,7 @@ in {
       monitor = import ./monitor.nix { inherit config; };
       workspace = import ./workspace.nix { inherit config lib; };
       bind = import ./keybindings { inherit config lib pkgs; };
+      bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
     };
   };
 }

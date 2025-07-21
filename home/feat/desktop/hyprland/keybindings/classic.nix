@@ -39,7 +39,7 @@ in [
   "SUPER,f,fullscreen,0"
   "SUPERSHIFT,l,workspace,e+1"
   "SUPERSHIFT,h,workspace,e-1"
-  "SUPER,y,toggleswallow"
+  "SUPER,y,togglefloating"
 ] ++ (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
 ++ (map (n: "SUPERSHIFT,${n},movetoworkspace,name:${n}") workspaces)
 ++ (lib.mapAttrsToList (key: direction: "SUPER,${key},movefocus,${direction}")
