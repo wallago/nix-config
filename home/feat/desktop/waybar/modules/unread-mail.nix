@@ -18,7 +18,7 @@
     text = "$count";
     alt = "$status";
   };
-  format = "{icon}  ({})";
+  format = "{icon} {}";
   format-icons = {
     "read" = "󰇯";
     "unread" = "󰇮";

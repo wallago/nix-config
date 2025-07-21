@@ -52,6 +52,7 @@ in ''
   #custom-hostname {
     color: ${colors.primary};
     border-radius: 0.5em;
+    padding-left: 0.4em;
   }
   #tray {
     color: ${colors.on_surface};
