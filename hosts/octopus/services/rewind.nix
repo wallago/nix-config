@@ -11,8 +11,8 @@ let
   ssl-key = config.sops.secrets."henrotte.work-ssl-key".path;
   server-port = 443;
 in {
-  systemd.services.rewind-backend = {
-    description = "Run rewind backend";
+  systemd.services.rewind = {
+    description = "Run rewind app";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     environment = { APP_PORT = toString server-port; };
