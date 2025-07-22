@@ -43,17 +43,19 @@ in {
         margin-right = 20;
         position = "top";
 
-        modules-left = [ "custom/os" "clock" ]
-          ++ (lib.optionals hyprlandCfg.enable [
-            "hyprland/workspaces"
-            "hyprland/submap"
-          ]) ++ [
-            "custom/currentplayer"
-            "custom/player"
-            "custom/minicava"
-            "network"
-            "custom/unread-mail"
-          ];
+        modules-left = [
+          # "custom/os" 
+          "clock"
+        ] ++ (lib.optionals hyprlandCfg.enable [
+          "hyprland/workspaces"
+          "hyprland/submap"
+        ]) ++ [
+          # "custom/currentplayer"
+          "pulseaudio"
+          "custom/player"
+          "custom/minicava"
+          "custom/unread-mail"
+        ];
         modules-center = [
           "cpu"
           # "custom/intel-gpu" 
@@ -61,19 +63,19 @@ in {
           "memory"
         ];
         modules-right = [
-          "custom/gpg-status"
           "custom/rfkill"
+          "network"
           "custom/rx-net"
           "custom/tx-net"
-          "sound"
           "battery"
+          "custom/gpg-status"
           "custom/hostname"
         ];
 
         clock = import ./modules/clock.nix;
         cpu = import ./modules/cpu.nix;
         memory = import ./modules/memory.nix;
-        sound = import ./modules/sound.nix { inherit pkgs lib; };
+        pulseaudio = import ./modules/sound.nix { inherit pkgs lib; };
         battery = import ./modules/battery.nix;
         network = import ./modules/network.nix;
         "custom/os" = import ./modules/os.nix { inherit mkScript; };
@@ -82,10 +84,10 @@ in {
           import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
         "custom/rfkill" =
           import ./modules/rfkill.nix { inherit pkgs mkScript; };
-        # "custom/nvidia-gpu" =
-        #   import ./modules/nvidia-gpu.nix { inherit mkScript; };
-        # "custom/intel-gpu" =
-        #   import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
+        "custom/nvidia-gpu" =
+          import ./modules/nvidia-gpu.nix { inherit mkScript; };
+        "custom/intel-gpu" =
+          import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
         "custom/player" =
           import ./modules/player.nix { inherit pkgs mkScript; };
         "custom/currentplayer" =

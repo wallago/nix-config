@@ -24,7 +24,7 @@ in {
       ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
         export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
-        export FRONTEND=${rewind.frontend}
+        export FRONTEND="${rewind.frontend}"
         export SSL_CRT=$CREDENTIALS_DIRECTORY/sslCrt
         export SSL_KEY=$CREDENTIALS_DIRECTORY/sslKey
         ${rewind.backend}
