@@ -1,1 +1,1 @@
-{ imports = [ ./postgres.nix ./rewind.nix ]; }
+{ imports = [ ./postgres.nix ./rewind.nix ./markeeper.nix ]; }

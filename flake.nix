@@ -46,6 +46,10 @@
       "git+ssh://git@github.com/wallago/rewind-backend?dir=nix";
     rewind-frontend.url =
       "git+ssh://git@github.com/wallago/rewind-frontend?dir=nix";
+    markeeper-backend.url =
+      "git+ssh://git@github.com/wallago/markeeper-backend?dir=nix";
+    markeeper-frontend.url =
+      "git+ssh://git@github.com/wallago/markeeper-frontend?dir=nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
