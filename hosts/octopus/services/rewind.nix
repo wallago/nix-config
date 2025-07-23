@@ -15,7 +15,6 @@ in {
     description = "Run rewind app";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
-    environment = { APP_PORT = toString server-port; };
     serviceConfig = {
       LoadCredential = [
         "rewindDbPass:${rewind-db-passwd}"
@@ -24,6 +23,7 @@ in {
       ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
         export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
+        export APP_PORT=${toString server-port}
         export FRONTEND="${rewind.frontend}"
         export SSL_CRT=$CREDENTIALS_DIRECTORY/sslCrt
         export SSL_KEY=$CREDENTIALS_DIRECTORY/sslKey
