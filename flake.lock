@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752113600,
-        "narHash": "sha256-7LYDxKxZgBQ8LZUuolAQ8UkIB+jb4A2UmiR+kzY9CLI=",
+        "lastModified": 1753140376,
+        "narHash": "sha256-7lrVrE0jSvZHrxEzvnfHFE/Wkk9DDqb+mYCodI5uuB8=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "79264292b7e3482e5702932949de9cbb69fedf6d",
+        "rev": "545aba02960caa78a31bd9a8709a0ad4b6320a5c",
         "type": "github"
       },
       "original": {
@@ -44,11 +44,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1752379414,
-        "narHash": "sha256-0R3slhrjrnzyxR/fAYy5UliZvSgaVS38YCESBdH5RJw=",
+        "lastModified": 1753675409,
+        "narHash": "sha256-cb6meO88jJxf4ebMKsLChp99nmXulGwqvwvxDoq3mIs=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "51e77bb95540b7dd6c60f8fd65a0c472a2c9c3b7",
+        "rev": "57f5ec906ac02d55a0c5643d2029e7fc3929133b",
         "type": "gitlab"
       },
       "original": {
@@ -173,11 +173,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752467539,
-        "narHash": "sha256-4kaR+xmng9YPASckfvIgl5flF/1nAZOplM+Wp9I5SMI=",
+        "lastModified": 1753709185,
+        "narHash": "sha256-fU0XPSNudRJHvbeMK2qWBXEbfd77t7r+e9V2L9ON5kI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1e54837569e0b80797c47be4720fab19e0db1616",
+        "rev": "20cf285e9f8e5e3968abca80081c03ea96e7ea73",
         "type": "github"
       },
       "original": {
@@ -231,11 +231,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753286982,
-        "narHash": "sha256-a/JHoyPLcXOsAjsuaUDTi4y9NvSLrEzXM7EKBNjb2vg=",
+        "lastModified": 1753718512,
+        "narHash": "sha256-7WvLIJQvGR7yW2pR30cH/7opcfNt7h0W9PYh8+zHdXY=",
         "ref": "refs/heads/main",
-        "rev": "37deff9980f863baa824a59745d791bf2edb505f",
-        "revCount": 6,
+        "rev": "1f7dfcf589b80cd3eb0ae06caa87bdbaadd855c9",
+        "revCount": 8,
         "type": "git",
         "url": "ssh://git@github.com/wallago/markeeper-frontend"
       },
@@ -253,11 +253,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1751642931,
-        "narHash": "sha256-2q5+gGVKDTCdURjSEBJQIPKsYW/rSZacj9/FMTqbiSM=",
+        "lastModified": 1753014260,
+        "narHash": "sha256-qk8sHler2VSOFkk500RzNahQqJHS5dKw3cJ710vp4HI=",
         "owner": "wallago",
         "repo": "nix-bootstrap",
-        "rev": "1f59daf15067e589b7d4e7f8175be58e49bc9c2f",
+        "rev": "2d599ac34ec06ac77c5feb1c0d08a248f085408c",
         "type": "github"
       },
       "original": {
@@ -294,11 +294,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1751666422,
-        "narHash": "sha256-AcSwZHectTTPnt6dXRLvw8L2m/0nbTsY3dsEqDKfGnc=",
+        "lastModified": 1753014057,
+        "narHash": "sha256-fPWRPSaLfg/fLY5XqpChh1dl0RRh/FICxQFVPTlvo30=",
         "owner": "wallago",
         "repo": "nix-deployer",
-        "rev": "3ad1d8650f96d555fbe08062e1e2f02b4a507083",
+        "rev": "d1db5f288279116adc5c5a4b3e75f4af93537fff",
         "type": "github"
       },
       "original": {
@@ -341,11 +341,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1752308619,
-        "narHash": "sha256-pzrVLKRQNPrii06Rm09Q0i0dq3wt2t2pciT/GNq5EZQ=",
+        "lastModified": 1753489912,
+        "narHash": "sha256-uDCFHeXdRIgJpYmtcUxGEsZ+hYlLPBhR83fdU+vbC1s=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "650e572363c091045cdbc5b36b0f4c1f614d3058",
+        "rev": "13e8d35b7d6028b7198f8186bc0347c6abaa2701",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1751984180,
-        "narHash": "sha256-LwWRsENAZJKUdD3SpLluwDmdXY9F45ZEgCb0X+xgOL0=",
+        "lastModified": 1753549186,
+        "narHash": "sha256-Znl7rzuxKg/Mdm6AhimcKynM7V3YeNDIcLjBuoBcmNs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9807714d6944a957c2e036f84b0ff8caf9930bc0",
+        "rev": "17f6bd177404d6d43017595c5264756764444ab8",
         "type": "github"
       },
       "original": {
@@ -571,11 +571,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753286002,
-        "narHash": "sha256-JKDKPtyZAj6JSqrvIDBbdxWx2vqLt9AdjurR4e5HNd0=",
+        "lastModified": 1753641147,
+        "narHash": "sha256-WqeVUxwHzWjlzxG8/kUz/0eBMXOj00JjLVxw8UK6K2E=",
         "ref": "refs/heads/main",
-        "rev": "caff05e58153da30847f1dace724114852d75b22",
-        "revCount": 86,
+        "rev": "f64d773083cef0c2e07b4ad5a7b517ac53fe939c",
+        "revCount": 87,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
@@ -742,11 +742,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751606940,
-        "narHash": "sha256-KrDPXobG7DFKTOteqdSVeL1bMVitDcy7otpVZWDE6MA=",
+        "lastModified": 1752544651,
+        "narHash": "sha256-GllP7cmQu7zLZTs9z0J2gIL42IZHa9CBEXwBY9szT0U=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "3633fc4acf03f43b260244d94c71e9e14a2f6e0d",
+        "rev": "2c8def626f54708a9c38a5861866660395bb3461",
         "type": "github"
       },
       "original": {
