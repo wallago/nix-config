@@ -43,7 +43,7 @@
       }; # --------------------------------> Configure DNS over HTTPS (DoH).
       Preferences = {
         # Homepage
-        "browser.startup.homepage" = "https://homepage-brown-ten.vercel.app/";
+        "browser.startup.homepage" = "https://henrotte.work:8443/";
         "startup.homepage_override_url" = "";
         "browser.startup.homepage_override.mstone" = "ignore";
         "browser.newtabpage.enabled" = false;
