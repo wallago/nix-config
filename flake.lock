@@ -209,11 +209,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753888332,
-        "narHash": "sha256-rcn78pZ2b+ffHWYVgAD7w1GOrdKrrlxJdWFwFRT2+H8=",
+        "lastModified": 1753914692,
+        "narHash": "sha256-XpN7cXh0MKG0RKCRRJO41mBYQKzHvAHkeCqZwO47DxM=",
         "ref": "refs/heads/main",
-        "rev": "7b167f0651e0800318eca9fb619896805793c2fc",
-        "revCount": 9,
+        "rev": "a306efdc1cecc69aa2282e666257fdd224781a1e",
+        "revCount": 10,
         "type": "git",
         "url": "ssh://git@github.com/wallago/markeeper-backend"
       },
@@ -231,11 +231,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753866436,
-        "narHash": "sha256-2m39LmZNI7nTykfIgbSBpnhNmAQxaLBCR9pLpdx7n1o=",
+        "lastModified": 1753915651,
+        "narHash": "sha256-9kPEI6qSAn4/R8u/Y+DB+MfNFSeKEQJJzC/E3ctfgpQ=",
         "ref": "refs/heads/main",
-        "rev": "04cc42b7ae414829b9d14e68412b4fe76d5ba5be",
-        "revCount": 18,
+        "rev": "c1035f38b9365a6f8ed80959b52bd6ade976ae4d",
+        "revCount": 22,
         "type": "git",
         "url": "ssh://git@github.com/wallago/markeeper-frontend"
       },
@@ -571,11 +571,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753641147,
-        "narHash": "sha256-WqeVUxwHzWjlzxG8/kUz/0eBMXOj00JjLVxw8UK6K2E=",
+        "lastModified": 1753914798,
+        "narHash": "sha256-2koKHFJVm8nkswQbo6Npe2rZMEChQ/9DpTP/+3WIih0=",
         "ref": "refs/heads/main",
-        "rev": "f64d773083cef0c2e07b4ad5a7b517ac53fe939c",
-        "revCount": 87,
+        "rev": "b86ec2017a9beb292663bcef02efbfd90535ca7b",
+        "revCount": 90,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
