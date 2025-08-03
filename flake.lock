@@ -44,11 +44,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1753675409,
-        "narHash": "sha256-cb6meO88jJxf4ebMKsLChp99nmXulGwqvwvxDoq3mIs=",
+        "lastModified": 1753761817,
+        "narHash": "sha256-FE908x/ihUlr5yn1f+PTMyOjcwotGUodzn7Ej6zZf5U=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "57f5ec906ac02d55a0c5643d2029e7fc3929133b",
+        "rev": "b657cfddb78408e9b53b4a8aaeaac71fc7ea182e",
         "type": "gitlab"
       },
       "original": {
@@ -173,11 +173,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753709185,
-        "narHash": "sha256-fU0XPSNudRJHvbeMK2qWBXEbfd77t7r+e9V2L9ON5kI=",
+        "lastModified": 1753983724,
+        "narHash": "sha256-2vlAOJv4lBrE+P1uOGhZ1symyjXTRdn/mz0tZ6faQcg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "20cf285e9f8e5e3968abca80081c03ea96e7ea73",
+        "rev": "7035020a507ed616e2b20c61491ae3eaa8e5462c",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753914692,
-        "narHash": "sha256-XpN7cXh0MKG0RKCRRJO41mBYQKzHvAHkeCqZwO47DxM=",
+        "lastModified": 1754131137,
+        "narHash": "sha256-EnA/mwPx5na5hVf9AUHsTjdvFCm72sIGeqbmMD5ZFrQ=",
         "ref": "refs/heads/main",
-        "rev": "a306efdc1cecc69aa2282e666257fdd224781a1e",
-        "revCount": 10,
+        "rev": "4633ebacece6ce348b035e8a20d0a755db7e7df7",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/wallago/markeeper-backend"
       },
@@ -231,11 +231,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753915651,
-        "narHash": "sha256-9kPEI6qSAn4/R8u/Y+DB+MfNFSeKEQJJzC/E3ctfgpQ=",
+        "lastModified": 1754225365,
+        "narHash": "sha256-/G3TICUa7095epsHLjGqBc1immZWUaNDZDKl1Gd7DKQ=",
         "ref": "refs/heads/main",
-        "rev": "c1035f38b9365a6f8ed80959b52bd6ade976ae4d",
-        "revCount": 22,
+        "rev": "4da82ef4a25aa2e42d46cf76fd797b174f5223f2",
+        "revCount": 33,
         "type": "git",
         "url": "ssh://git@github.com/wallago/markeeper-frontend"
       },
@@ -341,11 +341,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1753489912,
-        "narHash": "sha256-uDCFHeXdRIgJpYmtcUxGEsZ+hYlLPBhR83fdU+vbC1s=",
+        "lastModified": 1753749649,
+        "narHash": "sha256-+jkEZxs7bfOKfBIk430K+tK9IvXlwzqQQnppC2ZKFj4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "13e8d35b7d6028b7198f8186bc0347c6abaa2701",
+        "rev": "1f08a4df998e21f4e8be8fb6fbf61d11a1a5076a",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1753549186,
-        "narHash": "sha256-Znl7rzuxKg/Mdm6AhimcKynM7V3YeNDIcLjBuoBcmNs=",
+        "lastModified": 1753939845,
+        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "17f6bd177404d6d43017595c5264756764444ab8",
+        "rev": "94def634a20494ee057c76998843c015909d6311",
         "type": "github"
       },
       "original": {
@@ -571,11 +571,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753914798,
-        "narHash": "sha256-2koKHFJVm8nkswQbo6Npe2rZMEChQ/9DpTP/+3WIih0=",
+        "lastModified": 1754220819,
+        "narHash": "sha256-PV87zr9xNJrwKYR+gsI/tMOhmCUuQ2xPWtm5c7XVdck=",
         "ref": "refs/heads/main",
-        "rev": "b86ec2017a9beb292663bcef02efbfd90535ca7b",
-        "revCount": 90,
+        "rev": "6e65bece864c09d46dae31aee4a687cb7aa091a6",
+        "revCount": 101,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-backend"
       },
@@ -593,11 +593,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1753286936,
-        "narHash": "sha256-GVqs0Wka82reTp2uyYdU+rfTL2iWRe7fVTcgISUU66w=",
+        "lastModified": 1754253407,
+        "narHash": "sha256-sVfsH0CU5a+3TAFBcE9RMUYMVn5LZF59ZQBvoY/rbjc=",
         "ref": "refs/heads/main",
-        "rev": "3a332a90ba986ccb4fddd1f51af250142c3e3ab1",
-        "revCount": 130,
+        "rev": "576706a2ecb7e5623bee248594719fe000a473f7",
+        "revCount": 142,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind-frontend"
       },
