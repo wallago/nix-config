@@ -66,14 +66,20 @@
       '';
       pre-push = pkgs.writeShellScript "prevent-force-push" ''
         while read local_ref local_sha remote_ref remote_sha
-        do
-          if [ "$remote_ref" = "refs/heads/main" ]; then
-            if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
-              echo "❌ Force push to 'main' is not allowed."
-              exit 1
+          do
+            if [ "$remote_ref" = "refs/heads/main" ]; then
+              # If remote branch does not exist yet (all zeros SHA), allow push
+              if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+                # Allow initial push to create the remote branch
+                continue
+              fi
+
+              if ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+                echo "❌ Force push to 'main' is not allowed."
+                exit 1
+              fi
             fi
-          fi
-        done
+          done
       '';
     };
   };
