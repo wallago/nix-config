@@ -34,7 +34,7 @@
       rerere.enabled = true;
     };
     lfs.enable = true;
-    ignores = [ ".direnv" "result" ".envrc" ];
+    ignores = [ ".direnv" "result" ];
     diff-highlight.enable = true;
     hooks = {
       pre-commit = pkgs.writeShellScript "pre-commit-check" ''
@@ -51,7 +51,7 @@
         msg_file="$1"
         msg="$(head -n1 "$msg_file")"
 
-        pattern="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\\([a-z0-9/_-]+\\))?: .+"
+        pattern="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|wip)(\\([a-z0-9/_-]+\\))?: .+"
 
         if ! echo "$msg" | grep -qE "$pattern"; then
           echo "❌ Invalid commit message format:"
@@ -60,7 +60,7 @@
           echo "Expected Conventional Commit format:"
           echo "  type(scope): description"
           echo
-          echo "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+          echo "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, wip"
           exit 1
         fi
       '';
