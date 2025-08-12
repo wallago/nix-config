@@ -14,5 +14,15 @@ in {
       inputs.nix-bootstrap.packages.${pkgs.system}.default
       inputs.nix-deployer.packages.${pkgs.system}.default
     ];
+    shellHook = ''
+      ${
+        inputs.project-banner.packages.${pkgs.system}.default
+      }/bin/project-banner \
+        --owner "wallago" \
+        --logo " 󰖌 " \
+        --product "Nixos" \
+        --part "config" \
+        --code "WL24-NIXO-CF01"
+    '';
   };
 }
