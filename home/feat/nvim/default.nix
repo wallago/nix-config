@@ -166,10 +166,23 @@ in {
       vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo",  { undercurl = true, sp = "${c.green}" })
       vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint",  { undercurl = true, sp = "${c.cyan}" })
 
-
       ${allConfig}
     '';
   };
 
   home.packages = allDeps;
 }
+
+# -- TQT
+# local path = "/home/wallago/Perso/rewind/rewind-nvim/target/debug/librewind_nvim.so"
+# local mod = package.loadlib(path, "luaopen_rewind")
+# if not mod then
+#   error("Failed to load Rust module at: " .. path)
+# end
+# local rewind = mod()
+# vim.api.nvim_create_user_command("Rewind", function()
+#   rewind.hello("from command")
+# end, {})
+# vim.api.nvim_create_user_command("RewindToggle", function()
+#   rewind.toggle()
+# end, {})

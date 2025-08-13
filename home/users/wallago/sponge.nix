@@ -40,7 +40,7 @@ in {
     }
   ];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.knight-on-bike-light;
+  wallpaper = pkgs.inputs.themes.wallpapers.blue-boat-light;
   colorscheme.type = "fidelity";
 
   fontProfiles = {
