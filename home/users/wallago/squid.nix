@@ -21,7 +21,7 @@ in {
     primary = true;
   }];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.knight-on-bike-light;
+  wallpaper = pkgs.inputs.themes.wallpapers.montain-light;
   colorscheme.type = "fidelity";
 
   fontProfiles = {
