@@ -33,10 +33,7 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    themes = {
-      url = "github:wallago/nix-themes";
-      inputs.systems.follows = "systems";
-    };
+    themes.url = "github:wallago/nix-themes?dir=nix";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-bootstrap.url = "github:wallago/nix-bootstrap?dir=nix";
     nix-deployer.url = "github:wallago/nix-deployer?dir=nix";
