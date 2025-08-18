@@ -40,14 +40,13 @@
     project-banner.url = "github:wallago/project-banner?dir=nix";
 
     # project
-    rewind-backend.url =
-      "git+ssh://git@github.com/wallago/rewind-backend?dir=nix";
+    rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
     rewind-frontend.url =
-      "git+ssh://git@github.com/wallago/rewind-frontend?dir=nix";
+      "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
     markeeper-backend.url =
-      "git+ssh://git@github.com/wallago/markeeper-backend?dir=nix";
+      "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url =
-      "git+ssh://git@github.com/wallago/markeeper-frontend?dir=nix";
+      "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
