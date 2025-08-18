@@ -2,7 +2,7 @@
 let
   rewind = {
     backend = "${
-        inputs.rewind-backend.packages.${pkgs.system}.default
+        inputs.rewind-backend.defaultPackage.${pkgs.system}
       }/bin/rewind-backend";
     frontend = "${inputs.rewind-frontend.packages.${pkgs.system}.default}";
   };
