@@ -8,7 +8,9 @@
     ./firefox.nix
     ./discord.nix
     ./dragon.nix
+    ./nautilus.nix
     ./waybar
+    ./teams.nix
     ./tofi.nix
     ./ghostty.nix
     ./cliphist.nix
