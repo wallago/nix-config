@@ -4,7 +4,7 @@ let
     backend = "${
         inputs.rewind-backend.defaultPackage.${pkgs.system}
       }/bin/rewind-backend";
-    frontend = "${inputs.rewind-frontend.packages.${pkgs.system}.default}";
+    frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.system}}";
   };
   rewind-db-passwd = config.sops.secrets.rewind-db-password.path;
   ssl-crt = config.sops.secrets."henrotte.work-ssl-crt".path;
