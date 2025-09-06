@@ -9,6 +9,7 @@ in {
     ../../nixos/feat/peripherals.nix
     ../../nixos/feat/disko-configuration.nix
     ../../nixos/feat/sound.nix
+    ../../nixos/feat/bluetooth.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
