@@ -10,7 +10,7 @@
     };
     signing = {
       format = "openpgp";
-      key = config.yubikeys.primary.signing;
+      key = config.yubikey.signing;
       signByDefault = true;
       signer = "${config.programs.gpg.package}/bin/gpg2";
     };

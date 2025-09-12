@@ -18,7 +18,7 @@ let
       extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" "[Gmail]/All Mail" ];
     };
     gpg = {
-      key = config.yubikeys.primary.signing;
+      key = config.yubikey.signing;
       signByDefault = true;
     };
     signature = {

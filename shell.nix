@@ -22,7 +22,8 @@ in {
         --logo " 󰖌 " \
         --product "Nixos" \
         --part "config" \
-        --code "WL24-NIXO-CF01"
+        --code "WL24-NIXO-CF01" \
+        --tips "sops updatekeys <path to sops file>"
     '';
   };
 }

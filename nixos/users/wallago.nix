@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, lib, ... }:
+{ pkgs, config, inputs, ... }:
 let
   username = "wallago";
   ifTheyExist = groups:
@@ -27,9 +27,7 @@ in {
     hashedPasswordFile = config.sops.secrets.wallago-password.path;
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys =
-      builtins.map (key: builtins.readFile key.sshPub)
-      (lib.attrValues config.yubikeys);
+    openssh.authorizedKeys.keys = [ (builtins.readFile config.yubikey.sshPub) ];
   };
 
   home-manager.users.${username} =

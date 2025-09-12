@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       PASSWORD_STORE_DIR = "$HOME/.password-store";
-      PASSWORD_STORE_KEY = config.yubikeys.primary.signing;
+      PASSWORD_STORE_KEY = config.yubikey.signing;
     };
   };
 

@@ -1,4 +1,4 @@
-{ config, outputs, ... }: {
+{ outputs, ... }: {
   imports = [
     ./boot.nix
     ./fail2ban.nix
@@ -19,7 +19,7 @@
     ./systemd-initrd.nix
     ./upower.nix
     ../feat/yubikey.nix
-    ../../yubikeys
+    ../../yubikey
   ] ++ (builtins.attrValues outputs.nixosModules)
     ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 

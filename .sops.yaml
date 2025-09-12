@@ -5,20 +5,20 @@ keys:
     - &octopus age1gxeewr0vqtxdkjgqvkzhc7kem9fatxyqvk52xpg7cp2rrc4u84hsanmtgs
     - &wip age17xh73q74tej3h942cc6saqd4fejpuxn37w8493f37tass92h4gms6p86t3
   yubikey: &pgp_keys
-    - &yubikey_001 D0787BA56F51977F
+    - &yubikey 0DB7ED7215C5C360
 creation_rules:
   - path_regex: nixos/common/secrets.ya?ml$
     key_groups:
       - age:
-          - *sponge 
-          - *squid 
-          - *octopus 
-          - *wip 
+          - *sponge
+          - *squid
+          - *octopus
+          - *wip
         pgp:
-          - *yubikey_001 
+          - *yubikey
   - path_regex: hosts/octopus/secrets.ya?ml$
     key_groups:
       - age:
-          - *octopus 
+          - *octopus
         pgp:
-          - *yubikey_001 
+          - *yubikey

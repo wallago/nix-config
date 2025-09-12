@@ -1,2 +1,2 @@
-{ yubikeys = import ./yubikeys.nix; }
+{ yubikey = import ./yubikey.nix; }
 
