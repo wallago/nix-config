@@ -15,10 +15,11 @@ in {
 
   programs.ssh = {
     enable = true;
-    userKnownHostsFile =
-      "${config.home.homeDirectory}/.ssh/known_hosts.d/hosts";
+
     matchBlocks = {
       net = {
+        userKnownHostsFile =
+          "${config.home.homeDirectory}/.ssh/known_hosts.d/hosts";
         host = lib.concatStringsSep " "
           (lib.flatten (map (host: [ host ]) hostnames));
         remoteForwards = [{
@@ -32,8 +33,8 @@ in {
   };
 
   # Compatibility with programs that don't respect SSH configurations (e.g. jujutsu's libssh2)
-  systemd.user.tmpfiles.rules = [
-    "L+ ${config.home.homeDirectory}/.ssh/known_hosts - - - - ${config.programs.ssh.userKnownHostsFile}"
-  ];
+  # systemd.user.tmpfiles.rules = [
+  #   "L+ ${config.home.homeDirectory}/.ssh/known_hosts - - - - ${config.programs.ssh.matchBlocks.net.userKnownHostsFile}"
+  # ];
 }
 
