@@ -30,6 +30,10 @@ in {
       window-padding-x = "6";
       window-padding-y = "4";
       confirm-close-surface = false;
+      keybind = [
+        "ctrl+shift+k=scroll_page_lines:1"
+        "ctrl+shift+j=scroll_page_lines:-1"
+      ];
     };
     themes = {
       custom = {
