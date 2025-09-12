@@ -11,6 +11,7 @@ in {
     ../../nixos/feat/disko-configuration.nix
     ../../nixos/feat/bluetooth.nix
     ../../nixos/feat/sound.nix
+    ../../nixos/feat/printer.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
