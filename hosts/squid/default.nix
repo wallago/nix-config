@@ -31,9 +31,11 @@ in {
   };
 
   services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-    powerKey = "suspend";
-    powerKeyLongPress = "poweroff";
+    settings.Login = {
+      LidSwitch = "suspend";
+      LidSwitchExternalPower = "lock";
+      HandlePowerKeyLongPress = "poweroff";
+      HandlePowerKey = "suspend";
+    };
   };
 }
