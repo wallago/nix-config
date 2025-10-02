@@ -10,6 +10,7 @@ in {
     ../../nixos/feat/disko-configuration.nix
     ../../nixos/feat/sound.nix
     ../../nixos/feat/bluetooth.nix
+    ../../nixos/feat/docker.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];

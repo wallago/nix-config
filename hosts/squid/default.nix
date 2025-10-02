@@ -12,6 +12,7 @@ in {
     ../../nixos/feat/bluetooth.nix
     ../../nixos/feat/sound.nix
     ../../nixos/feat/printer.nix
+    ../../nixos/feat/docker.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
