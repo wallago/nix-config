@@ -54,7 +54,7 @@ in {
           "pulseaudio"
           "custom/player"
           "custom/minicava"
-          "custom/unread-mail"
+          # "custom/unread-mail"
         ];
         modules-center = [
           "cpu"
