@@ -22,7 +22,7 @@ in {
 
   u2f.mappings = {
     wallago =
-      "wallago:DMNXFaX1pYytbV6E8dJ2ukVYMGtleF/oWsyOeZAM87pYTFDQ4pOW8C04CcZjO8JzvwKQOqV6c+rmUxrhGrrcyQ==,rAo3pKpbfYgx/8qvxr1qve5GrYykcegOmVw6kf4JVG0t8n5dONyWwyS8xFD5qD0yBzw+mKOovB4BwX9tJ0BeGw==,es256,+presence";
+      "wallago:L1GqY9QUd8xiKdKUePH7RDztNBzEvwHRf7FlKxnwWUrpcT5zgQ21gi1JcNMbDHZyp+TgK8j8YQzPADAIY2IfiQ==,RohvT7hv8Wc6SvITW6xvthdCDGNLWhUl50pzu2o2TMi65qPZCurA9x2KagbfKr0p9GA4YkSGSJtBTefGe941kA==,es256,+presenc";
   };
 
   boot = {
