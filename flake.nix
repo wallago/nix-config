@@ -40,9 +40,10 @@
     project-banner.url = "github:wallago/project-banner?dir=nix";
 
     # project
-    rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
+    rewind-backend.url =
+      "git+ssh://git@github.com/wallago/rewind?dir=back/nix&ref=release/0.2.0";
     rewind-frontend.url =
-      "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
+      "git+ssh://git@github.com/wallago/rewind?dir=front/nix&ref=release/0.2.0";
     markeeper-backend.url =
       "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url =
