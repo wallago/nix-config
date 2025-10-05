@@ -26,8 +26,8 @@ in {
         "githubClientSecret:${github-client-secret}"
       ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
-        export GITHUB_CLIENT_ID=$CREDENTIALS_DIRECTORY/githubClientID
-        export GITHUB_CLIENT_SECRET=$CREDENTIALS_DIRECTORY/githubClientSecret
+        export GITHUB_CLIENT_ID=$(cat $CREDENTIALS_DIRECTORY/githubClientID)
+        export GITHUB_CLIENT_SECRET=$(cat $CREDENTIALS_DIRECTORY/githubClientSecret)
         export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
         export APP_PORT=${toString server-port}
         export FRONTEND="${rewind.frontend}"
