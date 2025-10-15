@@ -16,6 +16,7 @@
         sql = { "sql-formatter" },
         http = { "kulala" },
         toml = { "taplo" },
+        python = { "black" }
     	},
       formatters = {
         ["sql-formatter"] = {
@@ -47,6 +48,7 @@
     sql-formatter
     kulala-fmt
     taplo
+    black
   ];
 }
 
