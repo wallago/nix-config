@@ -61,7 +61,7 @@ in {
         ${curl} -s -X POST \
           -H "Authorization: Bearer $CF_API_TOKEN" \
           -H "Content-Type: application/json" \
-          --data '{"files":["https://rewind.henrotte.com/index.html"]}' \
+          --data '{"purge_everything":true}' \
           "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
           && echo "✅ Cloudflare cache purged" || echo "⚠️ Cloudflare purge failed"
       '';
