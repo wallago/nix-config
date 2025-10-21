@@ -17,6 +17,7 @@ in {
         "nixos-test" # ---> Enable features related to NixOS testing
       ];
       flake-registry = ""; # Disable global flake registry
+      download-buffer-size = 524288000;
     };
     gc = {
       automatic = true;
