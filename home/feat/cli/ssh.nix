@@ -15,8 +15,13 @@ in {
 
   programs.ssh = {
     enable = true;
-
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        forwardAgent = false;
+        hashKnownHosts = true;
+        serverAliveInterval = 60;
+      };
       net = {
         userKnownHostsFile =
           "${config.home.homeDirectory}/.ssh/known_hosts.d/hosts";
@@ -31,10 +36,5 @@ in {
       };
     };
   };
-
-  # Compatibility with programs that don't respect SSH configurations (e.g. jujutsu's libssh2)
-  # systemd.user.tmpfiles.rules = [
-  #   "L+ ${config.home.homeDirectory}/.ssh/known_hosts - - - - ${config.programs.ssh.matchBlocks.net.userKnownHostsFile}"
-  # ];
 }
 

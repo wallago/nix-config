@@ -5,8 +5,8 @@
   };
 
   programs.git = {
-    userName = "wallago";
-    userEmail = "45556867+wallago@users.noreply.github.com";
+    settings.user.name = "wallago";
+    settings.user.email = "45556867+wallago@users.noreply.github.com";
   };
 
   programs.firefox.profiles.wallago = {

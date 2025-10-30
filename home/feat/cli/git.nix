@@ -1,20 +1,14 @@
 { pkgs, config, ... }: {
+  programs.diff-highlight.enable = true;
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
-    aliases = {
-      p = "pull --ff-only";
-      ff = "merge --ff-only";
-      graph = "log --decorate --oneline --graph";
-      pushall = "!git remote | xargs -L1 git push --all";
-    };
-    signing = {
-      format = "openpgp";
-      key = config.yubikey.signing;
-      signByDefault = true;
-      signer = "${config.programs.gpg.package}/bin/gpg2";
-    };
-    extraConfig = {
+    settings = {
+      aliases = {
+        p = "pull --ff-only";
+        ff = "merge --ff-only";
+        graph = "log --decorate --oneline --graph";
+        pushall = "!git remote | xargs -L1 git push --all";
+      };
       init.defaultBranch = "main";
       merge.conflictStyle = "zdiff3";
       commit.verbose = true;
@@ -33,9 +27,14 @@
       # Reuse merge conflict fixes when rebasing
       rerere.enabled = true;
     };
+    signing = {
+      format = "openpgp";
+      key = config.yubikey.signing;
+      signByDefault = true;
+      signer = "${config.programs.gpg.package}/bin/gpg2";
+    };
     lfs.enable = true;
     ignores = [ ".direnv" "result" ];
-    diff-highlight.enable = true;
     hooks = {
       pre-commit = pkgs.writeShellScript "pre-commit-check" ''
         if git diff --check | grep -q '^'; then
