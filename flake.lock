@@ -89,11 +89,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1761797037,
-        "narHash": "sha256-OqwAGit+3cdsG02K6+8WJniA2q0rqUVc6zbT5N9C1us=",
+        "lastModified": 1761883417,
+        "narHash": "sha256-JkFtjW2pf1Sdu8nw6fyq8x0VPps98cuMbdweUvvCbek=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "3d9f4de0988bcfa57e45e16e1ef9326c56bdf891",
+        "rev": "9556511b278ac97d8793bbc690bcc5e1f425aa81",
         "type": "gitlab"
       },
       "original": {
@@ -398,11 +398,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761830454,
-        "narHash": "sha256-W/l4Bjrd8XQtNwDgFO6WvBmRUtRIDRadYYFQy9912dw=",
+        "lastModified": 1761878381,
+        "narHash": "sha256-lCRaipHgszaFZ1Cs8fdGJguVycCisBAf2HEFgip5+xU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c6d4cb31d7cef3a6deb16a6734f100e3f3a55122",
+        "rev": "4ac96eb21c101a3e5b77ba105febc5641a8959aa",
         "type": "github"
       },
       "original": {
@@ -542,11 +542,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1755003303,
-        "narHash": "sha256-UK7rvCmzWM0YGcwP/yn1JL6YVJ7Qn8xIWnuVIdwfToU=",
+        "lastModified": 1761899334,
+        "narHash": "sha256-97oiDYDY5A0+xofaRMTEZjrwaFXhiteYk42n0u2tSAw=",
         "owner": "wallago",
         "repo": "nix-deployer",
-        "rev": "040bf24d32303c3f628d349007bf447987dcc05c",
+        "rev": "bcfd94d0ad2d23119cda6adc0a3cb6aa2c70793b",
         "type": "github"
       },
       "original": {
@@ -1316,11 +1316,11 @@
       },
       "locked": {
         "dir": "back/nix",
-        "lastModified": 1761839010,
-        "narHash": "sha256-J/SVJIp5CdMmWU1NDoW6Nig7VDG+stWeCLw4r7W0ZP0=",
+        "lastModified": 1761896136,
+        "narHash": "sha256-6fdcCXxxRiVhX90+7X/twlqlI0KATvnvGZMCeq80r9Y=",
         "ref": "release/0.2.1",
-        "rev": "96b39a1031e1d6b5e04b0f70ad9961be201ee026",
-        "revCount": 188,
+        "rev": "04cb1863b0641f1b97b18267619dcb94f278aa0a",
+        "revCount": 190,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind"
       },
@@ -1341,11 +1341,11 @@
       },
       "locked": {
         "dir": "front/nix",
-        "lastModified": 1761839010,
-        "narHash": "sha256-J/SVJIp5CdMmWU1NDoW6Nig7VDG+stWeCLw4r7W0ZP0=",
+        "lastModified": 1761896136,
+        "narHash": "sha256-6fdcCXxxRiVhX90+7X/twlqlI0KATvnvGZMCeq80r9Y=",
         "ref": "release/0.2.1",
-        "rev": "96b39a1031e1d6b5e04b0f70ad9961be201ee026",
-        "revCount": 188,
+        "rev": "04cb1863b0641f1b97b18267619dcb94f278aa0a",
+        "revCount": 190,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind"
       },
