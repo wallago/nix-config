@@ -24,16 +24,16 @@
         "systems": "systems_12"
       },
       "locked": {
-        "lastModified": 1760998553,
-        "narHash": "sha256-iPus625R0OlsWD0ZGOHEr8pgLc+pmgCgBconAUukKVw=",
+        "lastModified": 1761885971,
+        "narHash": "sha256-MRdSvpvEaAJZSH/wjbjrlP4JxChCqeSpCkqRhig334c=",
         "owner": "DioxusLabs",
         "repo": "dioxus",
-        "rev": "321032c5c6c1866766ba3c30acead34f5a71f4de",
+        "rev": "ee25fcb5f661c645b8fe2c99f78bd28527ed2314",
         "type": "github"
       },
       "original": {
         "owner": "DioxusLabs",
-        "ref": "v0.7.0-rc.3",
+        "ref": "v0.7.0",
         "repo": "dioxus",
         "type": "github"
       }
@@ -1316,11 +1316,11 @@
       },
       "locked": {
         "dir": "back/nix",
-        "lastModified": 1761896136,
-        "narHash": "sha256-6fdcCXxxRiVhX90+7X/twlqlI0KATvnvGZMCeq80r9Y=",
+        "lastModified": 1762208269,
+        "narHash": "sha256-YVIERqHXSnuF5d/1CzVkCZe+BJO4gZhJSqXY11cQuE8=",
         "ref": "release/0.2.1",
-        "rev": "04cb1863b0641f1b97b18267619dcb94f278aa0a",
-        "revCount": 190,
+        "rev": "af97c98d602df59bcc8507cfb4bfa28700f31b45",
+        "revCount": 213,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind"
       },
@@ -1341,11 +1341,11 @@
       },
       "locked": {
         "dir": "front/nix",
-        "lastModified": 1761896136,
-        "narHash": "sha256-6fdcCXxxRiVhX90+7X/twlqlI0KATvnvGZMCeq80r9Y=",
+        "lastModified": 1762208269,
+        "narHash": "sha256-YVIERqHXSnuF5d/1CzVkCZe+BJO4gZhJSqXY11cQuE8=",
         "ref": "release/0.2.1",
-        "rev": "04cb1863b0641f1b97b18267619dcb94f278aa0a",
-        "revCount": 190,
+        "rev": "af97c98d602df59bcc8507cfb4bfa28700f31b45",
+        "revCount": 213,
         "type": "git",
         "url": "ssh://git@github.com/wallago/rewind"
       },
