@@ -98,6 +98,12 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
           };
+          # Home server
+          coral = lib.nixosSystem {
+            modules = [ ./hosts/coral ];
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+          };
           # VPS
           octopus = lib.nixosSystem {
             modules = [ ./hosts/octopus ];
