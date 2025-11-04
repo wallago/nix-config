@@ -5,8 +5,8 @@ in {
     type = types.attrsOf types.str;
     default = { };
     example = {
-      wallago = "wallago:Ge4frHn...==";
-      alice = "alice:J123abc...==";
+      wallago = "wallago:Ge4frHn...==,AbCdEf...==:J123abc...==,XyZ890...==";
+      alice = "alice:J123abc...==,AbCdEf...==:J123abc...==,XyZ890...==";
     };
     description = ''
       Defines the PAM U2F mapping line for a user. 

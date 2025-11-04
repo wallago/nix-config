@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, inputs, lib, ... }:
 let
   username = "nixos";
   ifTheyExist = groups:
@@ -16,7 +16,8 @@ in {
     password = "nixos";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys = [ (builtins.readFile config.yubikey.sshPub) ];
+    openssh.authorizedKeys.keys =
+      lib.mapAttrsToList (_: yk: builtins.readFile yk.sshPub) config.yubikey;
   };
 
   home-manager.users.${username} =

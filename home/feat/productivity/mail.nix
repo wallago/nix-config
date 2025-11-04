@@ -2,7 +2,7 @@
 let
   oama = lib.getExe config.programs.oama.package;
 
-  common = { name, mailbox, title }: rec {
+  common = { name, mailbox, title }: {
     realName = name;
     userName = mailbox;
     address = mailbox;
@@ -16,18 +16,6 @@ let
       enable = true;
       mailboxName = "=== ${title} ===";
       extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" "[Gmail]/All Mail" ];
-    };
-    gpg = {
-      key = config.yubikey.signing;
-      signByDefault = true;
-    };
-    signature = {
-      showSignature = "append";
-      text = ''
-        ${realName}
-
-        PGP: ${gpg.key}
-      '';
     };
   };
   channels = {

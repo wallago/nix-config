@@ -1,5 +1,11 @@
-{ pkgs, config, ... }:
-let hyprlandCfg = config.wayland.windowManager.hyprland;
+{ pkgs, config, lib, ... }:
+let
+  hyprlandCfg = config.wayland.windowManager.hyprland;
+  sshKeys = lib.mapAttrsToList (_: yk: yk.auth) config.yubikey;
+  pubKeys = lib.mapAttrsToList (_: yk: {
+    source = yk.pub.asc;
+    trust = 5;
+  }) config.yubikey;
 in {
   # GnuPG private key agent
   services.gpg-agent = {
@@ -8,7 +14,7 @@ in {
     enableExtraSocket =
       true; # Creates a special-purpose socket (S.gpg-agent.extra)
     enableFishIntegration = true;
-    sshKeys = [ config.yubikey.auth ];
+    sshKeys = sshKeys;
     pinentry.package =
       if hyprlandCfg.enable then pkgs.pinentry-qt else pkgs.pinentry-tty;
     defaultCacheTtl = 600;
@@ -28,10 +34,7 @@ in {
     };
     # NOTE: yubikey => for compatibility with pcscd
     scdaemonSettings = { disable-ccid = true; };
-    publicKeys = [{
-      source = config.yubikey.pub.asc;
-      trust = 5;
-    }];
+    publicKeys = pubKeys;
   };
 
   # GPG agent is started automatically when you log in using the Fish shell
