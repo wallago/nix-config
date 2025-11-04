@@ -27,12 +27,13 @@
       # Reuse merge conflict fixes when rebasing
       rerere.enabled = true;
     };
-    signing = {
-      format = "openpgp";
-      key = config.yubikey.signing;
-      signByDefault = true;
-      signer = "${config.programs.gpg.package}/bin/gpg2";
-    };
+    # no signing commit anymore
+    # signing = {
+    #   format = "openpgp";
+    #   key = config.yubikey.signing;
+    #   signByDefault = true;
+    #   signer = "${config.programs.gpg.package}/bin/gpg2";
+    # };
     lfs.enable = true;
     ignores = [ ".direnv" "result" ];
     hooks = {
