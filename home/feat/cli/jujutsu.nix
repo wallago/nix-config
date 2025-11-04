@@ -11,12 +11,12 @@
         style = "square";
         diff-editor = "nvim -c DiffEditor $left $right $output";
       };
-      signing = {
-        backend = "gpg";
-        behaviour =
-          if config.programs.git.signing.signByDefault then "own" else "never";
-        key = config.programs.git.signing.key;
-      };
+      # signing = {
+      #   backend = "gpg";
+      #   behaviour =
+      #     if config.programs.git.signing.signByDefault then "own" else "never";
+      #   key = config.programs.git.signing.key;
+      # };
       template-aliases = {
         "format_short_cryptographic_signature(sig)" = ''
           if(sig,

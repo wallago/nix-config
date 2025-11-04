@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   programs.diff-highlight.enable = true;
   programs.git = {
     enable = true;
