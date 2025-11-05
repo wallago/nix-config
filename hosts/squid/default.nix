@@ -13,7 +13,6 @@ in {
     ../../nixos/feat/sound.nix
     ../../nixos/feat/printer.nix
     ../../nixos/feat/docker.nix
-    ../../nixos/feat/games
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
