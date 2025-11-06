@@ -5,6 +5,7 @@ in {
     inputs.disko.nixosModules.disko
     ../../nixos/common
     ../../nixos/feat/gpu/intel.nix
+    ../../nixos/feat/docker.nix
     ../../nixos/users/wallago.nix
     ../../nixos/feat/disko-configuration.nix
     ./hardware-configuration.nix
