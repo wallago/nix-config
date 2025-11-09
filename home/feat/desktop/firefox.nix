@@ -15,7 +15,7 @@
     enable = true;
     languagePacks = [ "en-US" ];
     policies = {
-      BlockAboutConfig = true;
+      BlockAboutConfig = false;
       DefaultDownloadDirectory = "\${home}/Downloads";
       EnableTrackingProtection = {
         Value = true;
@@ -43,7 +43,7 @@
       }; # --------------------------------> Configure DNS over HTTPS (DoH).
       Preferences = {
         # Homepage
-        "browser.startup.homepage" = "https://henrotte.work:8443/";
+        "browser.startup.homepage" = "https://rewind.henrotte.xyz/";
         "startup.homepage_override_url" = "";
         "browser.startup.homepage_override.mstone" = "ignore";
         "browser.newtabpage.enabled" = false;
@@ -107,11 +107,10 @@
         "browser.formfill.enable" = false;
 
         # Privacy & Security
-        "privacy.trackingprotection.enabled" = true;
         "privacy.resistFingerprinting" = true;
         "privacy.trackingprotection.fingerprinting.enabled" = true;
         "privacy.trackingprotection.cryptomining.enabled" = true;
-        "dom.security.https_only_mode" = true;
+        "dom.security.https_only_mode" = false;
         "signon.rememberSignons" = false;
         "media.peerconnection.enabled" = false;
         "browser.contentblocking.category" = "strict";
@@ -170,6 +169,9 @@
 
         # Zoom
         "zoom.defaultPercent" = 100;
+
+        # Dev
+        "devtools.toolbox.host" = "right";
       };
     };
   };
