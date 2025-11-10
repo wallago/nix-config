@@ -16,6 +16,9 @@ let
       enable = true;
       mailboxName = "=== ${title} ===";
       extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" "[Gmail]/All Mail" ];
+      extraConfig = ''
+        set copy = no
+      '';
     };
   };
   channels = {
