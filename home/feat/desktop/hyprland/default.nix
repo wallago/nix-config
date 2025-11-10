@@ -3,7 +3,22 @@ let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      # Same as default, but stop graphical-session too
+      extraCommands = lib.mkBefore [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+      variables = [
+        "DISPLAY"
+        "HYPRLAND_INSTANCE_SIGNATURE"
+        "WAYLAND_DISPLAY"
+        "XDG_CURRENT_DESKTOP"
+      ];
+    };
+    package = config.lib.nixGL.wrap
+      (pkgs.hyprland.override { wrapRuntimeDeps = false; });
     settings = {
       general = import ./general.nix { inherit config rgba; };
       cursor = import ./cursor.nix;
@@ -22,4 +37,16 @@ in {
       bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
     };
   };
+
+  xdg.portal = {
+    extraPortals = [
+      (pkgs.xdg-desktop-portal-hyprland.override {
+        hyprland = config.wayland.windowManager.hyprland.package;
+      })
+    ];
+    config.hyprland = { default = [ "hyprland" "gtk" ]; };
+  };
+
+  home.exportedSessionPackages =
+    [ config.wayland.windowManager.hyprland.package ];
 }
