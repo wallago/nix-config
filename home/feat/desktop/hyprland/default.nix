@@ -47,6 +47,8 @@ in {
     config.hyprland = { default = [ "hyprland" "gtk" ]; };
   };
 
+  home.packages = with pkgs; [ hyprland-qtutils ];
+
   home.exportedSessionPackages =
     [ config.wayland.windowManager.hyprland.package ];
 }
