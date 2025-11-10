@@ -1,5 +1,5 @@
 { config, ... }: {
-  imports = [ ./steam.nix ];
+  imports = [ ./steam.nix ./heroic.nix ];
 
   home.persistence = {
     "/persist/${config.home.homeDirectory}" = {

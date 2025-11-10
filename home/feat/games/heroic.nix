@@ -1,0 +1,1 @@
+{ pkgs, ... }: { home.packages = with pkgs; [ gamescope mangohud heroic ]; }
