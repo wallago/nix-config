@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   heroic-gamescope = pkgs.writeShellScriptBin "heroic-gamescope" ''
     systemctl --user start heroic-gamescope-session.target

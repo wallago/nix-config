@@ -4,11 +4,11 @@
     enable = true;
     cageArgs = [ "-s" "-m" "last" ];
     iconTheme = {
-      name = "Papirus-Dark";
+      name = "Adwaita";
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Materia-dark";
+      name = "Adwaita";
       package = pkgs.materia-theme;
     };
     font = {
@@ -18,7 +18,7 @@
     };
     cursorTheme = {
       package = pkgs.apple-cursor;
-      name = "macOS";
+      name = "Adwaita";
     };
   };
 
