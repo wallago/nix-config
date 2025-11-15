@@ -13,7 +13,10 @@ in {
     ../../nixos/feat/sound.nix
     ../../nixos/feat/printer.nix
     ../../nixos/feat/docker.nix
-    ../../nixos/feat/games
+    ../../nixos/feat/steam-gamescope-session.nix
+    ../../nixos/feat/heroic-gamescope-session.nix
+    ../../nixos/feat/regreet.nix
+    ../../nixos/feat/bambulab.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
@@ -40,5 +43,4 @@ in {
       HandlePowerKey = "suspend";
     };
   };
-
 }

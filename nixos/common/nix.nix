@@ -4,7 +4,7 @@ in {
   nix = {
     settings = {
       trusted-users = [ "root" "@wheel" ];
-      auto-optimise-store = true;
+      auto-optimise-store = lib.mkDefault true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -21,8 +21,8 @@ in {
     };
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than +10";
+      dates = "daily";
+      options = "--delete-older-than 7d";
     };
 
     registry = (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs);

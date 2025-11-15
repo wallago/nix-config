@@ -1,4 +1,4 @@
-{ lib, pkgs, config, }:
+{ lib, pkgs, config }:
 let defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
 in [
   "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"

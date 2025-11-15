@@ -24,37 +24,29 @@ in {
     verbose = true;
   };
 
-  # GPG system-wide
-  programs.gpg = {
-    enable = true;
-    settings = {
-      # "TOFU" = trust On First Use
-      # "PGP" = classic PGP Web of Trust
-      trust-model = "tofu+pgp";
-    };
-    # NOTE: yubikey => for compatibility with pcscd
-    scdaemonSettings = { disable-ccid = true; };
-    publicKeys = pubKeys;
-  };
+  programs = let
+    fixGpg =
+      # bash
+      ''
+        gpgconf --launch gpg-agent
+      '';
+  in {
+    # Start gpg-agent if it's not running or tunneled in
+    # SSH does not start it automatically, so this is needed to avoid having to use a gpg command at startup
+    # https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
+    bash.profileExtra = fixGpg;
+    fish.loginShellInit = fixGpg;
+    zsh.loginExtra = fixGpg;
+    nushell.extraLogin = fixGpg;
 
-  # GPG agent is started automatically when you log in using the Fish shell
-  programs.fish.loginShellInit = ''
-    gpgconf --launch gpg-agent
-  '';
-
-  systemd.user.services = {
-    # Link /run/user/$UID/gnupg to ~/.gnupg-sockets
-    # So that SSH config does not have to know the UID
-    link-gnupg-sockets = {
-      Unit = { Description = "link gnupg sockets from /run to /home"; };
-      Service = {
-        Type = "oneshot";
-        ExecStart =
-          "${pkgs.coreutils}/bin/ln -Tfs /run/user/%U/gnupg %h/.gnupg-sockets";
-        ExecStop = "${pkgs.coreutils}/bin/rm $HOME/.gnupg-sockets";
-        RemainAfterExit = true;
+    gpg = {
+      enable = true;
+      settings = {
+        # "TOFU" = trust On First Use
+        # "PGP" = classic PGP Web of Trust
+        trust-model = "tofu+pgp";
       };
-      Install.WantedBy = [ "default.target" ];
+      publicKeys = pubKeys;
     };
   };
 }

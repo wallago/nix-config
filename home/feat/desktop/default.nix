@@ -18,15 +18,11 @@
     ./imv.nix
     ./mako.nix
     ./zathura.nix
+    ./waypipe.nix
+    ./swayosd.nix
   ];
 
-  xdg = {
-    mimeApps.enable = true;
-    portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-    };
-  };
+  xdg.portal.enable = true;
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
