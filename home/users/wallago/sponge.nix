@@ -15,13 +15,6 @@ in {
   #  ------   ----------   ------
   monitors = [
     {
-      name = "DP-2";
-      width = 1920;
-      height = 1080;
-      workspace = "3";
-      position = "4480x0";
-    }
-    {
       name = "DP-1";
       width = 1920;
       height = 1080;
@@ -31,12 +24,19 @@ in {
       scale = "1";
     }
     {
-      name = "HDMI-A-1";
+      name = "DP-3";
       width = 2560;
       height = 1440;
       workspace = "1";
       primary = true;
       position = "1920x0";
+    }
+    {
+      name = "DP-2";
+      width = 1920;
+      height = 1080;
+      workspace = "3";
+      position = "4480x0";
     }
   ];
 

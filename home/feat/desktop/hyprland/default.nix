@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {

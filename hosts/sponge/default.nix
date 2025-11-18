@@ -12,9 +12,6 @@ in {
     ../../nixos/feat/bluetooth.nix
     ../../nixos/feat/docker.nix
     ../../nixos/feat/printer.nix
-    ../../nixos/feat/steam-gamescope-session.nix
-    ../../nixos/feat/heroic-gamescope-session.nix
-    ../../nixos/feat/bambulab.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];

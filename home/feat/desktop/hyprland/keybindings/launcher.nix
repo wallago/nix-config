@@ -5,6 +5,6 @@ let
   tofi = lib.getExe' config.programs.tofi.package "tofi";
 in lib.optionals config.programs.tofi.enable [
   "SUPER,x,exec,${tofidrun} --drun-launch=true"
-  "SUPER,d,exec,${tofirun}/"
+  "SUPER,d,exec,${tofirun}"
   "SUPER,t,exec,specialisation=$(specialisation | ${tofi})"
 ]

@@ -22,7 +22,13 @@
     ./swayosd.nix
   ];
 
-  xdg.portal.enable = true;
+  xdg = {
+    mimeApps.enable = true;
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    };
+  };
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
