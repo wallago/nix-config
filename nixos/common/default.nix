@@ -18,6 +18,7 @@
     ./usb.nix
     ./systemd-initrd.nix
     ./upower.nix
+    ./flatpak.nix
     ../feat/yubikey.nix
     ../../yubikey
   ] ++ (builtins.attrValues outputs.nixosModules)

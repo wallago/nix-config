@@ -18,6 +18,8 @@
     ./imv.nix
     ./mako.nix
     ./zathura.nix
+    ./waypipe.nix
+    ./swayosd.nix
   ];
 
   xdg = {

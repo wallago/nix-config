@@ -21,6 +21,8 @@
       watch = lib.mkIf config.programs.bat.enable "batwatch";
       less = lib.mkIf config.programs.bat.enable "batpipe";
       grep = lib.mkIf config.programs.ripgrep.enable "rg";
+      logout = lib.mkIf config.wayland.windowManager.hyprland.enable
+        "hyprctl dispatch exit";
 
       # Misc
       c = "printf '\\033[2J\\033[3J\\033[1;1H'";

@@ -50,21 +50,13 @@
 
         # UI Customization
         "browser.uiCustomization.state" = builtins.toJSON {
-          newElementCount = 5;
-          dirtyAreaCache = [
-            "nav-bar"
-            "PersonalToolbar"
-            "toolbar-menubar"
-            "TabsToolbar"
-            "widget-overflow-fixed-list"
-          ];
           placements = {
-            PersonalToolbar = [ "personal-bookmarks" ];
-            TabsToolbar =
-              [ "tabbrowser-tabs" "new-tab-button" "alltabs-button" ];
+            unified-extensions-area = [ ];
+            widget-overflow-fixed-list = [ ];
             nav-bar = [
               "back-button"
               "forward-button"
+              "vertical-spacer"
               "stop-reload-button"
               "urlbar-container"
               "downloads-button"
@@ -74,15 +66,27 @@
               "unified-extensions-button"
             ];
             toolbar-menubar = [ "menubar-items" ];
-            unified-extensions-area = [ ];
-            widget-overflow-fixed-list = [ ];
+            TabsToolbar = [ ];
+            vertical-tabs = [ "tabbrowser-tabs" ];
+            PersonalToolbar = [ "personal-bookmarks" ];
           };
           seen = [
             "save-to-pocket-button"
             "developer-button"
             "ublock0_raymondhill_net-browser-action"
             "_testpilot-containers-browser-action"
+            "screenshot-button"
           ];
+          dirtyAreaCache = [
+            "nav-bar"
+            "PersonalToolbar"
+            "toolbar-menubar"
+            "TabsToolbar"
+            "widget-overflow-fixed-list"
+            "vertical-tabs"
+          ];
+          currentVersion = 23;
+          newElementCount = 10;
         };
 
         # General UX
@@ -172,6 +176,14 @@
 
         # Dev
         "devtools.toolbox.host" = "right";
+
+        # Remove close button
+        "browser.tabs.inTitlebar" = 0;
+
+        # Vertical tabs
+        "sidebar.verticalTabs" = true;
+        "sidebar.revamp" = true;
+        "sidebar.main.tools" = [ "history" "bookmarks" ];
       };
     };
   };
