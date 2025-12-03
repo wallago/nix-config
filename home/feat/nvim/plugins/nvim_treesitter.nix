@@ -31,6 +31,8 @@
     nvim-treesitter-parsers.vimdoc
     nvim-treesitter-parsers.yaml
     nvim-treesitter-parsers.zig
+    nvim-treesitter-parsers.javascript
+    nvim-treesitter-parsers.typescript
   ];
   config = ''
     vim.wo.foldmethod = 'expr'
@@ -43,7 +45,7 @@
         enable = true,
         additional_vim_regex_highlighting = false,
       },
-      ident = { enable = true }, 
+      indent = { enable = true },
       rainbow = {
         enable = true,
         extended_mode = true,
