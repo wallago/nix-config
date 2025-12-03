@@ -71,6 +71,12 @@
       -- Rust
       { "<leader>r", group = "Rust" },
       { "<leader>rr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+
+      -- Spectre
+      { "<leader>S", group = "Spectre" },
+      { "<leader>St", "<cmd>lua require('spectre').toggle()<cr>", desc = "Toggle Spectre" },
+      { "<leader>Sw", "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", desc = "Search current word" },
+      { "<leader>Sp", "<cmd>lua require('spectre').open_file({select_word=true})<cr>", desc = "Search current word" },
     })
   '';
 }

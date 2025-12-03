@@ -29,6 +29,7 @@ let
     ./plugins/nvim_autopairs.nix
     ./plugins/indent_blankline_nvim.nix
     ./plugins/bufferline_nvim.nix
+    ./plugins/nvim_spectre.nix
   ];
 
   rawPluginColorModules = [
