@@ -20,7 +20,6 @@ let
     ./plugins/smear_cursor_nvim.nix
     ./plugins/telescope_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/which_key_nvim.nix
     ./plugins/mermaid_nvim.nix
     ./plugins/hunk_nvim.nix
     ./plugins/neoscroll_nvim.nix
@@ -38,8 +37,11 @@ let
     ./plugins/nvim_notify.nix
   ];
 
+  rawPluginConfigModules = [ ./plugins/which_key_nvim.nix ];
+
   pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
-    ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules;
+    ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules
+    ++ map (file: import file { inherit pkgs config; }) rawPluginConfigModules;
 
   getOrDefault = name: default: module:
     if builtins.hasAttr name module then module.${name} else default;

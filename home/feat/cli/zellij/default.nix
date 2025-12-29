@@ -2,6 +2,7 @@
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
+  nav = config.keymap.nav;
 in {
   programs.zellij = {
     enable = true;
@@ -46,13 +47,12 @@ in {
           "bind \"Alt g\"" = { SwitchToMode = "Locked"; };
           "bind \"Alt q\"" = { Quit = { }; };
           "bind \"Alt f\"" = { ToggleFloatingPanes = { }; };
-          "bind \"Alt n\"" = { NewPane = { }; };
           "bind \"Alt y\"" = { MoveTab = "Left"; };
-          "bind \"Alt i\"" = { MoveTab = "Right"; };
-          "bind \"Alt h\"" = { MoveFocusOrTab = "Left"; };
-          "bind \"Alt l\"" = { MoveFocusOrTab = "Right"; };
-          "bind \"Alt j\"" = { MoveFocus = "Down"; };
-          "bind \"Alt k\"" = { MoveFocus = "Up"; };
+          "bind \"Alt u\"" = { MoveTab = "Right"; };
+          "bind \"Alt ${nav.left}\"" = { MoveFocusOrTab = "Left"; };
+          "bind \"Alt ${nav.right}\"" = { MoveFocusOrTab = "Right"; };
+          "bind \"Alt ${nav.down}\"" = { MoveFocus = "Down"; };
+          "bind \"Alt ${nav.up}\"" = { MoveFocus = "Up"; };
           "bind \"Alt =\" \"Alt +\"" = { Resize = "Increase"; };
           "bind \"Alt -\"" = { Resize = "Decrease"; };
         };

@@ -1,4 +1,6 @@
-{ pkgs }: {
+{ pkgs, config }:
+let nav = config.keymap.nav;
+in {
   plugins = with pkgs.vimPlugins; [ which-key-nvim ];
   config = ''
     -- Set leader key
@@ -45,10 +47,10 @@
 
       -- Window
       { "<leader>w", proxy = "<c-w>", group = "windows" },
-      { "<leader>h", "<C-w>h", desc = "Move to Left Window" },
-      { "<leader>j", "<C-w>j", desc = "Move to Below Window" },
-      { "<leader>k", "<C-w>k", desc = "Move to Above Window" },
-      { "<leader>l", "<C-w>l", desc = "Move to Right Window" },
+      { "<leader>n", "<C-w>${nav.left}", desc = "Move to Left Window" },
+      { "<leader>e", "<C-w>${nav.down}", desc = "Move to Below Window" },
+      { "<leader>i", "<C-w>${nav.up}", desc = "Move to Above Window" },
+      { "<leader>o", "<C-w>${nav.right}", desc = "Move to Right Window" },
 
       -- LSP
       { "<leader>p", group = "LSP" },

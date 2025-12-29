@@ -11,10 +11,7 @@ in {
     };
   };
 
-  services.pass-secret-service = {
-    enable = true;
-    storePath = "${config.home.homeDirectory}/.password-store";
-  };
+  services.pass-secret-service = { enable = true; };
 
   home.persistence = {
     "/persist/${config.home.homeDirectory}".directories =

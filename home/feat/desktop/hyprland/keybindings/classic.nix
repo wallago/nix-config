@@ -1,5 +1,15 @@
-{ lib, ... }:
+{ lib, config, ... }:
+
 let
+  nav = config.keymap.nav;
+
+  directions = {
+    "${nav.left}" = "l";
+    "${nav.down}" = "d";
+    "${nav.up}" = "u";
+    "${nav.right}" = "r";
+  };
+
   workspaces = [
     "0"
     "1"
@@ -24,21 +34,11 @@ let
     "F11"
     "F12"
   ];
-  directions = rec {
-    left = "l";
-    right = "r";
-    up = "u";
-    down = "d";
-    h = left;
-    l = right;
-    k = up;
-    j = down;
-  };
 in [
   "SUPERSHIFT,q,killactive"
   "SUPER,f,fullscreen,0"
-  "SUPERSHIFT,l,workspace,e+1"
-  "SUPERSHIFT,h,workspace,e-1"
+  "SUPERSHIFT,${nav.right},workspace,e+1"
+  "SUPERSHIFT,${nav.left},workspace,e-1"
   "SUPER,y,togglefloating"
 ] ++ (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
 ++ (map (n: "SUPERSHIFT,${n},movetoworkspace,name:${n}") workspaces)
