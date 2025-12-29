@@ -28,6 +28,10 @@ in {
           type = types.str;
           default = "auto";
         };
+        scale = mkOption {
+          type = types.float;
+          default = 1.0;
+        };
         enabled = mkOption {
           type = types.bool;
           default = true;
@@ -35,10 +39,6 @@ in {
         workspace = mkOption {
           type = types.nullOr types.str;
           default = null;
-        };
-        scale = mkOption {
-          type = types.str;
-          default = "1";
         };
       };
     });

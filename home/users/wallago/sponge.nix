@@ -21,7 +21,6 @@ in {
       refreshRate = 240;
       workspace = "2";
       position = "0x0";
-      scale = "1";
     }
     {
       name = "DP-3";
