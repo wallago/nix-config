@@ -36,6 +36,11 @@ in {
       workspace = import ./workspace.nix { inherit config lib; };
       bind = import ./keybindings { inherit config lib pkgs keymap; };
       bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
+      device = {
+        name = "kyria-keyboard";
+        kb_layout = "us";
+        kb_variant = "";
+      };
     };
   };
 
