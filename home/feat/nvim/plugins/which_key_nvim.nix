@@ -19,9 +19,9 @@ in {
 
       -- Oil
       { "<leader>r", group = "Oil" },
-      { "<leader>od", "<cmd>Oil<cr>", desc = "Open parent directory" },
-      { "<leader>or", "<C-l>", desc = "refresh directories" },
-      { "<leader>oc", "<C-c>", desc = "close directories" },
+      { "<leader>rd", "<cmd>Oil<cr>", desc = "Open parent directory" },
+      { "<leader>rr", "<C-l>", desc = "refresh directories" },
+      { "<leader>rc", "<C-c>", desc = "close directories" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },
@@ -47,10 +47,10 @@ in {
 
       -- Window
       { "<leader>w", proxy = "<c-w>", group = "windows" },
-      { "<leader>n", "<C-w>${nav.left}", desc = "Move to Left Window" },
-      { "<leader>e", "<C-w>${nav.down}", desc = "Move to Below Window" },
-      { "<leader>i", "<C-w>${nav.up}", desc = "Move to Above Window" },
-      { "<leader>o", "<C-w>${nav.right}", desc = "Move to Right Window" },
+      { "<leader>${nav.left}", "<C-w>h", desc = "Move to Left Window" },
+      { "<leader>${nav.down}", "<C-w>j", desc = "Move to Below Window" },
+      { "<leader>${nav.up}", "<C-w>k", desc = "Move to Above Window" },
+      { "<leader>${nav.right}", "<C-w>l", desc = "Move to Right Window" },
 
       -- LSP
       { "<leader>p", group = "LSP" },
@@ -71,8 +71,8 @@ in {
       { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP" },
 
       -- Rust
-      { "<leader>r", group = "Rust" },
-      { "<leader>rr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+      { "<leader>z", group = "Rust" },
+      { "<leader>zr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
 
       -- Spectre
       { "<leader>S", group = "Spectre" },

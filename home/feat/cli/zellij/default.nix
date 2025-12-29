@@ -28,7 +28,7 @@ in {
         };
         "shared_except \"session\" \"locked\"" = {
           "unbind" = "Ctrl o";
-          "bind \"Alt o\"" = { SwitchToMode = "Session"; };
+          "bind \"Alt c\"" = { SwitchToMode = "Session"; };
         };
         "shared_except \"tab\" \"locked\"" = {
           "unbind" = "Ctrl t";
