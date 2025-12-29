@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ lib, keymap, ... }:
 
 let
-  nav = config.keymap.nav;
+  nav = keymap.nav;
 
   directions = {
     "${nav.left}" = "l";

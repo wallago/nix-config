@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, keymap, ... }:
 let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
 
@@ -25,7 +25,7 @@ in {
       cursor = import ./cursor.nix;
       group = import ./group.nix { inherit config rgba; };
       binds = import ./binds.nix;
-      input = import ./input.nix;
+      input = import ./input.nix { inherit keymap; };
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix { inherit config lib; };
       windowrulev2 = import ./windowrulev2.nix;
@@ -34,7 +34,7 @@ in {
       animations = import ./animations;
       monitor = import ./monitor.nix { inherit config; };
       workspace = import ./workspace.nix { inherit config lib; };
-      bind = import ./keybindings { inherit config lib pkgs; };
+      bind = import ./keybindings { inherit config lib pkgs keymap; };
       bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
     };
   };

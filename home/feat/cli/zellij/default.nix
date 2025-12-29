@@ -1,8 +1,8 @@
-{ config, ... }:
+{ keymap, config, ... }:
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
-  nav = config.keymap.nav;
+  nav = keymap.nav;
 in {
   programs.zellij = {
     enable = true;

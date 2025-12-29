@@ -1,5 +1,5 @@
-{ pkgs, config }:
-let nav = config.keymap.nav;
+{ pkgs, keymap }:
+let nav = keymap.nav;
 in {
   plugins = with pkgs.vimPlugins; [ which-key-nvim ];
   config = ''

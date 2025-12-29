@@ -31,8 +31,11 @@ in {
       lib.mapAttrsToList (_: yk: builtins.readFile yk.sshPub) config.yubikey;
   };
 
-  home-manager.users.${username} =
-    import ../../home/users/${username}/${config.networking.hostName}.nix;
+  home-manager = {
+    extraSpecialArgs.keymap = config.keymap;
+    users.${username} =
+      import ../../home/users/${username}/${config.networking.hostName}.nix;
+  };
 
   sops.secrets.wallago-password = {
     sopsFile = ../common/secrets.yaml;

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, keymap, ... }:
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
@@ -37,11 +37,12 @@ let
     ./plugins/nvim_notify.nix
   ];
 
-  rawPluginConfigModules = [ ./plugins/which_key_nvim.nix ];
+  rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
 
   pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
     ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules
-    ++ map (file: import file { inherit pkgs config; }) rawPluginConfigModules;
+    ++ map (file: import file { inherit pkgs keymap; })
+    rawPluginKeymapingModules;
 
   getOrDefault = name: default: module:
     if builtins.hasAttr name module then module.${name} else default;

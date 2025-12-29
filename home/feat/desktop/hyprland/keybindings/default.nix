@@ -1,4 +1,4 @@
-{ lib, pkgs, config }:
+{ lib, pkgs, config, keymap }:
 let defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
 in [
   "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
@@ -12,5 +12,5 @@ in [
 ++ import ./mediactl.nix { inherit lib config; }
 ++ import ./clipboard.nix { inherit lib config; }
 ++ import ./launcher.nix { inherit lib config; }
-++ import ./classic.nix { inherit lib config; }
+++ import ./classic.nix { inherit lib keymap; }
 ++ import ./colorpicker.nix { inherit pkgs lib; }

@@ -5,5 +5,4 @@
   colors = import ./colors.nix;
   oama = import ./oama.nix;
   export-sessions = import ./export-sessions.nix;
-  keyboard = import ./keyboard.nix;
 }
