@@ -17,6 +17,7 @@
     ./ssh.nix
     ./usb.nix
     ./systemd-initrd.nix
+    ./keyring.nix
     ./upower.nix
     ../feat/yubikey.nix
     ../../yubikey
