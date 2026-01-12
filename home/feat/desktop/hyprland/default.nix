@@ -1,6 +1,14 @@
-{ lib, config, pkgs, keymap, ... }:
-let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-in {
+{
+  lib,
+  config,
+  pkgs,
+  keymap,
+  ...
+}:
+let
+  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+in
+{
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -18,8 +26,7 @@ in {
         "XDG_CURRENT_DESKTOP"
       ];
     };
-    package = config.lib.nixGL.wrap
-      (pkgs.hyprland.override { wrapRuntimeDeps = false; });
+    package = config.lib.nixGL.wrap (pkgs.hyprland.override { wrapRuntimeDeps = false; });
     settings = {
       general = import ./general.nix { inherit config rgba; };
       cursor = import ./cursor.nix;
@@ -34,8 +41,18 @@ in {
       animations = import ./animations;
       monitor = import ./monitor.nix { inherit config; };
       workspace = import ./workspace.nix { inherit config lib; };
-      bind = import ./keybindings { inherit config lib pkgs keymap; };
-      bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
+      bind = import ./keybindings {
+        inherit
+          config
+          lib
+          pkgs
+          keymap
+          ;
+      };
+      bindm = [
+        "SUPER,mouse:272,movewindow"
+        "SUPER,mouse:273,resizewindow"
+      ];
       device = [
         {
           name = "zmk-project-01-keyboard";
@@ -57,11 +74,15 @@ in {
         hyprland = config.wayland.windowManager.hyprland.package;
       })
     ];
-    config.hyprland = { default = [ "hyprland" "gtk" ]; };
+    config.hyprland = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
   };
 
   home.packages = with pkgs; [ hyprland-qtutils ];
 
-  home.exportedSessionPackages =
-    [ config.wayland.windowManager.hyprland.package ];
+  home.exportedSessionPackages = [ config.wayland.windowManager.hyprland.package ];
 }

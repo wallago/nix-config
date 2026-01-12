@@ -1,12 +1,16 @@
 { config, pkgs, ... }:
-let c = config.colorscheme.colors;
-in {
+let
+  c = config.colorscheme.colors;
+in
+{
   home.packages = with pkgs; [ vesktop ];
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}" = {
-      directories =
-        [ ".config/vesktop/sessionData/" ".config/vesktop/settings/" ];
+    "/persist/" = {
+      directories = [
+        ".config/vesktop/sessionData/"
+        ".config/vesktop/settings/"
+      ];
     };
   };
 

@@ -1,12 +1,14 @@
-{ username, config, ... }: {
+{ username, ... }:
+{
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
     sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables = { FLAKE = "$HOME/Documents/NixConfig"; };
+    sessionVariables = {
+      FLAKE = "$HOME/Documents/NixConfig";
+    };
     persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        defaultDirectoryMethod = "symlink";
+      "/persist/" = {
         directories = [
           "Documents/"
           "Downloads/"
@@ -15,7 +17,6 @@
           ".local/bin/"
           ".local/share/nix/" # trusted settings and repl history
         ];
-        allowOther = true;
       };
     };
     stateVersion = "25.05";

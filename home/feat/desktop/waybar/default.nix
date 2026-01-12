@@ -1,14 +1,40 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
-  commonDeps = with pkgs; [ coreutils gnugrep systemd ];
-  mkScript = { name ? "script", deps ? [ ], script ? "", }:
-    lib.getExe (pkgs.writeShellApplication {
-      inherit name;
-      text = script;
-      runtimeInputs = commonDeps ++ deps;
-    });
-  mkScriptJson = { name ? "script", deps ? [ ], script ? "", text ? ""
-    , tooltip ? "", alt ? "", class ? "", percentage ? "", }:
+  commonDeps = with pkgs; [
+    coreutils
+    gnugrep
+    systemd
+  ];
+  mkScript =
+    {
+      name ? "script",
+      deps ? [ ],
+      script ? "",
+    }:
+    lib.getExe (
+      pkgs.writeShellApplication {
+        inherit name;
+        text = script;
+        runtimeInputs = commonDeps ++ deps;
+      }
+    );
+  mkScriptJson =
+    {
+      name ? "script",
+      deps ? [ ],
+      script ? "",
+      text ? "",
+      tooltip ? "",
+      alt ? "",
+      class ? "",
+      percentage ? "",
+    }:
     mkScript {
       inherit name;
       deps = [ pkgs.jq ] ++ deps;
@@ -24,7 +50,8 @@ let
       '';
     };
   hyprlandCfg = config.wayland.windowManager.hyprland;
-in {
+in
+{
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
@@ -34,22 +61,24 @@ in {
     systemd.enable = true;
     settings = {
       primary = {
-        exclusive = false;
+        exclusive = true;
         passthrough = false;
         height = 40;
         margin-top = 10;
-        margin-bottom = 10;
+        margin-bottom = 0;
         margin-left = 20;
         margin-right = 20;
         position = "top";
 
         modules-left = [
-          # "custom/os" 
+          # "custom/os"
           "clock"
-        ] ++ (lib.optionals hyprlandCfg.enable [
+        ]
+        ++ (lib.optionals hyprlandCfg.enable [
           "hyprland/workspaces"
           "hyprland/submap"
-        ]) ++ [
+        ])
+        ++ [
           # "custom/currentplayer"
           "pulseaudio"
           "custom/player"
@@ -58,8 +87,8 @@ in {
         ];
         modules-center = [
           "cpu"
-          # "custom/intel-gpu" 
-          # "custom/nvidia-gpu" 
+          # "custom/intel-gpu"
+          # "custom/nvidia-gpu"
           "memory"
         ];
         modules-right = [
@@ -80,24 +109,23 @@ in {
         network = import ./modules/network.nix;
         "custom/os" = import ./modules/os.nix { inherit mkScript; };
         "custom/hostname" = import ./modules/hostname.nix { inherit mkScript; };
-        "custom/unread-mail" =
-          import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
-        "custom/rfkill" =
-          import ./modules/rfkill.nix { inherit pkgs mkScript; };
-        "custom/nvidia-gpu" =
-          import ./modules/nvidia-gpu.nix { inherit mkScript; };
-        "custom/intel-gpu" =
-          import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
-        "custom/player" =
-          import ./modules/player.nix { inherit pkgs mkScript; };
-        "custom/currentplayer" =
-          import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
-        "custom/minicava" =
-          import ./modules/minicava.nix { inherit pkgs lib mkScript; };
+        "custom/unread-mail" = import ./modules/unread-mail.nix { inherit pkgs mkScriptJson; };
+        "custom/rfkill" = import ./modules/rfkill.nix { inherit pkgs mkScript; };
+        "custom/nvidia-gpu" = import ./modules/nvidia-gpu.nix { inherit mkScript; };
+        "custom/intel-gpu" = import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
+        "custom/player" = import ./modules/player.nix { inherit pkgs mkScript; };
+        "custom/currentplayer" = import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
+        "custom/minicava" = import ./modules/minicava.nix { inherit pkgs lib mkScript; };
         "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
         "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
         "custom/gpg-status" = import ./modules/gpg-status.nix {
-          inherit mkScript mkScriptJson pkgs config lib;
+          inherit
+            mkScript
+            mkScriptJson
+            pkgs
+            config
+            lib
+            ;
         };
       };
     };

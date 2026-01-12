@@ -1,8 +1,10 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [ conform-nvim ];
   config = ''
     require("conform").setup({
     	formatters_by_ft = {
+        nix = { "nixfmt" },
     		json = { "prettier" },
         yaml = { "yamlfmt" },
     		markdown = { "prettier" },
@@ -51,4 +53,3 @@
     black
   ];
 }
-

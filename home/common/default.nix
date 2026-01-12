@@ -1,13 +1,19 @@
-{ username, config, outputs, inputs, ... }: {
+{
+  username,
+  config,
+  outputs,
+  ...
+}:
+{
   imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
     ./colorscheme.nix
     ../feat/nvim
     ../feat/cli
     ../../yubikey
     (import ./home.nix { inherit username config; })
-  ] ++ (builtins.attrValues outputs.homeManagerModules)
-    ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
+  ]
+  ++ (builtins.attrValues outputs.homeManagerModules)
+  ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 
   # ---
 
