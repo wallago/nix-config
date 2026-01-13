@@ -115,7 +115,6 @@ in
         "custom/intel-gpu" = import ./modules/intel-gpu.nix { inherit pkgs mkScript; };
         "custom/player" = import ./modules/player.nix { inherit pkgs mkScript; };
         "custom/currentplayer" = import ./modules/currentplayer.nix { inherit pkgs mkScriptJson; };
-        "custom/minicava" = import ./modules/minicava.nix { inherit pkgs lib mkScript; };
         "custom/tx-net" = import ./modules/tx-net.nix { inherit mkScript; };
         "custom/rx-net" = import ./modules/rx-net.nix { inherit mkScript; };
         "custom/gpg-status" = import ./modules/gpg-status.nix {
