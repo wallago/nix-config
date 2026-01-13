@@ -1,6 +1,8 @@
 { inputs, ... }:
-let hostname = "squid";
-in {
+let
+  hostname = "squid";
+in
+{
   imports = [
     inputs.disko.nixosModules.disko
     ../../nixos/common
@@ -24,12 +26,14 @@ in {
 
   services.displayManager.gdm.banner = "go fuck your self";
 
-  boot.binfmt.emulatedSystems =
-    [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "i686-linux"
+    "riscv64-linux"
+  ];
 
   u2f.mappings = {
-    wallago =
-      "wallago:N+0872p6RkLLzzpzZer5JZ+c7esDiNQye/jy7//fHJw5FXEGYNCzStpHmPJxVaVcQwhQLUjjBWkruMYi3w763g==,Yw95jmoJcL5EC1OjE3IUoBFOnPhsnC2LTyCj7ZxKV5aMklH0L9NgDSNAdOOfH7gw1LDBTzwPYpXkrQ/8IzuLpQ==,PKTj3cs5Yvsga/QYL1Jt7uZC8beCD0gEwLXX1kVSqUO5yMcxZ/wf261ngK34uQ0MXpUyvX1nLRVhbbRSM6HskA==,QTk3ammRzhMj0dbGfJsRfjcyQ0/iv0fE3JmTpLlR3Ahqd3B5G1D8xvOOZLxcA6zsEPYKbjTyDBeLA9zrB8QgKQ==,es256,+presence";
+    wallago = "wallago:N+0872p6RkLLzzpzZer5JZ+c7esDiNQye/jy7//fHJw5FXEGYNCzStpHmPJxVaVcQwhQLUjjBWkruMYi3w763g==,Yw95jmoJcL5EC1OjE3IUoBFOnPhsnC2LTyCj7ZxKV5aMklH0L9NgDSNAdOOfH7gw1LDBTzwPYpXkrQ/8IzuLpQ==,PKTj3cs5Yvsga/QYL1Jt7uZC8beCD0gEwLXX1kVSqUO5yMcxZ/wf261ngK34uQ0MXpUyvX1nLRVhbbRSM6HskA==,QTk3ammRzhMj0dbGfJsRfjcyQ0/iv0fE3JmTpLlR3Ahqd3B5G1D8xvOOZLxcA6zsEPYKbjTyDBeLA9zrB8QgKQ==,es256,+presence";
   };
 
   services.logind = {
