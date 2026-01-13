@@ -25,6 +25,7 @@ in
     ../../feat/pass.nix
     ../../feat/productivity
     ../../feat/games
+    ../../feat/info.nix
     ./common.nix
   ];
 
