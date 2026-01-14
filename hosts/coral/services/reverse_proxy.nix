@@ -51,6 +51,12 @@ in {
             proxy_set_header X-Forwarded-Proto $scheme;
           '';
         };
+      "rss.${domain}" = {
+        enableACME = false;
+        forceSSL = true;
+        sslCertificate = ssl-crt;
+        sslCertificateKey = ssl-key;
+        locations."/".proxyPass = "http://127.0.0.1:5503";
       };
     };
   };
