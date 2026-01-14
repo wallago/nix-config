@@ -1,14 +1,16 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 let
   rewind = {
-    backend = "${
-        inputs.rewind-backend.defaultPackage.${pkgs.system}
-      }/bin/rewind-backend";
+    backend = "${inputs.rewind-backend.defaultPackage.${pkgs.system}}/bin/rewind-backend";
     frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.system}}";
   };
   rewind-db-passwd = config.sops.secrets.rewind-db-password.path;
-  ssl-crt = config.sops.secrets."henrotte.xyz-ssl-crt".path;
-  ssl-key = config.sops.secrets."henrotte.xyz-ssl-key".path;
   github-client-id = config.sops.secrets."github-client-id".path;
   github-client-secret = config.sops.secrets."github-client-secret".path;
   # cloudflare-purge-api-token =
@@ -16,7 +18,8 @@ let
   # cloudflare-zone-id = config.sops.secrets."cloudflare-zone-id".path;
   # curl = lib.getExe pkgs.curl;
   server-port = 5502;
-in {
+in
+{
   systemd.services.rewind = {
     description = "Run rewind app";
     after = [ "network.target" ];
@@ -24,8 +27,6 @@ in {
     serviceConfig = {
       LoadCredential = [
         "rewindDbPass:${rewind-db-passwd}"
-        "sslCrt:${ssl-crt}"
-        "sslKey:${ssl-key}"
         "githubClientID:${github-client-id}"
         "githubClientSecret:${github-client-secret}"
       ];
@@ -35,8 +36,6 @@ in {
         export DATABASE_URL=postgres://rewind:$(cat $CREDENTIALS_DIRECTORY/rewindDbPass)@localhost:5432
         export APP_PORT=${toString server-port}
         export FRONTEND="${rewind.frontend}"
-        export SSL_CRT=$CREDENTIALS_DIRECTORY/sslCrt
-        export SSL_KEY=$CREDENTIALS_DIRECTORY/sslKey
         export MODE=PROD
         ${rewind.backend}
       '';
@@ -71,16 +70,6 @@ in {
 
   sops.secrets = {
     rewind-db-password = {
-      sopsFile = ../secrets.yaml;
-      format = "yaml";
-      neededForUsers = true;
-    };
-    "henrotte.xyz-ssl-crt" = {
-      sopsFile = ../secrets.yaml;
-      format = "yaml";
-      neededForUsers = true;
-    };
-    "henrotte.xyz-ssl-key" = {
       sopsFile = ../secrets.yaml;
       format = "yaml";
       neededForUsers = true;
