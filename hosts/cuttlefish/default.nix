@@ -1,7 +1,6 @@
 { inputs, config, ... }:
 let
   hostname = "cuttlefish";
-  wg-pk = config.sops.secrets."wg-client-pk".path;
 in
 {
   imports = [
@@ -18,12 +17,6 @@ in
   networking.hostName = "${hostname}";
 
   wg-client = {
-    privateKeyFile = wg-pk;
     ip = "10.100.0.4/24";
-  };
-
-  sops.secrets."wg-client-pk" = {
-    sopsFile = ./secrets.yaml;
-    format = "yaml";
   };
 }

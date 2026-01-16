@@ -1,7 +1,6 @@
 { inputs, config, ... }:
 let
   hostname = "squid";
-  wg-pk = config.sops.secrets."wg-client-pk".path;
 in
 {
   imports = [
@@ -48,12 +47,6 @@ in
   };
 
   wg-client = {
-    privateKeyFile = wg-pk;
     ip = "10.100.0.2/24";
-  };
-
-  sops.secrets."wg-client-pk" = {
-    sopsFile = ./secrets.yaml;
-    format = "yaml";
   };
 }

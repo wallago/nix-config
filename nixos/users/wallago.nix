@@ -8,7 +8,6 @@
 let
   username = "wallago";
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-
 in
 {
   imports = [

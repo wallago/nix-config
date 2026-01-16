@@ -1,8 +1,8 @@
 { inputs, config, ... }:
 let
   hostname = "sponge";
-  wg-pk = config.sops.secrets."wg-client-pk".path;
-in {
+in
+{
   imports = [
     inputs.disko.nixosModules.disko
     ../../nixos/common
@@ -27,22 +27,19 @@ in {
   services.displayManager.gdm.banner = "go fuck your self";
 
   u2f.mappings = {
-    wallago =
-      "wallago:L1GqY9QUd8xiKdKUePH7RDztNBzEvwHRf7FlKxnwWUrpcT5zgQ21gi1JcNMbDHZyp+TgK8j8YQzPADAIY2IfiQ==,RohvT7hv8Wc6SvITW6xvthdCDGNLWhUl50pzu2o2TMi65qPZCurA9x2KagbfKr0p9GA4YkSGSJtBTefGe941kA==,es256,+presenc";
+    wallago = "wallago:L1GqY9QUd8xiKdKUePH7RDztNBzEvwHRf7FlKxnwWUrpcT5zgQ21gi1JcNMbDHZyp+TgK8j8YQzPADAIY2IfiQ==,RohvT7hv8Wc6SvITW6xvthdCDGNLWhUl50pzu2o2TMi65qPZCurA9x2KagbfKr0p9GA4YkSGSJtBTefGe941kA==,es256,+presenc";
   };
 
   boot = {
     loader.grub.useOSProber = true;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+      "i686-linux"
+      "riscv64-linux"
+    ];
   };
 
   wg-client = {
-    privateKeyFile = wg-pk;
     ip = "10.100.0.3/24";
-  };
-
-  sops.secrets."wg-client-pk" = {
-    sopsFile = ./secrets.yaml;
-    format = "yaml";
   };
 }
