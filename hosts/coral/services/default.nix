@@ -6,5 +6,6 @@
     ./postgres.nix
     ./markeeper.nix
     ./miniflux.nix
+    ./wireguard.nix
   ];
 }
