@@ -122,9 +122,9 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
           };
-          # VPS
-          octopus = lib.nixosSystem {
-            modules = [ ./hosts/octopus ];
+          # Work server
+          cuttlefish = lib.nixosSystem {
+            modules = [ ./hosts/cuttlefish ];
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
           };

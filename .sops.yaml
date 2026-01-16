@@ -3,18 +3,28 @@ keys:
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1vxct33xvtg6djlc3gqey6zs5x739hw02h0yr592yxgpfq8mxl9kszaz50y
     - &coral age1cegg86hklqdslv9t50q44sv8z4dj9wrck2vag0zs0cf262uespsqz8rw8j
+    - &cuttlefish age1d20vlmtk0zhwk5zyva9fe4zst5evz4pkrctc9n46mxjrk2fsqvvqskh575
   yubikey: &pgp_keys
     - &yubikey_01 0DB7ED7215C5C360
     - &yubikey_02 7E6CCC0E857180EF
 creation_rules:
   - path_regex: nixos/common/secrets.ya?ml$
     key_groups:
-      - age: [*sponge, *squid, *coral]
+      - age: [*sponge, *squid, *coral, *cuttlefish]
         pgp: [*yubikey_01, *yubikey_02]
-  - path_regex: hosts/octopus/secrets.ya?ml$
-    key_groups:
-      - pgp: [*yubikey_01, *yubikey_02]
   - path_regex: hosts/coral/secrets.ya?ml$
     key_groups:
-      - age: [*coral]
+      - age: [*coral, *sponge, *squid]
+        pgp: [*yubikey_01, *yubikey_02]
+  - path_regex: hosts/squid/secrets.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid]
+        pgp: [*yubikey_01, *yubikey_02]
+  - path_regex: hosts/sponge/secrets.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid]
+        pgp: [*yubikey_01, *yubikey_02]
+  - path_regex: hosts/cuttlefish/secrets.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *cuttlefish]
         pgp: [*yubikey_01, *yubikey_02]
