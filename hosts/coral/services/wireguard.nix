@@ -13,6 +13,7 @@ let
     publicKey = "gW+F/0uL2dDxzlN4Q836w17fiElhwqyk6ffdybR+Ikk=";
     allowedIPs = [ "10.100.0.4/32" ];
   };
+  externalInterface = "enp114s0";
 in
 {
   networking = {
@@ -21,7 +22,7 @@ in
     };
     nat = {
       enable = true;
-      externalInterface = "eth0";
+      externalInterface = externalInterface;
       internalInterfaces = [ "wg0" ];
     };
     wireguard.interfaces.wg0 = {
@@ -29,11 +30,11 @@ in
       listenPort = 51820;
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       postSetup = ''
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ${externalInterface} -j MASQUERADE
       '';
       # This undoes the above command
       postShutdown = ''
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ${externalInterface} -j MASQUERADE
       '';
       privateKeyFile = wg-pk;
       peers = [
