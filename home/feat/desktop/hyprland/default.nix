@@ -35,7 +35,7 @@ in
       input = import ./input.nix { inherit keymap; };
       dwindle = import ./dwindle.nix;
       misc = import ./misc.nix { inherit config lib; };
-      windowrulev2 = import ./windowrulev2.nix;
+      windowrule = import ./windowrulev2.nix;
       layerrule = import ./layerrule.nix;
       decoration = import ./decoration;
       animations = import ./animations;
