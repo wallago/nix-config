@@ -1,16 +1,35 @@
-{ lib, config, pkgs, inputs, outputs, ... }:
-let username = "wallago";
-in {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}:
+let
+  username = "wallago";
+in
+{
   imports = [
-    (import ../../common { inherit username lib config pkgs outputs inputs; })
+    (import ../../common {
+      inherit
+        username
+        lib
+        config
+        pkgs
+        outputs
+        inputs
+        ;
+    })
     ../../feat/desktop
     ../../feat/pass.nix
     ../../feat/productivity
     ../../feat/games
+    ../../feat/info.nix
     ./common.nix
   ];
 
-  #  ------   ----------   ------ 
+  #  ------   ----------   ------
   # | DP-1 | | HDMI-A-1 | | DP-2 |
   #  ------   ----------   ------
   monitors = [
