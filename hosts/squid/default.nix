@@ -1,6 +1,7 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 let
   hostname = "squid";
+  wg-pk = config.sops.secrets."wg-client-pk".path;
 in
 {
   imports = [
@@ -16,6 +17,7 @@ in
     ../../nixos/feat/printer.nix
     ../../nixos/feat/docker.nix
     ../../nixos/feat/flatpak.nix
+    ../../nixos/feat/wireguard_client.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
@@ -43,5 +45,15 @@ in
       HandlePowerKeyLongPress = "poweroff";
       HandlePowerKey = "suspend";
     };
+  };
+
+  wg-client = {
+    privateKeyFile = wg-pk;
+    ip = "10.100.0.2/24";
+  };
+
+  sops.secrets."wg-client-pk" = {
+    sopsFile = ./secrets.yaml;
+    format = "yaml";
   };
 }
