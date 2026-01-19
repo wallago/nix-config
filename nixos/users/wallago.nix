@@ -27,6 +27,7 @@ in
       "network"
       "plugdev"
       "tss"
+      "dialout"
     ];
     hashedPasswordFile = config.sops.secrets.wallago-password.path;
     shell = pkgs.fish;
@@ -40,6 +41,8 @@ in
     extraSpecialArgs.keymap = config.keymap;
     users.${username} = import ../../home/users/${username}/${config.networking.hostName}.nix;
   };
+
+  users.groups.dialout = { };
 
   sops.secrets.wallago-password = {
     sopsFile = ../common/secrets.yaml;
