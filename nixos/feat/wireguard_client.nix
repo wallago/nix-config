@@ -5,7 +5,7 @@ let
 in
 {
   sops.secrets = {
-    "wg-server-ip" = {
+    "wg-server-endpoint" = {
       sopsFile = ../common/secrets.yaml;
     };
     "wg-client-pk" = {
@@ -22,7 +22,7 @@ in
       [Peer]
       PublicKey = ${serverPublicKey}
       AllowedIPs = 10.100.0.0/24
-      Endpoint = ${config.sops.placeholder."wg-server-ip"}:${toString port}
+      Endpoint = ${config.sops.placeholder."wg-server-endpoint"}:${toString port}
       PersistentKeepalive = 25
     '';
   };
