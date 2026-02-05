@@ -55,6 +55,7 @@
     rewind-frontend.url = "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
     markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
+    gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
   };
 
   outputs =
