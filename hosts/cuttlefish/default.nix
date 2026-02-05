@@ -9,6 +9,7 @@ in
     ../../nixos/users/tuna.nix
     ../../nixos/feat/disko-configuration.nix
     ../../nixos/feat/wireguard_client.nix
+    ./services
     ./hardware-configuration.nix
   ];
 
