@@ -17,7 +17,10 @@ in
 
   networking.hostName = "${hostname}";
 
-  wg-client = {
+  wg-client.interfaces.wg0 = {
     ip = "10.100.0.4/24";
+    allowedIPs = [ "10.100.0.0/24" ];
+    serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
+    serverPort = 51820;
   };
 }
