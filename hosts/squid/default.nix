@@ -46,7 +46,18 @@ in
     };
   };
 
-  wg-client = {
-    ip = "10.100.0.2/24";
+  wg-client.interfaces = {
+    wg0 = {
+      ip = "10.100.0.2/24";
+      allowedIPs = [ "10.100.0.0/24" ];
+      serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
+      serverPort = 51820;
+    };
+    wg1 = {
+      ip = "10.200.0.2/24";
+      allowedIPs = [ "10.200.0.0/24" ];
+      serverPublicKey = "VwQJyFAj9053C6dT6zB/JZ9kBZ/wma1b+xfpB+eCRXs=";
+      serverPort = 51840;
+    };
   };
 }

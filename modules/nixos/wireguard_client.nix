@@ -4,12 +4,31 @@ let
 in
 {
   options.wg-client = {
-    ip = mkOption {
-      type = types.str;
-      default = "10.100.0.2/24";
-      description = ''
-        Set IP.
-      '';
+    interfaces = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            serverPublicKey = mkOption {
+              type = types.str;
+              description = "Server public key";
+            };
+            serverPort = mkOption {
+              type = types.port;
+              description = "Server port";
+            };
+            ip = mkOption {
+              type = types.str;
+              description = "Client IP address with CIDR";
+            };
+            allowedIPs = mkOption {
+              type = types.listOf types.str;
+              description = "Allowed IPs for this peer";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "WireGuard client interfaces";
     };
   };
 }

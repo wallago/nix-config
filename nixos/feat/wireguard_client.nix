@@ -1,33 +1,40 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
-  port = 51820;
-  serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
+  inherit (lib) mapAttrs mapAttrs';
 in
 {
-  sops.secrets = {
-    "wg-server-endpoint" = {
-      sopsFile = ../common/secrets.yaml;
+  sops.secrets = lib.mkMerge [
+    {
+      "wg-server-endpoint" = {
+        sopsFile = ../common/secrets.yaml;
+      };
+    }
+    (lib.mapAttrs' (name: _: {
+      name = "${name}-sk";
+      value = {
+        sopsFile = ../../hosts/${config.networking.hostName}/secrets.yaml;
+      };
+    }) config.wg-client.interfaces)
+  ];
+
+  sops.templates = mapAttrs' (name: iface: {
+    name = "${name}.conf";
+    value = {
+      content = ''
+        [Interface]
+        PrivateKey = ${config.sops.placeholder."${name}-sk"}
+        Address = ${iface.ip}
+
+        [Peer]
+        PublicKey = ${iface.serverPublicKey}
+        AllowedIPs = ${lib.concatStringsSep ", " iface.allowedIPs}
+        Endpoint = ${config.sops.placeholder."wg-server-endpoint"}:${toString iface.serverPort}
+        PersistentKeepalive = 25
+      '';
     };
-    "wg-client-pk" = {
-      sopsFile = ../../hosts/${config.networking.hostName}/secrets.yaml;
-    };
-  };
+  }) config.wg-client.interfaces;
 
-  sops.templates."wg0.conf" = {
-    content = ''
-      [Interface]
-      PrivateKey = ${config.sops.placeholder."wg-client-pk"}
-      Address = ${config.wg-client.ip}
-
-      [Peer]
-      PublicKey = ${serverPublicKey}
-      AllowedIPs = 10.100.0.0/24
-      Endpoint = ${config.sops.placeholder."wg-server-endpoint"}:${toString port}
-      PersistentKeepalive = 25
-    '';
-  };
-
-  networking.wg-quick.interfaces.wg0 = {
-    configFile = config.sops.templates."wg0.conf".path;
-  };
+  networking.wg-quick.interfaces = mapAttrs (name: _: {
+    configFile = config.sops.templates."${name}.conf".path;
+  }) config.wg-client.interfaces;
 }
