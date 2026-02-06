@@ -14,6 +14,5 @@ in
 
   sops.secrets."miniflux-admin-credentials" = {
     sopsFile = ../secrets.yaml;
-    format = "yaml";
   };
 }

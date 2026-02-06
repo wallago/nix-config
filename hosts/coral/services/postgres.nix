@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   postgres-passwd = config.sops.secrets.postgres-db-password.path;
   rewind-passwd = config.sops.secrets.rewind-db-password.path;
@@ -13,7 +18,8 @@ let
       createdb = true;
     };
   };
-in {
+in
+{
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
@@ -33,8 +39,14 @@ in {
       log_statement = "mod";
       client_min_messages = "notice";
     };
-    ensureDatabases = [ "markeeper" "rewind" ];
-    ensureUsers = [ (user "markeeper") (user "rewind") ];
+    ensureDatabases = [
+      "markeeper"
+      "rewind"
+    ];
+    ensureUsers = [
+      (user "markeeper")
+      (user "rewind")
+    ];
   };
 
   systemd.services.postgres-init-passwords = {
@@ -60,8 +72,10 @@ in {
   };
 
   environment.persistence = {
-    "/persist".directories =
-      [ "/var/lib/postgresql/" "/var/backup/postgresql/" ];
+    "/persist".directories = [
+      "/var/lib/postgresql/"
+      "/var/backup/postgresql/"
+    ];
   };
 
   networking.firewall.allowedTCPPorts = [ 5432 ];
@@ -69,23 +83,23 @@ in {
   services.postgresqlBackup = {
     enable = true;
     compression = "zstd";
-    databases = [ "markeeper" "rewind" ];
+    databases = [
+      "markeeper"
+      "rewind"
+    ];
   };
 
   sops.secrets = {
     postgres-db-password = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
     rewind-db-password = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
     markeeper-db-password = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
   };

@@ -44,13 +44,11 @@ in
   sops.secrets = {
     "henrotte.xyz-ssl-crt" = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       owner = "nginx";
       group = "nginx";
     };
     "henrotte.xyz-ssl-key" = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       owner = "nginx";
       group = "nginx";
     };

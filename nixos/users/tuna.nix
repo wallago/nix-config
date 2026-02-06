@@ -44,7 +44,6 @@ in
 
   sops.secrets.tuna-password = {
     sopsFile = ../common/secrets.yaml;
-    format = "yaml";
     neededForUsers = true;
   };
 }

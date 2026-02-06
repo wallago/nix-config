@@ -46,7 +46,6 @@ in
 
   sops.secrets.wallago-password = {
     sopsFile = ../common/secrets.yaml;
-    format = "yaml";
     neededForUsers = true;
   };
 }

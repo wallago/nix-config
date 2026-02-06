@@ -71,27 +71,22 @@ in
   sops.secrets = {
     rewind-db-password = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
     # "cloudflare-purge-api-token" = {
     #   sopsFile = ../secrets.yaml;
-    #   format = "yaml";
     #   neededForUsers = true;
     # };
     # "cloudflare-zone-id" = {
     #   sopsFile = ../secrets.yaml;
-    #   format = "yaml";
     #   neededForUsers = true;
     # };
     "github-client-id" = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
     "github-client-secret" = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
   };

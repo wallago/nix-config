@@ -34,7 +34,6 @@ in
   sops.secrets = {
     markeeper-db-password = {
       sopsFile = ../secrets.yaml;
-      format = "yaml";
       neededForUsers = true;
     };
   };

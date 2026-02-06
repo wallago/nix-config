@@ -79,11 +79,9 @@ in
 
   sops.secrets."wg0-sk" = {
     sopsFile = ../secrets.yaml;
-    format = "yaml";
   };
 
   sops.secrets."wg1-sk" = {
     sopsFile = ../secrets.yaml;
-    format = "yaml";
   };
 }

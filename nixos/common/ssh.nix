@@ -32,12 +32,11 @@ in
 
   networking.firewall.allowedTCPPorts = [ 2222 ];
 
+  # add a special list with config.networking.hostName if exist
   programs.ssh.knownHosts =
     lib.genAttrs (lib.filter (host: !startsWith "plankton" host) hosts)
       (host: {
         publicKeyFile = ../../hosts/${host}/ssh_host_ed25519_key.pub;
-        extraHostNames =
-          # Alias for localhost if it's the same host
-          (lib.optional (host == config.networking.hostName) "localhost");
+        extraHostNames = (lib.optional (host == config.networking.hostName) "localhost");
       });
 }
