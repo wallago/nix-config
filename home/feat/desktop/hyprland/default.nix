@@ -55,6 +55,11 @@ in
       ];
       device = [
         {
+          name = "zmk-project-chocofi-keyboard";
+          kb_layout = "us";
+          kb_variant = "";
+        }
+        {
           name = "zmk-project-01-keyboard";
           kb_layout = "us";
           kb_variant = "";
