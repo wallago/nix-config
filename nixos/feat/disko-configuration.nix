@@ -1,6 +1,7 @@
 { config, ... }:
 {
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   disko.devices = {
     disk.disk1 = {
