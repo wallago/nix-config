@@ -1,6 +1,8 @@
 { inputs, ... }:
-let hostname = "plankton";
-in {
+let
+  hostname = "plankton";
+in
+{
   imports = [
     inputs.disko.nixosModules.disko
     ../../nixos/common
