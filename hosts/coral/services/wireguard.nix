@@ -25,10 +25,10 @@ let
       publicKey = "XOr3H2ae1jdm+k2TzkSArirfa57DSpM3wTEXrvLkzBg=";
       allowedIPs = [ "${wg1.mask}.2/32" ];
     };
-    # sponge = {
-    #   publicKey = "GHHvXL/R+e/7ofeO01PC5reIrY0W7recbK2KzBjnaXg=";
-    #   allowedIPs = [ "${wg1.mask}.3/32" ];
-    # };
+    sponge = {
+      publicKey = "OJYAx4VxGWMc73S0EModA/A8tRYYrdAq+lQnlPHNmgE=";
+      allowedIPs = [ "${wg1.mask}.3/32" ];
+    };
     leapfrog = {
       publicKey = "i1PhzPWel1imDtTxqM+16ScqDgBAw+/AFXTLNA3h+G8=";
       allowedIPs = [ "${wg1.mask}.4/32" ];
