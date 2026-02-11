@@ -60,4 +60,8 @@ in
       serverPort = 51840;
     };
   };
+
+  ssh.users.wallago.allowedKeys = [
+    ../sponge/ssh_wallago_ed25519_key.pub
+  ];
 }
