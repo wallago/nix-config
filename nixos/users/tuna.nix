@@ -12,13 +12,19 @@ let
 in
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    (import ./default.nix {
+      inherit
+        pkgs
+        config
+        inputs
+        lib
+        username
+        ;
+    })
   ];
 
   users.users.${username} = {
-    isNormalUser = true;
     extraGroups = ifTheyExist [
-      "wheel"
       "video"
       "audio"
       "disk"
@@ -30,16 +36,6 @@ in
       "tss"
     ];
     hashedPasswordFile = config.sops.secrets.tuna-password.path;
-    shell = pkgs.fish;
-    packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys = lib.mapAttrsToList (
-      _: yk: builtins.readFile yk.sshPub
-    ) config.yubikey;
-  };
-
-  home-manager = {
-    extraSpecialArgs.keymap = config.keymap;
-    users.${username} = import ../../home/users/${username}/${config.networking.hostName}.nix;
   };
 
   sops.secrets.tuna-password = {
