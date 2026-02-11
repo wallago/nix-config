@@ -23,4 +23,9 @@ in
     serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
     serverPort = 51820;
   };
+
+  ssh.users.tuna.allowedKeys = [
+    ../squid/ssh_wallago_ed25519_key.pub
+    ../sponge/ssh_wallago_ed25519_key.pub
+  ];
 }
