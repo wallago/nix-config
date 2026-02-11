@@ -20,9 +20,10 @@ in
     extraGroups = ifTheyExist [ "wheel" ];
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys = lib.mapAttrsToList (
-      _: yk: builtins.readFile yk.sshPub
-    ) config.yubikey;
+    openssh.authorizedKeys = {
+      keys = lib.mapAttrsToList (_: yk: builtins.readFile yk.sshPub) config.yubikey;
+      keyFiles = config.ssh.users.${username}.allowedKeys or [ ];
+    };
   };
 
   home-manager = {
