@@ -17,4 +17,9 @@ in
   disk.path = "/dev/nvme0n1";
 
   networking.hostName = "${hostname}";
+
+  ssh.users.wallago.allowedKeys = [
+    ../squid/ssh_wallago_ed25519_key.pub
+    ../sponge/ssh_wallago_ed25519_key.pub
+  ];
 }
