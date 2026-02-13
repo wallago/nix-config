@@ -1,4 +1,9 @@
-{ config, pkgs, keymap, ... }:
+{
+  config,
+  pkgs,
+  keymap,
+  ...
+}:
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
@@ -39,20 +44,22 @@ let
 
   rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
 
-  pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
+  pluginModules =
+    (map (file: import file { inherit pkgs; }) rawPluginModules)
     ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules
-    ++ map (file: import file { inherit pkgs keymap; })
-    rawPluginKeymapingModules;
+    ++ map (file: import file { inherit pkgs keymap; }) rawPluginKeymapingModules;
 
-  getOrDefault = name: default: module:
+  getOrDefault =
+    name: default: module:
     if builtins.hasAttr name module then module.${name} else default;
 
   allPlugins = builtins.concatLists (map (m: m.plugins) pluginModules);
-  allDeps =
-    builtins.concatLists (map (m: getOrDefault "deps" [ ] m) pluginModules);
-  allConfig = builtins.concatStringsSep "\n"
-    (map (m: getOrDefault "config" "" m) pluginModules);
-in {
+  allExtraLuaPackages =
+    ps: builtins.concatLists (map (m: (getOrDefault "extraLuaPackages" (_: [ ]) m) ps) pluginModules);
+  allDeps = builtins.concatLists (map (m: getOrDefault "deps" [ ] m) pluginModules);
+  allConfig = builtins.concatStringsSep "\n" (map (m: getOrDefault "config" "" m) pluginModules);
+in
+{
   home.sessionVariables = {
     EDITOR = "nvim";
     COLORTERM = "truecolor";
@@ -63,13 +70,15 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = allPlugins ++ (with pkgs.vimPlugins; [
-      # stand alone
-      markdown-preview-nvim
-      vim-commentary
-    ]);
-
-    extraLuaConfig = ''
+    plugins =
+      allPlugins
+      ++ (with pkgs.vimPlugins; [
+        # stand alone
+        markdown-preview-nvim
+        vim-commentary
+      ]);
+    extraLuaPackages = allExtraLuaPackages;
+    initLua = ''
       -- General Settings
       vim.opt.number = true
       vim.opt.expandtab = true
