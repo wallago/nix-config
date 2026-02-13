@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -7,6 +13,10 @@
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
+
+      if test -z "$ZELLIJ"
+        zellij -l monitor
+      end
     '';
     shellAliases = {
       # List directory contents
@@ -21,8 +31,7 @@
       watch = lib.mkIf config.programs.bat.enable "batwatch";
       less = lib.mkIf config.programs.bat.enable "batpipe";
       grep = lib.mkIf config.programs.ripgrep.enable "rg";
-      logout = lib.mkIf config.wayland.windowManager.hyprland.enable
-        "hyprctl dispatch exit";
+      logout = lib.mkIf config.wayland.windowManager.hyprland.enable "hyprctl dispatch exit";
 
       # Misc
       c = "printf '\\033[2J\\033[3J\\033[1;1H'";
@@ -45,5 +54,9 @@
     };
   };
 
-  home.packages = with pkgs; [ fishPlugins.fzf fishPlugins.hydro nettools ];
+  home.packages = with pkgs; [
+    fishPlugins.fzf
+    fishPlugins.hydro
+    nettools
+  ];
 }
