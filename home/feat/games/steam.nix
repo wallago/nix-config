@@ -8,10 +8,10 @@ let
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs =
       pkgs: with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
+        libXcursor
+        libXi
+        libXinerama
+        libXScrnSaver
         libpng
         libpulseaudio
         libvorbis
