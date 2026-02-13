@@ -70,7 +70,7 @@ in
         privateKeyFile = wg1.sk;
         peers = [
           wg1.squid
-          # wg1.sponge
+          wg1.sponge
           wg1.leapfrog
         ];
       };
