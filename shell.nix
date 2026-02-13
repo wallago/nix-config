@@ -25,9 +25,12 @@ in
         --product "Nixos" \
         --part "config" \
         --code "WL24-NIXO-CF01" \
+        --tips "==== SSH =====" \
+        --tips "SOCKS5 proxy server for work: ssh -D 9090 tuna@10.100.0.4 -p 2222" \
+        --tips "==== SOPS ====" \
         --tips "add SOPS_AGE_KEY=\$(ssh-to-age -private-key -i ~/.ssh/id_ed25519) if no yubikey" \
-        --tips "sops updatekeys <path to sops file>" \
-        --tips "sops <path to sops file>"
+        --tips "update file: sops updatekeys <path to sops file>" \
+        --tips "edit file: sops <path to sops file>"
     '';
   };
 }
