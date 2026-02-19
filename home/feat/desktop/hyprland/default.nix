@@ -59,16 +59,6 @@ in
           kb_layout = "us";
           kb_variant = "";
         }
-        {
-          name = "zmk-project-01-keyboard";
-          kb_layout = "us";
-          kb_variant = "";
-        }
-        {
-          name = "kyria-keyboard";
-          kb_layout = "us";
-          kb_variant = "";
-        }
       ];
     };
   };
