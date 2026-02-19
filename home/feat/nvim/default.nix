@@ -34,6 +34,7 @@ let
     ./plugins/indent_blankline_nvim.nix
     ./plugins/bufferline_nvim.nix
     ./plugins/nvim_spectre.nix
+    ./plugins/jj_nvim.nix
   ];
 
   rawPluginColorModules = [
