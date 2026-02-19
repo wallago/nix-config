@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.diff-highlight.enable = true;
   programs.git = {
     enable = true;
@@ -24,7 +25,6 @@
         autoSquash = true;
       };
       status.showStash = true;
-      # Reuse merge conflict fixes when rebasing
       rerere.enabled = true;
     };
     # no signing commit anymore
@@ -35,7 +35,10 @@
     #   signer = "${config.programs.gpg.package}/bin/gpg2";
     # };
     lfs.enable = true;
-    ignores = [ ".direnv" "result" ];
+    ignores = [
+      ".direnv"
+      "result"
+    ];
     hooks = {
       pre-commit = pkgs.writeShellScript "pre-commit-check" ''
         if git diff --check | grep -q '^'; then
