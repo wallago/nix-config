@@ -1,6 +1,8 @@
 { pkgs, keymap }:
-let nav = keymap.nav;
-in {
+let
+  nav = keymap.nav;
+in
+{
   plugins = with pkgs.vimPlugins; [ which-key-nvim ];
   config = ''
     -- Set leader key
@@ -73,6 +75,10 @@ in {
       -- Rust
       { "<leader>z", group = "Rust" },
       { "<leader>zr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+
+      -- Jujutsu
+      { "<leader>j", group = "Jujutsu" },
+      { "<leader>jl", "<cmd>J log<cr>", desc = "Log" },
 
       -- Spectre
       { "<leader>S", group = "Spectre" },
