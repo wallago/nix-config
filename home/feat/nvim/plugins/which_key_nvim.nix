@@ -1,6 +1,8 @@
 { pkgs, keymap }:
-let nav = keymap.nav;
-in {
+let
+  nav = keymap.nav;
+in
+{
   plugins = with pkgs.vimPlugins; [ which-key-nvim ];
   config = ''
     -- Set leader key
@@ -73,6 +75,28 @@ in {
       -- Rust
       { "<leader>z", group = "Rust" },
       { "<leader>zr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+
+      -- Jujutsu
+      { "<leader>j", group = "Jujutsu" },
+      { "<leader>jd", "<cmd>J desc<cr>", desc = "Description" },
+      { "<leader>jl", "<cmd>J st<cr>", desc = "Status" },
+      { "<leader>jl", "<cmd>J log<cr>", desc = "Log" },
+      { "<leader>j=", "<cmd>J diff<cr>", desc = "Diff" },
+      { "<leader>jn", "<cmd>J new<cr>", desc = "New" },
+      { "<leader>je", "<cmd>J edit<cr>", desc = "Edit" },
+      { "<leader>js", "<cmd>J squash<cr>", desc = "Squash" },
+      { "<leader>j/", "<cmd>J splite<cr>", desc = "Splite" },
+      { "<leader>jr", "<cmd>J rebase<cr>", desc = "Rebase" },
+      { "<leader>j<", "<cmd>J undo<cr>", desc = "Undo" },
+      { "<leader>j>", "<cmd>J redo<cr>", desc = "Redo" },
+      { "<leader>jc", "<cmd>J commit<cr>", desc = "Commit" },
+      { "<leader>jb", group = "Bookmark" },
+      { "<leader>jbc", "<cmd>J bookmark create<cr>", desc = "Create" },
+      { "<leader>jbd", "<cmd>J bookmark delete<cr>", desc = "Delete" },
+      { "<leader>jt", group = "Tag" },
+      { "<leader>jts", "<cmd>J tag set<cr>", desc = "Set" },
+      { "<leader>jtd", "<cmd>J tag delete<cr>", desc = "Delete" },
+      { "<leader>jtp", "<cmd>J tag push<cr>", desc = "Push" },
 
       -- Spectre
       { "<leader>S", group = "Spectre" },
