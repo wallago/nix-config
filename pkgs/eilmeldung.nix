@@ -11,10 +11,10 @@ rustPlatform.buildRustPackage rec {
     owner = "christo-auer";
     repo = "eilmeldung";
     rev = "main";
-    hash = "sha256-mevjTJ+8g0Rot2A41C5SBhap+hpuOyOcm2DsNG2X3xY=";
+    hash = "sha256-ytFL4Ix4CRFnC+txHO2U7477BLzJAeaL+Yw38gYoTDs=";
   };
 
-  cargoHash = "sha256-RTIIAGnhttEhx9FuVUWbo/+Ce3k28NW2YPHCJxwnCW8=";
+  cargoHash = "sha256-906oyvbeDx3332qbuBMsKpPpz3VrDoRMRTMJGXtuMjw=";
 
   nativeBuildInputs = with pkgs; [
     pkg-config
