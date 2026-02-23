@@ -35,13 +35,13 @@ let
     ./plugins/bufferline_nvim.nix
     ./plugins/nvim_spectre.nix
     ./plugins/jj_nvim.nix
-    ./plugins/alpha_nvim.nix
   ];
 
   rawPluginColorModules = [
     ./plugins/lualine_nvim.nix
     ./plugins/noice_nvim.nix
     ./plugins/nvim_notify.nix
+    ./plugins/alpha_nvim.nix
   ];
 
   rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
