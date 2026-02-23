@@ -80,7 +80,7 @@ in
           };
         };
         "shared_except \"resize\" \"locked\"" = {
-          "unbind" = "Ctrl r";
+          "unbind" = "Ctrl n";
           "bind \"Alt r\"" = {
             SwitchToMode = "Resize";
           };

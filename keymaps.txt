@@ -1,0 +1,101 @@
+ Sp | Search current word
+ Sw | Search current word
+ St | Toggle Spectre
+ jtp | Push
+ jtd | Delete
+ jts | Set
+ jbd | Delete
+ jbc | Create
+ jc | Commit
+ j> | Redo
+ j<lt> | Undo
+ jr | Rebase
+ j/ | Splite
+ js | Squash
+ je | Edit
+ jn | New
+ j= | Diff
+ jl | Log
+ jd | Description
+ zr | Diagnostics
+ xl | LSP
+ xs | Symbols
+ xD | Buffer Diagnostics
+ xd | Diagnostics
+ po | LSP Outline
+ pa | LSP Code Actions
+ pn | LSP Rename
+ ph | LSP Hover
+ pf | LSP Finder
+ pt | LSP Type Definition
+ pd | LSP Definition
+ o | Move to Right Window
+ i | Move to Above Window
+ e | Move to Below Window
+ n | Move to Left Window
+ bl | Lists Buffers
+ bd | Delete Buffer
+ bp | Previous Buffer
+ bn | Next Buffer
+ fq | Quit File
+ fe | File Explorer
+ fS | Save All Files
+ fs | Save File
+ fr | Recent Files
+ ff | Find File
+ fg | Find word
+ fn | New File
+ fb | Foobar
+ g | Git
+ rc | close directories
+ rr | refresh directories
+ rd | Open parent directory
+ m | Open web page for markdown preview
+ z | Request HTTP
+ q | Quit
+& | :help &-default
+Y | :help Y-default
+[  | Add empty line above cursor
+[B | :brewind
+[b | :bprevious
+[<C-T> |  :ptprevious
+[T | :trewind
+[t | :tprevious
+[A | :rewind
+[a | :previous
+[<C-L> | :lpfile
+[L | :lrewind
+[l | :lprevious
+[<C-Q> | :cpfile
+[Q | :crewind
+[q | :cprevious
+[D | Jump to the first diagnostic in the current buffer
+[d | Jump to the previous diagnostic in the current buffer
+]  | Add empty line below cursor
+]B | :blast
+]b | :bnext
+]<C-T> | :ptnext
+]T | :tlast
+]t | :tnext
+]A | :last
+]a | :next
+]<C-L> | :lnfile
+]L | :llast
+]l | :lnext
+]<C-Q> | :cnfile
+]Q | :clast
+]q | :cnext
+]D | Jump to the last diagnostic in the current buffer
+]d | Jump to the next diagnostic in the current buffer
+gO | vim.lsp.buf.document_symbol()
+grt | vim.lsp.buf.type_definition()
+gri | vim.lsp.buf.implementation()
+grr | vim.lsp.buf.references()
+gra | vim.lsp.buf.code_action()
+grn | vim.lsp.buf.rename()
+gx | Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)
+<Plug>luasnip-expand-repeat | LuaSnip: Repeat last node expansion
+<Plug>luasnip-delete-check | LuaSnip: Removes current snippet from jumplist
+<C-W><C-D> | Show diagnostics under the cursor
+<C-W>d | Show diagnostics under the cursor
+<C-L> | :help CTRL-L-default
