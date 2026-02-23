@@ -35,6 +35,7 @@ let
     ./plugins/bufferline_nvim.nix
     ./plugins/nvim_spectre.nix
     ./plugins/jj_nvim.nix
+    ./plugins/alpha_nvim.nix
   ];
 
   rawPluginColorModules = [
