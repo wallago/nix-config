@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   imports = [
     ./hyprland
     ./hypridle.nix
@@ -18,13 +19,18 @@
     ./imv.nix
     ./mako.nix
     ./zathura.nix
+    ./waypipe.nix
+    ./swayosd.nix
   ];
 
   xdg = {
     mimeApps.enable = true;
     portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-wlr
+        pkgs.xdg-desktop-portal-gtk
+      ];
     };
   };
 

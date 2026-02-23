@@ -1,3 +1,7 @@
-{ pkgs ? import <nixpkgs> { }, ... }: rec {
-  minicava = pkgs.callPackage ./minicava.nix { };
+{
+  pkgs ? import <nixpkgs> { },
+  ...
+}:
+{
+  eilmeldung = pkgs.callPackage ./eilmeldung.nix { };
 }

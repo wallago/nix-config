@@ -1,8 +1,10 @@
 { config, lib, ... }:
 let
-  allYubiKeySigningKeys = lib.concatStringsSep ","
-    (lib.mapAttrsToList (_: yk: yk.signing) config.yubikey);
-in {
+  allYubiKeySigningKeys = lib.concatStringsSep "," (
+    lib.mapAttrsToList (_: yk: yk.signing) config.yubikey
+  );
+in
+{
   programs.password-store = {
     enable = true;
     settings = {
@@ -13,11 +15,9 @@ in {
 
   services.pass-secret-service = {
     enable = true;
-    storePath = "${config.home.homeDirectory}/.password-store";
   };
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories =
-      [ ".password-store/" ];
+    "/persist/".directories = [ ".password-store/" ];
   };
 }

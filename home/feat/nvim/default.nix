@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  keymap,
+  ...
+}:
 let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
@@ -20,12 +25,16 @@ let
     ./plugins/smear_cursor_nvim.nix
     ./plugins/telescope_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/which_key_nvim.nix
     ./plugins/mermaid_nvim.nix
     ./plugins/hunk_nvim.nix
     ./plugins/neoscroll_nvim.nix
     ./plugins/lspsaga-nvim.nix
     ./plugins/rest-nvim.nix
+    ./plugins/nvim_autopairs.nix
+    ./plugins/indent_blankline_nvim.nix
+    ./plugins/bufferline_nvim.nix
+    ./plugins/nvim_spectre.nix
+    ./plugins/jj_nvim.nix
   ];
 
   rawPluginColorModules = [
@@ -34,18 +43,24 @@ let
     ./plugins/nvim_notify.nix
   ];
 
-  pluginModules = (map (file: import file { inherit pkgs; }) rawPluginModules)
-    ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules;
+  rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
 
-  getOrDefault = name: default: module:
+  pluginModules =
+    (map (file: import file { inherit pkgs; }) rawPluginModules)
+    ++ map (file: import file { inherit pkgs c; }) rawPluginColorModules
+    ++ map (file: import file { inherit pkgs keymap; }) rawPluginKeymapingModules;
+
+  getOrDefault =
+    name: default: module:
     if builtins.hasAttr name module then module.${name} else default;
 
   allPlugins = builtins.concatLists (map (m: m.plugins) pluginModules);
-  allDeps =
-    builtins.concatLists (map (m: getOrDefault "deps" [ ] m) pluginModules);
-  allConfig = builtins.concatStringsSep "\n"
-    (map (m: getOrDefault "config" "" m) pluginModules);
-in {
+  allExtraLuaPackages =
+    ps: builtins.concatLists (map (m: (getOrDefault "extraLuaPackages" (_: [ ]) m) ps) pluginModules);
+  allDeps = builtins.concatLists (map (m: getOrDefault "deps" [ ] m) pluginModules);
+  allConfig = builtins.concatStringsSep "\n" (map (m: getOrDefault "config" "" m) pluginModules);
+in
+{
   home.sessionVariables = {
     EDITOR = "nvim";
     COLORTERM = "truecolor";
@@ -56,13 +71,15 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = allPlugins ++ (with pkgs.vimPlugins; [
-      # stand alone
-      markdown-preview-nvim
-      vim-commentary
-    ]);
-
-    extraLuaConfig = ''
+    plugins =
+      allPlugins
+      ++ (with pkgs.vimPlugins; [
+        # stand alone
+        markdown-preview-nvim
+        vim-commentary
+      ]);
+    extraLuaPackages = allExtraLuaPackages;
+    initLua = ''
       -- General Settings
       vim.opt.number = true
       vim.opt.expandtab = true
@@ -97,6 +114,25 @@ in {
       vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
       vim.opt.backup = false
       vim.opt.writebackup = false
+
+      -- Performance improvements
+      vim.opt.ttyfast = true
+      vim.opt.updatetime = 250
+      vim.opt.timeoutlen = 300
+
+      -- Better split behavior
+      vim.opt.splitright = true
+      vim.opt.splitbelow = true
+
+      -- Show whitespace characters
+      vim.opt.list = true
+      vim.opt.listchars = {
+        tab = '→ ',
+        trail = '·',
+        extends = '»',
+        precedes = '«',
+        nbsp = '␣'
+      }
 
       -- Spelling & Auto-Completion
       vim.opt.spell = false
@@ -172,17 +208,3 @@ in {
 
   home.packages = allDeps;
 }
-
-# -- TQT
-# local path = "/home/wallago/Perso/rewind/rewind-nvim/target/debug/librewind_nvim.so"
-# local mod = package.loadlib(path, "luaopen_rewind")
-# if not mod then
-#   error("Failed to load Rust module at: " .. path)
-# end
-# local rewind = mod()
-# vim.api.nvim_create_user_command("Rewind", function()
-#   rewind.hello("from command")
-# end, {})
-# vim.api.nvim_create_user_command("RewindToggle", function()
-#   rewind.toggle()
-# end, {})

@@ -1,4 +1,5 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [
     nvim-treesitter
     nvim-treesitter-parsers.bash
@@ -31,19 +32,21 @@
     nvim-treesitter-parsers.vimdoc
     nvim-treesitter-parsers.yaml
     nvim-treesitter-parsers.zig
+    nvim-treesitter-parsers.javascript
+    nvim-treesitter-parsers.typescript
   ];
   config = ''
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter").setup({
       auto_install = true,
       parser_install_dir = vim.fn.stdpath("data") .. "/parsers",
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
       },
-      ident = { enable = true }, 
+      indent = { enable = true },
       rainbow = {
         enable = true,
         extended_mode = true,
@@ -51,5 +54,10 @@
       }
     })
   '';
-  deps = with pkgs; [ gcc nodejs tree-sitter grc ];
+  deps = with pkgs; [
+    gcc
+    nodejs
+    tree-sitter
+    grc
+  ];
 }

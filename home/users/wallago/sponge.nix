@@ -1,42 +1,60 @@
-{ lib, config, pkgs, inputs, outputs, ... }:
-let username = "wallago";
-in {
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}:
+let
+  username = "wallago";
+in
+{
   imports = [
-    (import ../../common { inherit username lib config pkgs outputs inputs; })
+    (import ../../common {
+      inherit
+        username
+        lib
+        config
+        pkgs
+        outputs
+        inputs
+        ;
+    })
     ../../feat/desktop
     ../../feat/pass.nix
     ../../feat/productivity
     ../../feat/games
+    ../../feat/info.nix
     ./common.nix
   ];
 
-  #  ------   ----------   ------ 
+  #  ------   ----------   ------
   # | DP-1 | | HDMI-A-1 | | DP-2 |
   #  ------   ----------   ------
   monitors = [
     {
-      name = "DP-2";
-      width = 1920;
-      height = 1080;
-      workspace = "3";
-      position = "4480x0";
-    }
-    {
-      name = "DP-1";
+      name = "DP-3";
       width = 1920;
       height = 1080;
       refreshRate = 240;
       workspace = "2";
       position = "0x0";
-      scale = "1";
     }
     {
-      name = "HDMI-A-1";
+      name = "DP-2";
       width = 2560;
       height = 1440;
       workspace = "1";
       primary = true;
       position = "1920x0";
+    }
+    {
+      name = "HDMI-A-1";
+      width = 1920;
+      height = 1080;
+      workspace = "3";
+      position = "4480x0";
     }
   ];
 

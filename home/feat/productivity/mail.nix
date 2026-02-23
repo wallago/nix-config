@@ -1,23 +1,43 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   oama = lib.getExe config.programs.oama.package;
 
-  common = { name, mailbox, title }: {
-    realName = name;
-    userName = mailbox;
-    address = mailbox;
-    mbsync = {
-      enable = true;
-      create = "maildir";
-      expunge = "both";
+  common =
+    {
+      name,
+      mailbox,
+      title,
+    }:
+    {
+      realName = name;
+      userName = mailbox;
+      address = mailbox;
+      mbsync = {
+        enable = true;
+        create = "maildir";
+        expunge = "both";
+      };
+      msmtp.enable = true;
+      neomutt = {
+        enable = true;
+        mailboxName = "=== ${title} ===";
+        extraMailboxes = [
+          "Drafts"
+          "Junk"
+          "Sent"
+          "Trash"
+          "[Gmail]/All Mail"
+        ];
+        extraConfig = ''
+          set copy = no
+        '';
+      };
     };
-    msmtp.enable = true;
-    neomutt = {
-      enable = true;
-      mailboxName = "=== ${title} ===";
-      extraMailboxes = [ "Drafts" "Junk" "Sent" "Trash" "[Gmail]/All Mail" ];
-    };
-  };
   channels = {
     Inbox = {
       farPattern = "INBOX";
@@ -69,9 +89,10 @@ let
     };
   };
 
-in {
+in
+{
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories = [ "Mail/" ];
+    "/persist/".directories = [ "Mail/" ];
   };
 
   # IMAP4 and Maildir mailbox synchronizer
@@ -91,60 +112,71 @@ in {
   accounts.email = {
     maildirBasePath = "Mail";
     accounts = {
-      dev = let mailbox = "commandant.cousteau1997@gmail.com";
-      in {
-        primary = true;
-        passwordCommand = "${oama} access ${mailbox}";
-        flavor = "gmail.com";
-        mbsync = {
-          groups.usp.channels = channels;
-          extraConfig.account.AuthMechs = "XOAUTH2";
+      dev =
+        let
+          mailbox = "commandant.cousteau1997@gmail.com";
+        in
+        {
+          primary = true;
+          passwordCommand = "${oama} access ${mailbox}";
+          flavor = "gmail.com";
+          mbsync = {
+            groups.usp.channels = channels;
+            extraConfig.account.AuthMechs = "XOAUTH2";
+          };
+          imap.host = "imap.gmail.com"; # retrieving and managing emails on the mail server.
+          smtp.host = "smtp.gmail.com"; # sending emails
+          msmtp.extraConfig.auth = "oauthbearer";
+        }
+        // common {
+          name = "Wallago";
+          title = "Dev";
+          inherit mailbox;
         };
-        imap.host =
-          "imap.gmail.com"; # retrieving and managing emails on the mail server.
-        smtp.host = "smtp.gmail.com"; # sending emails
-        msmtp.extraConfig.auth = "oauthbearer";
-      } // common {
-        name = "Wallago";
-        title = "Dev";
-        inherit mailbox;
-      };
 
-      perso = let mailbox = "henrotte.hugo@gmail.com";
-      in {
-        passwordCommand = "${oama} access ${mailbox}";
-        flavor = "gmail.com";
-        mbsync = {
-          groups.usp.channels = channels;
-          extraConfig.account.AuthMechs = "XOAUTH2";
+      perso =
+        let
+          mailbox = "henrotte.hugo@gmail.com";
+        in
+        {
+          passwordCommand = "${oama} access ${mailbox}";
+          flavor = "gmail.com";
+          mbsync = {
+            groups.usp.channels = channels;
+            extraConfig.account.AuthMechs = "XOAUTH2";
+          };
+          imap.host = "imap.gmail.com"; # retrieving and managing emails on the mail server.
+          smtp.host = "smtp.gmail.com"; # sending emails
+          msmtp.extraConfig.auth = "oauthbearer";
+        }
+        // common {
+          name = "Hugo Henrotte";
+          title = "Perso";
+          inherit mailbox;
         };
-        imap.host =
-          "imap.gmail.com"; # retrieving and managing emails on the mail server.
-        smtp.host = "smtp.gmail.com"; # sending emails
-        msmtp.extraConfig.auth = "oauthbearer";
-      } // common {
-        name = "Hugo Henrotte";
-        title = "Perso";
-        inherit mailbox;
-      };
     };
   };
 
   # Only run if gpg is unlocked
   systemd.user.services.mbsync.Service.ExecCondition =
-    let gpgCmds = import ../cli/gpg-commands.nix { inherit pkgs config lib; };
-    in ''
+    let
+      gpgCmds = import ../cli/gpg-commands.nix { inherit pkgs config lib; };
+    in
+    ''
       /bin/sh -c "${gpgCmds.isUnlocked}"
     '';
 
   # Ensure 'createMaildir' runs after 'linkGeneration'
   home.activation = {
-    createMaildir = lib.mkForce (lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-      run mkdir -m700 -p $VERBOSE_ARG ${
-        lib.concatStringsSep " " (lib.mapAttrsToList (_: v: v.maildir.absPath)
-          config.accounts.email.accounts)
-      }
-    '');
+    createMaildir = lib.mkForce (
+      lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        run mkdir -m700 -p $VERBOSE_ARG ${
+          lib.concatStringsSep " " (
+            lib.mapAttrsToList (_: v: v.maildir.absPath) config.accounts.email.accounts
+          )
+        }
+      ''
+    );
   };
 
 }

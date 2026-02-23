@@ -20,7 +20,7 @@ in [
     if m.enabled then
       "${toString m.width}x${toString m.height}@${
         toString m.refreshRate
-      },${m.position},${m.scale}"
+      },${m.position},${toString m.scale}"
     else
       "disable"
   }") (config.monitors))

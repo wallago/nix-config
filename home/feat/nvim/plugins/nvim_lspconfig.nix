@@ -1,11 +1,10 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [ nvim-lspconfig ];
   config = ''
     vim.lsp.inlay_hint.enable(true)
     vim.lsp.set_log_level("INFO")
-
-    local lspconfig = require("lspconfig")
-    lspconfig.nixd.setup({
+    vim.lsp.config("nixd", {
       cmd = { "nixd" },
       settings = {
         nixd = {
@@ -19,5 +18,8 @@
       },
     })
   '';
-  deps = with pkgs; [ nixd nixfmt-classic ];
+  deps = with pkgs; [
+    nixd
+    nixfmt
+  ];
 }

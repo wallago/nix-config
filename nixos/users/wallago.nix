@@ -1,19 +1,29 @@
-{ pkgs, config, inputs, lib, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   username = "wallago";
-  ifTheyExist = groups:
-    builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-
-in {
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in
+{
   imports = [
-    # Includes the Home Manager module from the home-manager input in NixOS configuration
-    inputs.home-manager.nixosModules.home-manager
+    (import ./default.nix {
+      inherit
+        pkgs
+        config
+        inputs
+        lib
+        username
+        ;
+    })
   ];
 
   users.users.${username} = {
-    isNormalUser = true;
     extraGroups = ifTheyExist [
-      "wheel"
       "video"
       "audio"
       "disk"
@@ -23,21 +33,15 @@ in {
       "network"
       "plugdev"
       "tss"
+      "dialout"
     ];
     hashedPasswordFile = config.sops.secrets.wallago-password.path;
-    shell = pkgs.fish;
-    packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys =
-      lib.mapAttrsToList (_: yk: builtins.readFile yk.sshPub) config.yubikey;
   };
 
-  home-manager.users.${username} =
-    import ../../home/users/${username}/${config.networking.hostName}.nix;
+  users.groups.dialout = { };
 
   sops.secrets.wallago-password = {
     sopsFile = ../common/secrets.yaml;
-    format = "yaml";
-    # Make this secret available early enough during system boot
     neededForUsers = true;
   };
 }

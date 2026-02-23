@@ -1,4 +1,8 @@
-{ pkgs }: {
+{ pkgs, keymap }:
+let
+  nav = keymap.nav;
+in
+{
   plugins = with pkgs.vimPlugins; [ which-key-nvim ];
   config = ''
     -- Set leader key
@@ -17,9 +21,9 @@
 
       -- Oil
       { "<leader>r", group = "Oil" },
-      { "<leader>od", "<cmd>Oil<cr>", desc = "Open parent directory" },
-      { "<leader>or", "<C-l>", desc = "refresh directories" },
-      { "<leader>oc", "<C-c>", desc = "close directories" },
+      { "<leader>rd", "<cmd>Oil<cr>", desc = "Open parent directory" },
+      { "<leader>rr", "<C-l>", desc = "refresh directories" },
+      { "<leader>rc", "<C-c>", desc = "close directories" },
 
       -- Git
       { "<leader>g", "<cmd>Neogit<cr>", desc = "Git" },
@@ -45,10 +49,10 @@
 
       -- Window
       { "<leader>w", proxy = "<c-w>", group = "windows" },
-      { "<leader>h", "<C-w>h", desc = "Move to Left Window" },
-      { "<leader>j", "<C-w>j", desc = "Move to Below Window" },
-      { "<leader>k", "<C-w>k", desc = "Move to Above Window" },
-      { "<leader>l", "<C-w>l", desc = "Move to Right Window" },
+      { "<leader>${nav.left}", "<C-w>h", desc = "Move to Left Window" },
+      { "<leader>${nav.down}", "<C-w>j", desc = "Move to Below Window" },
+      { "<leader>${nav.up}", "<C-w>k", desc = "Move to Above Window" },
+      { "<leader>${nav.right}", "<C-w>l", desc = "Move to Right Window" },
 
       -- LSP
       { "<leader>p", group = "LSP" },
@@ -69,8 +73,36 @@
       { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP" },
 
       -- Rust
-      { "<leader>r", group = "Rust" },
-      { "<leader>rr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+      { "<leader>z", group = "Rust" },
+      { "<leader>zr", "<cmd>RustAnalyzer restart<cr>", desc = "Diagnostics" },
+
+      -- Jujutsu
+      { "<leader>j", group = "Jujutsu" },
+      { "<leader>jd", "<cmd>J desc<cr>", desc = "Description" },
+      { "<leader>jl", "<cmd>J st<cr>", desc = "Status" },
+      { "<leader>jl", "<cmd>J log<cr>", desc = "Log" },
+      { "<leader>j=", "<cmd>J diff<cr>", desc = "Diff" },
+      { "<leader>jn", "<cmd>J new<cr>", desc = "New" },
+      { "<leader>je", "<cmd>J edit<cr>", desc = "Edit" },
+      { "<leader>js", "<cmd>J squash<cr>", desc = "Squash" },
+      { "<leader>j/", "<cmd>J splite<cr>", desc = "Splite" },
+      { "<leader>jr", "<cmd>J rebase<cr>", desc = "Rebase" },
+      { "<leader>j<", "<cmd>J undo<cr>", desc = "Undo" },
+      { "<leader>j>", "<cmd>J redo<cr>", desc = "Redo" },
+      { "<leader>jc", "<cmd>J commit<cr>", desc = "Commit" },
+      { "<leader>jb", group = "Bookmark" },
+      { "<leader>jbc", "<cmd>J bookmark create<cr>", desc = "Create" },
+      { "<leader>jbd", "<cmd>J bookmark delete<cr>", desc = "Delete" },
+      { "<leader>jt", group = "Tag" },
+      { "<leader>jts", "<cmd>J tag set<cr>", desc = "Set" },
+      { "<leader>jtd", "<cmd>J tag delete<cr>", desc = "Delete" },
+      { "<leader>jtp", "<cmd>J tag push<cr>", desc = "Push" },
+
+      -- Spectre
+      { "<leader>S", group = "Spectre" },
+      { "<leader>St", "<cmd>lua require('spectre').toggle()<cr>", desc = "Toggle Spectre" },
+      { "<leader>Sw", "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", desc = "Search current word" },
+      { "<leader>Sp", "<cmd>lua require('spectre').open_file({select_word=true})<cr>", desc = "Search current word" },
     })
   '';
 }

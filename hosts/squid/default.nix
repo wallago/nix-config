@@ -1,6 +1,8 @@
-{ inputs, ... }:
-let hostname = "squid";
-in {
+{ inputs, config, ... }:
+let
+  hostname = "squid";
+in
+{
   imports = [
     inputs.disko.nixosModules.disko
     ../../nixos/common
@@ -13,7 +15,8 @@ in {
     ../../nixos/feat/sound.nix
     ../../nixos/feat/printer.nix
     ../../nixos/feat/docker.nix
-    ../../nixos/feat/games
+    ../../nixos/feat/flatpak.nix
+    ../../nixos/feat/wireguard_client.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];
@@ -24,12 +27,14 @@ in {
 
   services.displayManager.gdm.banner = "go fuck your self";
 
-  boot.binfmt.emulatedSystems =
-    [ "aarch64-linux" "i686-linux" "riscv64-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "i686-linux"
+    "riscv64-linux"
+  ];
 
   u2f.mappings = {
-    wallago =
-      "wallago:N+0872p6RkLLzzpzZer5JZ+c7esDiNQye/jy7//fHJw5FXEGYNCzStpHmPJxVaVcQwhQLUjjBWkruMYi3w763g==,Yw95jmoJcL5EC1OjE3IUoBFOnPhsnC2LTyCj7ZxKV5aMklH0L9NgDSNAdOOfH7gw1LDBTzwPYpXkrQ/8IzuLpQ==,PKTj3cs5Yvsga/QYL1Jt7uZC8beCD0gEwLXX1kVSqUO5yMcxZ/wf261ngK34uQ0MXpUyvX1nLRVhbbRSM6HskA==,QTk3ammRzhMj0dbGfJsRfjcyQ0/iv0fE3JmTpLlR3Ahqd3B5G1D8xvOOZLxcA6zsEPYKbjTyDBeLA9zrB8QgKQ==,es256,+presence";
+    wallago = "wallago:N+0872p6RkLLzzpzZer5JZ+c7esDiNQye/jy7//fHJw5FXEGYNCzStpHmPJxVaVcQwhQLUjjBWkruMYi3w763g==,Yw95jmoJcL5EC1OjE3IUoBFOnPhsnC2LTyCj7ZxKV5aMklH0L9NgDSNAdOOfH7gw1LDBTzwPYpXkrQ/8IzuLpQ==,PKTj3cs5Yvsga/QYL1Jt7uZC8beCD0gEwLXX1kVSqUO5yMcxZ/wf261ngK34uQ0MXpUyvX1nLRVhbbRSM6HskA==,QTk3ammRzhMj0dbGfJsRfjcyQ0/iv0fE3JmTpLlR3Ahqd3B5G1D8xvOOZLxcA6zsEPYKbjTyDBeLA9zrB8QgKQ==,es256,+presence";
   };
 
   services.logind = {
@@ -41,4 +46,22 @@ in {
     };
   };
 
+  wg-client.interfaces = {
+    wg0 = {
+      ip = "10.100.0.2/24";
+      allowedIPs = [ "10.100.0.0/24" ];
+      serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
+      serverPort = 51820;
+    };
+    wg1 = {
+      ip = "10.200.0.2/24";
+      allowedIPs = [ "10.200.0.0/24" ];
+      serverPublicKey = "VwQJyFAj9053C6dT6zB/JZ9kBZ/wma1b+xfpB+eCRXs=";
+      serverPort = 51840;
+    };
+  };
+
+  ssh.users.wallago.allowedKeys = [
+    ../sponge/ssh_wallago_ed25519_key.pub
+  ];
 }

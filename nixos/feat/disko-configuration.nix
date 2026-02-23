@@ -1,5 +1,7 @@
-{ config, ... }: {
+{ config, ... }:
+{
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   disko.devices = {
     disk.disk1 = {
@@ -44,14 +46,23 @@
                 };
                 "@persist" = {
                   mountpoint = "/persist";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
                 };
                 "@nix" = {
                   mountpoint = "/nix";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
                 };
                 "@swap" = {
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
                   mountpoint = "/swap";
                   swap.swapfile = {
                     size = config.disk.swapSize;

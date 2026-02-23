@@ -1,45 +1,64 @@
-{ config, ... }:
-let
-  inherit (config) colorscheme;
-  c = colorscheme.colors;
-  toRGBA = color: "rgba(${builtins.substring 1 6 color}ff)";
-in {
+{ config, lib, ... }: {
   programs.hyprlock = {
     enable = true;
     settings = {
       auth.fingerprint.enabled = true;
-      general = {
-        hide_cursor = true;
-        ignore_empty_input = true;
+      general = { hide_cursor = true; };
+      animations = {
+        enabled = true;
+        bezier = [ "easeout,0.5, 1, 0.9, 1" "easeoutback,0.34,1.22,0.65,1" ];
+        animation = [ "fade, 1, 3, easeout" "inputField, 1, 1, easeoutback" ];
       };
       background = {
-        path = "${config.wallpaper}";
-        blur_passes = 3;
-        blur_size = 8;
+        path = "screenshot";
+        blur_passes = 4;
       };
-      input-field = {
-        size = "300, 50";
-        position = "0, -120";
-        font_color = toRGBA c.primary;
-        font_family = "${config.fontProfiles.regular.name}";
-        dots_center = true;
-        inner_color = toRGBA c.surface;
-        outer_color = toRGBA c.primary;
-        outline_thickness = 3;
-        check_color = toRGBA c.blue;
-        fail_color = toRGBA c.red;
-        placeholder_text = "<span>Password...</span>";
-        rounding = 4;
-      };
-      label = {
-        text = "Hi there, $USER";
-        color = toRGBA c.on_surface;
-        font_size = config.fontProfiles.regular.size + 3;
-        font_family = "${config.fontProfiles.regular.name}";
-        position = "0, 80";
-        halign = "center";
-        valign = "center";
-      };
+      input-field = lib.forEach config.monitors (monitor: {
+        monitor = monitor.name;
+        dots_size = toString (0.15 * monitor.scale);
+
+        font_color =
+          "rgb(${lib.removePrefix "#" config.colorscheme.colors.on_surface})";
+        font_family = config.fontProfiles.regular.name;
+        position = "0, -20%";
+        # $FAIL is moves to another label
+        fail_text = "";
+        # Hide outline and filling
+        outline_thickness = 0;
+        inner_color = "rgba(00000000)";
+        check_color = "rgba(00000000)";
+        fail_color = "rgba(00000000)";
+      });
+      label = lib.flatten (lib.forEach config.monitors (monitor: [
+        {
+          monitor = monitor.name;
+          text = "$TIME";
+          color =
+            "rgb(${lib.removePrefix "#" config.colorscheme.colors.on_surface})";
+          font_family = config.fontProfiles.regular.name;
+          font_size = toString (builtins.floor (140 * monitor.scale));
+          position = "0 0";
+        }
+        {
+          monitor = monitor.name;
+          text = "$FAIL";
+          font_color =
+            "rgb(${lib.removePrefix "#" config.colorscheme.colors.on_surface})";
+          font_family = config.fontProfiles.regular.name;
+          font_size = toString (builtins.floor (18 * monitor.scale));
+          position = "0, -40%";
+        }
+      ]));
+    };
+  };
+
+  wayland.windowManager.hyprland = {
+    settings = {
+      bind = let hyprlock = lib.getExe config.programs.hyprlock.package;
+      in [
+        "SUPER,backspace,exec,${hyprlock}"
+        "SUPER,XF86Calculator,exec,${hyprlock}"
+      ];
     };
   };
 }
