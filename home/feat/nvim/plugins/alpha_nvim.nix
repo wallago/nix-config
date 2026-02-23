@@ -46,11 +46,13 @@
       { type = "padding", val = 2 },
       dashboard.section.header,
       { type = "padding", val = 2 },
+      dashboard.section.buttons,
     }
 
-    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "${c.primary}", bold = true })
-    vim.api.nvim_set_hl(0, "AlphaButtons", { fg = "${c.on_surface}" })
-
     alpha.setup(dashboard.config)
+
+    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = '${c.primary}', bold = true })
+    vim.api.nvim_set_hl(0, "AlphaButtons", { fg = '${c.on_surface}' })
+
   '';
 }
