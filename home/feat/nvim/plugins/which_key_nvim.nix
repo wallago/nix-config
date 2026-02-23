@@ -14,6 +14,7 @@ in
       -- General
       { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
       { "<leader>z", "<cmd>Rest run<cr>", desc = "Request HTTP" },
+      { "<leader>?", "<cmd>lua open_cheatsheet()<cr>", desc = "Cheatsheet" },
 
       -- Miscellaneous
       { "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Open web page for markdown preview" },
