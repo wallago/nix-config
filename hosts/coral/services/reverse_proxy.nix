@@ -1,8 +1,17 @@
 { config, ... }:
 let
-  domain = "henrotte.xyz";
-  ssl-crt = config.sops.secrets."henrotte.xyz-ssl-crt".path;
-  ssl-key = config.sops.secrets."henrotte.xyz-ssl-key".path;
+  ssl = {
+    henrotte = {
+      domain = "henrotte.xyz";
+      crt = config.sops.secrets."henrotte.xyz-ssl-crt".path;
+      key = config.sops.secrets."henrotte.xyz-ssl-key".path;
+    };
+    wallago = {
+      domain = "wallago.xyz";
+      crt = config.sops.secrets."wallago.xyz-ssl-crt".path;
+      key = config.sops.secrets."wallago.xyz-ssl-key".path;
+    };
+  };
 in
 {
   services.nginx = {
@@ -12,25 +21,25 @@ in
     recommendedOptimisation = true;
     recommendedUwsgiSettings = true;
     virtualHosts = {
-      "markeeper.${domain}" = {
+      "markeeper.${ssl.wallago.domain}" = {
         enableACME = false;
         forceSSL = true;
-        sslCertificate = ssl-crt;
-        sslCertificateKey = ssl-key;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
         locations."/".proxyPass = "http://127.0.0.1:5501";
       };
-      "rewind.${domain}" = {
+      "rewind.${ssl.wallago.domain}" = {
         enableACME = false;
         forceSSL = true;
-        sslCertificate = ssl-crt;
-        sslCertificateKey = ssl-key;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
         locations."/".proxyPass = "http://127.0.0.1:5502";
       };
-      "rss.${domain}" = {
+      "rss.${ssl.wallago.domain}" = {
         enableACME = false;
         forceSSL = true;
-        sslCertificate = ssl-crt;
-        sslCertificateKey = ssl-key;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
         locations."/".proxyPass = "http://127.0.0.1:5503";
       };
     };
@@ -48,6 +57,16 @@ in
       group = "nginx";
     };
     "henrotte.xyz-ssl-key" = {
+      sopsFile = ../secrets.yaml;
+      owner = "nginx";
+      group = "nginx";
+    };
+    "wallago.xyz-ssl-crt" = {
+      sopsFile = ../secrets.yaml;
+      owner = "nginx";
+      group = "nginx";
+    };
+    "wallago.xyz-ssl-key" = {
       sopsFile = ../secrets.yaml;
       owner = "nginx";
       group = "nginx";

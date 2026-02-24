@@ -63,7 +63,7 @@ in
       -- { "<leader>ph", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "LSP Hover" },
       { "<leader>ph", "<cmd>Lspsaga hover_doc<cr>", desc = "LSP Hover" },
       { "<leader>pn", ":IncRename ", desc = "LSP Rename" },
-      { "<leader>pa", require("actions-preview").code_actions, desc = "LSP Code Actions" },
+      -- { "<leader>pa", require("actions-preview").code_actions, desc = "LSP Code Actions" },
       { "<leader>po", "<cmd>Lspsaga outline<cr>", desc = "LSP Outline" },
       
       -- Trouble

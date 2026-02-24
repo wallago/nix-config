@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage rec {
     owner = "christo-auer";
     repo = "eilmeldung";
     rev = "main";
-    hash = "sha256-yeB+eDaIjYCDXF9WjJ0zsELZwjjsaLUXH9zR956cVaw=";
+    hash = "sha256-nRK939ZesKwHR3IUsiz/JBHB76rGkKSgHrpFfBmrtoI=";
   };
 
   cargoHash = "sha256-yktc3T1SG6oUpV6P2zCAGYjLnsuz+PGXLcjCXi6eFeg=";

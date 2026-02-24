@@ -8,7 +8,7 @@ in
     adminCredentialsFile = miniflux-admin-credentials;
     config = {
       LISTEN_ADDR = "127.0.0.1:5503";
-      BASE_URL = "https://rss.henrotte.xyz";
+      BASE_URL = "https://rss.wallago.xyz";
     };
   };
 

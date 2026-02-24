@@ -1,1 +1,7 @@
-{ pkgs }: { plugins = with pkgs.vimPlugins; [ hunk-nvim ]; }
+{ pkgs }:
+{
+  plugins = with pkgs.vimPlugins; [ hunk-nvim ];
+  config = ''
+    require("hunk").setup()
+  '';
+}

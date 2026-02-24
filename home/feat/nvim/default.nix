@@ -10,38 +10,41 @@ let
   c = colorscheme.colors;
 
   rawPluginModules = [
-    ./plugins/actions_preview_nvim.nix
-    ./plugins/conform_nvim.nix
-    ./plugins/gitsigns_nvim.nix
-    ./plugins/inc_rename_nvim.nix
-    ./plugins/neogit.nix
-    ./plugins/nvim_cmp.nix
-    ./plugins/nvim_colorizer_lua.nix
+    # Essential
     ./plugins/nvim_lspconfig.nix
     ./plugins/nvim_treesitter.nix
-    ./plugins/nvim_web_devicons.nix
-    ./plugins/oil_nvim.nix
-    ./plugins/rustaceanvim.nix
-    ./plugins/smear_cursor_nvim.nix
+    ./plugins/conform_nvim.nix
+    ./plugins/nvim_cmp.nix
     ./plugins/telescope_nvim.nix
+    ./plugins/lspsaga-nvim.nix
+
+    # QOF
+    ./plugins/oil_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/mermaid_nvim.nix
+    ./plugins/inc_rename_nvim.nix
+    ./plugins/nvim_colorizer_lua.nix
+    ./plugins/nvim_web_devicons.nix
     ./plugins/hunk_nvim.nix
     ./plugins/neoscroll_nvim.nix
-    ./plugins/lspsaga-nvim.nix
-    ./plugins/rest-nvim.nix
     ./plugins/nvim_autopairs.nix
-    ./plugins/indent_blankline_nvim.nix
     ./plugins/bufferline_nvim.nix
-    ./plugins/nvim_spectre.nix
+
+    # Useful
+    ./plugins/rustaceanvim.nix
+    ./plugins/mermaid_nvim.nix
+    ./plugins/rest-nvim.nix
     ./plugins/jj_nvim.nix
+    ./plugins/nvim_spectre.nix
+
+    # ./plugins/actions_preview_nvim.nix
   ];
 
   rawPluginColorModules = [
+    # QOF
     ./plugins/lualine_nvim.nix
-    ./plugins/noice_nvim.nix
     ./plugins/nvim_notify.nix
     ./plugins/alpha_nvim.nix
+    ./plugins/indent_blankline_nvim.nix
   ];
 
   rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
@@ -108,9 +111,11 @@ in
     plugins =
       allPlugins
       ++ (with pkgs.vimPlugins; [
-        # stand alone
-        markdown-preview-nvim
+        # Essential
         vim-commentary
+
+        # Useful
+        markdown-preview-nvim
       ]);
     extraLuaPackages = allExtraLuaPackages;
     initLua = ''
