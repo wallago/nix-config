@@ -1,0 +1,9 @@
+[template]
+key_name = {
+  key_value = '<ctrl>+k';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+};
+
+[navigation]
