@@ -15,6 +15,17 @@ vim.opt.cursorlineopt = "number"
 vim.opt.signcolumn = "yes"
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
+vim.opt.foldcolumn = '1'
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+-- vim.opt.fillchars = {
+--   eob = "",
+--   fold = "",
+--   foldopen = "",
+--   foldsep = "",
+--   foldinner = "",
+--   foldclose = ""
+-- }
 vim.opt.mouse = "a"
 
 -- Search & Navigation
