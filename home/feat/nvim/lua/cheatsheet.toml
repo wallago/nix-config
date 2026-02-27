@@ -7,3 +7,296 @@ key_name = {
 };
 
 [navigation]
+0 = {
+  key_value = '0';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Start of line';
+};
+b = {
+  key_value = 'b';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Prev word';
+};
+B = {
+  key_value = 'B';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Prev WORD';
+};
+e = {
+  key_value = 'e';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next end of word';
+};
+E = {
+  key_value = 'E';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next end of WORD';
+};
+f = {
+  key_value = 'f';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Move to next char';
+};
+F = {
+  key_value = 'F';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Move to prev char';
+};
+G = {
+  key_value = 'G';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Last line';
+};
+h = {
+  key_value = 'h';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Left';
+};
+H = {
+  key_value = 'H';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Home line of window (top)';
+};
+j = {
+  key_value = 'j';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Down';
+};
+k = {
+  key_value = 'k';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Up';
+};
+l = {
+  key_value = 'l';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Right';
+};
+L = {
+  key_value = 'L';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Last line of window';
+};
+M = {
+  key_value = 'M';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Middle line of window';
+};
+t = {
+  key_value = 't';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Move before next char';
+};
+T = {
+  key_value = 'T';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Move before prev char';
+};
+w = {
+  key_value = 'w';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next word';
+};
+W = {
+  key_value = 'W';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next WORD';
+};
+dollar = {
+  key_value = '$';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'End of line';
+};
+caret = {
+  key_value = '^';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Start of line (non ws)';
+};
+percent = {
+  key_value = '%';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Matching (){}[]';
+};
+left_brace = {
+  key_value = '{';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Prev empty line';
+};
+right_brace = {
+  key_value = '}';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next empty line';
+};
+comma = {
+  key_value = ',';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Prev ftFT';
+};
+semicolon = {
+  key_value = ';';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Next ftFT';
+};
+slash = {
+  key_value = '/';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Search forward';
+};
+question = {
+  key_value = '?';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Search backward';
+};
+gg = {
+  key_value = 'gg';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'First line';
+};
+
+[editing]
+c = {
+  key_value = 'c';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Change';
+};
+d = {
+  key_value = 'd';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Delete';
+};
+r = {
+  key_value = 'r';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Replace';
+};
+y = {
+  key_value = 'y';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Yank';
+};
+tilde = {
+  key_value = '~';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Toggle case';
+};
+less_than = {
+  key_value = '<';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Indent left';
+};
+greater_than = {
+  key_value = '>';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Indent right';
+};
+
+[visual]
+v = {
+  key_value = 'v';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Visual';
+};
+V = {
+  key_value = 'V';
+  difficulty = 'beginner';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Visual Line';
+};
+
+[misc]
+Y = {
+  key_value = 'Y';
+  difficulty = 'intermediate';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Help Y-default';
+};
+exclamation = {
+  key_value = '!';
+  difficulty = 'advanced';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Run program';
+};
+ampersand = {
+  key_value = '&';
+  difficulty = 'advanced';
+  mode = [ 'N' ];
+  native = true;
+  description = 'Help &-default';
+};

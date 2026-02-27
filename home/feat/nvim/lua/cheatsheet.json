@@ -1,0 +1,296 @@
+{
+  "0": { "desc": "Start of line", "cat": "nav", "native": true, "mode": ["N"] },
+  "b": { "desc": "Prev word", "cat": "nav", "native": true, "mode": ["N"] },
+  "B": { "desc": "Prev WORD", "cat": "nav", "native": true, "mode": ["N"] },
+  "c": { "desc": "Change", "cat": "edit", "native": true, "mode": ["N"] },
+  "d": { "desc": "Delete", "cat": "edit", "native": true, "mode": ["N"] },
+  "e": {
+    "desc": "Next end of word",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "E": {
+    "desc": "Next end of WORD",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "f": {
+    "desc": "Move to next char",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "F": {
+    "desc": "Move to prev char",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "G": { "desc": "Last line", "cat": "nav", "native": true, "mode": ["N"] },
+  "h": { "desc": "Left", "cat": "nav", "native": true, "mode": ["N"] },
+  "H": {
+    "desc": "Top line of win",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "j": { "desc": "Down", "cat": "nav", "native": true, "mode": ["N"] },
+  "k": { "desc": "Up", "cat": "nav", "native": true, "mode": ["N"] },
+  "l": { "desc": "Right", "cat": "nav", "native": true, "mode": ["N"] },
+  "L": {
+    "desc": "Last line of win",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "M": {
+    "desc": "Middle line of win",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "r": { "desc": "Replace", "cat": "edit", "native": true, "mode": ["N"] },
+  "t": {
+    "desc": "Move before next char",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "T": {
+    "desc": "Move before prev char",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "v": { "desc": "Visual", "cat": "visu", "native": true, "mode": ["N"] },
+  "V": { "desc": "Visual line", "cat": "visu", "native": true, "mode": ["N"] },
+  "w": { "desc": "Next word", "cat": "nav", "native": true, "mode": ["N"] },
+  "W": { "desc": "Next WORD", "cat": "nav", "native": true, "mode": ["N"] },
+  "Y": { "desc": "Yank", "cat": "misc", "native": true, "mode": ["N"] },
+  "!": { "desc": "Run Program", "cat": "misc", "native": true, "mode": ["N"] },
+  "$": { "desc": "End of line", "cat": "nav", "native": true, "mode": ["N"] },
+  "%": {
+    "desc": "Matching () {} []",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  ",": { "desc": "Prev ftFT", "cat": "nav", "native": true, "mode": ["N"] },
+  "/": {
+    "desc": "Search forward",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  ";": { "desc": "Next ftFT", "cat": "nav", "native": true, "mode": ["N"] },
+  ">": { "desc": "Indent Left", "cat": "edit", "native": true, "mode": ["N"] },
+  "<": { "desc": "Indent Right", "cat": "edit", "native": true, "mode": ["N"] },
+  "?": {
+    "desc": "Search backward",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "^": {
+    "desc": "Start of line (non ws)",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "{": {
+    "desc": "Prev empty line",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "}": {
+    "desc": "Next empty line",
+    "cat": "nav",
+    "native": true,
+    "mode": ["N"]
+  },
+  "~": { "desc": "Toggle case", "cat": "edit", "native": true, "mode": ["N"] },
+  "g": {
+    "keys": {
+      "e": {
+        "desc": "Prev end of word",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "g": {
+        "desc": "First line",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "n": {
+        "desc": "Search forwards and select",
+        "cat": "visu",
+        "native": true,
+        "mode": ["N"]
+      },
+      "N": {
+        "desc": "Search backwards and select",
+        "cat": "visu",
+        "native": true,
+        "mode": ["N"]
+      },
+      "t": {
+        "desc": "Go to next tab",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "T": {
+        "desc": "Go to prev tab",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "u": {
+        "desc": "Lowercase",
+        "cat": "edit",
+        "native": true,
+        "mode": ["N"]
+      },
+      "U": {
+        "desc": "Uppercase",
+        "cat": "edit",
+        "native": true,
+        "mode": ["N"]
+      },
+      "U": {
+        "desc": "Last visual selection",
+        "cat": "visu",
+        "native": true,
+        "mode": ["N"]
+      },
+      "x": {
+        "desc": "Open URI under cursor",
+        "cat": "misc",
+        "native": true,
+        "mode": ["N"]
+      },
+      "c": {
+        "desc": "Commentary line",
+        "cat": "edit",
+        "native": false,
+        "command": "CommentaryLine",
+        "mode": ["N"]
+      }
+    }
+  },
+  "z": {
+    "keys": {
+      "a": {
+        "desc": "Toggle fold under cursor",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "A": {
+        "desc": "Toggle all folds under cursor",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "b": {
+        "desc": "Bottom this line",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "c": {
+        "desc": "Close fold under cursor",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "C": {
+        "desc": "Close all folds under cursor",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "d": {
+        "desc": "Delete fold under cursor",
+        "cat": "edit",
+        "native": true,
+        "mode": ["N"]
+      },
+      "D": {
+        "desc": "Delete all folds under cursor",
+        "cat": "edit",
+        "native": true,
+        "mode": ["N"]
+      },
+      "e": {
+        "desc": "Right this line",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      },
+      "E": {
+        "desc": "Delete all folds in file",
+        "cat": "edit",
+        "native": true,
+        "mode": ["N"]
+      },
+      "<Ent>": {
+        "desc": "Top  this line",
+        "cat": "nav",
+        "native": true,
+        "mode": ["N"]
+      }
+    }
+  },
+  "\"": { "keys": {} },
+  "'": { "keys": {} },
+  "[": { "keys": {} },
+  "]": { "keys": {} },
+  "`": { "keys": {} },
+  "^ L": {
+    "keys": {
+      "a": {
+        "desc": "LSP code actions",
+        "cat": "lsp",
+        "native": false,
+        "command": "Lspsaga code_action",
+        "mode": ["N"]
+      },
+      "f": {
+        "desc": "LSP finder",
+        "cat": "lsp",
+        "native": false,
+        "command": "Lspsaga finder",
+        "mode": ["N"]
+      },
+      "n": {
+        "desc": "LSP rename",
+        "cat": "lsp",
+        "native": false,
+        "command": "Lspsaga rename",
+        "mode": ["N"]
+      },
+      "d": {
+        "desc": "LSP def",
+        "cat": "lsp",
+        "native": false,
+        "command": "Lspsaga peek_definition",
+        "mode": ["N"]
+      },
+      "t": {
+        "desc": "LSP type def",
+        "cat": "lsp",
+        "native": false,
+        "command": "Lspsaga peek_type_definition",
+        "mode": ["N"]
+      }
+    }
+  },
+  "^ W": { "keys": {} },
+  " ": { "keys": {} }
+}

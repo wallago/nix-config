@@ -28,6 +28,7 @@ let
     ./plugins/neoscroll_nvim.nix
     ./plugins/nvim_autopairs.nix
     ./plugins/bufferline_nvim.nix
+    ./plugins/nvim_ufo.nix
 
     # Useful
     ./plugins/rustaceanvim.nix
@@ -35,8 +36,6 @@ let
     ./plugins/rest-nvim.nix
     ./plugins/jj_nvim.nix
     ./plugins/nvim_spectre.nix
-
-    # ./plugins/actions_preview_nvim.nix
   ];
 
   rawPluginColorModules = [
@@ -65,6 +64,7 @@ let
   allConfig = builtins.concatStringsSep "\n" (map (m: getOrDefault "config" "" m) pluginModules);
 
   general = builtins.readFile ./lua/general.lua;
+  remapping = builtins.readFile ./lua/remapping.lua;
   spell_completion = builtins.readFile ./lua/spell_completion.lua;
   diagnostic = builtins.readFile ./lua/diagnostic.lua;
   cheatsheet = builtins.readFile ./lua/cheatsheet.lua;
@@ -120,11 +120,12 @@ in
     extraLuaPackages = allExtraLuaPackages;
     initLua = ''
       ${general}
+      ${remaping}
       ${spell_completion}
       ${diagnostic}
       ${theme}
-      ${cheatsheet}
       ${allConfig}
+      ${remapping}
     '';
   };
 
