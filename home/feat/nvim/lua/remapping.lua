@@ -60,6 +60,26 @@ wk.add({
 
   -- Visual
   { "<C-v>", desc = "Visual block", mode = "n" },
+  { "u", desc = "Lowercase", mode = "v" },
+  { "U", desc = "Uppercase", mode = "v" },
+  { "I", desc = "Block insert (add text to each line)", mode = "v" },
+  { "A", desc = "Block append (add text at end of each line)", mode = "v" },
+  { ":", desc = "Enter command mode for selection", mode = "v" },
+
+  -- Copy & Paste
+  { "Y", desc = "Yank entire line", mode = "n" },
+  { "p", desc = "Paste after cursor", mode = "n" },
+  { "P", desc = "Paste before cursor", mode = "n" },
+  { "gp", desc = "Paste after and move cursor to end", mode = "n" },
+  { "gP", desc = "Paste before and move cursor to end", mode = "n" },
+  { "]p", desc = "Paste with auto-indent", mode = "n" },
+  { "[p", desc = "Paste before with auto-indent", mode = "n" },
+  { "\"_d", desc = "Delete without yanking (black hole)", mode = "n" }, -- to debug
+  { "\"0p", desc = "Paste from yank register", mode = "n" }, -- to debug
+  { "\"+y", desc = "Yank to system clipboard", mode = "n" }, -- to debug
+  { "\"+p", desc = "Paste from system clipboard", mode = "n" }, -- to debug
+  { "\"*y", desc = "Yank to primary selection", mode = "n" }, -- to debug
+  { "\"*p", desc = "Paste from primary selection", mode = "n" }, -- to debug
 
   { "q", desc = "Stop recording macro", mode = "n" }
 })
@@ -81,6 +101,12 @@ wk.add({ "o", hidden = true, mode = "n" })
 vim.keymap.set({ "n" }, "J", "O", { noremap = true, desc = "Join line below to current" })
 vim.keymap.set({ "n" }, "O", "<Nop>", { noremap = true })
 wk.add({ "O", hidden = true, mode = "n" })
+vim.keymap.set({ "x" }, "j", "o", { noremap = true, desc = "Move to other end of selection" })
+vim.keymap.set({ "x" }, "o", "<Nop>", { noremap = true })
+wk.add({ "o", hidden = true, mode = "x" })
+vim.keymap.set({ "x" }, "J", "O", { noremap = true, desc = "Move to other corner of block" })
+vim.keymap.set({ "x" }, "O", "<Nop>", { noremap = true })
+wk.add({ "O", hidden = true, mode = "x" })
 
 -- j key
 vim.keymap.set({ "n" }, "<leader>J", "J", { noremap = true, desc = "Open new line above" })
@@ -116,9 +142,9 @@ wk.add({ "i", hidden = true, mode = "n" })
 vim.keymap.set({ "n" }, "L", "I", { noremap = true, desc = "Insert at beginning of line" })
 vim.keymap.set({ "n" }, "I", "<Nop>", { noremap = true })
 wk.add({ "I", hidden = true, mode = "n" })
-vim.keymap.set({ "n" }, "^K", "^E", { noremap = true, desc = "Scroll down" })
-vim.keymap.set({ "n" }, "^E", "<Nop>", { noremap = true })
-wk.add({ "^E", hidden = true, mode = "n" })
+vim.keymap.set({ "n" }, "<C-k>", "<C-e>", { noremap = true, desc = "Scroll down" })
+vim.keymap.set({ "n" }, "<C-e>", "<Nop>", { noremap = true })
+wk.add({ "<C-e>", hidden = true, mode = "n" })
 
 -- n key
 

@@ -1,4 +1,5 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [ rustaceanvim ];
   config = ''
     vim.g.rustaceanvim = {
@@ -11,6 +12,11 @@
                 enable = true,
               },
             },
+            checkOnSave = true,
+            cachePriming = {
+              enable = false,
+            },
+            numThreads = 4,
           },
         },
       },
