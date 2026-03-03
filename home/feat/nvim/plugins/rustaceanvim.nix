@@ -22,4 +22,7 @@
       },
     }
   '';
+  deps = with pkgs; [
+    rust-analyzer
+  ];
 }

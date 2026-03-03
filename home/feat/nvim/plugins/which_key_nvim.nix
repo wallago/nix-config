@@ -29,7 +29,7 @@ in
       sort = { "local", "order", "group", "alphanum", "mod", "lower" },
     })
     wk.add({
-      # { "f", "<cmd>WhichKey<cr>", desc = "Cheatsheet", icon = "󰌌" },
+      -- { "f", "<cmd>WhichKey<cr>", desc = "Cheatsheet", icon = "󰌌" },
     })
   '';
 }

@@ -29,6 +29,8 @@ let
     ./plugins/nvim_autopairs.nix
     ./plugins/bufferline_nvim.nix
     ./plugins/nvim_ufo.nix
+    ./plugins/todo_comments_nvim.nix
+    ./plugins/yanky_nvim.nix
 
     # Useful
     ./plugins/rustaceanvim.nix

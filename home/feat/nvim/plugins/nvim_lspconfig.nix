@@ -3,7 +3,7 @@
   plugins = with pkgs.vimPlugins; [ nvim-lspconfig ];
   config = ''
     vim.lsp.inlay_hint.enable(true)
-    vim.lsp.set_log_level("INFO")
+    vim.lsp.set_log_level("WARN")
     vim.lsp.config("nixd", {
       cmd = { "nixd" },
       settings = {
@@ -17,6 +17,7 @@
         },
       },
     })
+    vim.lsp.enable("nixd")
   '';
   deps = with pkgs; [
     nixd
