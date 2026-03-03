@@ -65,11 +65,42 @@ wk.add({
 	-- Nav
 	{ "g_", desc = "last CHAR of line", mode = "n" },
 	{ "G", desc = "Last line / {count} go to line", mode = "n" },
-	{ "<C-d>", desc = "Move half page down", mode = "n" },
-	{ "<C-u>", desc = "Move half page up", mode = "n" },
-	{ "<C-f>", desc = "Move page down", mode = "n" },
-	{ "<C-b>", desc = "Move page up", mode = "n" },
-	{ "<C-y>", desc = "Scroll up", mode = "n" },
+	{
+		"<C-d>",
+		desc = "Move half page down",
+		mode = "n",
+		"<cmd>lua require('neoscroll').ctrl_d({ duration = 250 })<cr>",
+	},
+	{
+		"<C-u>",
+		desc = "Move half page up",
+		mode = "n",
+		"<cmd>lua require('neoscroll').ctrl_u({ duration = 250 })<cr>",
+	},
+	{
+		"<C-f>",
+		desc = "Move page down",
+		mode = "n",
+		"<cmd>lua require('neoscroll').ctrl_f({ duration = 450 })<cr>",
+	},
+	{
+		"<C-b>",
+		desc = "Move page up",
+		mode = "n",
+		"<cmd>lua require('neoscroll').ctrl_b({ duration = 450 })<cr>",
+	},
+	{
+		"<C-y>",
+		desc = "Scroll up",
+		mode = "n",
+		"<cmd>lua require('neoscroll').scroll(-0.1, { move_cursor=false, duration = 100 })<cr>",
+	},
+	{
+		"<C-k>",
+		desc = "Scroll down",
+		mode = "n",
+		"<cmd>lua require('neoscroll').scroll(0.1, { move_cursor=false, duration = 100 })<cr>",
+	},
 	{ "(", desc = "Prev sentence", mode = "n" },
 	{ ")", desc = "Next sentence", mode = "n" },
 	{ "{", desc = "Prev paragraph", mode = "n" },
@@ -320,6 +351,24 @@ wk.add({
 	{ "<leader>Rs", "<cmd>lua require('kulala').run()<cr>", desc = "Send the request", mode = "n" },
 	{ "<leader>RS", "<cmd>lua require('kulala').show_stats()<cr>", desc = "Show stats", mode = "n" },
 	{ "<leader>Rt", "<cmd>lua require('kulala').toggle_view()<cr>", desc = "Toggle headers/body", mode = "n" },
+
+	-- Spectre
+	{ "<leader>S", group = "Spectre" },
+	{ "<leader>St", "<cmd>lua require('spectre').toggle()<cr>", desc = "Toggle Spectre" },
+	{
+		"<leader>Sw",
+		"<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
+		desc = "Replace word under cursor (project)",
+	},
+	{
+		"<leader>Sp",
+		"<cmd>lua require('spectre').open_file({select_word=true})<cr>",
+		desc = "Replace word under cursor (file)",
+	},
+
+	-- UFO
+
+	-- Rustecean
 
 	-- Yanky
 	{ "<C-n>", desc = "Cycling next entry", mode = "n", "<Plug>(YankyNextEntry)" },

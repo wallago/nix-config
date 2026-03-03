@@ -21,7 +21,6 @@ let
     # QOF
     ./plugins/oil_nvim.nix
     ./plugins/trouble_nvim.nix
-    ./plugins/inc_rename_nvim.nix
     ./plugins/nvim_colorizer_lua.nix
     ./plugins/nvim_web_devicons.nix
     ./plugins/hunk_nvim.nix
@@ -35,9 +34,9 @@ let
     # Useful
     ./plugins/rustaceanvim.nix
     ./plugins/mermaid_nvim.nix
-    ./plugins/rest-nvim.nix
     ./plugins/jj_nvim.nix
     ./plugins/nvim_spectre.nix
+    # ./plugins/kulala_nvim.nix
   ];
 
   rawPluginColorModules = [

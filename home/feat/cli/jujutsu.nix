@@ -8,12 +8,8 @@
         email = config.programs.git.settings.user.email;
       };
       ui = {
-        show-cryptographic-signatures = true;
-        style = "square";
-        diff-editor = "nvim -c DiffEditor $left $right $output";
-        diff.tool = "nvim -c 'DiffEditor left right'";
         pager = "less -FRX";
-        default-command = "log-recent";
+        show-cryptographic-signatures = true;
       };
       aliases = {
         l = [ "log" ];
