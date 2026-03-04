@@ -9,7 +9,13 @@
       };
       ui = {
         pager = "less -FRX";
-        show-cryptographic-signatures = true;
+        style = "square";
+        diff-editor = [
+          "nvim"
+          "-c"
+          "DiffEditor \$left \$right \$output"
+        ];
+        default-command = "log-recent";
       };
       aliases = {
         l = [ "log" ];
