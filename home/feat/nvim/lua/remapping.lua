@@ -32,8 +32,8 @@ vim.keymap.set({ "n" }, "<C-w>O", "<C-w>L", { noremap = true, desc = "Move far r
 vim.keymap.set({ "n" }, "h", "n", { noremap = true, desc = "Jump to next match" })
 vim.keymap.set({ "n" }, "H", "N", { noremap = true, desc = "Jump to previous match" })
 -- e key
-vim.keymap.set({ "n" }, "k", "e", { noremap = true, desc = "Next end of word" })
-vim.keymap.set({ "n" }, "K", "E", { noremap = true, desc = "Next end of WORD" })
+vim.keymap.set({ "n" }, "f", "e", { noremap = true, desc = "Next end of word" })
+vim.keymap.set({ "n" }, "F", "E", { noremap = true, desc = "Next end of WORD" })
 vim.keymap.set({ "n" }, "<C-k>", "<C-e>", { noremap = true, desc = "Scroll down" })
 -- i key
 vim.keymap.set({ "n" }, "l", "i", { noremap = true, desc = "Insert before cursor" })
@@ -51,6 +51,12 @@ vim.keymap.set({ "n", "x" }, "<C-w>j", "<C-w>o", { noremap = true, desc = "Close
 -- Wick key
 -- https://ncs.dev/
 local wk = require("which-key")
+wk.setup({
+	keys = {
+		scroll_down = "<c-f>", -- change to whatever you want, or set to ""
+		scroll_up = "<c-u>", -- same here
+	},
+})
 
 vim.keymap.set("i", "<C-/>", function()
 	wk.show({ mode = "i" })
@@ -66,7 +72,7 @@ wk.add({
 	{ "g_", desc = "last CHAR of line", mode = "n" },
 	{ "G", desc = "Last line / {count} go to line", mode = "n" },
 	{
-		"<C-d>",
+		"<C-k>",
 		desc = "Move half page down",
 		mode = "n",
 		"<cmd>lua require('neoscroll').ctrl_d({ duration = 250 })<cr>",
@@ -78,7 +84,7 @@ wk.add({
 		"<cmd>lua require('neoscroll').ctrl_u({ duration = 250 })<cr>",
 	},
 	{
-		"<C-f>",
+		"<C-d>",
 		desc = "Move page down",
 		mode = "n",
 		"<cmd>lua require('neoscroll').ctrl_f({ duration = 450 })<cr>",
@@ -96,7 +102,7 @@ wk.add({
 		"<cmd>lua require('neoscroll').scroll(-0.1, { move_cursor=false, duration = 100 })<cr>",
 	},
 	{
-		"<C-k>",
+		"<C-h>",
 		desc = "Scroll down",
 		mode = "n",
 		"<cmd>lua require('neoscroll').scroll(0.1, { move_cursor=false, duration = 100 })<cr>",
@@ -194,7 +200,7 @@ wk.add({
 	{ "<leader>bl", desc = "List all buffers", mode = "n", "<cmd>Telescope buffers<cr>" },
 	{ "[b", desc = "Previous buffer", mode = "n", "<cmd>bp<cr>" },
 	{ "]b", desc = "Next buffer", mode = "n", "<cmd>bn<cr>" },
-	{ "<leader>bd", desc = "Delete buffer", mode = "n", "<cmd>bd<cr>" },
+	{ "<leader>bd", desc = "Delete buffer", mode = "n", "<cmd>bp|bd#<cr>" },
 
 	-- Windows
 
@@ -393,4 +399,18 @@ wk.add({
 	{ "<leader>ih", ":help neovim-tips<CR>", desc = "Neovim tips help", mode = "n" },
 	{ "<leader>ir", ":NeovimTipsRandom<CR>", desc = "Show random tip", mode = "n" },
 	{ "<leader>ip", ":NeovimTipsPdf<CR>", desc = "Open Neovim tips PDF", mode = "n" },
+
+	-- Not used
+	{ "k", hidden = true, mode = "n" },
+	{ "K", hidden = true, mode = "n" },
+	{ "t", hidden = true, mode = "n" },
+	{ "T", hidden = true, mode = "n" },
+	{ ",", hidden = true, mode = "n" },
+	{ ";", hidden = true, mode = "n" },
 })
+
+-- NOTE
+-- K and k are not used (in normal sure)
+-- T and t are not used (in normal sure)
+-- , is not used (in normal sure)
+-- ; is not used (in normal sure)
