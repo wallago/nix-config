@@ -368,20 +368,6 @@ wk.add({
 	{ "<leader>RS", "<cmd>lua require('kulala').show_stats()<cr>", desc = "Show stats", mode = "n" },
 	{ "<leader>Rt", "<cmd>lua require('kulala').toggle_view()<cr>", desc = "Toggle headers/body", mode = "n" },
 
-	-- Spectre
-	{ "<leader>S", group = "Spectre" },
-	{ "<leader>St", "<cmd>lua require('spectre').toggle()<cr>", desc = "Toggle Spectre" },
-	{
-		"<leader>Sw",
-		"<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
-		desc = "Replace word under cursor (project)",
-	},
-	{
-		"<leader>Sp",
-		"<cmd>lua require('spectre').open_file({select_word=true})<cr>",
-		desc = "Replace word under cursor (file)",
-	},
-
 	-- Rustacean
 	{ "<leader>a", group = "Rust", mode = "n" },
 	{ "<leader>aE", "<cmd>RustLsp expandMacro<cr>", desc = "Expand macro", mode = "n" },
@@ -400,11 +386,11 @@ wk.add({
 
 	-- Tips
 	{ "<leader>i", group = "Tips", mode = "n" },
-	{ "<leader>io", ":NeovimTips<CR>", desc = "Neovim tips", silent = true },
-	{ "<leader>ib", ":NeovimTipsBookmarks<CR>", desc = "Bookmarked tips", silent = true },
-	{ "<leader>ie", ":NeovimTipsEdit<CR>", desc = "Edit your Neovim tips", silent = true },
-	{ "<leader>ia", ":NeovimTipsAdd<CR>", desc = "Add your Neovim tip", silent = true },
-	{ "<leader>ih", ":help neovim-tips<CR>", desc = "Neovim tips help", silent = true },
-	{ "<leader>ir", ":NeovimTipsRandom<CR>", desc = "Show random tip", silent = true },
-	{ "<leader>ip", ":NeovimTipsPdf<CR>", desc = "Open Neovim tips PDF", silent = true },
+	{ "<leader>io", ":NeovimTips<CR>", desc = "Neovim tips", mode = "n" },
+	{ "<leader>ib", ":NeovimTipsBookmarks<CR>", desc = "Bookmarked tips", mode = "n" },
+	{ "<leader>ie", ":NeovimTipsEdit<CR>", desc = "Edit your Neovim tips", mode = "n" },
+	{ "<leader>ia", ":NeovimTipsAdd<CR>", desc = "Add your Neovim tip", mode = "n" },
+	{ "<leader>ih", ":help neovim-tips<CR>", desc = "Neovim tips help", mode = "n" },
+	{ "<leader>ir", ":NeovimTipsRandom<CR>", desc = "Show random tip", mode = "n" },
+	{ "<leader>ip", ":NeovimTipsPdf<CR>", desc = "Open Neovim tips PDF", mode = "n" },
 })

@@ -36,7 +36,6 @@ let
     ./plugins/rustaceanvim.nix
     ./plugins/mermaid_nvim.nix
     ./plugins/jj_nvim.nix
-    ./plugins/nvim_spectre.nix
     ./plugins/kulala_nvim.nix
   ];
 
