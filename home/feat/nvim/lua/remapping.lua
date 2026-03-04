@@ -397,4 +397,14 @@ wk.add({
 	{ "<leader>aj", "<cmd>RustLsp joinLines<cr>", desc = "Join lines (smart)", mode = "n" },
 	{ "<leader>aa", "<cmd>RustLsp codeAction<cr>", desc = "Code action (rust)", mode = "n" },
 	{ "<leader>ah", "<cmd>RustLsp hover actions<cr>", desc = "Hover actions", mode = "n" }, -- Rustecean
+
+	-- Tips
+	{ "<leader>i", group = "Tips", mode = "n" },
+	{ "<leader>io", ":NeovimTips<CR>", desc = "Neovim tips", silent = true },
+	{ "<leader>ib", ":NeovimTipsBookmarks<CR>", desc = "Bookmarked tips", silent = true },
+	{ "<leader>ie", ":NeovimTipsEdit<CR>", desc = "Edit your Neovim tips", silent = true },
+	{ "<leader>ia", ":NeovimTipsAdd<CR>", desc = "Add your Neovim tip", silent = true },
+	{ "<leader>ih", ":help neovim-tips<CR>", desc = "Neovim tips help", silent = true },
+	{ "<leader>ir", ":NeovimTipsRandom<CR>", desc = "Show random tip", silent = true },
+	{ "<leader>ip", ":NeovimTipsPdf<CR>", desc = "Open Neovim tips PDF", silent = true },
 })

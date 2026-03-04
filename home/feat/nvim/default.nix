@@ -30,6 +30,7 @@ let
     ./plugins/nvim_ufo.nix
     ./plugins/todo_comments_nvim.nix
     ./plugins/yanky_nvim.nix
+    ./plugins/neovim_tips.nix
 
     # Useful
     ./plugins/rustaceanvim.nix
