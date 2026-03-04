@@ -31,6 +31,7 @@ let
     ./plugins/todo_comments_nvim.nix
     ./plugins/yanky_nvim.nix
     ./plugins/neovim_tips.nix
+    ./plugins/indent_blankline_nvim.nix
 
     # Useful
     ./plugins/rustaceanvim.nix
@@ -44,7 +45,6 @@ let
     ./plugins/lualine_nvim.nix
     ./plugins/nvim_notify.nix
     ./plugins/alpha_nvim.nix
-    ./plugins/indent_blankline_nvim.nix
   ];
 
   rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
@@ -68,7 +68,6 @@ let
   remapping = builtins.readFile ./lua/remapping.lua;
   spell_completion = builtins.readFile ./lua/spell_completion.lua;
   diagnostic = builtins.readFile ./lua/diagnostic.lua;
-  cheatsheet = builtins.readFile ./lua/cheatsheet.lua;
   theme = ''
     vim.cmd("highlight clear")
     vim.o.background = "dark"
