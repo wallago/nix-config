@@ -150,12 +150,22 @@ wk.add({
 
 	-- Copy & Paste
 	{ "Y", desc = "Yank entire line", mode = "n" },
-	{ "p", desc = "Paste after cursor", mode = "n" },
-	{ "P", desc = "Paste before cursor", mode = "n" },
-	{ "gp", desc = "Paste after and move cursor to end", mode = "n" },
-	{ "gP", desc = "Paste before and move cursor to end", mode = "n" },
-	{ "]p", desc = "Paste with auto-indent", mode = "n" },
-	{ "[p", desc = "Paste before with auto-indent", mode = "n" },
+	{ "<C-n>", desc = "Cycling next entry", mode = "n", "<Plug>(YankyNextEntry)" },
+	{ "<C-p>", desc = "Cycling prev entry", mode = "n", "<Plug>(YankyPreviousEntry)" },
+	{ "p", desc = "Paste after cursor", mode = "n", "<Plug>(YankyPutAfter)" },
+	{ "P", desc = "Paste before cursor", mode = "n", "<Plug>(YankyPutBefore)" },
+	{ "gp", desc = "Paste after cursor + move cursor at end", mode = "n", "<Plug>(YankyGPutAfter)" },
+	{ "gP", desc = "Paste before cursor + move cursor at end", mode = "n", "<Plug>(YankyGPutBefore)" },
+	{ "]p", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Paste after with indent", mode = "n" },
+	{ "[p", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Paste before with indent", mode = "n" },
+	{ "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Paste after with indent", mode = "n" },
+	{ "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Paste before with indent", mode = "n" },
+	{ ">p", "<Plug>(YankyPutIndentAfterShiftRight)", desc = "Paste after + shift right", mode = "n" },
+	{ "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", desc = "Paste after + shift left", mode = "n" },
+	{ ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", desc = "Paste before + shift right", mode = "n" },
+	{ "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", desc = "Paste before + shift left", mode = "n" },
+	{ "=p", "<Plug>(YankyPutAfterFilter)", desc = "Paste after + reindent", mode = "n" },
+	{ "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Paste before + reindent", mode = "n" },
 	-- { '"_d', desc = "Delete without yanking (black hole)", mode = "n" }, -- to debug
 	-- { '"0p', desc = "Paste from yank register", mode = "n" }, -- to debug
 	-- { '"+y', desc = "Yank to system clipboard", mode = "n" }, -- to debug
@@ -225,6 +235,12 @@ wk.add({
 	{ "]z", desc = "Move to end of fold", mode = "n" },
 	{ "zj", desc = "Move to next fold", mode = "n" },
 	{ "zk", desc = "Move to prev fold", mode = "n" },
+	{
+		"zK",
+		'<cmd>lua require("ufo").peekFoldedLinesUnderCursor()<cr>',
+		desc = "Peek fold or hover",
+		mode = "n",
+	},
 
 	-- Ex Command
 
@@ -274,16 +290,16 @@ wk.add({
 	{ "<leader>x", group = "Quickfix", mode = "n" },
 	{ "<leader>xq", desc = "Open quickfix window", mode = "n", "<cmd>copen<cr>" },
 	{ "<leader>xc", desc = "Close quickfix window", mode = "n", "<cmd>cclose<cr>" },
-	{ "[q", desc = "Previous quickfix item", mode = "n", "<cmd>cclose<cr>" },
-	{ "]q", desc = "Next quickfix item", mode = "n", "<cmd>cclose<cr>" },
+	{ "[q", "<cmd>cprev<cr>", desc = "Previous quickfix item", mode = "n" },
+	{ "]q", "<cmd>cnext<cr>", desc = "Next quickfix item", mode = "n" },
 
 	-- Diff
 
 	-- Nvim
 
 	-- Todo
-	{ "[t", desc = "Previous TODO", mode = "n", '<cmd>function() require("todo-comments").jump_prev() end<cr>' },
-	{ "]t", desc = "Next TODO", mode = "n", '<cmd>function() require("todo-comments").jump_next() end<cr>' },
+	{ "[t", "<cmd>lua require('todo-comments').jump_prev()<cr>", desc = "Previous TODO", mode = "n" },
+	{ "]t", "<cmd>lua require('todo-comments').jump_next()<cr>", desc = "Next TODO", mode = "n" },
 
 	-- Trouble
 	{ "<leader>t", group = "Trouble", mode = "n" },
@@ -312,7 +328,7 @@ wk.add({
 	-- Jujutsu
 	{ "<leader>j", group = "Jujutsu" },
 	{ "<leader>jd", "<cmd>J desc<cr>", desc = "Description", mode = "n" },
-	{ "<leader>jl", "<cmd>J st<cr>", desc = "Status", mode = "n" },
+	{ "<leader>jS", "<cmd>J st<cr>", desc = "Status", mode = "n" },
 	{ "<leader>jl", "<cmd>J log<cr>", desc = "Log", mode = "n" },
 	{ "<leader>j=", "<cmd>J diff<cr>", desc = "Diff", mode = "n" },
 	{ "<leader>jn", "<cmd>J new<cr>", desc = "New", mode = "n" },
@@ -366,27 +382,19 @@ wk.add({
 		desc = "Replace word under cursor (file)",
 	},
 
-	-- UFO
-
-	-- Rustecean
-
-	-- Yanky
-	{ "<C-n>", desc = "Cycling next entry", mode = "n", "<Plug>(YankyNextEntry)" },
-	{ "<C-p>", desc = "Cycling prev entry", mode = "n", "<Plug>(YankyPreviousEntry)" },
-	-- vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-	-- vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-	-- vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
-	-- vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
-	-- vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
-	-- vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
-	-- vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
-	-- vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
-
-	-- vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
-	-- vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
-	-- vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
-	-- vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
-
-	-- vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
-	-- vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+	-- Rustacean
+	{ "<leader>a", group = "Rust", mode = "n" },
+	{ "<leader>aE", "<cmd>RustLsp expandMacro<cr>", desc = "Expand macro", mode = "n" },
+	{ "<leader>ac", "<cmd>RustLsp openCargo<cr>", desc = "Open Cargo.toml", mode = "n" },
+	{ "<leader>ap", "<cmd>RustLsp parentModule<cr>", desc = "Go to parent module", mode = "n" },
+	{ "<leader>ad", "<cmd>RustLsp renderDiagnostic<cr>", desc = "Render diagnostic", mode = "n" },
+	{ "<leader>ae", "<cmd>RustLsp explainError<cr>", desc = "Explain error", mode = "n" },
+	{ "<leader>ar", "<cmd>RustLsp runnables<cr>", desc = "Runnables", mode = "n" },
+	{ "<leader>aR", "<cmd>RustLsp debuggables<cr>", desc = "Debuggables", mode = "n" },
+	{ "<leader>at", "<cmd>RustLsp testables<cr>", desc = "Testables", mode = "n" },
+	{ "<leader>am", "<cmd>RustLsp moveItem up<cr>", desc = "Move item up", mode = "n" },
+	{ "<leader>an", "<cmd>RustLsp moveItem down<cr>", desc = "Move item down", mode = "n" },
+	{ "<leader>aj", "<cmd>RustLsp joinLines<cr>", desc = "Join lines (smart)", mode = "n" },
+	{ "<leader>aa", "<cmd>RustLsp codeAction<cr>", desc = "Code action (rust)", mode = "n" },
+	{ "<leader>ah", "<cmd>RustLsp hover actions<cr>", desc = "Hover actions", mode = "n" }, -- Rustecean
 })
