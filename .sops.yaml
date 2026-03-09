@@ -1,7 +1,7 @@
 keys:
   users: &age_keys
     - &wallago age1e3xhju8cdkvegw4x0usnx7g6f53ccn0s30v85uyx75wznnhgdv0qkek57k
-    - &julia age1e3xhju8cdkvegw4x0usnx7g6f53ccn0s30v85uyx75wznnhgdv0qkek57k
+    - &julia age1dnjvmgjvjkskv7vqvwrskc4nxuc7pmsjnxy9z0v0jnxpj4w2feaqnnhn9q
   hosts: &age_keys
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1vxct33xvtg6djlc3gqey6zs5x739hw02h0yr592yxgpfq8mxl9kszaz50y
