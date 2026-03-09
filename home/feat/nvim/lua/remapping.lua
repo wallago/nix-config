@@ -29,11 +29,11 @@ vim.keymap.set({ "n" }, "<C-w>O", "<C-w>L", { noremap = true, desc = "Move far r
 
 -- QWFPBJ
 -- n key
-vim.keymap.set({ "n" }, "h", "n", { noremap = true, desc = "Jump to next match" })
-vim.keymap.set({ "n" }, "H", "N", { noremap = true, desc = "Jump to previous match" })
+vim.keymap.set({ "n", "x" }, "h", "n", { noremap = true, desc = "Jump to next match" })
+vim.keymap.set({ "n", "x" }, "H", "N", { noremap = true, desc = "Jump to previous match" })
 -- e key
-vim.keymap.set({ "n" }, "f", "e", { noremap = true, desc = "Next end of word" })
-vim.keymap.set({ "n" }, "F", "E", { noremap = true, desc = "Next end of WORD" })
+vim.keymap.set({ "n", "x" }, "f", "e", { noremap = true, desc = "Next end of word" })
+vim.keymap.set({ "n", "x" }, "F", "E", { noremap = true, desc = "Next end of WORD" })
 vim.keymap.set({ "n" }, "<C-k>", "<C-e>", { noremap = true, desc = "Scroll down" })
 -- i key
 vim.keymap.set({ "n" }, "l", "i", { noremap = true, desc = "Insert before cursor" })
@@ -47,14 +47,15 @@ vim.keymap.set({ "x" }, "J", "O", { noremap = true, desc = "Move to other corner
 vim.keymap.set({ "n", "x" }, "<C-w>j", "<C-w>o", { noremap = true, desc = "Close all other windows" })
 
 -- Others
+vim.keymap.set({ "n", "x" }, "<C-f>", "<Nop>", { noremap = true })
 
 -- Wick key
 -- https://ncs.dev/
 local wk = require("which-key")
 wk.setup({
 	keys = {
-		scroll_down = "<c-f>", -- change to whatever you want, or set to ""
-		scroll_up = "<c-u>", -- same here
+		scroll_down = "<c-l>", -- change to whatever you want, or set to ""
+		scroll_up = "<c-f>", -- same here
 	},
 })
 
@@ -70,7 +71,7 @@ end, { desc = "Show normal mode keys" })
 wk.add({
 	-- Nav
 	{ "g_", desc = "last CHAR of line", mode = "n" },
-	{ "G", desc = "Last line / {count} go to line", mode = "n" },
+	{ "G", desc = "Last line / {count} go to line", mode = "n", "x" },
 	{
 		"<C-k>",
 		desc = "Move half page down",
@@ -107,10 +108,10 @@ wk.add({
 		mode = "n",
 		"<cmd>lua require('neoscroll').scroll(0.1, { move_cursor=false, duration = 100 })<cr>",
 	},
-	{ "(", desc = "Prev sentence", mode = "n" },
-	{ ")", desc = "Next sentence", mode = "n" },
-	{ "{", desc = "Prev paragraph", mode = "n" },
-	{ "}", desc = "Next paragraph", mode = "n" },
+	{ "(", desc = "Prev sentence", mode = "n", "x" },
+	{ ")", desc = "Next sentence", mode = "n", "x" },
+	{ "{", desc = "Prev paragraph", mode = "n", "x" },
+	{ "}", desc = "Next paragraph", mode = "n", "x" },
 
 	-- Insert
 	{ "a", desc = "Append after cursor", mode = "n" },
@@ -402,11 +403,17 @@ wk.add({
 
 	-- Not used
 	{ "k", hidden = true, mode = "n" },
+	{ "k", hidden = true, mode = "x" },
 	{ "K", hidden = true, mode = "n" },
 	{ "t", hidden = true, mode = "n" },
+	{ "t", hidden = true, mode = "x" },
 	{ "T", hidden = true, mode = "n" },
+	{ "T", hidden = true, mode = "x" },
 	{ ",", hidden = true, mode = "n" },
+	{ ",", hidden = true, mode = "x" },
 	{ ";", hidden = true, mode = "n" },
+	{ ";", hidden = true, mode = "x" },
+	{ "E", hidden = true, mode = "x" },
 })
 
 -- NOTE
