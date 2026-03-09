@@ -35,12 +35,12 @@ in
       "tss"
       "dialout"
     ];
-    hashedPasswordFile = config.sops.secrets.wallago-password.path;
+    hashedPasswordFile = config.sops.secrets.work-password.path;
   };
 
   users.groups.dialout = { };
 
-  sops.secrets.wallago-password = {
+  sops.secrets.work-password = {
     sopsFile = ../common/secrets.yaml;
     neededForUsers = true;
   };

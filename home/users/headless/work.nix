@@ -7,11 +7,10 @@
   ...
 }:
 let
-  username = "tuna";
+  username = "work";
 in
 {
   imports = [
-    ./common.nix
     (import ../../common {
       inherit
         username
@@ -22,5 +21,7 @@ in
         inputs
         ;
     })
+    ../../feat/pass.nix
+    ./common.nix
   ];
 }

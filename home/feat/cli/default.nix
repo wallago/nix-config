@@ -4,14 +4,12 @@
     ./fish.nix
     ./bat.nix
     ./eza.nix
-    ./jujutsu.nix
     ./ripgrep.nix
     ./fzf.nix
     ./gpg.nix
     ./ssh.nix
     ./zellij
     ./fd.nix
-    ./git.nix
     ./bash.nix
     ./bottom.nix
     ./direnv.nix
