@@ -4,6 +4,7 @@
   config = ''
     require("conform").setup({
     	formatters_by_ft = {
+        lua = { "stylua" },
         nix = { "nixfmt" },
     		json = { "prettier" },
         yaml = { "yamlfmt" },
@@ -34,7 +35,9 @@
       },
     	format_on_save = {
     		enabled = true,
-    		timeout_ms = 1000,
+    		timeout_ms = 5000,
+        notify_on_error = true,
+        notify_no_formatters = true,
     		lsp_format = "fallback",
     		callback = function(bufnr, result)
     			require("notify")("File formatted successfully: " .. result, "info")
@@ -47,6 +50,8 @@
   deps = with pkgs; [
     nodePackages.prettier
     yamlfmt
+    rustfmt
+    stylua
     sql-formatter
     kulala-fmt
     taplo

@@ -16,6 +16,7 @@ in
     ../../nixos/feat/printer.nix
     ../../nixos/feat/flatpak.nix
     ../../nixos/feat/wireguard_client.nix
+    ../../nixos/feat/anydesk.nix
     ../../nixos/users/wallago.nix
     ./hardware-configuration.nix
   ];

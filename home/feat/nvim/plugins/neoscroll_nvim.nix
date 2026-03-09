@@ -1,6 +1,9 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [ neoscroll-nvim ];
   config = ''
-    require('neoscroll').setup()
+    require('neoscroll').setup({
+      mappings = {}
+    })
   '';
 }

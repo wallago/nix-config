@@ -1,5 +1,9 @@
-{ pkgs }: {
-  plugins = with pkgs.vimPlugins; [ oil-nvim mini-icons ];
+{ pkgs }:
+{
+  plugins = with pkgs.vimPlugins; [
+    oil-nvim
+    mini-icons
+  ];
   config = ''
     require("oil").setup({
       default_file_explorer = true,
@@ -11,7 +15,7 @@
         show_hidden = true,
         natural_order = true,
         is_always_hidden = function(name, _)
-          return name == '..' or name == '.git'
+          return name == '..' or name == '.git' or name == '.jj'
         end
       },
     })

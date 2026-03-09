@@ -10,5 +10,7 @@ let
     };
     meta.homepage = "https://github.com/mracos/mermaid.vim";
   };
-in { plugins = [ mermaid-vim ]; }
-
+in
+{
+  plugins = [ mermaid-vim ];
+}

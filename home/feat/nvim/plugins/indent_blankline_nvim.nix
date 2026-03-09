@@ -1,7 +1,7 @@
-{ pkgs }: {
+{ pkgs }:
+{
   plugins = with pkgs.vimPlugins; [ indent-blankline-nvim ];
   config = ''
-    require('ibl').setup({
-    })
+    require("ibl").setup({})
   '';
 }

@@ -1,5 +1,9 @@
-{ pkgs, c }: {
-  plugins = with pkgs.vimPlugins; [ lualine-nvim ];
+{ pkgs, c }:
+{
+  plugins = with pkgs.vimPlugins; [
+    lualine-nvim
+  ];
+  extraLuaPackages = ps: [ ps.jsregexp ];
   config = ''
     local lualine = require('lualine')
     local colors = {
