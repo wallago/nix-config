@@ -6,8 +6,6 @@
 }:
 {
   imports = [
-    ./colorscheme.nix
-    ../feat/nvim
     ../feat/cli
     ../../yubikey
     (import ./home.nix { inherit username config; })

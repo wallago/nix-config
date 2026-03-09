@@ -93,23 +93,10 @@
       fish_vi_key_bindings
       function fish_mode_prompt; end
 
-
-      # set -g __fish_git_prompt_showdirtyState 1
-      # set -g __fish_git_prompt_showuntrackedfiles 1
-      # set -g __fish_git_prompt_showstashstate 1
-      # set -g __fish_git_prompt_showupstream auto
-      # set -g __fish_git_prompt_color_branch yellow
-      # set -g __fish_git_prompt_char_dirtystate '*'
-      # set -g __fish_git_prompt_char_untrackedfiles '?'
-
       set fish_cursor_default     block      blink
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
-
-      if test -z "$ZELLIJ"
-        zellij -l monitor
-      end
     '';
     shellAliases = {
       # List directory contents

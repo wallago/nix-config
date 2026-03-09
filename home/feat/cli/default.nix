@@ -8,7 +8,6 @@
     ./fzf.nix
     ./gpg.nix
     ./ssh.nix
-    ./zellij
     ./fd.nix
     ./bash.nix
     ./bottom.nix
