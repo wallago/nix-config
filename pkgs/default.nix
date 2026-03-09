@@ -3,5 +3,4 @@
   ...
 }:
 {
-  eilmeldung = pkgs.callPackage ./eilmeldung.nix { };
 }

@@ -51,11 +51,6 @@
     project-banner.url = "github:wallago/project-banner?dir=nix";
 
     # project
-    rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
-    rewind-frontend.url = "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
-    markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
-    markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
-    gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
   };
 
   outputs =
@@ -105,27 +100,8 @@
           }) (import systems)
         )
         // {
-          # Main desktop
-          sponge = lib.nixosSystem {
-            modules = [ ./hosts/sponge ];
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Main laptop
-          squid = lib.nixosSystem {
-            modules = [ ./hosts/squid ];
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Home server
-          coral = lib.nixosSystem {
-            modules = [ ./hosts/coral ];
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Work server
-          cuttlefish = lib.nixosSystem {
-            modules = [ ./hosts/cuttlefish ];
+          headless = lib.nixosSystem {
+            modules = [ ./hosts/headless ];
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
           };
@@ -133,19 +109,9 @@
 
       # Standalone Home Manager only
       homeConfigurations = {
-        # Main desktop
-        "wallago@sponge" = lib.homeManagerConfiguration {
+        "work@headless" = lib.homeManagerConfiguration {
           modules = [
-            ./home/users/wallago/sponge.nix
-            ./home/nixpkgs.nix
-          ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # Main laptop
-        "wallago@squid" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/wallago/squid.nix
+            ./home/users/work/headless.nix
             ./home/nixpkgs.nix
           ];
           pkgs = pkgsFor.x86_64-linux;
