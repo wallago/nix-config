@@ -4,7 +4,7 @@
   config = ''
     vim.g.rustaceanvim = {
       server = {
-        settings = {
+        default_settings = {
           ["rust-analyzer"] = {
             diagnostics = {
               enable = true,
@@ -13,9 +13,6 @@
               },
             },
             checkOnSave = true,
-            cachePriming = {
-              enable = false,
-            },
             numThreads = 4,
           },
         },
