@@ -10,41 +10,50 @@ let
   c = colorscheme.colors;
 
   rawPluginModules = [
-    # Essential
-    ./plugins/nvim_lspconfig.nix
-    ./plugins/nvim_treesitter.nix
-    ./plugins/conform_nvim.nix
-    ./plugins/nvim_cmp.nix
-    ./plugins/telescope_nvim.nix
-    ./plugins/lspsaga-nvim.nix
+    # === LSP & Syntax ===
+    ./plugins/nvim_lspconfig.nix # LSP client configuration
+    ./plugins/nvim_treesitter.nix # Syntax highlighting & code parsing
+    ./plugins/conform_nvim.nix # Code formatting on save
+    ./plugins/nvim_cmp.nix # Autocompletion engine
+    ./plugins/lspsaga_nvim.nix # Enhanced LSP UI (hover, rename, code actions)
 
-    # QOF
-    ./plugins/oil_nvim.nix
-    ./plugins/trouble_nvim.nix
-    ./plugins/nvim_colorizer_lua.nix
-    ./plugins/nvim_web_devicons.nix
-    ./plugins/hunk_nvim.nix
-    ./plugins/neoscroll_nvim.nix
-    ./plugins/nvim_autopairs.nix
-    ./plugins/bufferline_nvim.nix
-    ./plugins/nvim_ufo.nix
-    ./plugins/todo_comments_nvim.nix
-    ./plugins/yanky_nvim.nix
-    ./plugins/neovim_tips.nix
-    ./plugins/indent_blankline_nvim.nix
+    # === Navigation & Search ===
+    ./plugins/telescope_nvim.nix # Fuzzy finder (files, grep, buffers)
+    ./plugins/oil_nvim.nix # File explorer as a buffer
 
-    # Useful
-    ./plugins/rustaceanvim.nix
-    ./plugins/mermaid_nvim.nix
-    ./plugins/jj_nvim.nix
-    ./plugins/kulala_nvim.nix
+    # === Diagnostics & Errors ===
+    ./plugins/trouble_nvim.nix # Pretty diagnostics/quickfix panel
+    ./plugins/todo_comments_nvim.nix # Highlight & list TODO/FIXME/HACK comments
+
+    # === UI Enhancements ===
+    ./plugins/nvim_colorizer_lua.nix # Inline color preview (#fff, rgb())
+    ./plugins/nvim_web_devicons.nix # File type icons
+    ./plugins/bufferline_nvim.nix # Tab-style buffer bar
+    ./plugins/indent_blankline_nvim.nix # Indentation guides
+    ./plugins/neovim_tips.nix # Startup tips/tricks
+    ./plugins/fidget_nvim.nix # Extensible UI for notif and LSP progress messages
+
+    # === Editing ===
+    ./plugins/nvim_autopairs.nix # Auto-close brackets/quotes
+    ./plugins/yanky_nvim.nix # Yank ring / clipboard history
+    ./plugins/neoscroll_nvim.nix # Smooth scrolling
+    ./plugins/nvim_ufo.nix # Enhanced code folding
+    ./plugins/hunk_nvim.nix # Side-by-side diff viewer
+
+    # === Language-Specific ===
+    ./plugins/rustaceanvim.nix # Rust-analyzer integration & extras
+    ./plugins/mermaid_nvim.nix # Mermaid diagram preview
+    ./plugins/kulala_nvim.nix # HTTP client (like Postman in nvim)
+
+    # === VCS & Debug ===
+    ./plugins/jj_nvim.nix # Jujutsu version control integration
+    ./plugins/nvim_dap.nix # Debug adapter (breakpoints, stepping)
   ];
 
   rawPluginColorModules = [
-    # QOF
-    ./plugins/lualine_nvim.nix
-    ./plugins/nvim_notify.nix
-    ./plugins/alpha_nvim.nix
+    ./plugins/lualine_nvim.nix # Statusline
+    ./plugins/nvim_notify.nix # Popup notification UI
+    ./plugins/alpha_nvim.nix # Dashboard / start screen
   ];
 
   rawPluginKeymapingModules = [ ./plugins/which_key_nvim.nix ];
