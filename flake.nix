@@ -51,11 +51,11 @@
     project-banner.url = "github:wallago/project-banner?dir=nix";
 
     # project
-    # rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
-    # rewind-frontend.url = "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
-    # markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
-    # markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
-    # gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
+    rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
+    rewind-frontend.url = "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
+    markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
+    markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
+    gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
   };
 
   outputs =
@@ -130,27 +130,5 @@
             specialArgs = { inherit inputs outputs; };
           };
         };
-
-      # Standalone Home Manager only
-      homeConfigurations = {
-        # Main desktop
-        "wallago@sponge" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/wallago/sponge.nix
-            ./home/nixpkgs.nix
-          ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # Main laptop
-        "wallago@squid" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/wallago/squid.nix
-            ./home/nixpkgs.nix
-          ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-      };
     };
 }
