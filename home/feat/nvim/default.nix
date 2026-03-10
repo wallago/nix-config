@@ -31,6 +31,7 @@ let
     ./plugins/bufferline_nvim.nix # Tab-style buffer bar
     ./plugins/indent_blankline_nvim.nix # Indentation guides
     ./plugins/neovim_tips.nix # Startup tips/tricks
+    ./plugins/fidget_nvim.nix # Extensible UI for notif and LSP progress messages
 
     # === Editing ===
     ./plugins/nvim_autopairs.nix # Auto-close brackets/quotes
