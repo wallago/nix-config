@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   wg0 = {
     sk = config.sops.secrets."wg0-sk".path;
@@ -34,7 +34,7 @@ let
       allowedIPs = [ "${wg1.mask}.4/32" ];
     };
     swr_2026 = {
-      publicKey = "+b4/Fn2w6+bVosQJ2AG8FLkF0zdA+KWV6j2y/+Hd9GU=";
+      publicKey = "dMpVKFGflmX9QzrBaCPa5Z2WUqJ1hC7QuvtFmq4w1lM=";
       allowedIPs = [ "${wg1.mask}.5/32" ];
     };
   };
