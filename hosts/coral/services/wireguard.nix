@@ -33,6 +33,10 @@ let
       publicKey = "i1PhzPWel1imDtTxqM+16ScqDgBAw+/AFXTLNA3h+G8=";
       allowedIPs = [ "${wg1.mask}.4/32" ];
     };
+    swr_2026 = {
+      publicKey = "+b4/Fn2w6+bVosQJ2AG8FLkF0zdA+KWV6j2y/+Hd9GU=";
+      allowedIPs = [ "${wg1.mask}.5/32" ];
+    };
   };
 
   externalInterface = "enp114s0";
@@ -72,6 +76,7 @@ in
           wg1.squid
           wg1.sponge
           wg1.leapfrog
+          wg1.swr_2026
         ];
       };
     };
