@@ -1,8 +1,6 @@
 {
   keymap,
   config,
-  pkgs,
-  lib,
   ...
 }:
 let
@@ -53,6 +51,20 @@ in
                   {
                     pane = {
                       command = "btm";
+                    };
+                  }
+                ];
+              };
+            }
+            {
+              tab = {
+                _props = {
+                  name = "RSS";
+                };
+                _children = [
+                  {
+                    pane = {
+                      command = "eilmeldung";
                     };
                   }
                 ];
