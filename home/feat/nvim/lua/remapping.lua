@@ -71,7 +71,8 @@ end, { desc = "Show normal mode keys" })
 wk.add({
 	-- Nav
 	{ "g_", desc = "last CHAR of line", mode = "n" },
-	{ "G", desc = "Last line / {count} go to line", mode = "n", "x" },
+	{ "G", desc = "Last line / {count} go to line", mode = "n" },
+	{ "G", desc = "Last line / {count} go to line", mode = "x" },
 	{
 		"<C-k>",
 		desc = "Move half page down",
@@ -108,10 +109,14 @@ wk.add({
 		mode = "n",
 		"<cmd>lua require('neoscroll').scroll(0.1, { move_cursor=false, duration = 100 })<cr>",
 	},
-	{ "(", desc = "Prev sentence", mode = "n", "x" },
-	{ ")", desc = "Next sentence", mode = "n", "x" },
-	{ "{", desc = "Prev paragraph", mode = "n", "x" },
-	{ "}", desc = "Next paragraph", mode = "n", "x" },
+	{ "(", desc = "Prev sentence", mode = "n" },
+	{ "(", desc = "Prev sentence", mode = "x" },
+	{ ")", desc = "Next sentence", mode = "n" },
+	{ ")", desc = "Next sentence", mode = "x" },
+	{ "{", desc = "Prev paragraph", mode = "n" },
+	{ "{", desc = "Prev paragraph", mode = "x" },
+	{ "}", desc = "Next paragraph", mode = "n" },
+	{ "}", desc = "Next paragraph", mode = "x" },
 
 	-- Insert
 	{ "a", desc = "Append after cursor", mode = "n" },
