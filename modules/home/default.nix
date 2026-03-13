@@ -1,3 +1,4 @@
+{ inputs }:
 {
   fonts = import ./fonts.nix;
   wallpaper = import ./wallpaper.nix;
@@ -5,4 +6,5 @@
   colors = import ./colors.nix;
   oama = import ./oama.nix;
   export-sessions = import ./export-sessions.nix;
+  eilmeldung = inputs.eilmeldung.homeManager.default;
 }

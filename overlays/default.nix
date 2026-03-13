@@ -32,4 +32,6 @@
       };
     };
   };
+
+  eilmeldung = inputs.eilmeldung.overlays.default;
 }

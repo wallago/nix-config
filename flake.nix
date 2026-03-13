@@ -44,6 +44,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    eilmeldung = {
+      url = "github:christo-auer/eilmeldung";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     themes.url = "github:wallago/nix-themes?dir=nix";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-bootstrap.url = "github:wallago/nix-bootstrap?dir=nix";
@@ -84,7 +88,7 @@
     {
       inherit lib;
       nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home;
+      homeManagerModules = import ./modules/home { inherit inputs; };
       nixosAndHomeManagerModules = import ./modules/nixos-home;
       overlays = import ./overlays { inherit inputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
