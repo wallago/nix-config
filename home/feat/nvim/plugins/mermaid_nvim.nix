@@ -1,16 +1,21 @@
 { pkgs }:
 let
   mermaid-vim = pkgs.vimUtils.buildVimPlugin {
-    name = "mermaid-vim";
+    name = "mermaid-nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "mracos";
-      repo = "mermaid.vim";
+      owner = "kevalin";
+      repo = "mermaid.nvim";
       rev = "main";
-      sha256 = "sha256-LRuuCFamwvBm9e5mbQ8CkGgclEY9iv52uRl/2kGBUc8=";
+      sha256 = "sha256-10ZetFz98oifqYpZAHib4mpvCL011dUrvc0pmQEN79g=";
     };
-    meta.homepage = "https://github.com/mracos/mermaid.vim";
   };
 in
 {
   plugins = [ mermaid-vim ];
+  config = ''
+    require('mermaid').setup()
+  '';
+  deps = with pkgs; [
+    nodePackages.mermaid-cli
+  ];
 }
