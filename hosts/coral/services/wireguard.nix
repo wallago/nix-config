@@ -29,11 +29,15 @@ let
       publicKey = "OJYAx4VxGWMc73S0EModA/A8tRYYrdAq+lQnlPHNmgE=";
       allowedIPs = [ "${wg1.mask}.3/32" ];
     };
-    leapfrog = {
+    "4778" = {
       publicKey = "i1PhzPWel1imDtTxqM+16ScqDgBAw+/AFXTLNA3h+G8=";
       allowedIPs = [ "${wg1.mask}.4/32" ];
     };
-    swr_2026 = {
+    "4797" = {
+      publicKey = "p99A09tn8LOAJsAVPldf6+ZMmmOutYuph5LbB7akBFQ=";
+      allowedIPs = [ "${wg1.mask}.6/32" ];
+    };
+    "4839" = {
       publicKey = "dMpVKFGflmX9QzrBaCPa5Z2WUqJ1hC7QuvtFmq4w1lM=";
       allowedIPs = [ "${wg1.mask}.5/32" ];
     };
@@ -75,8 +79,9 @@ in
         peers = [
           wg1.squid
           wg1.sponge
-          wg1.leapfrog
-          wg1.swr_2026
+          wg1."4778"
+          wg1."4797"
+          wg1."4839"
         ];
       };
     };
