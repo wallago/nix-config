@@ -34,6 +34,7 @@ in
       "plugdev"
       "tss"
       "dialout"
+      "input"
     ];
     hashedPasswordFile = config.sops.secrets.wallago-password.path;
   };
