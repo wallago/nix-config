@@ -47,7 +47,12 @@ in
         forceSSL = true;
         sslCertificate = ssl.wallago.crt;
         sslCertificateKey = ssl.wallago.key;
-        locations."/".proxyPass = "http://127.0.0.1:5504";
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:5504";
+          extraConfig = ''
+            client_max_body_size 0;  # no limit, NARs can be big
+          '';
+        };
       };
     };
   };

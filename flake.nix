@@ -5,7 +5,7 @@
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
-      "https://cahe.wallago.xyz"
+      "https://cache.wallago.xyz"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
