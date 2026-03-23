@@ -14,39 +14,57 @@
           if not command -sq jj
             return 1
           end
+
+          set -l closest_bm "$(
+            jj log 2>/dev/null --no-graph --ignore-working-copy --color=always \
+            --revisions 'heads(::@ & bookmarks())' \
+            --template 'bookmarks.join(", ")' \
+            --limit 1
+          )"
+
           set -l info "$(
-            jj log 2>/dev/null --no-graph --ignore-working-copy --color=always --revisions @ \
-              --template '
-                surround(
-                  "(",
-                  ")",
-                  separate(
-                    " ",
+            jj log 2>/dev/null --no-graph --ignore-working-copy --color=always --revisions @ --template '
+              surround(
+                "(",
+                ")",
+                separate(
+                  " ",
+                  if(
+                    bookmarks.len() > 0,
                     bookmarks.join(", "),
-                    change_id.shortest(),
-                    commit_id.shortest(),
-                    if(conflict, label("conflict", "×")),
-                    if(divergent, label("divergent", "??")),
-                    if(hidden, label("hidden prefix", "(hidden)")),
-                    if(immutable, label("node immutable", "◆")),
-                    coalesce(
-                      if(
-                        empty,
-                        coalesce(
-                          if(
-                            parents.len() > 1,
-                            label("empty", "(merged)"),
-                            ),
-                          label("empty", "(empty)"),
-                          ),
-                        ),
-                      label("description placeholder", "*")
+                    if(
+                      "RAW_CLOSEST_BM" != "",
+                      label("bookmark", "↑" ++ "RAW_CLOSEST_BM"),
+                    ),
+                  ),
+                  change_id.shortest(),
+                  commit_id.shortest(),
+                  if(conflict, label("conflict", "×")),
+                  if(divergent, label("divergent", "??")),
+                  if(hidden, label("hidden prefix", "(hidden)")),
+                  if(immutable, label("node immutable", "◆")),
+                  coalesce(
+                    if(
+                      empty,
+                      coalesce(
+                        if(parents.len() > 1, label("empty", "(merged)")),
+                        label("empty", "(empty)"),
                       ),
-                    )
-                  )
-                '
+                    ),
+                    label("description placeholder", "*")
+                  ),
+                )
+              )
+            '
           )"
           or return 1
+
+          if test -n "$closest_bm"
+            set info (string replace "RAW_CLOSEST_BM" "$closest_bm" -- $info)
+          else
+            set info (string replace '↑RAW_CLOSEST_BM' "" -- $info)
+          end
+
           if test -n "$info"
             printf ' %s' $info
           end
