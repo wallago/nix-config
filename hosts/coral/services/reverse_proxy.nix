@@ -42,6 +42,13 @@ in
         sslCertificateKey = ssl.wallago.key;
         locations."/".proxyPass = "http://127.0.0.1:5503";
       };
+      "cache.${ssl.wallago.domain}" = {
+        enableACME = false;
+        forceSSL = true;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
+        locations."/".proxyPass = "http://127.0.0.1:5504";
+      };
     };
   };
 

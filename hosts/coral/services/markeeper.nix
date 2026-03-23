@@ -8,8 +8,8 @@ let
   markeeper = {
     backend = "${inputs.markeeper-backend.packages.${pkgs.system}.default}/bin/markeeper-backend";
     frontend = "${inputs.markeeper-frontend.packages.${pkgs.system}.default}";
+    db.passwd = config.sops.secrets.markeeper-db-password.path;
   };
-  markeeper-db-passwd = config.sops.secrets.markeeper-db-password.path;
   server-port = 5501;
 in
 {
@@ -19,7 +19,7 @@ in
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       LoadCredential = [
-        "markeeperDbPass:${markeeper-db-passwd}"
+        "markeeperDbPass:${markeeper.db.passwd}"
       ];
       ExecStart = pkgs.writeShellScript "run-markeeper-backend" ''
         export DATABASE_URL=postgres://markeeper:$(cat $CREDENTIALS_DIRECTORY/markeeperDbPass)@localhost:5432

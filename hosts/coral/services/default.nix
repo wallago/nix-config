@@ -7,5 +7,6 @@
     ./markeeper.nix
     ./miniflux.nix
     ./wireguard.nix
+    ./atticd.nix
   ];
 }
