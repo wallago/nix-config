@@ -1,4 +1,5 @@
-{ outputs, ... }: {
+{ outputs, config, ... }:
+{
   imports = [
     ./boot.nix
     ./fail2ban.nix
@@ -21,8 +22,9 @@
     ./upower.nix
     ../feat/yubikey.nix
     ../../yubikey
-  ] ++ (builtins.attrValues outputs.nixosModules)
-    ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
+  ]
+  ++ (builtins.attrValues outputs.nixosModules)
+  ++ (builtins.attrValues outputs.nixosAndHomeManagerModules);
 
-  system.stateVersion = "25.05";
+  system.stateVersion = config.system.nixos.release;
 }
