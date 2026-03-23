@@ -15,6 +15,14 @@
           "-c"
           "DiffEditor \$left \$right \$output"
         ];
+        merge-editor = [
+          "nvim"
+          "-d"
+          "$left"
+          "$right"
+          "-M"
+          "$output"
+        ];
         default-command = "log-recent";
       };
       aliases = {

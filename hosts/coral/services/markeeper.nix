@@ -6,8 +6,8 @@
 }:
 let
   markeeper = {
-    backend = "${inputs.markeeper-backend.packages.${pkgs.system}.default}/bin/markeeper-backend";
-    frontend = "${inputs.markeeper-frontend.packages.${pkgs.system}.default}";
+    backend = "${inputs.markeeper-backend.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/markeeper-backend";
+    frontend = "${inputs.markeeper-frontend.packages.${pkgs.stdenv.hostPlatform.system}.default}";
     db.passwd = config.sops.secrets.markeeper-db-password.path;
   };
   server-port = 5501;

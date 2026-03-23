@@ -14,7 +14,7 @@
   };
 
   programs.firefox.profiles.wallago = {
-    extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+    extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
       ublock-origin
       browserpass
       vimium

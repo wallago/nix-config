@@ -7,8 +7,10 @@
 }:
 let
   rewind = {
-    backend = "${inputs.rewind-backend.defaultPackage.${pkgs.system}}/bin/rewind-backend";
-    frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.system}}";
+    backend = "${
+      inputs.rewind-backend.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+    }/bin/rewind-backend";
+    frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.stdenv.hostPlatform.system}}";
     db.passwd = config.sops.secrets.rewind-db-password.path;
   };
   github.client = {

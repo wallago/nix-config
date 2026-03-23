@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  gateway = "${inputs.gateway.packages.${pkgs.system}.default}/bin/gateway";
+  gateway = "${inputs.gateway.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/gateway";
 in
 {
   systemd.services.gateway = {
