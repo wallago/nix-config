@@ -24,17 +24,15 @@ in
 
   users.users.${username} = {
     extraGroups = ifTheyExist [
-      "video"
-      "audio"
-      "disk"
-      "docker"
-      "git"
-      "i2c"
-      "network"
-      "plugdev"
-      "tss"
-      "dialout"
-      "input"
+      "disk" # direct read/write access to raw block devices (/dev/sda, etc.)
+      "audio" # access to sound cards (/dev/snd/*)
+      "video" # access to GPU and capture devices (/dev/dri/*, /dev/video*).
+      "dialout" # access to serial ports (/dev/ttyS*, /dev/ttyUSB*, /dev/ttyACM*)
+      "docker" # run Docker without sudo
+      "input" # access to raw input devices (/dev/input/*)
+      "plugdev" # access to pluggable devices (USB sticks, etc.) via udev rules
+      "tss" # access to the TPM chip (/dev/tpm*)
+      "networkmanager" # allows controlling network connections via NetworkManager
     ];
     hashedPasswordFile = config.sops.secrets.wallago-password.path;
   };
