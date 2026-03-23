@@ -6,7 +6,7 @@
   ...
 }:
 let
-  wallpapers = inputs.themes.packages.${pkgs.system}.wallpapers;
+  wallpapers = inputs.themes.packages.${pkgs.stdenv.hostPlatform.system}.wallpapers;
   tofi = lib.getExe' config.programs.tofi.package "tofi";
 in
 {

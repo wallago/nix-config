@@ -15,11 +15,11 @@ in
       pkgs.age
       pkgs.nixos-anywhere
       pkgs.pam_u2f
-      inputs.nix-bootstrap.packages.${pkgs.system}.default
-      inputs.nix-deployer.packages.${pkgs.system}.default
+      inputs.nix-bootstrap.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.nix-deployer.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     shellHook = ''
-      ${inputs.project-banner.packages.${pkgs.system}.default}/bin/project-banner \
+      ${inputs.project-banner.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/project-banner \
         --owner "wallago" \
         --logo " 󰖌 " \
         --product "Nixos" \

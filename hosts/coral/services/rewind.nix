@@ -7,12 +7,17 @@
 }:
 let
   rewind = {
-    backend = "${inputs.rewind-backend.defaultPackage.${pkgs.system}}/bin/rewind-backend";
-    frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.system}}";
+    backend = "${
+      inputs.rewind-backend.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+    }/bin/rewind-backend";
+    frontend = "${inputs.rewind-frontend.defaultPackage.${pkgs.stdenv.hostPlatform.system}}";
+    db.passwd = config.sops.secrets.rewind-db-password.path;
   };
-  rewind-db-passwd = config.sops.secrets.rewind-db-password.path;
-  github-client-id = config.sops.secrets."github-client-id".path;
-  github-client-secret = config.sops.secrets."github-client-secret".path;
+  github.client = {
+    id = config.sops.secrets."github-client-id".path;
+    secret = config.sops.secrets."github-client-secret".path;
+  };
+
   # cloudflare-purge-api-token =
   #   config.sops.secrets."cloudflare-purge-api-token".path;
   # cloudflare-zone-id = config.sops.secrets."cloudflare-zone-id".path;
@@ -26,9 +31,9 @@ in
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       LoadCredential = [
-        "rewindDbPass:${rewind-db-passwd}"
-        "githubClientID:${github-client-id}"
-        "githubClientSecret:${github-client-secret}"
+        "rewindDbPass:${rewind.db.passwd}"
+        "githubClientID:${github.client.id}"
+        "githubClientSecret:${github.client.secret}"
       ];
       ExecStart = pkgs.writeShellScript "run-rewind-backend" ''
         export GITHUB_CLIENT_ID=$(cat $CREDENTIALS_DIRECTORY/githubClientID)

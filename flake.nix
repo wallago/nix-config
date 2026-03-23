@@ -80,7 +80,7 @@
       pkgsFor = lib.genAttrs (import systems) (
         system:
         import nixpkgs {
-          inherit system;
+          localSystem.system = system;
           config.allowUnfree = true;
         }
       );
@@ -102,8 +102,10 @@
           map (system: {
             name = "plankton-${system}";
             value = lib.nixosSystem {
-              inherit system;
-              modules = [ ./hosts/plankton ];
+              modules = [
+                ./hosts/plankton
+                { nixpkgs.hostPlatform = system; }
+              ];
               specialArgs = { inherit inputs outputs; };
             };
           }) (import systems)
@@ -111,26 +113,34 @@
         // {
           # Main desktop
           sponge = lib.nixosSystem {
-            modules = [ ./hosts/sponge ];
-            system = "x86_64-linux";
+            modules = [
+              ./hosts/sponge
+              { nixpkgs.hostPlatform = "x86_64-linux"; }
+            ];
             specialArgs = { inherit inputs outputs; };
           };
           # Main laptop
           squid = lib.nixosSystem {
-            modules = [ ./hosts/squid ];
-            system = "x86_64-linux";
+            modules = [
+              ./hosts/squid
+              { nixpkgs.hostPlatform = "x86_64-linux"; }
+            ];
             specialArgs = { inherit inputs outputs; };
           };
           # Home server
           coral = lib.nixosSystem {
-            modules = [ ./hosts/coral ];
-            system = "x86_64-linux";
+            modules = [
+              ./hosts/coral
+              { nixpkgs.hostPlatform = "x86_64-linux"; }
+            ];
             specialArgs = { inherit inputs outputs; };
           };
           # Work server
           cuttlefish = lib.nixosSystem {
-            modules = [ ./hosts/cuttlefish ];
-            system = "x86_64-linux";
+            modules = [
+              ./hosts/cuttlefish
+              { nixpkgs.hostPlatform = "x86_64-linux"; }
+            ];
             specialArgs = { inherit inputs outputs; };
           };
         };
