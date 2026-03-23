@@ -1,22 +1,26 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   brightnessctl = lib.getExe pkgs.brightnessctl;
   hyprctl = lib.getExe' config.wayland.windowManager.hyprland.package "hyprctl";
   hyprlock = lib.getExe config.programs.hyprlock.package;
   loginctl = lib.getExe' pkgs.systemd "loginctl";
-in lib.mkIf (config.programs.hyprlock.enable
-  && config.wayland.windowManager.hyprland.enable) {
-    services.hypridle = {
-      enable = true;
-      settings = let
+in
+lib.mkIf (config.programs.hyprlock.enable && config.wayland.windowManager.hyprland.enable) {
+  services.hypridle = {
+    enable = true;
+    settings =
+      let
         isLocked = "pgrep ${hyprlock}";
-        isDischarging =
-          "grep Discharging /sys/class/power_supply/BAT{0,1}/status -q";
-      in {
+        isDischarging = "grep Discharging /sys/class/power_supply/BAT{0,1}/status -q";
+      in
+      {
         general = {
-          lock_cmd = "if ! ${isLocked}; then ${
-              lib.getExe config.programs.hyprlock.package
-            } --grace 5; fi";
+          lock_cmd = "if ! ${isLocked}; then ${lib.getExe config.programs.hyprlock.package} --grace 5; fi";
           before_sleep_cmd = "${loginctl} lock-session";
           after_sleep_cmd = "${hyprctl} dispatch dpms on";
           inhibit_sleep = 3; # Wait for lock before suspend
@@ -29,8 +33,7 @@ in lib.mkIf (config.programs.hyprlock.enable
           }
           {
             timeout = 30;
-            on-timeout =
-              "${brightnessctl} --device *:kbd_backlight --save set 0";
+            on-timeout = "${brightnessctl} --device *:kbd_backlight --save set 0";
             on-resume = "${brightnessctl} --device *:kbd_backlight --restore";
           }
           {
@@ -58,8 +61,7 @@ in lib.mkIf (config.programs.hyprlock.enable
           }
           {
             timeout = 20;
-            on-timeout =
-              "if ${isLocked}; then ${hyprctl} dispatch dpms off; fi";
+            on-timeout = "if ${isLocked}; then ${hyprctl} dispatch dpms off; fi";
             on-resume = "${hyprctl} dispatch dpms on";
           }
 
@@ -70,6 +72,5 @@ in lib.mkIf (config.programs.hyprlock.enable
           }
         ];
       };
-    };
-  }
-
+  };
+}
