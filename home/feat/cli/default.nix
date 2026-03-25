@@ -9,7 +9,6 @@
     ./fzf.nix
     ./gpg.nix
     ./ssh.nix
-    ./zellij
     ./fd.nix
     ./git.nix
     ./bash.nix

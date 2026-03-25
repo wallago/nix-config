@@ -25,15 +25,9 @@ in
 
   users.users.${username} = {
     extraGroups = ifTheyExist [
-      "video"
-      "audio"
-      "disk"
-      "docker"
-      "git"
-      "i2c"
-      "network"
-      "plugdev"
-      "tss"
+      "audio" # access to sound cards (/dev/snd/*)
+      "video" # access to GPU and capture devices (/dev/dri/*, /dev/video*).
+      "docker" # run Docker without sudo
     ];
     hashedPasswordFile = config.sops.secrets.tuna-password.path;
   };
