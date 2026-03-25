@@ -1,15 +1,18 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
-  key = config.sops.secrets.atticd-key.path;
+  env-keys = config.sops.secrets.atticd-env-keys.path;
 in
 {
   services.atticd = {
     enable = true;
-    environmentFile = key;
+    environmentFile = env-keys;
     settings = {
       listen = "[::]:5504";
       api-endpoint = "https://cache.wallago.xyz/";
-      allowed-hosts = [ "cache.wallago.xyz" ];
+      allowed-hosts = [
+        "cache.wallago.xyz"
+        "localhost:5504"
+      ];
       soft-delete-caches = false;
       require-proof-of-possession = true;
       database.url = "postgresql:///atticd?host=/run/postgresql&user=atticd";
@@ -24,6 +27,10 @@ in
         interval = "12 hours";
         default-retention-period = "6 months";
       };
+      storage = {
+        type = "local";
+        path = "/var/lib/atticd/storage";
+      };
     };
   };
 
@@ -31,5 +38,21 @@ in
     "/var/lib/atticd"
   ];
 
-  sops.secrets.atticd-key.sopsFile = ../secrets.yaml;
+  systemd.services.atticd.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+  };
+
+  users.users.atticd = {
+    isSystemUser = true;
+    group = "atticd";
+    home = "/var/lib/atticd";
+  };
+  users.groups.atticd = { };
+
+  systemd.services.atticd.serviceConfig.User = "atticd";
+
+  sops.secrets.atticd-env-keys = {
+    sopsFile = ../secrets.yaml;
+    owner = "atticd";
+  };
 }
