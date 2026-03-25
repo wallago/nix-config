@@ -90,6 +90,4 @@ in
     "/var/lib/postgresql/"
     "/var/backup/postgresql/"
   ];
-
-  networking.firewall.allowedTCPPorts = [ 5432 ];
 }

@@ -1,11 +1,6 @@
 { config, ... }:
 let
   ssl = {
-    henrotte = {
-      domain = "henrotte.xyz";
-      crt = config.sops.secrets."henrotte.xyz-ssl-crt".path;
-      key = config.sops.secrets."henrotte.xyz-ssl-key".path;
-    };
     wallago = {
       domain = "wallago.xyz";
       crt = config.sops.secrets."wallago.xyz-ssl-crt".path;
@@ -63,16 +58,6 @@ in
   ];
 
   sops.secrets = {
-    "henrotte.xyz-ssl-crt" = {
-      sopsFile = ../secrets.yaml;
-      owner = "nginx";
-      group = "nginx";
-    };
-    "henrotte.xyz-ssl-key" = {
-      sopsFile = ../secrets.yaml;
-      owner = "nginx";
-      group = "nginx";
-    };
     "wallago.xyz-ssl-crt" = {
       sopsFile = ../secrets.yaml;
       owner = "nginx";
