@@ -21,6 +21,7 @@
     ./zathura.nix
     ./waypipe.nix
     ./swayosd.nix
+    ./obsidian.nix
   ];
 
   xdg = {

@@ -8,5 +8,6 @@
     ./miniflux.nix
     ./wireguard.nix
     ./atticd.nix
+    # ./couch.nix
   ];
 }
