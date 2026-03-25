@@ -15,6 +15,20 @@
           "-c"
           "DiffEditor \$left \$right \$output"
         ];
+        merge-tools.diffconflicts = {
+          program = "nvim";
+          merge-args = [
+            "-c"
+            "let g:jj_diffconflicts_marker_length=$marker_length"
+            "-c"
+            "JJDiffConflicts!"
+            "$output"
+            "$base"
+            "$left"
+            "$right"
+          ];
+          merge-tool-edits-conflict-markers = true;
+        };
         default-command = "log-recent";
       };
       aliases = {

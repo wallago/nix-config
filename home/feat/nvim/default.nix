@@ -39,6 +39,7 @@ let
     ./plugins/neoscroll_nvim.nix # Smooth scrolling
     ./plugins/nvim_ufo.nix # Enhanced code folding
     ./plugins/hunk_nvim.nix # Side-by-side diff viewer
+    ./plugins/jj_diffconflicts_nvim.nix # Merge tool for JJ
 
     # === Language-Specific ===
     ./plugins/rustaceanvim.nix # Rust-analyzer integration & extras
