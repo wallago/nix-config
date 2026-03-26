@@ -13,5 +13,4 @@ let
 in
 {
   plugins = [ jj-diffconflics-nvim ];
-  config = "";
 }
