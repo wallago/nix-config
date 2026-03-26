@@ -15,7 +15,11 @@
           "-c"
           "DiffEditor \$left \$right \$output"
         ];
-        merge-tools.diffconflicts = {
+        merge-editor = "diffconflicts";
+        default-command = "log-recent";
+      };
+      merge-tools = {
+        diffconflicts = {
           program = "nvim";
           merge-args = [
             "-c"
@@ -29,7 +33,6 @@
           ];
           merge-tool-edits-conflict-markers = true;
         };
-        default-command = "log-recent";
       };
       aliases = {
         l = [ "log" ];

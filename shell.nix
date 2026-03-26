@@ -14,6 +14,7 @@ in
       pkgs.gnupg
       pkgs.age
       pkgs.nixos-anywhere
+      pkgs.attic-client
       pkgs.pam_u2f
       inputs.nix-bootstrap.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.nix-deployer.packages.${pkgs.stdenv.hostPlatform.system}.default

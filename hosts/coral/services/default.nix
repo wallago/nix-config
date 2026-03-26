@@ -7,5 +7,7 @@
     ./markeeper.nix
     ./miniflux.nix
     ./wireguard.nix
+    ./attic.nix
+    ./couch.nix
   ];
 }

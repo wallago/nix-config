@@ -1,11 +1,6 @@
 { config, ... }:
 let
   ssl = {
-    henrotte = {
-      domain = "henrotte.xyz";
-      crt = config.sops.secrets."henrotte.xyz-ssl-crt".path;
-      key = config.sops.secrets."henrotte.xyz-ssl-key".path;
-    };
     wallago = {
       domain = "wallago.xyz";
       crt = config.sops.secrets."wallago.xyz-ssl-crt".path;
@@ -21,26 +16,34 @@ in
     recommendedOptimisation = true;
     recommendedUwsgiSettings = true;
     virtualHosts = {
-      "markeeper.${ssl.wallago.domain}" = {
-        enableACME = false;
-        forceSSL = true;
-        sslCertificate = ssl.wallago.crt;
-        sslCertificateKey = ssl.wallago.key;
-        locations."/".proxyPass = "http://127.0.0.1:5501";
-      };
-      "rewind.${ssl.wallago.domain}" = {
-        enableACME = false;
-        forceSSL = true;
-        sslCertificate = ssl.wallago.crt;
-        sslCertificateKey = ssl.wallago.key;
-        locations."/".proxyPass = "http://127.0.0.1:5502";
-      };
+      # Miniflux
       "rss.${ssl.wallago.domain}" = {
         enableACME = false;
         forceSSL = true;
         sslCertificate = ssl.wallago.crt;
         sslCertificateKey = ssl.wallago.key;
         locations."/".proxyPass = "http://127.0.0.1:5503";
+      };
+      # Attic
+      "cache.${ssl.wallago.domain}" = {
+        enableACME = false;
+        forceSSL = true;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:5504";
+          extraConfig = ''
+            client_max_body_size 0;  # no limit, NARs can be big
+          '';
+        };
+      };
+      # CouchDB
+      "obsidian.${ssl.wallago.domain}" = {
+        enableACME = false;
+        forceSSL = true;
+        sslCertificate = ssl.wallago.crt;
+        sslCertificateKey = ssl.wallago.key;
+        locations."/".proxyPass = "http://127.0.0.1:5984";
       };
     };
   };
@@ -51,16 +54,6 @@ in
   ];
 
   sops.secrets = {
-    "henrotte.xyz-ssl-crt" = {
-      sopsFile = ../secrets.yaml;
-      owner = "nginx";
-      group = "nginx";
-    };
-    "henrotte.xyz-ssl-key" = {
-      sopsFile = ../secrets.yaml;
-      owner = "nginx";
-      group = "nginx";
-    };
     "wallago.xyz-ssl-crt" = {
       sopsFile = ../secrets.yaml;
       owner = "nginx";
