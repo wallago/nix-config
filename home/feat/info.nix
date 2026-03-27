@@ -7,6 +7,10 @@ in
   programs.eilmeldung = {
     enable = true;
     settings = {
+      # feed_list_focused_width = "30%";
+      # article_list_focused_width = "70%";
+      article_list_focused_height = "50%";
+      article_content_focused_height = "50%";
       refresh_fps = 60;
       article_scope = "unread";
       theme.color_palette = {
@@ -43,7 +47,7 @@ in
             "in articles read"
             "in articles nextunread"
           ];
-          "W" = [
+          "J" = [
             "open unread"
             "confirm in articles read articles %"
           ];

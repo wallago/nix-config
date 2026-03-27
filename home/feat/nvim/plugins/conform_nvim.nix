@@ -48,7 +48,7 @@
     })
   '';
   deps = with pkgs; [
-    nodePackages.prettier
+    prettier
     yamlfmt
     rustfmt
     stylua

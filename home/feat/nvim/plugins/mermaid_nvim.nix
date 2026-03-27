@@ -16,6 +16,6 @@ in
     require('mermaid').setup()
   '';
   deps = with pkgs; [
-    nodePackages.mermaid-cli
+    mermaid-cli
   ];
 }
