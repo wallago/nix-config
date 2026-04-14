@@ -42,6 +42,7 @@ in
       local  all       all                     trust
       host   all       all     127.0.0.1/32    md5
       host   all       all     ::1/128         md5
+      host   all       all     10.100.0.0/24   md5
     '';
     settings = {
       log_connections = true;
@@ -72,6 +73,10 @@ in
       '';
     };
   };
+
+  networking.firewall.allowedTCPPorts = [
+    5432
+  ];
 
   sops.secrets =
     lib.genAttrs ([ "postgres-db-password" ] ++ map (n: "${n}-db-password") appNames)

@@ -44,11 +44,15 @@ let
     # === Language-Specific ===
     ./plugins/rustaceanvim.nix # Rust-analyzer integration & extras
     ./plugins/mermaid_nvim.nix # Mermaid diagram preview
-    ./plugins/kulala_nvim.nix # HTTP client (like Postman in nvim)
 
     # === VCS & Debug ===
     ./plugins/jj_nvim.nix # Jujutsu version control integration
     ./plugins/nvim_dap.nix # Debug adapter (breakpoints, stepping)
+
+    # === Misc ===
+    ./plugins/kulala_nvim.nix # HTTP client (like Postman in nvim)
+    ./plugins/nvim_dadbod.nix # Database explorer & SQL client
+    ./plugins/nvim_dotenv.nix # Load .env variables into Neovim
   ];
 
   rawPluginColorModules = [
