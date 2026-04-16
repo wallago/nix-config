@@ -7,7 +7,6 @@
     ./gamemode.nix
     ./tpm.nix
     ./fish.nix
-    ./grub.nix
     ./home.nix
     ./login.nix
     ./network.nix
