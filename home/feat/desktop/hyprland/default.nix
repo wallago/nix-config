@@ -55,7 +55,12 @@ in
       ];
       device = [
         {
-          name = "zmk-project-chocofi-keyboard";
+          name = "chocofi-wallago-keyboard";
+          kb_layout = "us";
+          kb_variant = "";
+        }
+        {
+          name = "zmk-project-chocofi-wallago-keyboard";
           kb_layout = "us";
           kb_variant = "";
         }
