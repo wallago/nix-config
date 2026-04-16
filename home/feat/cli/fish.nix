@@ -141,7 +141,7 @@
       man = lib.mkIf config.programs.bat.enable "batman";
       watch = lib.mkIf config.programs.bat.enable "batwatch";
       less = lib.mkIf config.programs.bat.enable "batpipe";
-      grep = lib.mkIf config.programs.ripgrep.enable "rg";
+      # grep = lib.mkIf config.programs.ripgrep.enable "rg";
       logout = lib.mkIf config.wayland.windowManager.hyprland.enable "hyprctl dispatch exit";
 
       # Misc
