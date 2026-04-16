@@ -21,7 +21,7 @@ in
     ./hardware-configuration.nix
   ];
 
-  disk.path = "/dev/nvme0n1";
+  disk.path = "/dev/nvme1n1";
 
   networking.hostName = "${hostname}";
 
