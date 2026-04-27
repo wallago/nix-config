@@ -9,6 +9,7 @@ in
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
     buildInputs = [
+      pkgs.just
       pkgs.sops
       pkgs.ssh-to-age
       pkgs.gnupg

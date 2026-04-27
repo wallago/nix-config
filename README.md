@@ -1,169 +1,187 @@
-# ❄️ NixOs with Flake
+# nix-config
 
-## 📐 Project Architecture Idea
+Personal NixOS / home-manager configuration, structured as a [`flake-parts`](https://flake.parts) flake using the [dendritic pattern](https://github.com/mirkolenz/flocken) — every concern lives in its own module file, auto-imported via [`import-tree`](https://github.com/vic/import-tree).
 
-```
-├── flake.nix
-│
-├── nixos -> system configuration
-│   ├── common -> default params for all hosts
-│   ├── feat -> optional features
-│   └── users
-│       └── ${user} -> specific params for ${user}
-│
-├── home -> user configuration
-│   ├── common -> default params for all users
-│   ├── feat -> optional features
-│   └── users
-│       └── ${user} -> specific params for ${user}
-│           ├── common -> default params for ${user}
-│           └── ${host} -> specific params for ${user} for ${host}
-│
-├── hosts
-│   └── ${host} -> specific params for ${host}
-│
-├── overlays -> modify or extend the Nix package set
-├── modules -> options for defines some params
-│   ├── home -> specifc for home
-│   └── nixos -> specifc for system
-│
-├── pkgs -> custom packages
-└── hydra.nix -> filter valid packages
-```
+This repo defines:
 
-The idea:\
-Make a difference between NixOs and Home-Manage !
+- The full configuration of every machine I run
+- A WireGuard mesh that lets them talk to each other regardless of where I am
+- Reverse-proxied services exposed publicly through my ISP router
+- Reusable home-manager modules and packaging wrappers
+- Secrets management via [sops-nix](https://github.com/Mic92/sops-nix)
+- Disk layout via [disko](https://github.com/nix-community/disko) and Secure Boot via [lanzaboote](https://github.com/nix-community/lanzaboote)
 
-- All around the hardware/system configurations should be in NixOs.
-  ```cli
-  nixos-rebuild switch --flake .#${host}
-  ```
-- All around the user experience should be in Home-Manager.
-  ```cli
-  home-manager switch --flake ${user}#${host}
-  ```
+## Network topology
 
-The behavior for someone who used NixOs, if it reload only Home-Manager with a user inside his config, don't should see a difference (cause NixOs only change Hardware stuff).
+```mermaid
+---
+title: Network Topology
+---
+flowchart LR
+  INTERNET(("Internet"))
 
-### ⚙️ Configuration in details
+  subgraph ISP_LAN["ISP LAN - 192.168.1.0/24"]
+    BOX("Box Ethernet (provider)<br/>192.168.1.1")
+  end
 
-#### Nixos
+  subgraph HOME_LAN["Home LAN - 192.168.10.0/24"]
+    direction TB
+    ROUTER("Teltonika RUTX11<br/>WAN: 192.168.1.143<br/>LAN: 192.168.10.1")
+    SERVER["coral (server)<br/>192.168.10.150<br/>wg0: 10.100.0.1"]
+    DESK["sponge (desktop)<br/>192.168.10.241<br/>wg0: 10.100.0.3"]
+    SERVER --- ROUTER
+    DESK --- ROUTER
+  end
 
-[Configuration ➖ nixos/common](doc/nixos/common.md)\
-[Configuration ➖ nixos/feat/gpu](doc/nixos/feat/gpu.md)\
-[Configuration ➖ nixos/feat/code](doc/nixos/feat/code.md)\
-[Configuration ➖ nixos/feat/desktop](doc/nixos/feat/desktop.md)
+  LAP["squid (laptop, roaming)<br/>wg0: 10.100.0.2"]
 
-#### Home Manager
+  %% Physical / IP path
+  INTERNET <--> BOX
+  BOX <--> ROUTER
 
-[Configuration ➖ home/common/](doc/home/common.md)
+  %% Port-forward chain: public HTTP(S) -> RUTX -> coral
+  INTERNET <-. "HTTP/HTTPS<br/>TCP 80, 443" .-> BOX
+  BOX <-. "HTTP/HTTPS<br/>TCP 51080, 51443" .-> ROUTER
+  ROUTER <-. "HTTP/HTTPS<br/>TCP 80, 443" .-> SERVER
 
-<!-- [Configuration ➖ home/feat/cli](doc/home/feat/cli.md)\ -->
-<!-- [Configuration ➖ home/feat/nvim](doc/home/feat/nvim.md) -->
-<!-- [Configuration ➖ home/feat/cli](doc/home/feat/desktop.md)\ -->
+  %% WireGuard hub-and-spoke, terminated on coral
+  SERVER <-. "WireGuard<br/>UDP 51820" .-> DESK
+  SERVER <-. "WireGuard<br/>UDP 51820" .-> LAP
 
-#### Misc
-
-[Configuration ➖ overlays/](doc/overlays.md)\
-[Configuration ➖ pkgs/](doc/pkgs.md)\
-[Configuration ➖ modules/home/](doc/modules.md)
-
-### 👥 Hosts & Users in details
-
-[Hosts ➖ hosts/](doc/hosts.md)\
-[Users ➖ home/users/ x nixos/users/](doc/users.md)
-
-## 📥 Inputs
-
-This section explains the inputs used in our NixOS flake configuration.
-
-### 📦 Core Nix Ecosystem
-
-- **nixpkgs**: The primary package collection, using the unstable channel for the latest packages.
-- **systems**: Standard system architectures for cross-compilation.
-
-### 🧩 System Components
-
-- **nix-colors**: Color scheme management.
-- **impermanence**: Impermanence.
-
-### 👤 User Environment Management
-
-- **home-manager**: User-level configurations.
-
-### 💾 Storage Management
-
-- **disko**: Declarative disk partitioning.
-
-### 🔐 Security
-
-- **sops-nix**: Secrets management with SOPS.
-
-### 🔌 Third-Party Packages
-
-- **firefox-addons**: Firefox extensions repository.
-- **rust-overlay**: Rust overlay for better Management.
-
-### 🎨 Own Packages
-
-- **themes**: Themes (Wallpaper / Color scheme)
-
-## 🔐 Secrets
-
-For deployment secrets. I'm using the awesome [`sops-nix`](https://github.com/Mic92/sops-nix).\
-All secrets are encrypted with my personal PGP key (stored on a [`YubiKey`](https://www.yubico.com/), as well as the relevant systems's SSH host keys.
-
-> [!NOTE]
-> Don't forget to init the Yubikey
-
-By default secrets are owned by `root:root`.\
-By default secrets are stored into `/run/secrets.d` and `/run/secrets-for-users.d`.
-
-> [!TIP]
-> Find the keygrip: Use `gpg --with-keygrip --list-secret-keys <key-id>`
-
-> [!TIP]
-> To generate a GPG public key: Use `gpg --armor --export commandant.cousteau1997@gmail.com > home/pgp.asc`
-
-### 📄 Add secrets file
-
-To create the file with the sops config, type:
-
-```shell
-nix develop
-sops path/to/secrets.yaml
+  classDef peer fill:#EEEDFE,stroke:#534AB7,color:#26215C;
+  classDef infra fill:#E1F5EE,stroke:#0F6E56,color:#04342C;
+  classDef net fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A;
+  class SERVER,DESK,LAP peer;
+  class ROUTER,BOX infra;
+  class INTERNET net;
 ```
 
-It can be checked by typing:
+The setup is double-NATed behind the ISP-provided Box (`192.168.1.0/24`).\
+The Teltonika RUTX11 acts as the actual home router, carving out `192.168.10.0/24` for my own gear.
 
-```shell
-cat path/to/secrets.yaml
+Public HTTP/HTTPS reaches the home LAN through a port-forward chain: the Box accepts `:80`/`:443`, forwards to the RUTX11 on non-standard ports `:51080`/`:51443` (because the Box reserves the standard ports for itself), which the RUTX11 then forwards to coral on standard `:80`/`:443`.
+
+WireGuard terminates on **coral**, not on the router. UDP `51820` is forwarded down the same chain.
+
+## Services
+
+```mermaid
+---
+title: Services
+---
+flowchart LR
+  EXT(("External traffic<br/>via RUTX11"))
+  WGNET(("WireGuard peers<br/>10.100.0.0/24"))
+
+  subgraph CORAL["coral (192.168.10.150)"]
+    direction TB
+    NGINX["nginx<br/>reverse proxy<br/>:80, :443"]
+    WG["WireGuard server<br/>:51820/udp"]
+
+    subgraph APPS["Application services"]
+      direction TB
+      OBSIDIAN["Obsidian LiveSync<br/>(CouchDB)<br/>:5984"]
+      GRAFANA["Grafana<br/>:3000"]
+      VAULTWARDEN["Vaultwarden<br/>:8000"]
+    end
+  end
+
+  EXT -. "TCP 80, 443" .-> NGINX
+  WGNET -. "UDP 51820" .-> WG
+
+  NGINX -. "obsidian.example.com" .-> OBSIDIAN
+  NGINX -. "grafana.example.com" .-> GRAFANA
+  NGINX -. "vault.example.com" .-> VAULTWARDEN
+
+  classDef edge fill:#FAEEDA,stroke:#854F0B,color:#412402;
+  classDef app fill:#EEEDFE,stroke:#534AB7,color:#26215C;
+  classDef ext fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A;
+  class NGINX,WG edge;
+  class OBSIDIAN,GRAFANA,VAULTWARDEN app;
+  class EXT,WGNET ext;
 ```
 
-## 💾 Impermanence
+## Hosts
 
-Choose what files and directories you want to keep between reboots - the rest are thrown away.\
-The persistent storage can be found at `/persist`.
+| Host       | Role                          | Address (LAN)    | WireGuard    |
+| ---------- | ----------------------------- | ---------------- | ------------ |
+| **coral**  | Server, reverse proxy, WG hub | `192.168.10.150` | `10.100.0.1` |
+| **sponge** | Desktop (niri, daily driver)  | `192.168.10.241` | `10.100.0.3` |
+| **squid**  | Laptop (roaming)              | —                | `10.100.0.2` |
 
-`directories`: All directories you want to bind mount to persistent storage.
+Each host has a corresponding `nixosConfigurations.<name>` exposed by the flake, built from a host-specific module plus shared modules.
 
-- `/var/lib/systemd`
-- `/var/lib/nixos`
-- `/var/log`
-- `/srv`
-- `/home/${user}/Documents`
-- `/home/${user}/Downloads`
-- `/home/${user}/Pictures`
-- `/home/${user}/Videos`
-- `/home/${user}/.local/bin`
-- `/home/${user}/.local/share/nix`: trusted settings and repl history
+## Repository layout
 
-`files`: All files you want to link or bind to persistent storage.
+The flake is dendritic — `flake.nix` does almost nothing, and every output is defined inside `modules/` as a small flake-parts module.\
+`import-tree` walks the directory and feeds every `.nix` file into `mkFlake`.
 
-- `/etc/machine-id`
-- `/etc/ssh/ssh_host_ed25519_key`
-- `/etc/ssh/ssh_host_ed25519_key.pub`
+```
+.
+├── flake.nix              # mkFlake + import-tree, nothing else
+├── flake.lock
+├── modules/
+│   ├── core/              # systems list, flake-parts imports (home-manager, etc.)
+│   ├── hosts/             # one file per host: coral.nix, sponge.nix, squid.nix
+│   ├── hardware/          # disko + hardware-configuration per host
+│   ├── nixos/             # reusable NixOS modules (users, locale, ssh, ...)
+│   ├── home/              # reusable home-manager modules
+│   ├── services/          # service modules (nginx, wireguard, vaultwarden, ...)
+│   ├── features/          # opt-in feature bundles (desktop, dev, gaming, ...)
+│   ├── packages/          # custom packages and wrappers (e.g. niri)
+│   └── secrets/           # sops-nix wiring (encrypted blobs live in secrets/)
+└── README.md
+```
 
-> [!NOTE]
-> The users option defines a set of submodules which correspond to the users’ names.
-> The directories and files options of each submodule work like their root counterparts, but the paths are automatically prefixed with with the user’s home directory.
+## Common tasks
+
+### Build and switch a machine
+
+On the target host:
+
+```bash
+sudo nixos-rebuild switch --flake .#<hostname>
+```
+
+### Test a host config in a VM (no risk to the real machine)
+
+```bash
+nixos-rebuild build-vm --flake .#<hostname>
+./result/bin/run-<hostname>-vm
+```
+
+### Update inputs
+
+```bash
+nix flake update
+```
+
+Or update a single input:
+
+```bash
+nix flake lock --update-input nixpkgs
+```
+
+### Edit a secret
+
+```bash
+sops modules/secrets/<file>.yaml
+```
+
+### Add a new host
+
+1. Create `modules/hosts/<name>.nix` with `flake.nixosConfigurations.<name>`.
+2. Create `modules/hardware/<name>.nix` with the hardware module.
+3. If it joins the WireGuard mesh, add a peer entry under `modules/services/wireguard/`.
+4. `nix flake check` to validate.
+
+## Conventions
+
+- **One concern per file.** A file should answer "if I want to change X, do I open this file?" with a clear yes or no.
+- **Reusable modules go under `flake.nixosModules` / `flake.homeModules`**, not directly into a host. Hosts compose modules; they don't define logic.
+- **Hardware lives in its own module** so VMs and test rigs can `disabledModules = [ self.nixosModules.<host>Hardware ]` to drop it.
+- **No secrets in plaintext, ever.** sops-nix is the only path. The repo is public-safe.
+
+## License
+
+Personal config — feel free to copy patterns; no warranty implied.
