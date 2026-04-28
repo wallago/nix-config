@@ -1,3 +1,0 @@
-```
-└── minicava -> minimal sound visualizer
-```

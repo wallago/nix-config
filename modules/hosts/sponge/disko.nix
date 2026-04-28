@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.diskoConfigurations.diskoSponge = {
+  flake.diskoConfigurations.hostSponge = {
     imports = [ inputs.disko.nixosModules.disko ];
 
     # Tell systemd these mounts must be ready early in boot.
