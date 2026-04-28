@@ -33,6 +33,8 @@
         };
       };
 
+      system.stateVersion = "26.05";
+
       # Run unpatched dynamic binaries
       programs.nix-ld.enable = true;
 
