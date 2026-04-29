@@ -138,6 +138,12 @@
     markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
     gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
+
+    # -----------------to sort -------------
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

@@ -15,8 +15,9 @@
     imports = [
       self.homeModules.base
       self.homeModules.secrets
-      self.homeModules.fish
       self.homeModules.user
+      self.homeModules.fish
+      self.homeModules.nvim
     ];
 
     home = {
