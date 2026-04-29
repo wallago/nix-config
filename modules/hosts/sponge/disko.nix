@@ -1,13 +1,14 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
-  flake.diskoConfigurations.hostSponge = {
-    imports = [ inputs.disko.nixosModules.disko ];
-
-    # Tell systemd these mounts must be ready early in boot.
-    # /persist holds machine-id, ssh host keys, and sops keys — without
-    # this flag, services that need them at boot will fail.
+  flake.nixosModules.diskoSponge = {
+    imports = [
+      inputs.disko.nixosModules.disko
+      self.diskoConfigurations.hostSponge
+    ];
     fileSystems."/persist".neededForBoot = true;
+  };
 
+  flake.diskoConfigurations.hostSponge = {
     disko.devices = {
       disk.main = {
         device = "/dev/disk/by-id/nvme-Corsair_MP600_GS_2305802200013241002";

@@ -22,7 +22,7 @@ check-dry:
 
 # Mirror full CI locally
 check: fmt
-    nix flake check --print-build-logs
+    nix flake check --print-build-logs --all-systems
     @echo "✅ All checks passed"
 
 # ── Build ─────────────────────────────────────────────────────
@@ -64,11 +64,11 @@ switch-remote HOST:
 # Build a QEMU VM image of a host (graphical)
 vm HOST=host:
     nixos-rebuild build-vm --flake {{flake}}#{{HOST}}
-    @echo "▶ run with: ./result/bin/run-{{HOST}}-vm"
+    @echo "▶ run with: ./result/bin/run-nixos-vm"
 
 # Build + launch a VM in one step
 vm-run HOST=host: (vm HOST)
-    ./result/bin/run-{{HOST}}-vm
+    ./result/bin/run-nixos-vm
 
 # ── Inputs & updates ──────────────────────────────────────────
 # Update every flake input

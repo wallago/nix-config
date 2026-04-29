@@ -6,22 +6,34 @@
     ];
   };
 
-  flake.nixosModules.hostSponge = {
-    imports = [
+  flake.nixosModules.hostSponge =
+    { config, ... }:
       self.nixosModules.general
 
       self.nixosModules.userWallago
       self.nixosModules.nvidia
+      imports = [
+        self.nixosModules.general
 
-      self.diskoConfigurations.hostSponge
-    ];
+        self.nixosModules.userWallago
+        self.nixosModules.secretsSponge
 
     home-manager.users.wallago = {
       imports = [
         self.homeModules.general
 
-        self.homeModules.wallago
+        self.nixosModules.diskoSponge
       ];
+
+      preferences.user.name = "wallago";
+
+      home-manager.users.${userName} = {
+        imports = [
+          self.homeModules.general
+        ];
+
+        preferences.user.name = userName;
+      };
     };
   };
 }
