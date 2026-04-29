@@ -5,13 +5,9 @@
       self.nixosModules.base
       self.nixosModules.nix
       self.nixosModules.home-manager
-      self.nixosModules.boot
       self.nixosModules.user
       self.nixosModules.secrets
       self.nixosModules.shell
-
-      # default services
-      self.nixosModules.fail2ban
     ];
   };
 

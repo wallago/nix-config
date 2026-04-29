@@ -149,3 +149,8 @@ deadnix:
 # Statix linter for nix
 statix:
     nix run nixpkgs#statix -- check .
+
+# ── Miscellaneous ──────────────────────────────────────────────
+# Claude monitor token
+claude-usage:
+    nix run nixpkgs#claude-monitor

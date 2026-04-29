@@ -3,6 +3,7 @@
   flake.nixosConfigurations.sponge = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.hostSponge
+      self.nixosModules.hostSpongeHardware
     ];
   };
 
@@ -20,6 +21,7 @@
 
         self.nixosModules.nvidia
         self.nixosModules.vmNix
+        self.nixosModules.ai
 
         self.nixosModules.diskoSponge
       ];

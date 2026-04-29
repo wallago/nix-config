@@ -7,12 +7,14 @@
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
       "https://cache.wallago.xyz"
+      "https://claude-code.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "wallago:zWInaWbUegbCx5vbDctCdq/3GiYV3UbMNnqcLpTbGOM="
+      "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
     ];
     netrc-file = "/etc/nix/netrc";
     connect-timeout = 5;
@@ -124,6 +126,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Claude AI agent
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Lockscreen themes
+    qylock = {
+      url = "github:Darkkal44/qylock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ─── Personal flakes ───────────────────────────────────────────────────────
 
     themes.url = "github:wallago/nix-themes?dir=nix";
@@ -138,6 +152,12 @@
     markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
     gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
+
+    # -----------------to sort -------------
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

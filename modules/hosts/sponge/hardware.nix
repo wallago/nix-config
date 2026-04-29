@@ -1,10 +1,8 @@
-{ self, inputs, ... }:
 {
-  flake.nixosModules.hostSponge =
+  flake.nixosModules.hostSpongeHardware =
     {
       config,
       lib,
-      pkgs,
       modulesPath,
       ...
     }:
