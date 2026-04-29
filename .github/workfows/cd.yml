@@ -1,0 +1,37 @@
+name: CD
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build-and-cache:
+    name: Build & push to Attic
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [coral, sponge, squid]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Install Attic client
+        run: nix profile install nixpkgs#attic-client
+      - name: Configure Attic
+        env:
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+        run: |
+          attic login wallago https://cache.wallago.xyz "$ATTIC_TOKEN"
+          attic use wallago:main
+      - name: Build host closure
+        id: build
+        run: |
+          nix build \
+            .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --no-link --print-out-paths > out-paths.txt
+          echo "Built: $(cat out-paths.txt)"
+      - name: Push to Attic
+        run: attic push wallago:main $(cat out-paths.txt)

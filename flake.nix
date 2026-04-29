@@ -19,157 +19,132 @@
   };
 
   inputs = {
-    # core
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    systems.url = "github:nix-systems/default-linux";
+    # ─── Core ──────────────────────────────────────────────────────────────────
+
+    # Nixpkgs — small unstable channel
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Modular flake authoring — split outputs into composable modules
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Auto-import a directory tree of Nix files as a single attrset
+    import-tree.url = "github:vic/import-tree";
+
+    # A Nix library to create wrapped executables via the module system
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+
+    # Declarative ephemeral root: pick what survives a reboot
     impermanence.url = "github:nix-community/impermanence";
+
+    # Per-user environment management on top of Nix
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Declarative secret management for NixOS, powered by sops
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Declarative disk partitioning and formatting
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-gl = {
-      url = "github:nix-community/nixgl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # Secure Boot support for NixOS (UKI + signed kernels)
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # feat
+    # Run unpatched binaries on Nix/NixOS
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-index-database.follows = "nix-index-database";
+    };
+
+    # Weekly updated nix-index database
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # ─── Features ──────────────────────────────────────────────────────────────
+
+    # Community-driven Nix Flake for the Zen browser
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    # Soothing pastel theme for Nix
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Modules and schemes to make theming with Nix awesome
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+      inputs.nixpkgs-lib.follows = "flake-parts/nixpkgs-lib";
+    };
+
+    # Curated Firefox add-ons exposed as Nix packages
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Breaking-news ticker / notifier
     eilmeldung = {
       url = "github:christo-auer/eilmeldung";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixOS MicroVMs
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # NixOS profiles for servers
+    srvos = {
+      url = "github:nix-community/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Yet another Discord mod
+    moonlight = {
+      url = "github:moonlight-mod/moonlight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # ─── Personal flakes ───────────────────────────────────────────────────────
+
     themes.url = "github:wallago/nix-themes?dir=nix";
-    nix-colors.url = "github:misterio77/nix-colors";
     nix-bootstrap.url = "github:wallago/nix-bootstrap?dir=nix";
     nix-deployer.url = "github:wallago/nix-deployer?dir=nix";
     project-banner.url = "github:wallago/project-banner?dir=nix";
 
-    # project
+    # ─── Projects ──────────────────────────────────────────────────────────────
+
     rewind-backend.url = "git+ssh://git@github.com/wallago/rewind?dir=back/nix";
     rewind-frontend.url = "git+ssh://git@github.com/wallago/rewind?dir=front/nix";
     markeeper-backend.url = "git+ssh://git@github.com/wallago/markeeper?dir=back/nix";
     markeeper-frontend.url = "git+ssh://git@github.com/wallago/markeeper?dir=front/nix";
     gateway.url = "git+ssh://git@github.com/tools-hood/gateway?dir=nix";
+
+    # -----------------to sort -------------
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      systems,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      # Creates a lib var combining nixpkgs.lib with home-manager.lib
-      lib = nixpkgs.lib // home-manager.lib;
-
-      # For each system, the Nixpkgs for that system and sets the configuration to allow unfree packages
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
-        system:
-        import nixpkgs {
-          localSystem.system = system;
-          config.allowUnfree = true;
-        }
-      );
-    in
-    {
-      inherit lib;
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home { inherit inputs; };
-      nixosAndHomeManagerModules = import ./modules/nixos-home;
-      overlays = import ./overlays { inherit inputs; };
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs inputs; });
-      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
-
-      # NixOS system configuration
-      nixosConfigurations =
-        # Minimal config for each systems
-        lib.listToAttrs (
-          map (system: {
-            name = "plankton-${system}";
-            value = lib.nixosSystem {
-              modules = [
-                ./hosts/plankton
-                { nixpkgs.hostPlatform = system; }
-              ];
-              specialArgs = { inherit inputs outputs; };
-            };
-          }) (import systems)
-        )
-        // {
-          # Main desktop
-          sponge = lib.nixosSystem {
-            modules = [
-              ./hosts/sponge
-              { nixpkgs.hostPlatform = "x86_64-linux"; }
-            ];
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Main laptop
-          squid = lib.nixosSystem {
-            modules = [
-              ./hosts/squid
-              { nixpkgs.hostPlatform = "x86_64-linux"; }
-            ];
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Home server
-          coral = lib.nixosSystem {
-            modules = [
-              ./hosts/coral
-              { nixpkgs.hostPlatform = "x86_64-linux"; }
-            ];
-            specialArgs = { inherit inputs outputs; };
-          };
-          # Work server
-          cuttlefish = lib.nixosSystem {
-            modules = [
-              ./hosts/cuttlefish
-              { nixpkgs.hostPlatform = "x86_64-linux"; }
-            ];
-            specialArgs = { inherit inputs outputs; };
-          };
-        };
-
-      # Standalone Home Manager only
-      homeConfigurations = {
-        # Main desktop
-        "wallago@sponge" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/wallago/sponge.nix
-            ./home/nixpkgs.nix
-          ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # Main laptop
-        "wallago@squid" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/users/wallago/squid.nix
-            ./home/nixpkgs.nix
-          ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
