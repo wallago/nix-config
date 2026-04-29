@@ -8,19 +8,18 @@
 
   flake.nixosModules.hostSponge =
     { config, ... }:
-      self.nixosModules.general
-
-      self.nixosModules.userWallago
-      self.nixosModules.nvidia
+    let
+      userName = config.preferences.user.name;
+    in
+    {
       imports = [
         self.nixosModules.general
 
         self.nixosModules.userWallago
         self.nixosModules.secretsSponge
 
-    home-manager.users.wallago = {
-      imports = [
-        self.homeModules.general
+        self.nixosModules.nvidia
+        self.nixosModules.vmNix
 
         self.nixosModules.diskoSponge
       ];
@@ -35,5 +34,4 @@
         preferences.user.name = userName;
       };
     };
-  };
 }
