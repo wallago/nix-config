@@ -10,6 +10,8 @@
       self.nixosModules.secrets
       self.nixosModules.shell
       self.nixosModules.locale
+      self.nixosModules.netrc
+      self.nixosModules.networking
 
       # default services
       self.nixosModules.fail2ban

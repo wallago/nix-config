@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.gaming =
+  flake.nixosModules.gamemode =
     { pkgs, config, ... }:
     {
       programs.gamemode = {
