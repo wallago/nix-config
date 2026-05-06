@@ -3,8 +3,8 @@ let
   sops_config = {
     defaultSopsFile = ./secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/var/lib/secrets/sops/age/keys.txt";
   };
+  hmKeyFile = "/var/lib/secrets/sops/age/keys.txt";
 in
 {
   flake.nixosModules.secrets = {
@@ -16,8 +16,10 @@ in
     { pkgs, ... }:
     {
       imports = [ inputs.sops-nix.homeManagerModules.sops ];
-      sops = sops_config;
-      home.sessionVariables.SOPS_AGE_KEY_FILE = sops_config.age.keyFile;
+      sops = sops_config // {
+        age.keyFile = hmKeyFile;
+      };
+      home.sessionVariables.SOPS_AGE_KEY_FILE = hmKeyFile;
       home.packages = [ pkgs.sops ];
     };
 }

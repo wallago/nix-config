@@ -25,6 +25,7 @@ check: fmt
     nix flake check --print-build-logs --all-systems
     @echo "✅ All checks passed"
 
+
 # ── Build ─────────────────────────────────────────────────────
 # Evaluate a host's config without building (fast feedback)
 eval HOST=host:
@@ -78,7 +79,6 @@ update:
 # Update a single input. Usage: just update-input nixpkgs
 update-input INPUT:
     nix flake lock --update-input {{INPUT}}
-
 # Show what would update (no changes)
 update-dry:
     nix flake lock --recreate-lock-file --dry-run 2>&1 | head -50
@@ -133,6 +133,9 @@ why HOST PKG:
     nix why-depends {{flake}}#nixosConfigurations.{{HOST}}.config.system.build.toplevel \
       nixpkgs#{{PKG}}
 
+option OPT:
+  nix run nixpkgs#manix {{OPT}}
+
 # ── Repo hygiene ──────────────────────────────────────────────
 # Spell-check the repo
 typos:
@@ -154,3 +157,34 @@ statix:
 # Claude monitor token
 claude-usage:
     nix run nixpkgs#claude-monitor
+
+# to rm
+
+# Install NixOS on a remote host using nixos-anywhere, seeding the sops age key
+install host flake="squid":
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    tmp=$(mktemp -d)
+    trap 'rm -rf "$tmp"' EXIT
+
+    install -d -m 0755 "$tmp/etc/ssh"
+    ssh-keygen -t ed25519 -N "" -f "$tmp/etc/ssh/ssh_host_ed25519_key"
+    chmod 600 "$tmp/etc/ssh/ssh_host_ed25519_key"
+
+    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+
+    echo
+    echo "SSH pubkey:"
+    cat "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+    echo
+    echo "Age pubkey (add to .sops.yaml):"
+    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+    echo
+
+    read -rp "Update .sops.yaml + run 'sops updatekeys', then press Enter to install... "
+
+    nix run github:nix-community/nixos-anywhere -- \
+      --flake ".#{{flake}}" \
+      --extra-files "$tmp" \
+      --target-host "root@{{host}}"

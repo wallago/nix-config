@@ -19,7 +19,7 @@
         self.nixosModules.userWallago
         self.nixosModules.secretsSquid
 
-        self.nixosModules.nvidia
+        self.nixosModules.intel
         self.nixosModules.vmNix
         self.nixosModules.gaming
         self.nixosModules.desktop
@@ -33,6 +33,12 @@
 
       preferences.user.name = "wallago";
 
+      # default keyboard at login level
+      services.xserver.xkb = {
+        layout = "us";
+        variant = "colemak_dh";
+      };
+
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
@@ -42,6 +48,20 @@
         ];
 
         preferences.user.name = userName;
+
+        preferences.monitors."DP-1" = {
+          primary = true;
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 60.0;
+          };
+          scale = 1.0;
+          position = {
+            x = 0;
+            y = 0;
+          };
+        };
       };
     };
 }

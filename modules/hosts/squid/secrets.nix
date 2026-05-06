@@ -2,7 +2,7 @@
   flake.nixosModules.secretsSquid = {
     sops.defaultSopsFile = ../../secrets/squid.yaml;
     sops.secrets.wallago-password = {
-      sopsFile = ../../secrets/sponge.yaml;
+      sopsFile = ../../secrets/squid.yaml;
       neededForUsers = true;
     };
   };
