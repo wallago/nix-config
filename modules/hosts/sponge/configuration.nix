@@ -21,6 +21,7 @@
 
         self.nixosModules.nvidia
         self.nixosModules.vmNix
+        self.nixosModules.gaming
 
         self.nixosModules.diskoSponge
       ];

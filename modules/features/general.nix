@@ -9,6 +9,7 @@
       self.nixosModules.user
       self.nixosModules.secrets
       self.nixosModules.shell
+      self.nixosModules.locale
 
       # default services
       self.nixosModules.fail2ban

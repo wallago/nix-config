@@ -9,3 +9,7 @@ creation_rules:
     key_groups:
       - age: [*sponge]
         pgp: [*yubikey_01, *yubikey_02]
+  - path_regex: modules/secrets/netrc.ya?ml$
+    key_groups:
+      - age: [*sponge]
+        pgp: [*yubikey_01, *yubikey_02]

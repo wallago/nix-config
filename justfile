@@ -90,11 +90,11 @@ relock:
 # ── Secrets (sops-nix) ────────────────────────────────────────
 # Edit a secrets file. Usage: just secret coral
 secret FILE:
-    sops modules/secrets/{{FILE}}.yaml
+    nix run nixpkgs#sops modules/secrets/{{FILE}}.yaml
 
 # Re-encrypt all secrets after changing recipients in .sops.yaml
 secrets-rotate:
-    find modules/secrets -name '*.yaml' -exec sops updatekeys {} \;
+    find modules/secrets -name '*.yaml' -exec nix run nixpkgs#sops updatekeys {} \;
 
 # ── Garbage collection ────────────────────────────────────────
 # Clean dev artifacts: ./result symlinks
