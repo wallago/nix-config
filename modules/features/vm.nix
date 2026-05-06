@@ -1,16 +1,20 @@
 {
   flake.nixosModules.vmNix =
     { lib, config, ... }:
+    let
+      userName = config.preferences.user.name;
+    in
     {
       virtualisation.vmVariant = {
+        # Disable impermanence
+        environment.persistence = lib.mkForce { };
+
         # No real disk
         disko.enableConfig = false;
 
-        # Autologin the real user with a known throwaway password
-        services.getty.autologinUser = config.preferences.user.name;
         users = {
           mutableUsers = false;
-          users.${config.preferences.user.name} = {
+          users.${userName} = {
             hashedPasswordFile = lib.mkForce null;
             password = lib.mkForce "vm";
           };

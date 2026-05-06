@@ -8,11 +8,13 @@
       self.nixosModules.boot
       self.nixosModules.user
       self.nixosModules.secrets
+      self.nixosModules.security
+      self.nixosModules.networking
+
+      self.nixosModules.impermanence
       self.nixosModules.shell
       self.nixosModules.locale
       self.nixosModules.netrc
-      self.nixosModules.networking
-
       self.nixosModules.direnv
       self.nixosModules.nix-ld
     ];
@@ -23,6 +25,8 @@
       self.homeModules.base
       self.homeModules.secrets
       self.homeModules.user
+      self.homeModules.networking
+
       self.homeModules.shell
       self.homeModules.editor
     ];

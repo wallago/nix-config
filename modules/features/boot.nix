@@ -4,8 +4,11 @@
     {
       boot = {
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-        consoleLogLevel = 3;
-        initrd.verbose = false;
+        # consoleLogLevel = 3;
+        initrd = {
+          verbose = true;
+          systemd.enable = true;
+        };
         kernelParams = [
           "systemd.show_status=auto"
         ];

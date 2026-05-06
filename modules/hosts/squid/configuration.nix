@@ -1,13 +1,13 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.sponge = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.squid = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.hostSponge
-      self.nixosModules.hostSpongeHardware
+      self.nixosModules.hostSquid
+      self.nixosModules.hostSquidHardware
     ];
   };
 
-  flake.nixosModules.hostSponge =
+  flake.nixosModules.hostSquid =
     { config, ... }:
     let
       userName = config.preferences.user.name;
@@ -17,7 +17,7 @@
         self.nixosModules.general
 
         self.nixosModules.userWallago
-        self.nixosModules.secretsSponge
+        self.nixosModules.secretsSquid
 
         self.nixosModules.nvidia
         self.nixosModules.vmNix
@@ -26,7 +26,9 @@
         self.nixosModules.audio
         self.nixosModules.bluetooth
 
-        self.nixosModules.diskoSponge
+        self.nixosModules.battery
+
+        self.nixosModules.diskoSquid
       ];
 
       preferences.user.name = "wallago";

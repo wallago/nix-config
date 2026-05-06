@@ -16,7 +16,6 @@
       "wallago:zWInaWbUegbCx5vbDctCdq/3GiYV3UbMNnqcLpTbGOM="
       "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk="
     ];
-    netrc-file = "/etc/nix/netrc";
     connect-timeout = 5;
   };
 
@@ -135,6 +134,18 @@
     # Lockscreen themes
     qylock = {
       url = "github:LordHerdier/qylock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Scrollable-tiling Wayland compositor
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # A beautiful, minimal desktop shell for Wayland
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
