@@ -5,6 +5,9 @@
   };
 
   flake.homeModules.shell = {
-    imports = [ self.homeModules.fish ];
+    imports = [
+      self.homeModules.fish
+      self.homeModules.starship
+    ];
   };
 }

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nix = {
+  flake.nixosModules.direnv = {
     programs.direnv = {
       enable = true;
       silent = false;

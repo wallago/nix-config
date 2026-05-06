@@ -1,6 +1,6 @@
 {
   flake.nixosModules.sddm = {
-    services.sddm = {
+    services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
     };

@@ -14,9 +14,6 @@
   flake.homeModules.fish =
     { pkgs, ... }:
     {
-      imports = [
-        self.homeModules.starship
-      ];
       home.packages = [ pkgs.libnotify ];
 
       programs.fish = {

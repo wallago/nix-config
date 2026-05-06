@@ -13,8 +13,8 @@
       self.nixosModules.netrc
       self.nixosModules.networking
 
-      # default services
-      self.nixosModules.fail2ban
+      self.nixosModules.direnv
+      self.nixosModules.nix-ld
     ];
   };
 
