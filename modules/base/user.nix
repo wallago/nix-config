@@ -13,9 +13,11 @@
   flake.homeModules.base =
     { lib, ... }:
     {
-      options.preferences.user.name = lib.mkOption {
-        type = lib.types.str;
-        default = "wallago";
+      options.preferences = {
+        user.name = lib.mkOption {
+          type = lib.types.str;
+          default = "wallago";
+        };
       };
     };
 }

@@ -1,8 +1,8 @@
 { self, ... }:
 {
-  flake.nixosModules.ai = {
+  flake.homeModules.ai = {
     imports = [
-      self.nixosModules.claude
+      self.homeModules.claude
     ];
   };
 }

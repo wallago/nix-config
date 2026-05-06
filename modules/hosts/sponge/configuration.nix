@@ -21,7 +21,6 @@
 
         self.nixosModules.nvidia
         self.nixosModules.vmNix
-        self.nixosModules.ai
 
         self.nixosModules.diskoSponge
       ];
@@ -31,6 +30,8 @@
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
+
+          self.homeModules.ai
         ];
 
         preferences.user.name = userName;

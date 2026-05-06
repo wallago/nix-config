@@ -1718,6 +1718,26 @@
         "type": "github"
       }
     },
+    "qylock": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775148947,
+        "narHash": "sha256-qSzxL5/4mobnIvN8SYUUW5m0hkozPX9lDc/svo5c794=",
+        "owner": "LordHerdier",
+        "repo": "qylock",
+        "rev": "af4ae446ed82ccb4df1a2cce87d86c2a01c38c68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LordHerdier",
+        "repo": "qylock",
+        "type": "github"
+      }
+    },
     "rewind-backend": {
       "inputs": {
         "flake-utils": "flake-utils_13",
@@ -1791,6 +1811,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_18",
         "project-banner": "project-banner_4",
+        "qylock": "qylock",
         "rewind-backend": "rewind-backend",
         "rewind-frontend": "rewind-frontend",
         "sops-nix": "sops-nix",

@@ -1,8 +1,8 @@
 { self, ... }:
 {
-  flake.nixosModules.editor = {
+  flake.homeModules.editor = {
     imports = [
-      self.nixosModules.helix
+      self.homeModules.helix
     ];
   };
 }

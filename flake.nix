@@ -134,7 +134,7 @@
 
     # Lockscreen themes
     qylock = {
-      url = "github:Darkkal44/qylock";
+      url = "github:LordHerdier/qylock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

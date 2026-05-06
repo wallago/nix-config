@@ -1,6 +1,5 @@
-{ self, ... }:
 {
-  flake.nixosModules.helix = {
+  flake.homeModules.helix = {
     programs.helix = {
       enable = true;
       ignores = [
