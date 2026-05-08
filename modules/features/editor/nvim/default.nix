@@ -8,6 +8,7 @@
       self.homeModules.nvimPluginOil
       self.homeModules.nvimPluginLsp
       self.homeModules.nvimPluginConform
+      self.homeModules.nvimPluginTreesitter
     ];
 
     programs.neovim = {

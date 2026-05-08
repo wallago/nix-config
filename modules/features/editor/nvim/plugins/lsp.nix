@@ -7,7 +7,6 @@
           plugin = nvim-lspconfig;
           config = ''
             vim.lsp.inlay_hint.enable(true)
-            vim.lsp.set_log_level("WARN")
             vim.lsp.config("nixd", {
               cmd = { "nixd" },
               settings = {
@@ -25,6 +24,7 @@
           '';
         }
       ];
+
       home.packages = with pkgs; [
         nixd
         nixfmt
