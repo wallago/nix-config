@@ -1,7 +1,12 @@
 {
   flake.homeModules.nvimBinds = {
-    programs.neovim.extraConfig = ''
+    programs.neovim.initLua = ''
       local map = vim.keymap.set
+
+      -- Leader = space  ────────────────────────────────────────────────────
+      vim.g.mapleader = " "
+      vim.g.maplocalleader = " "
+
       local opts = { noremap = true, silent = false }
       -- Movement: NEIO replaces HJKL  ──────────────────────────────────────
       for _, mode in ipairs({ "n", "v", "x", "o" }) do
@@ -27,6 +32,18 @@
       map("n", "L", "I", opts)
       map("n", "j", "o", opts)
       map("n", "J", "O", opts)
+
+      -- Visual-line aware variants (so e/i don't skip wrapped lines)  ──────
+      map("n", "e", "gj", opts)
+      map("n", "i", "gk", opts)
+      map("v", "e", "gj", opts)
+      map("v", "i", "gk", opts)
+
+      -- Window navigation: <C-w> + n/e/i/o  ────────────────────────────────
+      map("n", "<C-w>n", "<C-w>h", opts)
+      map("n", "<C-w>e", "<C-w>j", opts)
+      map("n", "<C-w>i", "<C-w>k", opts)
+      map("n", "<C-w>o", "<C-w>l", opts)
     '';
   };
 }
