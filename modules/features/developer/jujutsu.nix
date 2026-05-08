@@ -75,12 +75,6 @@
               "trunk()"
             ];
           };
-          # signing = {
-          #   backend = "gpg";
-          #   behaviour =
-          #     if config.programs.git.signing.signByDefault then "own" else "never";
-          #   key = config.programs.git.signing.key;
-          # };
           revset-aliases = {
             "closest_pushable(to)" =
               "heads(::to & mutable() & ~description(exact:\" \") & (~empty() | merges()))";

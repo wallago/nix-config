@@ -2,7 +2,7 @@
 {
   flake.homeModules.editor = {
     imports = [
-      self.homeModules.helix
+      self.homeModules.nvim
     ];
   };
 }
