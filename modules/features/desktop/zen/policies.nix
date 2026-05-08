@@ -9,7 +9,7 @@
       DisablePocket = true;
       DisableTelemetry = true;
       DontCheckDefaultBrowser = true;
-      NoDefaultBookmarks = true;
+      # NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
       EnableTrackingProtection = {
         Value = true;

@@ -2,9 +2,9 @@
   flake.homeModules.nvimPluginWhichKey =
     { pkgs, ... }:
     {
-      programs.neovim.plugins = [
+      programs.neovim.plugins = with pkgs.vimPlugins; [
         {
-          plugin = pkgs.vimPlugins.which-key-nvim;
+          plugin = which-key-nvim;
           config = ''
             -- Set leader key
             vim.g.mapleader = " "
@@ -34,6 +34,8 @@
             })
           '';
         }
+        mini-icons
+        nvim-web-devicons
       ];
     };
 }
