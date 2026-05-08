@@ -45,6 +45,7 @@
 
           self.homeModules.ai
           self.homeModules.desktop
+          self.homeModules.developer
         ];
 
         preferences.user.name = userName;
