@@ -2,12 +2,12 @@
   flake.homeModules.niriBinds = {
     programs.niri.settings.binds =
       let
-        column-up = "E";
-        column-down = "N";
-        workspace-up = "U";
+        column-up = "I";
+        column-down = "E";
+        workspace-up = "Y";
         workspace-down = "L";
-        window-left = "M";
-        window-right = "I";
+        window-left = "N";
+        window-right = "O";
       in
       {
         # Utils
@@ -110,11 +110,6 @@
           hotkey-overlay.title = "Center Column";
         };
 
-        # Workspaces
-        "Mod+1".action.focus-workspace = 1;
-        "Mod+2".action.focus-workspace = 2;
-        "Mod+3".action.focus-workspace = 3;
-
         # Apps
         "Mod+Return" = {
           action.spawn = "ghostty";
@@ -126,6 +121,10 @@
         };
         "Mod+Escape" = {
           action.spawn = "qylock";
+          hotkey-overlay.title = "Lock";
+        };
+        "Mod+B" = {
+          action.spawn = "zen-beta";
           hotkey-overlay.title = "Lock";
         };
       };

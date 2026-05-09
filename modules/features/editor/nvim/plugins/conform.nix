@@ -7,12 +7,12 @@
           plugin = conform-nvim;
           config = ''
             require("conform").setup({
-                formatters_by_ft = {
+              formatters_by_ft = {
                 lua = { "stylua" },
-                nix = { "nixfmt" },
-                        json = { "prettier" },
+                nix = { "nixfmt-rfc-style" },
+                json = { "prettier" },
                 yaml = { "yamlfmt" },
-                        markdown = { "prettier" },
+                markdown = { "prettier" },
                 rust = { "rustfmt", lsp_format = "fallback" },
                 typescript = { "prettier" },
                 javascript = { "prettier" },
@@ -24,7 +24,7 @@
                 http = { "kulala" },
                 toml = { "taplo" },
                 python = { "black" }
-                },
+              },
               formatters = {
                 ["sql-formatter"] = {
                   command = "sql-formatter",
@@ -37,24 +37,25 @@
                   stdin = false,
                 }
               },
-                format_on_save = {
-                        enabled = true,
-                        timeout_ms = 5000,
+              format_on_save = {
+                enabled = true,
+                timeout_ms = 5000,
                 notify_on_error = true,
                 notify_no_formatters = true,
-                        lsp_format = "fallback",
-                        callback = function(bufnr, result)
-                                require("notify")("File formatted successfully: " .. result, "info")
-                        end,
-                },
-                notify_on_error = true,
-                notify_no_formatters = true,
+                lsp_format = "fallback",
+                callback = function(bufnr, result)
+                  require("notify")("File formatted successfully: " .. result, "info")
+                end,
+              },
+              notify_on_error = true,
+              notify_no_formatters = true,
             })
           '';
         }
       ];
 
       home.packages = with pkgs; [
+        nixfmt-rfc-style
         prettier
         yamlfmt
         rustfmt

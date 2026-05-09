@@ -25,6 +25,7 @@
         self.nixosModules.desktop
         self.nixosModules.audio
         self.nixosModules.bluetooth
+        self.nixosModules.developer
 
         self.nixosModules.diskoSponge
       ];

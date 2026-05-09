@@ -25,6 +25,7 @@
         self.nixosModules.desktop
         self.nixosModules.audio
         self.nixosModules.bluetooth
+        self.nixosModules.developer
 
         self.nixosModules.battery
 
@@ -55,9 +56,9 @@
           mode = {
             width = 1920;
             height = 1080;
-            refresh = 60.0;
+            refresh = 60.033;
           };
-          scale = 1.0;
+          scale = 1.5;
           position = {
             x = 0;
             y = 0;
