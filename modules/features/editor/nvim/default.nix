@@ -12,6 +12,9 @@
       viAlias = true;
       defaultEditor = true;
       waylandSupport = true;
+      initLua = ''
+        vim.opt.clipboard = "unnamedplus"
+      '';
     };
   };
 

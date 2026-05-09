@@ -9,13 +9,19 @@
     ];
   };
 
-  flake.homeModules.desktop = {
-    imports = [
-      self.homeModules.ghostty
-      self.homeModules.niri
-      self.homeModules.noctalia
-      self.homeModules.zen
-    ];
-  };
+  flake.homeModules.desktop =
+    { pkgs, ... }:
+    {
+      imports = [
+        self.homeModules.ghostty
+        self.homeModules.niri
+        self.homeModules.noctalia
+        self.homeModules.zen
+      ];
+
+      home.packages = with pkgs; [
+        wl-clipboard
+      ];
+    };
 
 }

@@ -5,7 +5,7 @@
         column-up = "I";
         column-down = "E";
         workspace-up = "Y";
-        workspace-down = "L";
+        workspace-down = "U";
         window-left = "N";
         window-right = "O";
       in

@@ -2,7 +2,7 @@
   flake.nixosModules.kicad =
     { pkgs, ... }:
     {
-      environementPackages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         kicad
       ];
     };
