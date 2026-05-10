@@ -26,6 +26,7 @@
         self.nixosModules.audio
         self.nixosModules.bluetooth
         self.nixosModules.developer
+        self.nixosModules.productivity
 
         self.nixosModules.diskoSponge
       ];
@@ -39,6 +40,7 @@
           self.homeModules.ai
           self.homeModules.desktop
           self.homeModules.developer
+          self.homeModules.productivity
         ];
 
         preferences.user.name = userName;

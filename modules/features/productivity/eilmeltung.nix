@@ -1,5 +1,16 @@
+{ inputs, ... }:
 {
+  flake.nixosModules.eilmeldung = {
+    nixpkgs.overlays = [
+      inputs.eilmeldung.overlays.default
+    ];
+  };
+
   flake.homeModules.eilmeldung = {
+    imports = [
+      inputs.eilmeldung.homeManager.default
+    ];
+
     programs.eilmeldung = {
       enable = true;
       settings = {
@@ -23,7 +34,6 @@
             "w" = [
               "open"
               "in articles read"
-              "in articles nextunread"
             ];
             "J" = [
               "open unread"

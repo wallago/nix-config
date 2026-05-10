@@ -1,5 +1,11 @@
 { self, ... }:
 {
+  flake.nixosModules.productivity = {
+    imports = [
+      self.nixosModules.eilmeldung
+    ];
+  };
+
   flake.homeModules.productivity = {
     imports = [
       self.homeModules.eilmeldung
