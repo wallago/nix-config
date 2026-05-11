@@ -13,6 +13,8 @@
     { pkgs, ... }:
     {
       imports = [
+        self.homeModules.desktopOptions
+
         self.homeModules.ghostty
         self.homeModules.niri
         self.homeModules.noctalia

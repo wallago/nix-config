@@ -125,7 +125,7 @@
         };
         "Mod+B" = {
           action.spawn = "zen-beta";
-          hotkey-overlay.title = "Lock";
+          hotkey-overlay.title = "Browser";
         };
       };
   };

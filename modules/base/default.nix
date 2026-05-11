@@ -1,15 +1,14 @@
 { self, ... }:
 {
-  flake.nixosModules.base = {
+  flake.nixosModules.nixosOptions = {
     imports = [
-      self.nixosModules.optionUser
+      self.nixosModules.userOptions
     ];
   };
 
-  flake.homeModules.base = {
+  flake.homeModules.homeOptions = {
     imports = [
-      self.homeModules.optionUser
-      self.homeModules.optionDesktop
+      self.homeModules.userOptions
     ];
   };
 }

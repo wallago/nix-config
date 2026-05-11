@@ -15,9 +15,6 @@
         ];
         shell = pkgs.fish;
         hashedPasswordFile = config.sops.secrets.wallago-password.path;
-        openssh.authorizedKeys = {
-          keys = [ ]; # to fill
-        };
       };
     };
 }

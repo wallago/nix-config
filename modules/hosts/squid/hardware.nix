@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hostSquidHardware =
+  flake.nixosModules.hardwareSquid =
     {
       config,
       lib,

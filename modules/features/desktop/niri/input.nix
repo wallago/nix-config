@@ -1,19 +1,21 @@
 {
-  flake.homeModules.niriInput = {
-    programs.niri.settings.input = {
-      keyboard.xkb = {
-        layout = "us";
-        variant = "colemak_dh";
-      };
+  flake.homeModules.niriInput =
+    { config, ... }:
+    {
+      programs.niri.settings.input = {
+        keyboard.xkb = {
+          layout = config.preferences.user.keyboard.layout;
+          variant = config.preferences.user.keyboard.variant;
+        };
 
-      touchpad = {
-        tap = true;
-        natural-scroll = true;
-        dwt = true;
-      };
+        touchpad = {
+          tap = true;
+          natural-scroll = true;
+          dwt = true;
+        };
 
-      mouse.accel-profile = "flat";
-      focus-follows-mouse.enable = false;
+        mouse.accel-profile = "flat";
+        focus-follows-mouse.enable = false;
+      };
     };
-  };
 }

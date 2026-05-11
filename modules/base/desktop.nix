@@ -1,5 +1,5 @@
 {
-  flake.homeModules.optionDesktop =
+  flake.homeModules.desktopOptions =
     { lib, ... }:
     let
       inherit (lib) mkOption types;

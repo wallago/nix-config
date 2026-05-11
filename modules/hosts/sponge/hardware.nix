@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hostSpongeHardware =
+  flake.nixosModules.hardwareSponge =
     {
       config,
       lib,

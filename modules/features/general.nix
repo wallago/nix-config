@@ -2,7 +2,7 @@
 {
   flake.nixosModules.general = {
     imports = [
-      self.nixosModules.base
+      self.nixosModules.nixosOptions
       self.nixosModules.nix
       self.nixosModules.home-manager
       self.nixosModules.boot
@@ -14,21 +14,17 @@
       self.nixosModules.impermanence
       self.nixosModules.shell
       self.nixosModules.locale
-      self.nixosModules.netrc
-      self.nixosModules.direnv
-      self.nixosModules.nix-ld
     ];
   };
 
   flake.homeModules.general = {
     imports = [
-      self.homeModules.base
+      self.homeModules.homeOptions
       self.homeModules.secrets
       self.homeModules.user
       self.homeModules.networking
 
       self.homeModules.shell
-      self.homeModules.editor
     ];
 
     home = {

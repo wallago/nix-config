@@ -1,13 +1,13 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.sponge = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.hostSponge = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.hostSponge
-      self.nixosModules.hostSpongeHardware
+      self.nixosModules.configSponge
+      self.nixosModules.hardwareSponge
     ];
   };
 
-  flake.nixosModules.hostSponge =
+  flake.nixosModules.configSponge =
     { config, ... }:
     let
       userName = config.preferences.user.name;

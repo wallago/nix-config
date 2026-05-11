@@ -4,7 +4,7 @@
       containersForce = true; # Delete containers not declared here
       containers = {
         Personal = {
-          color = "purple";
+          color = "red";
           icon = "fingerprint";
           id = 1;
         };
@@ -14,7 +14,7 @@
           id = 2;
         };
         Shopping = {
-          color = "yellow";
+          color = "green";
           icon = "dollar";
           id = 3;
         };
