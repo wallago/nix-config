@@ -8,6 +8,7 @@
             url = "https://mail.protonmail.com";
             position = 101;
             isEssential = true;
+            # essentialContainer = 2;
           };
           "GitHub" = {
             id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";

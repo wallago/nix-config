@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.hostSquid = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.squid = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.configSquid
       self.nixosModules.hardwareSquid

@@ -9,7 +9,9 @@ in
 {
   flake.nixosModules.secrets = {
     imports = [ inputs.sops-nix.nixosModules.sops ];
-    sops = sops_config;
+    sops = sops_config // {
+      age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+    };
   };
 
   flake.homeModules.secrets =

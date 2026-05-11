@@ -9,8 +9,8 @@
       programs.zen-browser.profiles.default.extensions.packages = with firefox-addons; [
         ublock-origin
         dearrow
-        proton-pass
         vimium
+        bitwarden
       ];
     };
 }

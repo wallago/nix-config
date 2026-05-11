@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.hostSponge = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.sponge = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.configSponge
       self.nixosModules.hardwareSponge
@@ -31,6 +31,12 @@
         self.nixosModules.diskoSponge
       ];
 
+      # default keyboard at login level
+      services.xserver.xkb = {
+        layout = config.preferences.user.keyboard.layout;
+        variant = config.preferences.user.keyboard.variant;
+      };
+
       preferences.user.name = "wallago";
 
       home-manager.users.${userName} = {
@@ -44,6 +50,44 @@
         ];
 
         preferences.user.name = userName;
+
+        preferences.monitors."DP-2" = {
+          primary = true;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 59.951;
+          };
+          scale = 1.0;
+          position = {
+            x = 0;
+            y = 0;
+          };
+        };
+        preferences.monitors."DP-3" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 239.760;
+          };
+          scale = 1.0;
+          position = {
+            y = 0;
+            x = -1920;
+          };
+        };
+        preferences.monitors."HDMI-A-1" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 59.951;
+          };
+          scale = 1.25;
+          position = {
+            y = -1152;
+            x = 0;
+          };
+        };
       };
     };
 }
