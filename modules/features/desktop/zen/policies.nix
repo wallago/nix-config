@@ -22,6 +22,10 @@
           Value = true;
           Status = "locked";
         };
+        "media.cubeb.backend" = {
+          Value = "pipewire";
+          Status = "user";
+        };
       };
     };
   };

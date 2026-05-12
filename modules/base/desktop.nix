@@ -68,5 +68,35 @@
           }
         );
       };
+
+      options.preferences.workspace = lib.mkOption {
+        description = "Define workspaces";
+        default = { };
+        type = types.attrsOf (types.nullOr types.str);
+      };
+
+      options.preferences.session = lib.mkOption {
+        description = "Startup apps with optional workspace routing";
+        default = [ ];
+        type = types.listOf (
+          types.submodule {
+            options = {
+              command = mkOption { type = types.listOf types.str; };
+              matchAppId = mkOption {
+                type = types.nullOr types.str;
+                default = null;
+              };
+              matchTitle = mkOption {
+                type = types.nullOr types.str;
+                default = null;
+              };
+              workspace = mkOption {
+                type = types.nullOr types.str;
+                default = null;
+              };
+            };
+          }
+        );
+      };
     };
 }

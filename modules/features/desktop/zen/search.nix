@@ -22,6 +22,21 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nx" ];
           };
+          crates = {
+            name = "Rust Crates";
+            urls = [
+              {
+                template = "https://crates.io/search?q={searchTerms}";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "@rs" ];
+          };
           github = {
             name = "GitHub Search";
             urls = [

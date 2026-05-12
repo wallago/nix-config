@@ -19,4 +19,15 @@
       ];
     };
   };
+
+  flake.homeModules.impermanence =
+    { config, lib, ... }:
+    {
+      home.persistence = {
+        "/persist/".directories = lib.optionals config.preferences.developer.enable [
+          "Personal-Projects/"
+          "Work-Projects/"
+        ];
+      };
+    };
 }

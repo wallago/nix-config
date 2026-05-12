@@ -7,6 +7,7 @@
       self.nixosModules.nix-ld
 
       self.nixosModules.kicad
+      self.nixosModules.bambulab
     ];
   };
 
@@ -16,5 +17,7 @@
       self.homeModules.git
       self.homeModules.jujutsu
     ];
+
+    preferences.developer.enable = true;
   };
 }

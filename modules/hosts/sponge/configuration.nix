@@ -51,43 +51,84 @@
 
         preferences.user.name = userName;
 
-        preferences.monitors."DP-2" = {
-          primary = true;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 59.951;
+        preferences.monitors = {
+          "DP-2" = {
+            primary = true;
+            mode = {
+              width = 2560;
+              height = 1440;
+              refresh = 59.951;
+            };
+            scale = 1.0;
+            position = {
+              x = 0;
+              y = 0;
+            };
           };
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = 0;
+          "DP-3" = {
+            mode = {
+              width = 1920;
+              height = 1080;
+              refresh = 239.760;
+            };
+            scale = 1.0;
+            position = {
+              y = 0;
+              x = -1920;
+            };
+          };
+          "HDMI-A-1" = {
+            mode = {
+              width = 2560;
+              height = 1440;
+              refresh = 59.951;
+            };
+            scale = 1.25;
+            position = {
+              y = -1152;
+              x = 0;
+            };
           };
         };
-        preferences.monitors."DP-3" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 239.760;
-          };
-          scale = 1.0;
-          position = {
-            y = 0;
-            x = -1920;
-          };
+
+        preferences.workspace = {
+          productivity = "DP-2";
+          config = "DP-2";
+          browser = "HDMI-A-1";
         };
-        preferences.monitors."HDMI-A-1" = {
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 59.951;
-          };
-          scale = 1.25;
-          position = {
-            y = -1152;
-            x = 0;
-          };
-        };
+
+        preferences.session = [
+          {
+            command = [
+              "zen-beta"
+            ];
+            matchTitle = "zen-beta";
+            workspace = "browser";
+          }
+          {
+            command = [
+              "ghostty"
+              "--title=rss"
+              "-e"
+              "eilmeldung"
+            ];
+            matchAppId = "com.mitchellh.ghostty";
+            matchTitle = "rss";
+            workspace = "productivity";
+          }
+          {
+            command = [
+              "ghostty"
+              "--title=config"
+              "--working-directory=/home/wallago/nix-config"
+              "-e"
+              "vi"
+            ];
+            matchAppId = "com.mitchellh.ghostty";
+            matchTitle = "config";
+            workspace = "config";
+          }
+        ];
       };
     };
 }

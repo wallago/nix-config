@@ -24,6 +24,7 @@
       self.homeModules.user
       self.homeModules.networking
 
+      self.homeModules.impermanence
       self.homeModules.shell
     ];
 

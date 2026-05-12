@@ -109,6 +109,38 @@
           action.center-column = [ ];
           hotkey-overlay.title = "Center Column";
         };
+        "Mod+Ctrl+${window-left}" = {
+          action.focus-monitor-left = [ ];
+          hotkey-overlay.title = "Focus Monitor Left";
+        };
+        "Mod+Ctrl+${window-right}" = {
+          action.focus-monitor-right = [ ];
+          hotkey-overlay.title = "Focus Monitor Right";
+        };
+        "Mod+Ctrl+${column-up}" = {
+          action.focus-monitor-up = [ ];
+          hotkey-overlay.title = "Focus Monitor Up";
+        };
+        "Mod+Ctrl+${column-down}" = {
+          action.focus-monitor-down = [ ];
+          hotkey-overlay.title = "Focus Monitor Down";
+        };
+        "Mod+Ctrl+Shift+${window-left}" = {
+          action.move-column-to-monitor-left = [ ];
+          hotkey-overlay.title = "Move Column To Monitor Left";
+        };
+        "Mod+Ctrl+Shift+${window-right}" = {
+          action.move-column-to-monitor-right = [ ];
+          hotkey-overlay.title = "Move Column To Monitor Right";
+        };
+        "Mod+Ctrl+Shift+${column-up}" = {
+          action.move-column-to-monitor-up = [ ];
+          hotkey-overlay.title = "Move Column To Monitor Up";
+        };
+        "Mod+Ctrl+Shift+${column-down}" = {
+          action.move-column-to-monitor-down = [ ];
+          hotkey-overlay.title = "Move Column To Monitor Down";
+        };
 
         # Apps
         "Mod+Return" = {

@@ -51,5 +51,7 @@
           };
         };
       };
+
+      options.preferences.developer.enable = lib.mkEnableOption "Developer features";
     };
 }
