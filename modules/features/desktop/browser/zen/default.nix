@@ -19,5 +19,7 @@
       enable = true;
       setAsDefaultBrowser = true;
     };
+
+    home.file.".local/share/cheatsheets/zen.md".source = ./cheatsheet.md;
   };
 }

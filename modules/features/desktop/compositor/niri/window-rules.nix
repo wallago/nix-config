@@ -31,6 +31,23 @@
             };
             clip-to-geometry = true;
           }
+          {
+            matches = [
+              { app-id = "cheatsheet"; }
+            ];
+            open-floating = true;
+            default-floating-position = {
+              x = 50;
+              y = 50;
+              relative-to = "top-left";
+            };
+            default-column-width = {
+              fixed = 900;
+            };
+            # background-effect = {
+            #   blur = true;
+            # };
+          }
         ];
     };
 }
