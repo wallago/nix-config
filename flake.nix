@@ -143,6 +143,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Niri feature
+    niri-float-sticky = {
+      url = "github:probeldev/niri-float-sticky";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # A beautiful, minimal desktop shell for Wayland
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";

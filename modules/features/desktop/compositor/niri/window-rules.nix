@@ -48,6 +48,26 @@
             #   blur = true;
             # };
           }
+          {
+            matches = [
+              {
+                app-id = "zen-beta";
+                title = "^Picture-in-Picture$";
+              }
+            ];
+            open-floating = true;
+            default-column-width = {
+              proportion = 0.2;
+            };
+            default-window-height = {
+              proportion = 0.2;
+            };
+            default-floating-position = {
+              x = 20;
+              y = 20;
+              relative-to = "bottom-right";
+            };
+          }
         ];
     };
 }

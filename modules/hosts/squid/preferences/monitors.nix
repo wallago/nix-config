@@ -11,6 +11,7 @@
         x = 0;
         y = 0;
       };
+      wallpaper = ../../../../wallpapers/night-city.jpeg;
     };
   };
 }

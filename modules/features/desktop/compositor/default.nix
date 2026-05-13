@@ -1,10 +1,15 @@
 { self, ... }:
 {
   flake.nixosModules.compositor = {
-    imports = [ self.nixosModules.niri ];
+    imports = [
+      self.nixosModules.niri
+    ];
   };
 
   flake.homeModules.compositor = {
-    imports = [ self.homeModules.niri ];
+    imports = [
+      self.homeModules.niri
+      self.homeModules.niriFloatSticky
+    ];
   };
 }

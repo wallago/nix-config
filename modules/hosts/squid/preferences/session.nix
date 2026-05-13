@@ -5,7 +5,7 @@
         command = [
           "zen-beta"
         ];
-        matchTitle = "zen-beta";
+        matchAppId = "zen-beta";
         workspace = "browser";
         maximized = true;
       }
