@@ -6,16 +6,14 @@
       self.nixosModules.direnv
       self.nixosModules.nix-ld
 
-      self.nixosModules.kicad
-      self.nixosModules.bambulab
+      self.nixosModules.devApps
     ];
   };
 
   flake.homeModules.developer = {
     imports = [
       self.homeModules.editor
-      self.homeModules.git
-      self.homeModules.jujutsu
+      self.homeModules.versionControlManager
     ];
 
     preferences.developer.enable = true;

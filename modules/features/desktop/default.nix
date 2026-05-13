@@ -3,9 +3,10 @@
   flake.nixosModules.desktop = {
     imports = [
       self.nixosModules.displayManager
-      self.nixosModules.qylock
       self.nixosModules.fonts
-      self.nixosModules.niri
+      self.nixosModules.compositor
+      self.nixosModules.desktopShell
+      self.nixosModules.printer
     ];
   };
 
@@ -14,11 +15,11 @@
     {
       imports = [
         self.homeModules.desktopOptions
-
-        self.homeModules.ghostty
-        self.homeModules.niri
-        self.homeModules.noctalia
-        self.homeModules.zen
+        self.homeModules.shell
+        self.homeModules.compositor
+        self.homeModules.browser
+        self.homeModules.wallpaper
+        self.homeModules.terminalEmulator
       ];
 
       home.packages = with pkgs; [

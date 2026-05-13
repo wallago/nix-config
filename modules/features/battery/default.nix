@@ -1,9 +1,6 @@
-{ self, ... }:
 {
   flake.nixosModules.battery = {
-    imports = [
-      self.nixosModules.upower
-      self.nixosModules.tlp
-    ];
+    services.power-profiles-daemon.enable = true;
+    services.upower.enable = true;
   };
 }

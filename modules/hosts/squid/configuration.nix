@@ -55,24 +55,14 @@
           self.homeModules.desktop
           self.homeModules.developer
           self.homeModules.productivity
+
+          self.homeModules.preferencesSessionSquid
+          self.homeModules.preferencesWorkspacesSquid
+          self.homeModules.preferencesMonitorsSquid
         ];
 
         preferences.user = {
           name = userName;
-        };
-
-        preferences.monitors."DP-1" = {
-          primary = true;
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 60.033;
-          };
-          scale = 1.5;
-          position = {
-            x = 0;
-            y = 0;
-          };
         };
       };
     };

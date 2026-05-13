@@ -7,7 +7,6 @@
           mode
           scale
           position
-          enable
           ;
       }) config.preferences.monitors;
     };

@@ -10,6 +10,7 @@ NixOS flake using flake-parts and the dendritic module pattern.
 - Disko handles disk layout, with btrfs subvolumes and impermanence.
 - Sops-encrypted secrets live in `modules/secrets/` and `modules/hosts/*/secrets.nix`.
   Do not attempt to read or edit these directly.
+- I don't want to edit anythings in the code ! Only suggest.
 
 ## Workflow
 

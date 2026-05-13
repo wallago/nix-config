@@ -11,15 +11,6 @@
         type = types.attrsOf (
           types.submodule {
             options = {
-              enable = mkOption {
-                type = types.bool;
-                default = true;
-              };
-              primary = mkOption {
-                type = types.bool;
-                default = false;
-              };
-
               mode = mkOption {
                 type = types.submodule {
                   options = {
@@ -38,12 +29,10 @@
                   };
                 };
               };
-
               scale = mkOption {
                 type = types.float;
                 default = 1.0;
               };
-
               position = mkOption {
                 type = types.submodule {
                   options = {
@@ -59,9 +48,8 @@
                 };
                 default = { };
               };
-
-              workspace = mkOption {
-                type = types.nullOr types.str;
+              wallpaper = mkOption {
+                type = types.nullOr types.path;
                 default = null;
               };
             };
@@ -69,7 +57,7 @@
         );
       };
 
-      options.preferences.workspace = lib.mkOption {
+      options.preferences.workspaces = lib.mkOption {
         description = "Define workspaces";
         default = { };
         type = types.attrsOf (types.nullOr types.str);
@@ -93,6 +81,10 @@
               workspace = mkOption {
                 type = types.nullOr types.str;
                 default = null;
+              };
+              maximized = mkOption {
+                type = types.bool;
+                default = false;
               };
             };
           }
