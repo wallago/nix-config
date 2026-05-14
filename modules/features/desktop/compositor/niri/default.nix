@@ -37,6 +37,8 @@
       };
 
       clipboard.disable-primary = true;
+
+      xwayland-satellite.enable = true;
     };
   };
 }
