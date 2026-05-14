@@ -25,6 +25,16 @@
             action.quit = [ ];
             hotkey-overlay.title = "Exit";
           };
+          "Mod+P" = {
+            action.spawn = [
+              "sh"
+              "-c"
+              ''
+                ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --copy-command wl-copy
+              ''
+            ];
+            hotkey-overlay.title = "Screenshot";
+          };
           "Mod+Shift+Slash" = {
             action.spawn = [
               "sh"

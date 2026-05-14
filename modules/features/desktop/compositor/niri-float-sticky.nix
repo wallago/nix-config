@@ -3,7 +3,7 @@
   flake.homeModules.niriFloatSticky =
     { pkgs, lib, ... }:
     let
-      niri-flaot-sticky = inputs.niri-float-sticky.packages.${pkgs.system}.default;
+      niri-flaot-sticky = inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     {
       home.packages = [

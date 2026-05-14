@@ -55,6 +55,7 @@
           self.homeModules.desktop
           self.homeModules.developer
           self.homeModules.productivity
+          self.homeModules.gaming
 
           self.homeModules.preferencesSessionSquid
           self.homeModules.preferencesWorkspacesSquid
