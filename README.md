@@ -40,9 +40,9 @@ flowchart LR
   BOX <--> ROUTER
 
   %% Port-forward chain: public HTTP(S) -> RUTX -> coral
-  INTERNET <-. "HTTP/HTTPS<br/>TCP 80, 443" .-> BOX
-  BOX <-. "HTTP/HTTPS<br/>TCP 51080, 51443" .-> ROUTER
-  ROUTER <-. "HTTP/HTTPS<br/>TCP 80, 443" .-> SERVER
+  INTERNET <-. "HTTP/HTTPS<br/>TCP 80, 443<br/>UDP 51820, 51840" .-> BOX
+  BOX <-. "HTTP/HTTPS<br/>TCP 51080, 51443<br/>UDP 51820, 51840" .-> ROUTER
+  ROUTER <-. "HTTP/HTTPS<br/>TCP 80, 443<br/>UDP 51820, 51840" .-> SERVER
 
   %% WireGuard hub-and-spoke, terminated on coral
   SERVER <-. "WireGuard<br/>UDP 51820" .-> DESK

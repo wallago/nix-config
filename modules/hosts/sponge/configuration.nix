@@ -27,6 +27,9 @@
         self.nixosModules.bluetooth
         self.nixosModules.developer
         self.nixosModules.productivity
+        self.nixosModules.wireguardClient
+
+        self.nixosModules.preferencesWireguardSponge
 
         self.nixosModules.diskoSponge
       ];

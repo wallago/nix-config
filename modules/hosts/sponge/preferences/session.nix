@@ -5,8 +5,9 @@
         command = [
           "zen-beta"
         ];
-        matchTitle = "zen-beta";
+        matchAppId = "zen-beta";
         workspace = "browser";
+        maximized = true;
       }
       {
         command = [
@@ -18,6 +19,7 @@
         matchAppId = "com.mitchellh.ghostty";
         matchTitle = "rss";
         workspace = "productivity";
+        maximized = true;
       }
       {
         command = [
@@ -30,6 +32,7 @@
         matchAppId = "com.mitchellh.ghostty";
         matchTitle = "config";
         workspace = "config";
+        maximized = true;
       }
     ];
   };

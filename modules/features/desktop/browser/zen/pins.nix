@@ -96,7 +96,7 @@
           };
           "GH" = {
             id = "505ce33f-df2f-4e54-8e1a-5ae0a16365e3";
-            url = "https://192.168.5.16/";
+            url = "http://192.168.5.16/ghci/index.php/Authentification";
             position = 103;
             workspace = work.id;
             container = 3;
