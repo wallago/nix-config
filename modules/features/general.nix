@@ -14,6 +14,7 @@
       self.nixosModules.impermanence
       self.nixosModules.shell
       self.nixosModules.locale
+      self.nixosModules.pager
     ];
   };
 
@@ -26,6 +27,7 @@
 
       self.homeModules.impermanence
       self.homeModules.shell
+      self.homeModules.pager
     ];
 
     home = {

@@ -40,10 +40,17 @@
               "sh"
               "-c"
               ''
-                if ${lib.getExe pkgs.niri} msg windows --json | jq -e '.[] | select(.app_id == "cheatsheet")' > /dev/null 2>&1; then
-                  ${lib.getExe pkgs.niri} msg action focus-window --match app-id=cheatsheet
+                id=$(niri msg windows | awk '/^Window ID/{id=$3;sub(":","",id)} /Title: "Cheatsheet"$/{print id;exit}')
+                if [ -n "$id" ]; then
+                  niri msg action close-window --id "$id"
                 else
-                  ${lib.getExe pkgs.ghostty} --class=cheatsheet --title=Cheatsheet -e ${lib.getExe pkgs.glow} ~/.local/share/cheatsheets/
+                  ${lib.getExe pkgs.ghostty} --class=cheatsheet --title=Cheatsheet -e sh -c '
+                    while true; do
+                      f=$(${lib.getExe pkgs.fd} -e md . ~/.local/share/cheatsheets/ \
+                          | ${lib.getExe pkgs.fzf} --preview "${lib.getExe pkgs.glow} -s dark {}") || exit 
+                          ${lib.getExe pkgs.glow} --pager "$f"
+                    done
+                  '
                 fi
               ''
             ];

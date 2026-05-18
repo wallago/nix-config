@@ -33,7 +33,9 @@
           }
           {
             matches = [
-              { app-id = "cheatsheet"; }
+              {
+                title = "^Cheatsheet$";
+              }
             ];
             open-floating = true;
             default-floating-position = {
