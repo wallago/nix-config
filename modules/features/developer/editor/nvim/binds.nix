@@ -2,12 +2,12 @@
   flake.homeModules.nvimBinds = {
     programs.neovim.initLua = ''
       local map = vim.keymap.set
+      local wk = require("which-key")
 
       -- Leader = space  ────────────────────────────────────────────────────
       vim.g.mapleader = " "
       vim.g.maplocalleader = " "
 
-      local opts = { noremap = true, silent = false }
       local function o(desc) 
         return { noremap = true, silent = false, desc = desc } 
       end
@@ -33,6 +33,7 @@
       map("n", "L", "I", o("Insert at line start"))
       map("n", "j", "o", o("Open line below"))
       map("n", "J", "O", o("Open line above"))
+      map("n", "gk", "ge", o("Prev end of word"))
 
       -- Visual-line aware variants (so e/i don't skip wrapped lines)  ──────
       map("n", "e", "gj", o("↓ down (visual line)"))
@@ -41,10 +42,47 @@
       map("v", "i", "gk", o("↑ up (visual line)"))
 
       -- Window navigation: <C-w> + n/e/i/o  ────────────────────────────────
-      map("n", "<C-w>n", "<C-w>h", opts)
-      map("n", "<C-w>e", "<C-w>j", opts)
-      map("n", "<C-w>i", "<C-w>k", opts)
-      map("n", "<C-w>o", "<C-w>l", opts)
+      map("n", "<C-w>n", "<C-w>h", o("← left"))
+      map("n", "<C-w>e", "<C-w>j", o("↓ bottom"))
+      map("n", "<C-w>i", "<C-w>k", o("↑ top"))
+      map("n", "<C-w>o", "<C-w>l", o("→ right"))
+
+      -- Tab ────────────────────────────────────────────────────────────────
+      map("n", "<leader>tn", "<CMD>tabnew<CR>",   o("Tab: new"))
+      map("n", "<leader>tc", "<CMD>tabclose<CR>", o("Tab: close"))
+      map("n", "<leader>to", "<CMD>tabonly<CR>",  o("Tab: close others"))
+      map("n", "<TAB>", "gt", o("Tab: next"))
+      map("n", "<S-TAB>", "gT", o("Tab: prev"))
+
+      -- Buffer ───────────────────────────────────────────────────────────────
+      map("n", "<leader>bq", "<CMD>q<CR>",   o("Quit buf"))
+      map("n", "<leader>bx", "<CMD>x<CR>",   o("Quit & Save buf"))
+      map("n", "<leader>bQ", "<CMD>qall<CR>",   o("Quit all buf"))
+
+      -- Wrong Desc ─────────────────────────────────────────────────────────
+      wk.add({
+        { "gx", desc = "Opens filepath or URI under cursor" },
+        { "g;", desc = "Older edit position" },
+        { "g,", desc = "Newer edit position" },
+      })
+
+      -- Unbind ─────────────────────────────────────────────────────────────
+      wk.add({
+        { "f", hidden = true },
+        { "F", hidden = true },
+        { "t", hidden = true },
+        { "Y", hidden = true },
+        { "&", hidden = true },
+        { ";", hidden = true },
+        { ",", hidden = true },
+        { "gt", hidden = true },
+        { "gT", hidden = true },
+        { "gO", hidden = true },
+        { "g%", hidden = true },
+        { "gw", hidden = true, mode = "n" },
+        { "g~", hidden = true, mode = "n" },
+        { "gc", hidden = true, mode = "n" },
+      })
     '';
   };
 }
