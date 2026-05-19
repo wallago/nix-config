@@ -3,8 +3,10 @@
   flake.homeModules.nvim = {
     imports = [
       self.homeModules.nvimBinds
+      self.homeModules.nvimOptions
       self.homeModules.nvimPluginsCore
-      self.homeModules.nvimPluginsOpt
+      self.homeModules.nvimPluginsOptions
+      self.homeModules.nvimPluginsCodes
     ];
 
     programs.neovim = {
@@ -12,26 +14,35 @@
       viAlias = true;
       defaultEditor = true;
       waylandSupport = true;
-      initLua = ''
-        vim.opt.clipboard = "unnamedplus"
-      '';
     };
   };
 
   flake.homeModules.nvimPluginsCore = {
     imports = [
       self.homeModules.nvimPluginOil
-      self.homeModules.nvimPluginLsp
-      self.homeModules.nvimPluginConform
-      self.homeModules.nvimPluginTreesitter
       self.homeModules.nvimPluginTelescope
       self.homeModules.nvimPluginLualine
       self.homeModules.nvimPluginWhichKey
       self.homeModules.nvimPluginYanky
+      self.homeModules.nvimPluginPersistence
+      self.homeModules.nvimPluginMarks
     ];
   };
 
-  flake.homeModules.nvimPluginsOpt = {
+  flake.homeModules.nvimPluginsCodes = {
+    imports = [
+      self.homeModules.nvimPluginConform
+      self.homeModules.nvimPluginTreesitter
+      self.homeModules.nvimPluginLsp
+      self.homeModules.nvimPluginRustacean
+      self.homeModules.nvimPluginDap
+      self.homeModules.nvimPluginFidget
+      self.homeModules.nvimPluginTrouble
+      self.homeModules.nvimPluginBlink
+    ];
+  };
+
+  flake.homeModules.nvimPluginsOptions = {
     imports = [
       self.homeModules.nvimPluginCatppuccin
     ];

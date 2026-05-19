@@ -8,9 +8,17 @@
     ];
   };
 
-  flake.homeModules.gaming = {
-    imports = [
-      self.homeModules.mangohud
-    ];
-  };
+  flake.homeModules.gaming =
+    { pkgs, ... }:
+    {
+      imports = [
+        self.homeModules.mangohud
+      ];
+
+      home.packages = [
+        (pkgs.steam.override { extraPkgs = p: [ p.gamescope ]; })
+        pkgs.gamescope
+        pkgs.protontricks
+      ];
+    };
 }

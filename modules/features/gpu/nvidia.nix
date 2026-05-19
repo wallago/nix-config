@@ -8,6 +8,7 @@
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
       powerManagement.enable = true;
 
@@ -18,7 +19,7 @@
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.
       nvidiaSettings = true;
-      open = true;
+      open = false;
     };
   };
 }
