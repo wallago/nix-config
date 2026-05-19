@@ -28,6 +28,8 @@
             map("n", "<leader>fk", "<CMD>Telescope keymaps<CR>", { desc = "Keymaps" })
             map("n", "<leader>/", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in buffer" })
             map("n", "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Paste from history" })
+            map("n", '<leader>"', "<CMD>Telescope registers<CR>", { desc = "Registers" })
+            map("n", "<leader>'", "<CMD>Telescope marks<CR>", { desc = "Marks" })
           '';
         }
         nvim-web-devicons

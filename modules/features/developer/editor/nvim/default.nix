@@ -3,6 +3,7 @@
   flake.homeModules.nvim = {
     imports = [
       self.homeModules.nvimBinds
+      self.homeModules.nvimOptions
       self.homeModules.nvimPluginsCore
       self.homeModules.nvimPluginsOpt
     ];
@@ -12,9 +13,6 @@
       viAlias = true;
       defaultEditor = true;
       waylandSupport = true;
-      initLua = ''
-        vim.opt.clipboard = "unnamedplus"
-      '';
     };
   };
 
@@ -28,6 +26,8 @@
       self.homeModules.nvimPluginLualine
       self.homeModules.nvimPluginWhichKey
       self.homeModules.nvimPluginYanky
+      self.homeModules.nvimPluginPersistence
+      self.homeModules.nvimPluginMarks
     ];
   };
 

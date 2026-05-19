@@ -35,14 +35,15 @@
 
 ### Word
 
-| Action        | Key |
-| ------------- | --- |
-| Previous word | `b` |
-| Previous WORD | `B` |
-| End of word   | `k` |
-| End of WORD   | `K` |
-| Next word     | `k` |
-| Next Word     | `k` |
+| Action               | Key  |
+| -------------------- | ---- |
+| Previous word        | `b`  |
+| Previous WORD        | `B`  |
+| End of word          | `k`  |
+| End of WORD          | `K`  |
+| Previous end of WORD | `gk` |
+| Next word            | `k`  |
+| Next Word            | `k`  |
 
 ### Char
 
@@ -50,6 +51,12 @@
 | ---------- | --- |
 | Left char  | `n` |
 | Right char | `o` |
+
+### Tab
+
+| Action | Key       |
+| ------ | --------- |
+| Indent | `>` / `<` |
 
 ## Insert
 
@@ -80,16 +87,60 @@
 
 ## Visual
 
-| Action      | Key |
-| ----------- | --- |
-| Visual      | `v` |
-| Visual Line | `V` |
+| Action                     | Key  |
+| -------------------------- | ---- |
+| Visual                     | `v`  |
+| Visual Line                | `V`  |
+| Last visual Selection      | `gv` |
+| Comment selection (v mode) | `gc` |
 
-## Visual
+## Yank
 
 | Action | Key |
 | ------ | --- |
 | Yank   | `y` |
+
+## Register (clipboard slot)
+
+Press `"` and on whatever key (almost) to select a slot.
+After yank it will put in this slot.
+Exemple: `"a` + `yy`
+
+| Action                                              | Key  |
+| --------------------------------------------------- | ---- |
+| Register                                            | `"`  |
+| Sync with system clipboard                          | `"+` |
+| Last deleted, yank, changed content                 | `""` |
+| Last deleted, changed content smaller than one line | `"-` |
+| Most execute command                                | `":` |
+| Last inserted text                                  | `".` |
+| Nave of the current file                            | `"%` |
+| Last search pattern                                 | `"/` |
+| Last yank                                           | `"0` |
+| Black hole                                          | `"_` |
+
+## Mark (bookmark)
+
+Press `m` and on whatever key (almost) to place a mark.
+After you can go back there.
+Exemple: `ma` + `'a` / `` `a` `
+
+- `'`: Takes you to the line (start of line),
+- `` ` ``: Takes you to the exact position.
+- `a–z`: Your own bookmarks, per file. Drop them, jump back.
+- `A–Z`: Global marks — survive across files.
+
+| Action                             | Key             |
+| ---------------------------------- | --------------- |
+| Mark                               | `'` / `` ` ``   |
+| Last position before the last jump | `''` / `` `' `` |
+| Last position before exited buffer | `'"` / `` `" `` |
+| End of last yank                   | `']` / `` `] `` |
+| Start of last yank                 | `'[` / `` `[ `` |
+| Last position in insert mode       | `'^` / `` `^ `` |
+| Last change in buffer              | `'.` / `` `. `` |
+| End of last visual selection       | `'>` / `` `> `` |
+| Start of last visual selection     | `'<` / `` `< `` |
 
 ## Run Program
 
@@ -146,6 +197,8 @@
 | Keymaps          | `<leader>fk` |
 | Search in buffer | `<leader>/`  |
 | Paste history    | `<leader>p`  |
+| Registers        | `<leader>"`  |
+| Marks            | `<leader>'`  |
 
 ### In Telescope Prompt
 
@@ -156,21 +209,21 @@
 
 ## Misc
 
-| Action              | Key |
-| ------------------- | --- |
-| Look up keyword     | `T` |
-| Matching            | `%` |
-| Toggle case         | `~` |
-| Repeat last command | `.` |
+| Action                             | Key  |
+| ---------------------------------- | ---- |
+| Look up keyword                    | `T`  |
+| Matching                           | `%`  |
+| Toggle case                        | `~`  |
+| Repeat last command                | `.`  |
+| Change sort                        | `gs` |
+| Go to file under cursor            | `gf` |
+| Opens filepath or URI under cursor | `gx` |
+| Uppercase                          | `gU` |
+| Lowercase                          | `gu` |
+| Moving to older edit position      | `g;` |
+| Moving to newer edit position      | `g,` |
 
-## Unused
+## Questions
 
-| Action | Key |
-| ------ | --- |
-| /      | `f` |
-| /      | `F` |
-| /      | `t` |
-| /      | `Y` |
-| /      | `&` |
-| /      | `;` |
-| /      | `,` |
+- What is format at `gw`
+- What is toggle case at `g~`
