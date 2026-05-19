@@ -17,6 +17,8 @@
               },
             })
 
+            require("telescope").load_extension("yank_history")
+
             local map = vim.keymap.set
             map("n", "<leader>ff", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
             map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>", { desc = "Grep project" })

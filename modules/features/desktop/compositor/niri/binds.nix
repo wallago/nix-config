@@ -47,7 +47,7 @@
                   ${lib.getExe pkgs.ghostty} --class=cheatsheet --title=Cheatsheet -e sh -c '
                     while true; do
                       f=$(${lib.getExe pkgs.fd} -e md . ~/.local/share/cheatsheets/ \
-                          | ${lib.getExe pkgs.fzf} --preview "${lib.getExe pkgs.glow} -s dark {}") || exit 
+                          | ${lib.getExe pkgs.fzf} --with-nth -1 -d / --preview "${lib.getExe pkgs.glow} {}") || exit 
                           ${lib.getExe pkgs.glow} --pager "$f"
                     done
                   '

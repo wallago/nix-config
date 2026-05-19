@@ -5,13 +5,21 @@
       clearDefaultCommands = true;
       commands = {
         q = "quit";
-        n = "back-screen"; # vim-ish: h = previous page
-        o = "forw-screen"; # vim-ish: l = next page
+        i = "back-line"; # previous line
+        e = "forw-line"; # next line
+        u = "back-screen"; # previous page
+        y = "forw-screen"; # next page
+        f = "back-scroll"; # previous half page
+        p = "forw-scroll"; # next half page
         g = "goto-line";
         G = "goto-end";
+        "/" = "forw-search";
+        "?" = "back-search";
+        h = "help";
+        s = "status";
       };
       envVariables = {
-        LESS = "-R -F -X --mouse";
+        LESS = "-R -X --mouse";
       };
     };
   };

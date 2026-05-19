@@ -27,6 +27,7 @@
       self.homeModules.nvimPluginTelescope
       self.homeModules.nvimPluginLualine
       self.homeModules.nvimPluginWhichKey
+      self.homeModules.nvimPluginYanky
     ];
   };
 

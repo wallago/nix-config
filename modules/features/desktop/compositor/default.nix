@@ -11,5 +11,7 @@
       self.homeModules.niri
       self.homeModules.niriFloatSticky
     ];
+
+    home.file.".local/share/cheatsheets/compositor.md".source = ./cheatsheet.md;
   };
 }
