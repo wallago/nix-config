@@ -39,12 +39,15 @@
       self.homeModules.nvimPluginFidget
       self.homeModules.nvimPluginTrouble
       self.homeModules.nvimPluginBlink
+      self.homeModules.nvimPluginAutopairs
     ];
   };
 
   flake.homeModules.nvimPluginsOptions = {
     imports = [
       self.homeModules.nvimPluginCatppuccin
+      self.homeModules.nvimPluginMarkdown
+      self.homeModules.nvimPluginTabs
     ];
   };
 }
