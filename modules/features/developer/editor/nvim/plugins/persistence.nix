@@ -15,6 +15,13 @@
               { desc = "Restore last session" })
             map("n", "<leader>qd", function() require("persistence").stop() end,
               { desc = "Don't save current session" })
+
+            vim.api.nvim_create_autocmd("User", {
+              pattern = "PersistenceLoadPost",
+              callback = function()
+                vim.notify("Session loaded!")
+              end,
+            })
           '';
         }
       ];
