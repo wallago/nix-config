@@ -24,6 +24,8 @@
       self.homeModules.nvimPluginLualine
       self.homeModules.nvimPluginWhichKey
       self.homeModules.nvimPluginYanky
+      self.homeModules.nvimPluginPersistence
+      self.homeModules.nvimPluginMarks
     ];
   };
 
