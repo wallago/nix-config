@@ -8,6 +8,10 @@
       };
       optimise.automatic = true;
       settings = {
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
         auto-optimise-store = true;
         experimental-features = [
           "nix-command"

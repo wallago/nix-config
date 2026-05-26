@@ -1,17 +1,17 @@
 {
-  flake.nixosModules.preferencesWireguardSponge =
+  flake.nixosModules.preferencesWireguardSquid =
     { config, ... }:
     {
       preferences.wireguard.client.interfaces = {
         wg0 = {
-          ip = "10.100.0.3/24";
+          ip = "10.100.0.2/24";
           serverPublicKey = "FoiHQJLNM4aCmuvf2g2Mb6wqe8kU00AqWd7hGvNLZzY=";
           allowedIPs = [ "10.100.0.0/24" ];
           serverPort = 51820;
           configFile = config.sops.templates."wg0.conf".path;
         };
         wg1 = {
-          ip = "10.200.0.3/24";
+          ip = "10.200.0.2/24";
           serverPublicKey = "VwQJyFAj9053C6dT6zB/JZ9kBZ/wma1b+xfpB+eCRXs=";
           allowedIPs = [ "10.200.0.0/24" ];
           serverPort = 51840;

@@ -17,7 +17,7 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
+      settings."*" = {
         hashKnownHosts = true;
         serverAliveInterval = 60;
       };

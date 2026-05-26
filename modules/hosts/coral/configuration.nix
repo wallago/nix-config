@@ -1,13 +1,13 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.squid = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.coral = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.configSquid
-      self.nixosModules.hardwareSquid
+      self.nixosModules.configCoral
+      self.nixosModules.hardwareCoral
     ];
   };
 
-  flake.nixosModules.configSquid =
+  flake.nixosModules.configCoral =
     { config, ... }:
     let
       userName = config.preferences.user.name;
@@ -17,23 +17,14 @@
         self.nixosModules.general
 
         self.nixosModules.userWallago
-        self.nixosModules.secretsSquid
+        self.nixosModules.secretsCoral
 
         self.nixosModules.intel
-        self.nixosModules.vmNix
-        self.nixosModules.gaming
-        self.nixosModules.desktop
-        self.nixosModules.audio
-        self.nixosModules.bluetooth
-        self.nixosModules.developer
-        self.nixosModules.productivity
-        self.nixosModules.wireguardClient
+        self.nixosModules.wireguardServer
 
-        self.nixosModules.preferencesWireguardSquid
+        self.nixosModules.preferencesWireguardCoral
 
-        self.nixosModules.battery
-
-        self.nixosModules.diskoSquid
+        self.nixosModules.diskoCoral
       ];
 
       preferences.user = {
@@ -44,25 +35,9 @@
         ];
       };
 
-      # default keyboard at login level
-      services.xserver.xkb = {
-        layout = config.preferences.user.keyboard.layout;
-        variant = config.preferences.user.keyboard.variant;
-      };
-
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
-
-          self.homeModules.ai
-          self.homeModules.desktop
-          self.homeModules.developer
-          self.homeModules.productivity
-          self.homeModules.gaming
-
-          self.homeModules.preferencesSessionSquid
-          self.homeModules.preferencesWorkspacesSquid
-          self.homeModules.preferencesMonitorsSquid
         ];
 
         preferences.user = {

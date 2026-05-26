@@ -51,13 +51,16 @@
       map("n", "<leader>tn", "<CMD>tabnew<CR>",   o("Tab: new"))
       map("n", "<leader>tc", "<CMD>tabclose<CR>", o("Tab: close"))
       map("n", "<leader>to", "<CMD>tabonly<CR>",  o("Tab: close others"))
+      map("n", "<leader>tf", "<CMD>tabmove +1<CR>", o("Tab: move forward"))
+      map("n", "<leader>tb", "<CMD>tabmove -1<CR>",  o("Tab: close backward"))
       map("n", "<TAB>", "gt", o("Tab: next"))
       map("n", "<S-TAB>", "gT", o("Tab: prev"))
 
       -- Buffer ───────────────────────────────────────────────────────────────
-      map("n", "<leader>bq", "<CMD>q<CR>",   o("Quit buf"))
-      map("n", "<leader>bx", "<CMD>x<CR>",   o("Quit & Save buf"))
-      map("n", "<leader>bQ", "<CMD>qall<CR>",   o("Quit all buf"))
+      map("n", "<C-q>", "<CMD>q<CR>",   o("Quit"))
+      map("n", "<C-x>", "<CMD>x<CR>",   o("Quit & Save"))
+      map("n", "<C-o>", "<CMD>qall<CR>",   o("Quit all"))
+      map("n", "<C-s>", "<CMD>w<CR>",   o("Save"))
 
       -- Wrong Desc ─────────────────────────────────────────────────────────
       wk.add({

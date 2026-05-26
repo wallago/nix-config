@@ -1,15 +1,15 @@
 { self, ... }:
 {
   flake.nixosModules.wireguardClient =
-
-    { config, lib, ... }:
+    { config, ... }:
+    let
+      cfg = config.preferences.wireguard.client;
+    in
     {
       imports = [
         self.nixosModules.wireguardClientOptions
       ];
 
-      networking.wg-quick.interfaces = lib.mapAttrs (name: _: {
-        configFile = config.sops.templates."${name}.conf".path;
-      }) config.preferences.wireguard.client.interfaces;
+      networking.wg-quick.interfaces = cfg.interfaces;
     };
 }

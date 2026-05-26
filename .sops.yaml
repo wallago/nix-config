@@ -2,6 +2,7 @@ keys:
   age_access: &age_keys
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1fls2addadr7m0mecsqguwfzvqskt93575wn5atu83zvtgtgv0cqqd5kumv
+    - &coral age1cegg86hklqdslv9t50q44sv8z4dj9wrck2vag0zs0cf262uespsqz8rw8j
   gpg_access: &pgp_keys
     - &yubikey_01 0DB7ED7215C5C360
     - &yubikey_02 7E6CCC0E857180EF
@@ -14,7 +15,11 @@ creation_rules:
     key_groups:
       - age: [*squid]
         pgp: [*yubikey_01, *yubikey_02]
+  - path_regex: modules/secrets/coral.ya?ml$
+    key_groups:
+      - age: [*coral]
+        pgp: [*yubikey_01, *yubikey_02]
   - path_regex: modules/secrets/netrc.ya?ml$
     key_groups:
-      - age: [*sponge, *squid]
+      - age: [*sponge, *squid, *coral]
         pgp: [*yubikey_01, *yubikey_02]

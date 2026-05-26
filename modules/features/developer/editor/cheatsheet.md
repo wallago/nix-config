@@ -156,6 +156,29 @@ Exemple: `ma` + `'a` / `` `a ``
 | Move to the previous bookmark having the same type under cursor | `[b`         |
 | Delete the bookmark under the cursor                            | `<space>mx`  |
 
+## Tabs
+
+A `tab` is a layout of `buffer`.
+
+| Action             | Key           |
+| ------------------ | ------------- |
+| Open a new tab     | `<space>tn`   |
+| Close a tab        | `<space>tc`   |
+| Close others tabs  | `<space>to`   |
+| Move tab forward   | `<space>tf`   |
+| Move tab backward  | `<space>tb`   |
+| Go to next tab     | `<tab>`       |
+| Go to previous tab | `<shift-tab>` |
+
+## Buffers
+
+| Action          | Key     |
+| --------------- | ------- |
+| Quit buf        | `<C-q>` |
+| Save & Quit buf | `<C-x>` |
+| Quit all bufs   | `<C-o>` |
+| Save buf        | `<C-s>` |
+
 ## Run Program
 
 | Action      | Key |
@@ -164,25 +187,25 @@ Exemple: `ma` + `'a` / `` `a ``
 
 ## File Explorer (Oil)
 
-| Action          | Key          |
-| --------------- | ------------ |
-| Parent dir      | `-`          |
-| Floating window | `<leader>-`  |
-| File explorer   | `<leader>fe` |
+| Action          | Key         |
+| --------------- | ----------- |
+| Parent dir      | `-`         |
+| Floating window | `<space>-`  |
+| File explorer   | `<space>fe` |
 
 ## LSP
 
-| Action            | Key          |
-| ----------------- | ------------ |
-| Go to definition  | `gd`         |
-| Go to declaration | `gD`         |
-| References        | `gr`         |
-| Implementation    | `gI`         |
-| Hover             | `gh`         |
-| Rename            | `<leader>rn` |
-| Code action       | `<leader>ca` |
-| Prev diagnostic   | `[d`         |
-| Next diagnostic   | `]d`         |
+| Action            | Key         |
+| ----------------- | ----------- |
+| Go to definition  | `gd`        |
+| Go to declaration | `gD`        |
+| References        | `gr`        |
+| Implementation    | `gI`        |
+| Hover             | `gh`        |
+| Rename            | `<space>rn` |
+| Code action       | `<space>ca` |
+| Prev diagnostic   | `[d`        |
+| Next diagnostic   | `]d`        |
 
 ## Search
 
@@ -281,3 +304,4 @@ Exemple: `ma` + `'a` / `` `a ``
 
 - What is format at `gw`
 - What is toggle case at `g~`
+- Search more about `v-block`

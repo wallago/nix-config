@@ -50,6 +50,7 @@
           self.homeModules.desktop
           self.homeModules.developer
           self.homeModules.productivity
+          self.homeModules.gaming
 
           self.homeModules.preferencesSessionSponge
           self.homeModules.preferencesWorkspacesSponge
