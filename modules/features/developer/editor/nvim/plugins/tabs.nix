@@ -8,6 +8,7 @@
           plugin = bufferline-nvim;
           config = ''
             require("bufferline").setup({
+              highlights = require("catppuccin.special.bufferline").get_theme(),
               options = {
                 mode = "tabs",
                 diagnostics = "nvim_lsp",  -- show LSP errors/warnings on tabs

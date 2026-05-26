@@ -6,7 +6,11 @@
         {
           plugin = lualine-nvim;
           config = ''
-            require('lualine').setup()
+            require('lualine').setup({
+              options = {
+                theme = "catppuccin-mocha",
+              },
+            })
           '';
         }
       ];
