@@ -9,15 +9,15 @@ keys:
 creation_rules:
   - path_regex: modules/secrets/sponge.ya?ml$
     key_groups:
-      - age: [*sponge]
+      - age: [*sponge, *squid]
         pgp: [*yubikey_01, *yubikey_02]
   - path_regex: modules/secrets/squid.ya?ml$
     key_groups:
-      - age: [*squid]
+      - age: [*squid, *sponge]
         pgp: [*yubikey_01, *yubikey_02]
   - path_regex: modules/secrets/coral.ya?ml$
     key_groups:
-      - age: [*coral]
+      - age: [*coral, *squid, *sponge]
         pgp: [*yubikey_01, *yubikey_02]
   - path_regex: modules/secrets/netrc.ya?ml$
     key_groups:

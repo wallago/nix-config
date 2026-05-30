@@ -23,4 +23,25 @@
       };
     };
   };
+
+  flake.homeModules.sshWg0 = {
+    programs.ssh.settings = {
+      coral = {
+        hostname = "10.100.0.1";
+        port = 2222;
+        user = "wallago";
+        setEnv = "TERM=xterm-256color";
+      };
+      sponge = {
+        hostname = "10.100.0.3";
+        port = 2222;
+        user = "wallago";
+      };
+      squid = {
+        hostname = "10.100.0.3";
+        port = 2222;
+        user = "wallago";
+      };
+    };
+  };
 }

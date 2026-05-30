@@ -40,7 +40,10 @@
         variant = config.preferences.user.keyboard.variant;
       };
 
-      preferences.user.name = "wallago";
+      preferences = {
+        host.name = "sponge";
+        user.name = "wallago";
+      };
 
       home-manager.users.${userName} = {
         imports = [
@@ -51,6 +54,8 @@
           self.homeModules.developer
           self.homeModules.productivity
           self.homeModules.gaming
+
+          self.homeModules.sshWg0
 
           self.homeModules.preferencesSessionSponge
           self.homeModules.preferencesWorkspacesSponge

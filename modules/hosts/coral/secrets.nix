@@ -17,6 +17,14 @@
           }) ifaces)
           {
             miniflux-credentials = { };
+            "wallago.xyz-ssl-crt" = {
+              owner = config.services.nginx.user;
+              group = config.services.nginx.group;
+            };
+            "wallago.xyz-ssl-key" = {
+              owner = config.services.nginx.user;
+              group = config.services.nginx.group;
+            };
           }
         ];
       };

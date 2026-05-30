@@ -14,8 +14,8 @@
         enable = true;
         inherit (cfg) adminCredentialsFile;
         config = {
-          LISTEN_ADDR = "127.0.0.1:{cfg.port}";
-          BASE_URL = "https://{cfg.url}";
+          LISTEN_ADDR = "127.0.0.1:${toString cfg.port}";
+          BASE_URL = "https://${cfg.url}";
         };
       };
     };
