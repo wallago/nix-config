@@ -1,4 +1,3 @@
-{ self, ... }:
 {
   flake.nixosModules.fish = {
     programs.fish = {

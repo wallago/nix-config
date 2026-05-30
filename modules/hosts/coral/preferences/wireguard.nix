@@ -8,7 +8,7 @@
           wg0 = {
             ip = "10.100.0.1/24";
             listenPort = 51820;
-            privateKeyFile = config.sops.secrets."wg0_private".path;
+            privateKeyFile = config.sops.secrets."wg0-sk".path;
             peers = [
               {
                 # squid
@@ -30,7 +30,7 @@
           wg1 = {
             ip = "10.200.0.1/24";
             listenPort = 51840;
-            privateKeyFile = config.sops.secrets."wg1_private".path;
+            privateKeyFile = config.sops.secrets."wg1-sk".path;
             peers = [
               {
                 # squid

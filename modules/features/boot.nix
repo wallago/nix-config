@@ -12,9 +12,11 @@
         kernelParams = [
           "systemd.show_status=auto"
         ];
-        loader.systemd-boot.enable = true;
-        loader.efi.canTouchEfiVariables = true;
-        loader.timeout = 0;
+        loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+          timeout = 0;
+        };
       };
     };
 }

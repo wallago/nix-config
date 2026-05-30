@@ -12,14 +12,14 @@
         firewall.allowedUDPPorts = lib.mapAttrsToList (_: iface: iface.listenPort) cfg.interfaces;
         nat = {
           enable = true;
-          externalInterface = cfg.externalInterface;
+          inherit (cfg) externalInterface;
           internalInterfaces = lib.attrNames cfg.interfaces;
         };
         wireguard.interfaces = lib.mapAttrs (_: iface: {
           ips = [ iface.ip ];
-          listenPort = iface.listenPort;
-          privateKeyFile = iface.privateKeyFile;
-          peers = iface.peers;
+          inherit (iface) listenPort;
+          inherit (iface) privateKeyFile;
+          inherit (iface) peers;
         }) cfg.interfaces;
       };
     };

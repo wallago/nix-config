@@ -3,13 +3,13 @@
   flake.nixosModules.diskoCoral = {
     imports = [
       inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostSponge
+      self.diskoConfigurations.hostCoral
     ];
     fileSystems."/persist".neededForBoot = true;
     fileSystems."/home".neededForBoot = true;
   };
 
-  flake.diskoConfigurations.hostSponge = {
+  flake.diskoConfigurations.hostCoral = {
     disko.devices = {
       disk.disk1 = {
         device = "/dev/disk/by-id/nvme-CT500P3PSSD8_23324263583E";

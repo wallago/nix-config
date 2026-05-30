@@ -8,7 +8,7 @@
             lib.types.submodule {
               options = {
                 configFile = lib.mkOption {
-                  type = lib.types.path;
+                  type = lib.types.str;
                   description = "Config file path";
                 };
                 serverPublicKey = lib.mkOption {
