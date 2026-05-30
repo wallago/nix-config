@@ -63,6 +63,8 @@
           self.homeModules.productivity
           self.homeModules.gaming
 
+          self.homeModules.sshWg0
+
           self.homeModules.preferencesSessionSquid
           self.homeModules.preferencesWorkspacesSquid
           self.homeModules.preferencesMonitorsSquid
