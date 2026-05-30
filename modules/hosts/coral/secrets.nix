@@ -15,6 +15,9 @@
             name = "${name}-sk";
             value = { };
           }) ifaces)
+          {
+            miniflux-credentials = { };
+          }
         ];
       };
     };

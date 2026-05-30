@@ -21,8 +21,10 @@
 
         self.nixosModules.intel
         self.nixosModules.wireguardServer
+        self.nixosModules.miniflux
 
         self.nixosModules.preferencesWireguardCoral
+        self.nixosModules.preferencesMinifluxCoral
 
         self.nixosModules.diskoCoral
       ];
