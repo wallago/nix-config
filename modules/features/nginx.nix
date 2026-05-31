@@ -24,6 +24,7 @@
             sslCertificate
             sslCertificateKey
             ;
+          extraConfig = "client_max_body_size ${host.clientMaxBodySize};";
           locations."/".proxyPass = host.upstream;
         }) cfg.hosts;
       };

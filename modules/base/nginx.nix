@@ -20,6 +20,11 @@
                 type = lib.types.str;
                 description = "Address the / location proxies to";
               };
+              clientMaxBodySize = lib.mkOption {
+                type = lib.types.str;
+                default = "1m";
+                description = "Max upload body size for this host (0 = unlimited)";
+              };
             };
           }
         );
