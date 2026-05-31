@@ -73,4 +73,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - run: nix fmt -- --check .
+      - run: nix fmt -- --ci .
