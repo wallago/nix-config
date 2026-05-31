@@ -23,10 +23,12 @@
         self.nixosModules.wireguardServer
         self.nixosModules.miniflux
         self.nixosModules.nginxReverseProxy
+        self.nixosModules.attic
 
         self.nixosModules.preferencesWireguardCoral
         self.nixosModules.preferencesMinifluxCoral
         self.nixosModules.preferencesNginxCoral
+        self.nixosModules.preferencesAtticCoral
 
         self.nixosModules.diskoCoral
       ];
