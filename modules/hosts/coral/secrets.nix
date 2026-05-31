@@ -1,0 +1,36 @@
+{
+  flake.nixosModules.secretsCoral =
+    { config, lib, ... }:
+    let
+      ifaces = config.preferences.wireguard.server.interfaces;
+    in
+    {
+      sops = {
+        defaultSopsFile = ../../secrets/coral.yaml;
+        secrets = lib.mkMerge [
+          {
+            wallago-password.neededForUsers = true;
+          }
+          (lib.mapAttrs' (name: _: {
+            name = "${name}-sk";
+            value = { };
+          }) ifaces)
+          {
+            miniflux-credentials = { };
+            "wallago.xyz-ssl-crt" = {
+              owner = config.services.nginx.user;
+              group = config.services.nginx.group;
+            };
+            "wallago.xyz-ssl-key" = {
+              owner = config.services.nginx.user;
+              group = config.services.nginx.group;
+            };
+            atticd-env-keys = {
+              owner = config.services.atticd.user;
+              group = config.services.atticd.group;
+            };
+          }
+        ];
+      };
+    };
+}
