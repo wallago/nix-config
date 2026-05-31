@@ -12,6 +12,7 @@ jobs:
   build-and-cache:
     name: Build & push to Attic
     runs-on: ubuntu-latest
+    environment: "ATTIC Cache"
     strategy:
       fail-fast: false
       matrix:
