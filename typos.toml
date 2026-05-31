@@ -6,10 +6,11 @@
 # ratatui = "ratatui"
 # kubernetes = "kubernetes"
 
+[default.extend-identifiers]
+# Hex colors and other opaque identifiers typos shouldn't split
+C0CAF5 = "C0CAF5"
+
+
 [files]
 # Exclude files or directories from checking
-extend-exclude = [
-  # "CHANGELOG.md",
-  # "vendor/",
-  # "*.lock",
-]
+extend-exclude = ["*.lock", "modules/secrets/"]

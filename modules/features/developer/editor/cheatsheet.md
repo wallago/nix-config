@@ -104,7 +104,7 @@
 
 Press `"` and on whatever key (almost) to select a slot.
 After yank it will put in this slot.
-Exemple: `"a` + `yy`
+Example: `"a` + `yy`
 
 | Action                                              | Key  |
 | --------------------------------------------------- | ---- |
@@ -123,7 +123,7 @@ Exemple: `"a` + `yy`
 
 Press `m` and on whatever key (almost) to place a mark.
 After you can go back there.
-Exemple: `ma` + `'a` / `` `a ``
+Example: `ma` + `'a` / `` `a ``
 
 - `'`: Takes you to the line (start of line),
 - `` ` ``: Takes you to the exact position.

@@ -78,7 +78,7 @@ update:
 
 # Update a single input. Usage: just update-input nixpkgs
 update-input INPUT:
-    nix flake lock --update-input {{INPUT}}
+    nix flake update {{INPUT}}
 # Show what would update (no changes)
 update-dry:
     nix flake lock --recreate-lock-file --dry-run 2>&1 | head -50

@@ -3,11 +3,11 @@
   flake.homeModules.niriFloatSticky =
     { pkgs, lib, ... }:
     let
-      niri-flaot-sticky = inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      niri-float-sticky = inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     {
       home.packages = [
-        niri-flaot-sticky
+        niri-float-sticky
       ];
 
       systemd.user.services.niri-float-sticky-pip = {
@@ -17,7 +17,7 @@
           After = [ "graphical-session.target" ];
         };
         Service = {
-          ExecStart = "${lib.getExe niri-flaot-sticky} -app-id 'zen-beta' -title '^Picture-in-Picture$'";
+          ExecStart = "${lib.getExe niri-float-sticky} -app-id 'zen-beta' -title '^Picture-in-Picture$'";
           Restart = "on-failure";
         };
         Install.WantedBy = [ "graphical-session.target" ];

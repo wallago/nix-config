@@ -19,14 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Install Attic client
         run: nix profile install nixpkgs#attic-client
       - name: Configure Attic
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
         run: |
-          attic login mycache https://cache.wallago.xyz "$ATTIC_TOKEN"
+          attic login wallago https://cache.wallago.xyz "$ATTIC_TOKEN"
           attic use wallago:mycache
       - name: Build host closure
         id: build
