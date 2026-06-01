@@ -25,9 +25,10 @@ to do" unless I explicitly say otherwise in that same message.
 
 ### Read-only by default
 
-Read-only commands are fine without asking: `cargo check`, `cargo clippy`,
-`cargo test --no-run`, `cargo tree`, `nix flake check`, `nix eval`,
-`git status`, `git diff`, `git log`, `ls`, `cat` (non-secret files).
+Read-only commands are fine without asking: `nix flake check`,
+`nixos-rebuild dry-build`, `nix eval`, `just check-dry`, `just eval <host>`,
+`just diff <host>` (dry-activate), `just hosts`, `just info`, `git status`,
+`git diff`, `git log`, `ls`, `cat` (non-secret files).
 
 If you think a mutating action is genuinely necessary, **describe it and stop** —
 let me decide.
@@ -71,11 +72,24 @@ Build a Nixos config.
 
 ## Conventions
 
-- Modules live in `modules/`, with `features/` for cross-host concerns and
-  `hosts/<name>/` for host-specific config.
-- The username is parameterized via `config.preferences.user.name`.
+- **Dendritic / flake-parts layout.** `flake.nix` calls
+  `flake-parts.lib.mkFlake` with `import-tree ./modules`, so **every `.nix`
+  file under `modules/` is auto-imported** as a flake-parts module. There are
+  no manual `imports` lists — to add a module, drop a file in the tree.
+- **Layout under `modules/`:**
+  - `base/` — option *declarations* (the `preferences.*` namespace) + core defaults.
+  - `features/` — cross-host features (desktop, shell, networking, ai, …), toggled via `preferences.*`.
+  - `hosts/<name>/` — per-host `configuration.nix`, `hardware.nix`, `disko.nix`, `secrets.nix`. Hosts: `coral`, `sponge`, `squid`.
+  - `users/`, `secrets/`, and `parts.nix` (systems + formatter).
+- **Options namespace.** Config is driven by a custom `preferences.*` option set
+  declared in `modules/base/` (e.g. `config.preferences.user.name`); features and
+  hosts set these rather than wiring NixOS options directly.
 - Disko handles disk layout, with btrfs subvolumes and impermanence.
-- Sops-encrypted secrets live in `modules/secrets/` and `modules/hosts/*/secrets.nix`.
+- Sops-encrypted secrets live in `modules/secrets/` and `modules/hosts/<name>/secrets.nix`.
+- **`justfile` is the workflow entry point** (run `just` to list). Read-only:
+  `just check-dry`, `just eval <host>`, `just diff <host>`, `just hosts`.
+  Mutating (you run these): `just check`/`just fmt` (formats files),
+  `just switch|boot|test <host>`, `just update`.
 
 ## Summary
 
