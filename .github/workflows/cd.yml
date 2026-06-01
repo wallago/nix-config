@@ -25,6 +25,7 @@ jobs:
       - name: Configure Attic
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+          CACHE_ORIGIN_IP: ${{ secrets.CACHE_ORIGIN_IP }}
         run: |
           attic login wallago https://cache.wallago.xyz "$ATTIC_TOKEN"
           attic use wallago:mycache
