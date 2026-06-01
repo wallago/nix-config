@@ -24,7 +24,13 @@
             sslCertificate
             sslCertificateKey
             ;
-          extraConfig = "client_max_body_size ${host.clientMaxBodySize};";
+          extraConfig = ''
+            client_max_body_size ${host.clientMaxBodySize};
+            proxy_request_buffering off;
+            proxy_read_timeout 3600s;
+            proxy_send_timeout 3600s;
+            client_body_timeout 3600s;
+          '';
           locations."/".proxyPass = host.upstream;
         }) cfg.hosts;
       };
