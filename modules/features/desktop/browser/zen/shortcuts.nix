@@ -100,7 +100,7 @@
       ];
       # In order to avoid breaking changes here, sometimes when you upgrade you
       # should be asked to bump this version
-      keyboardShortcutsVersion = 18;
+      keyboardShortcutsVersion = 19;
     };
   };
 }
