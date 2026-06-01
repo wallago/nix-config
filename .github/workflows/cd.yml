@@ -25,9 +25,7 @@ jobs:
       - name: Configure Attic
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
-          CACHE_ORIGIN_IP: ${{ secrets.CACHE_ORIGIN_IP }}
         run: |
-          echo "$CACHE_ORIGIN_IP cache.wallago.xyz" | sudo tee -a /etc/hosts
           attic login wallago https://cache.wallago.xyz "$ATTIC_TOKEN"
           attic use wallago:mycache
       - name: Build host closure
@@ -38,4 +36,7 @@ jobs:
             --no-link --print-out-paths > out-paths.txt
           echo "Built: $(cat out-paths.txt)"
       - name: Push to Attic
-        run: attic push wallago:mycache $(cat out-paths.txt)
+        run: |
+          for p in $(cat out-paths.txt); do
+            attic push wallago:mycache "$p"
+          done
