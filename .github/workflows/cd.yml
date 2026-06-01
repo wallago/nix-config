@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - name: Install Attic client
-        run: nix profile install nixpkgs#attic-client
+        run: nix profile add nixpkgs#attic-client
       - name: Configure Attic
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
