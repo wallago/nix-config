@@ -3,3 +3,4 @@ result*
 *.qcow2
 .nixie
 *.qcow2
+.env
