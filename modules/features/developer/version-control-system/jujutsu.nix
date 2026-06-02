@@ -12,11 +12,7 @@
           ui = {
             pager = "less -FRX";
             style = "square";
-            diff-editor = [
-              "nvim"
-              "-c"
-              "DiffEditor \$left \$right \$output"
-            ];
+            diff-editor = ":builtin";
             merge-editor = "diffconflicts";
             default-command = "log-recent";
           };
