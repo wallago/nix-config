@@ -46,6 +46,7 @@
         self.homeModules.nvimPluginCatppuccin
         self.homeModules.nvimPluginMarkdown
         self.homeModules.nvimPluginTabs
+        self.homeModules.nvimPluginNeorg
       ];
     };
   };
