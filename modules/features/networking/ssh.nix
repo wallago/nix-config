@@ -42,6 +42,12 @@
           port = 2222;
           user = "wallago";
         };
+        cuttlefish = {
+          hostname = "10.100.0.4";
+          port = 2222;
+          user = "wallago";
+          setEnv = "TERM=xterm-256color";
+        };
       };
     };
   };
