@@ -1,6 +1,10 @@
 { inputs, self, ... }:
 {
   flake.nixosConfigurations.squid = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      hostName = "squid";
+      inherit self;
+    };
     modules = [
       self.nixosModules.configSquid
       self.nixosModules.hardwareSquid
@@ -28,16 +32,12 @@
         self.nixosModules.developer
         self.nixosModules.productivity
         self.nixosModules.wireguardClient
-
-        self.nixosModules.preferencesWireguardSquid
-
         self.nixosModules.battery
 
         self.nixosModules.diskoSquid
       ];
 
       preferences = {
-        host.name = "squid";
         user = {
           name = "wallago";
           authorizedSshKeys = [

@@ -1,13 +1,20 @@
 { self, ... }:
 {
   flake.nixosModules.nginxReverseProxy =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      hostName,
+      ...
+    }:
     let
       cfg = config.preferences.nginx.reverseProxy;
+      hostModule = self.nixosModules."preferencesNginx${self.lib.capitalize hostName}";
     in
     {
       imports = [
         self.nixosModules.nginxReverseProxyOptions
+        hostModule
       ];
 
       services.nginx = {

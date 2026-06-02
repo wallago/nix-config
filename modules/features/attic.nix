@@ -1,15 +1,17 @@
 { self, ... }:
 {
   flake.nixosModules.attic =
-    { config, ... }:
+    { config, hostName, ... }:
     let
       cfg = config.preferences.attic;
       url = "127.0.0.1:${toString cfg.port}";
+      hostModule = self.nixosModules."preferencesAttic${self.lib.capitalize hostName}";
     in
     {
 
       imports = [
         self.nixosModules.atticOptions
+        hostModule
       ];
 
       services.atticd = {

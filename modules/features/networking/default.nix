@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.nixosModules.networking =
-    { config, ... }:
+    { hostName, ... }:
     {
       imports = [
         self.nixosModules.ssh
@@ -10,7 +10,7 @@
       networking = {
         networkmanager.enable = true;
         firewall.enable = true;
-        hostName = config.preferences.host.name;
+        hostName = hostName;
       };
     };
 

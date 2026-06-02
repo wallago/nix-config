@@ -1,13 +1,20 @@
 { self, ... }:
 {
   flake.nixosModules.miniflux =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      hostName,
+      ...
+    }:
     let
       cfg = config.preferences.miniflux;
+      hostModule = self.nixosModules."preferencesNginx${self.lib.capitalize hostName}";
     in
     {
       imports = [
         self.nixosModules.minifluxOptions
+        hostModule
       ];
 
       services.miniflux = {
