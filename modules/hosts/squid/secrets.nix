@@ -7,7 +7,6 @@
     in
     {
       sops = {
-        defaultSopsFile = ../../secrets/squid.yaml;
         secrets = lib.mkMerge [
           {
             wallago-password.neededForUsers = true;

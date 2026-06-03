@@ -7,7 +7,6 @@
     in
     {
       sops = {
-        defaultSopsFile = ../../secrets/sponge.yaml;
         secrets = lib.mkMerge [
           {
             wallago-password.neededForUsers = true;

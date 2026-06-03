@@ -7,7 +7,6 @@
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      # pinentryPackage = pkgs.pinentry-gnome3;  # or pinentry-curses for TTY-only
     };
   };
 }

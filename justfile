@@ -92,6 +92,10 @@ relock:
 secret FILE:
     nix run nixpkgs#sops modules/secrets/{{FILE}}.yaml
 
+secret-without-yk FILE:
+    SOPS_AGE_KEY=$(sudo nix run nixpkgs#ssh-to-age -- -private-key -i /persist/etc/ssh/ssh_host_ed25519_key) \
+    nix run nixpkgs#sops modules/secrets/{{FILE}}.yaml
+
 # Re-encrypt all secrets after changing recipients in .sops.yaml
 secrets-rotate:
     find modules/secrets -name '*.yaml' -exec nix run nixpkgs#sops updatekeys {} \;
