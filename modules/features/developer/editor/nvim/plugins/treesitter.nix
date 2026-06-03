@@ -51,6 +51,7 @@
         nvim-treesitter-parsers.tsx
         nvim-treesitter-parsers.vim
         nvim-treesitter-parsers.vimdoc
+        nvim-treesitter-parsers.query
         nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.zig
         nvim-treesitter-parsers.javascript

@@ -14,10 +14,22 @@
                 ["core.summary"] = {            -- :Neorg generate-workspace-summary → auto index of all TODOs
                   config = { strategy = "flat" },
                 },
+                ["core.dirman"] = {            -- Manages Neorg workspaces
+                  config = { 
+                    workspaces = { notes = "~/Notes" },
+                    default_workspace = "notes",
+                  },
+                },
               },
             })
           '';
         }
       ];
+
+      home.persistence = {
+        "/persist/".directories = [
+          "Notes/"
+        ];
+      };
     };
 }
