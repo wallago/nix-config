@@ -4,3 +4,4 @@ result*
 .nixie
 *.qcow2
 .env
+.claude
