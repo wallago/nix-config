@@ -11,7 +11,7 @@ concurrency:
 jobs:
   commit-format:
     name: Commit format
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout the repository
         if: github.event_name != 'pull_request'
@@ -28,7 +28,7 @@ jobs:
           commits: "HEAD"
   links:
     name: Links
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   typos:
     name: Typos
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -48,28 +48,28 @@ jobs:
         uses: crate-ci/typos@master
   check:
     name: Flake check
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix flake check --print-build-logs
   statix:
     name: Statix
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix run nixpkgs#statix -- check .
   deadnix:
     name: Deadnix
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix run nixpkgs#deadnix -- --fail .
   format:
     name: Format
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main

@@ -12,7 +12,7 @@
   };
 
   flake.nixosModules.configCoral =
-    { config, hostName, ... }:
+    { config, ... }:
     let
       userName = config.preferences.user.name;
     in
@@ -28,7 +28,7 @@
         self.nixosModules.miniflux
         self.nixosModules.nginxReverseProxy
         self.nixosModules.attic
-        # self.nixosModules.githubRunners
+        self.nixosModules.githubRunners
 
         self.nixosModules.preferencesMinifluxCoral
 

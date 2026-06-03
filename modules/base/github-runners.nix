@@ -2,7 +2,7 @@
   flake.nixosModules.githubRunnersOptions =
     { lib, ... }:
     {
-      options.preferences.github.runners = {
+      options.preferences.github.runners = lib.mkOption {
         type = lib.types.attrsOf (
           lib.types.submodule (
             { name, ... }:

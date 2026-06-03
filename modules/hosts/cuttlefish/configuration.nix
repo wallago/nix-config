@@ -25,7 +25,7 @@
 
         self.nixosModules.intel
         self.nixosModules.wireguardClient
-        # self.nixosModules.githubRunners
+        self.nixosModules.githubRunners
 
         self.nixosModules.diskoCuttlefish
       ];

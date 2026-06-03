@@ -27,6 +27,7 @@
             owner = config.services.atticd.user;
             group = config.services.atticd.group;
           };
+          gh-runner-nix-config = { };
         }
       ];
     };
