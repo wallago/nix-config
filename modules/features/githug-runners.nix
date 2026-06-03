@@ -17,9 +17,10 @@
         hostModule
       ];
 
-      services.github-runners = lib.mapAttrs (_: runner: {
+      services.github-runners = lib.mapAttrs (name: runner: {
         enable = true;
-        inherit (runner) name tokenFile url;
+        name = name;
+        inherit (runner) tokenFile url;
       }) cfg;
     };
 }

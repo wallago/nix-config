@@ -12,7 +12,7 @@
   flake.diskoConfigurations.hostCuttlefish = {
     disko.devices = {
       disk.disk1 = {
-        device = "/dev/disk/by-id/nvme-CT500P3PSSD8_23324263583E";
+        device = "/dev/disk/by-id/nvme-Corsair_MP600_GS_2305802200013241002D";
         type = "disk";
         content = {
           type = "gpt";
