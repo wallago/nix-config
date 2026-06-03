@@ -15,10 +15,10 @@ jobs:
     steps:
       - name: Checkout the repository
         if: github.event_name != 'pull_request'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Checkout the repository
         if: github.event_name == 'pull_request'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Run committed
@@ -31,7 +31,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Run lychee
         uses: lycheeverse/lychee-action@v2
         with:
@@ -43,34 +43,34 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Check typos
         uses: crate-ci/typos@master
   check:
     name: Flake check
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix flake check --print-build-logs
   statix:
     name: Statix
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix run nixpkgs#statix -- check .
   deadnix:
     name: Deadnix
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix run nixpkgs#deadnix -- --fail .
   format:
     name: Format
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix fmt -- --ci .
