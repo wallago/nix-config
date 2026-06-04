@@ -1,17 +1,30 @@
+{ self, ... }:
 {
-  flake.nixosModules.ssh = {
-    services.openssh = {
-      enable = true;
-      ports = [ 2222 ];
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
-        LogLevel = "VERBOSE";
-      };
-    };
+  flake.nixosModules.ssh =
+    { config, ... }:
+    let
+      userName = config.preferences.user.name;
+      cfg = config.preferences.ssh;
+    in
+    {
+      imports = [ self.nixosModules.sshOptions ];
 
-    networking.firewall.allowedTCPPorts = [ 2222 ];
-  };
+      services.openssh = {
+        enable = true;
+        ports = [ 2222 ];
+        settings = {
+          PasswordAuthentication = false;
+          PermitRootLogin = "no";
+          LogLevel = "VERBOSE";
+        };
+      };
+
+      networking.firewall.allowedTCPPorts = [ 2222 ];
+
+      users.users.${userName}.openssh.authorizedKeys.keys = cfg.authorizedSshKeys ++ [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKMPubEMjwYfkQl5ofu6MUbZYwSmInB+M1gVdnMIidj"
+      ];
+    };
 
   flake.homeModules = {
     ssh = {
