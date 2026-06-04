@@ -14,6 +14,8 @@
         hostModule
       ];
 
+      networking.firewall.interfaces."wg0".allowedTCPPorts = [ cfg.port ];
+
       services.atticd = {
         enable = true;
         inherit (cfg) environmentFile;

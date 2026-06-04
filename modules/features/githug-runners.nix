@@ -17,6 +17,8 @@
         hostModule
       ];
 
+      services.envfs.enable = true;
+
       services.github-runners = lib.mapAttrs (name: runner: {
         enable = true;
         inherit name;

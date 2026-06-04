@@ -1,21 +1,18 @@
 {
   flake.nixosModules.preferencesGithubRunnersKrill =
-    { config, pkgs, ... }:
+    { config, ... }:
+    let
+      sops = config.sops.secrets;
+    in
     {
       preferences.github.runners = {
-        nix-config = {
-          tokenFile = config.sops.secrets.gh-runner-nix-config.path;
+        nix-config-1 = {
+          tokenFile = sops.gh-runner-nix-config-1.path;
           url = "https://github.com/wallago/nix-config";
-          extraPackages = with pkgs; [
-            bash
-            curl
-            git
-            gnutar
-            gzip
-            coreutils
-            gawk
-            gnused
-          ];
+        };
+        nix-config-2 = {
+          tokenFile = sops.gh-runner-nix-config-2.path;
+          url = "https://github.com/wallago/nix-config";
         };
       };
     };

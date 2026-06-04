@@ -16,7 +16,8 @@
             value = { };
           }) ifaces)
           {
-            gh-runner-nix-config = { };
+            gh-runner-nix-config-1 = { };
+            gh-runner-nix-config-2 = { };
           }
         ];
         templates = lib.mapAttrs' (name: iface: {

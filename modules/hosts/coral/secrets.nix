@@ -24,7 +24,6 @@
             group = config.services.nginx.group;
           };
           atticd-env-keys = { };
-          gh-runner-nix-config = { };
         }
       ];
     };
