@@ -26,7 +26,7 @@ jobs:
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
         run: |
-          attic login wallago https://10.100.0.1 "$ATTIC_TOKEN"
+          attic login wallago https://127.0.0.1:5504 "$ATTIC_TOKEN"
           attic use wallago:mycache
       - name: Build host closure
         id: build
