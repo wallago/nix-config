@@ -2,10 +2,10 @@ keys:
   age_access: &age_keys
     - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
     - &squid age1fls2addadr7m0mecsqguwfzvqskt93575wn5atu83zvtgtgv0cqqd5kumv
-    - &coral age1cegg86hklqdslv9t50q44sv8z4dj9wrck2vag0zs0cf262uespsqz8rw8j
+    - &coral age1t3t4llqc4fmrsr3x4apuz5utctjm82vdez7pztrfcytjyghr3quqsgs776
     - &cuttlefish age1d20vlmtk0zhwk5zyva9fe4zst5evz4pkrctc9n46mxjrk2fsqvvqskh575
   gpg_access: &pgp_keys
-    - &yubikey CC71050E6166F9A6
+    - &yubikey 704592C4592CD51F
 creation_rules:
   - path_regex: modules/secrets/sponge.ya?ml$
     key_groups:

@@ -11,12 +11,18 @@
       };
     };
 
-  flake.homeModules.secrets = {
-    home.persistence."/persist/".directories = [
-      {
-        directory = ".gnupg";
-        mode = "0700";
-      }
-    ];
-  };
+  flake.homeModules.secrets =
+    { pkgs, ... }:
+    {
+      imports = [ inputs.sops-nix.homeManagerModules.sops ];
+      home = {
+        packages = [ pkgs.sops ];
+        persistence."/persist/".directories = [
+          {
+            directory = ".gnupg";
+            mode = "0700";
+          }
+        ];
+      };
+    };
 }

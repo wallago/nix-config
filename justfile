@@ -165,28 +165,29 @@ claude-usage:
 # to rm
 
 # Install NixOS on a remote host using nixos-anywhere, seeding the sops age key
-install host flake="squid":
+install host flake:
     #!/usr/bin/env bash
     set -euo pipefail
 
     tmp=$(mktemp -d)
     trap 'rm -rf "$tmp"' EXIT
 
-    install -d -m 0755 "$tmp/etc/ssh"
-    ssh-keygen -t ed25519 -N "" -f "$tmp/etc/ssh/ssh_host_ed25519_key"
-    chmod 600 "$tmp/etc/ssh/ssh_host_ed25519_key"
-
-    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+    ssh_dir="$tmp/persist/etc/ssh"
+    install -d -m 0755 $ssh_dir
+    ssh-keygen -t ed25519 -N "" -C "root@{{flake}}" \
+      -f "$ssh_dir/ssh_host_ed25519_key"
+    chmod 600 "$ssh_dir/ssh_host_ed25519_key"
+    pub="$ssh_dir/ssh_host_ed25519_key.pub"
 
     echo
     echo "SSH pubkey:"
-    cat "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+    cat "$pub"
     echo
     echo "Age pubkey (add to .sops.yaml):"
-    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$tmp/etc/ssh/ssh_host_ed25519_key.pub"
+    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$pub"
     echo
 
-    read -rp "Update .sops.yaml + run 'sops updatekeys', then press Enter to install... "
+    read -rp "Update .sops.yaml + run 'just secrets-rotate', then press Enter to install... "
 
     nix run github:nix-community/nixos-anywhere -- \
       --flake ".#{{flake}}" \

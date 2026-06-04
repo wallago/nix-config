@@ -23,10 +23,7 @@
             owner = config.services.nginx.user;
             group = config.services.nginx.group;
           };
-          atticd-env-keys = {
-            owner = config.services.atticd.user;
-            group = config.services.atticd.group;
-          };
+          atticd-env-keys = { };
           gh-runner-nix-config = { };
         }
       ];
