@@ -10,7 +10,7 @@
       networking = {
         networkmanager.enable = true;
         firewall.enable = true;
-        hostName = hostName;
+        inherit hostName;
       };
     };
 

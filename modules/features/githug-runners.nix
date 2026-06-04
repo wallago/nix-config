@@ -19,7 +19,7 @@
 
       services.github-runners = lib.mapAttrs (name: runner: {
         enable = true;
-        name = name;
+        inherit name;
         inherit (runner) tokenFile url;
       }) cfg;
     };
