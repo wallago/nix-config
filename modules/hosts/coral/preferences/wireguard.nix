@@ -25,6 +25,11 @@
                 publicKey = "gW+F/0uL2dDxzlN4Q836w17fiElhwqyk6ffdybR+Ikk=";
                 allowedIPs = [ "10.100.0.4/32" ];
               }
+              {
+                # krill
+                publicKey = "b0TYc2kWNyWNv2HcXAv4FfF0ZKPotvoVz33gKmJuyTA=";
+                allowedIPs = [ "10.100.0.5/32" ];
+              }
             ];
           };
           wg1 = {

@@ -1,18 +1,18 @@
 { inputs, self, ... }:
 {
-  flake.nixosModules.diskoCuttlefish = {
+  flake.nixosModules.diskoKrill = {
     imports = [
       inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostCoral
+      self.diskoConfigurations.hostKrill
     ];
     fileSystems."/persist".neededForBoot = true;
     fileSystems."/home".neededForBoot = true;
   };
 
-  flake.diskoConfigurations.hostCuttlefish = {
+  flake.diskoConfigurations.hostKrill = {
     disko.devices = {
       disk.disk1 = {
-        device = "/dev/disk/by-id/nvme-Corsair_MP600_GS_2305802200013241002D";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S78GNL0XA17983W";
         type = "disk";
         content = {
           type = "gpt";

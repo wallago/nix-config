@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.secretsCuttlefish =
+  flake.nixosModules.secretsKrill =
     { config, lib, ... }:
     let
       ifaces = config.preferences.wireguard.client.interfaces;

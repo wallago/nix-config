@@ -62,6 +62,12 @@
           user = "wallago";
           setEnv = "TERM=xterm-256color";
         };
+        krill = {
+          hostname = "10.100.0.5";
+          port = 2222;
+          user = "wallago";
+          setEnv = "TERM=xterm-256color";
+        };
       };
     };
   };

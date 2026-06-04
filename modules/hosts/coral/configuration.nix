@@ -28,7 +28,6 @@
         self.nixosModules.miniflux
         self.nixosModules.nginxReverseProxy
         self.nixosModules.attic
-        self.nixosModules.githubRunners
 
         self.nixosModules.preferencesMinifluxCoral
 

@@ -1,17 +1,17 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.cuttlefish = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.krill = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      hostName = "cuttlefish";
+      hostName = "krill";
       inherit self;
     };
     modules = [
-      self.nixosModules.configCuttlefish
-      self.nixosModules.hardwareCuttlefish
+      self.nixosModules.configKrill
+      self.nixosModules.hardwareKrill
     ];
   };
 
-  flake.nixosModules.configCuttlefish =
+  flake.nixosModules.configKrill =
     { config, ... }:
     let
       userName = config.preferences.user.name;
@@ -21,13 +21,13 @@
         self.nixosModules.general
 
         self.nixosModules.userWallago
-        self.nixosModules.secretsCuttlefish
+        self.nixosModules.secretsKrill
 
         self.nixosModules.intel
         self.nixosModules.wireguardClient
         self.nixosModules.githubRunners
 
-        self.nixosModules.diskoCuttlefish
+        self.nixosModules.diskoKrill
       ];
 
       preferences.user.name = "wallago";
@@ -35,10 +35,7 @@
         imports = [
           self.homeModules.general
         ];
-
-        preferences.user = {
-          name = userName;
-        };
+        preferences.user.name = userName;
       };
     };
 }
