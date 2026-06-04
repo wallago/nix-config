@@ -4,7 +4,7 @@
     { config, hostName, ... }:
     let
       cfg = config.preferences.attic;
-      url = "127.0.0.1:${toString cfg.port}";
+      url = "0.0.0.0:${toString cfg.port}";
       hostModule = self.nixosModules."preferencesAttic${self.lib.capitalize hostName}";
     in
     {
