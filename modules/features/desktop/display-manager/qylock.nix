@@ -6,7 +6,6 @@
     programs.qylock = {
       enable = true;
       theme = "paper";
-      sddmTheme = "paper";
     };
   };
 }
