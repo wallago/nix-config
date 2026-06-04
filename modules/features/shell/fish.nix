@@ -13,15 +13,25 @@
   flake.homeModules.fish =
     { pkgs, ... }:
     {
-      home.packages = [ pkgs.libnotify ];
+      home.packages = [
+        pkgs.libnotify
+        pkgs.fzf
+        pkgs.fd
+        pkgs.bat
+      ];
 
       programs.fish = {
         enable = true;
         interactiveShellInit = ''
           fish_vi_key_bindings
           set fish_greeting ""
+          fzf_configure_bindings --history=\cr
         '';
         plugins = [
+          {
+            name = "fzf-fish";
+            src = pkgs.fishPlugins.fzf-fish.src;
+          }
           {
             name = "colored-man-pages";
             src = pkgs.fishPlugins.colored-man-pages.src;
