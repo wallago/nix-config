@@ -15,6 +15,11 @@
             name = "${name}-sk";
             value = { };
           }) ifaces)
+          {
+            syncthing-password = { };
+            syncthing-cert = { };
+            syncthing-key = { };
+          }
         ];
         templates = lib.mapAttrs' (name: iface: {
           name = "${name}.conf";

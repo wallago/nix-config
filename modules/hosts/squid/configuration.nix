@@ -33,6 +33,7 @@
         self.nixosModules.productivity
         self.nixosModules.wireguardClient
         self.nixosModules.battery
+        self.nixosModules.syncthing
 
         self.nixosModules.diskoSquid
       ];

@@ -14,6 +14,9 @@
           value = { };
         }) ifaces)
         {
+          syncthing-password.owner = config.services.syncthing.user;
+          syncthing-cert = { };
+          syncthing-key = { };
           miniflux-credentials = { };
           "wallago.xyz-ssl-crt" = {
             owner = config.services.nginx.user;

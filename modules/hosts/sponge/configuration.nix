@@ -32,6 +32,7 @@
         self.nixosModules.developer
         self.nixosModules.productivity
         self.nixosModules.wireguardClient
+        self.nixosModules.syncthing
 
         self.nixosModules.diskoSponge
       ];
