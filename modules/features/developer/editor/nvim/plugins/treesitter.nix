@@ -56,6 +56,7 @@
         nvim-treesitter-parsers.zig
         nvim-treesitter-parsers.javascript
         nvim-treesitter-parsers.typescript
+        nvim-treesitter-parsers.http
       ];
     };
 }
