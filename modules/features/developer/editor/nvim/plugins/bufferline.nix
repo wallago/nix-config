@@ -1,5 +1,5 @@
 {
-  flake.homeModules.nvimPluginTabs =
+  flake.homeModules.nvimPluginBufferline =
     { pkgs, ... }:
     {
       programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -10,7 +10,6 @@
             require("bufferline").setup({
               highlights = require("catppuccin.special.bufferline").get_theme(),
               options = {
-                mode = "tabs",
                 diagnostics = "nvim_lsp",  -- show LSP errors/warnings on tabs
                 separator_style = "slant", -- "thin" | "thick" | "slant" | "padded_slant"
                 show_buffer_close_icons = close,
@@ -24,6 +23,11 @@
                 },
               },
             })
+
+            -- Most used functions
+            vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>")
+            vim.keymap.set("n", "<leader>bf", "<cmd>BufferLineCycleNext<CR>")
+            vim.keymap.set("n", "<leader>bb", "<cmd>BufferLineCyclePrev<CR>")
           '';
         }
       ];
