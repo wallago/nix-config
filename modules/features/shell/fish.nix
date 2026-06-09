@@ -13,11 +13,13 @@
   flake.homeModules.fish =
     { pkgs, ... }:
     {
-      home.packages = [
-        pkgs.libnotify
-        pkgs.fzf
-        pkgs.fd
-        pkgs.bat
+      home.packages = with pkgs; [
+        libnotify
+        fzf
+        fd
+        bat
+        catimg
+        viu
       ];
 
       programs.fish = {
