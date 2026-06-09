@@ -30,6 +30,11 @@
                 publicKey = "b0TYc2kWNyWNv2HcXAv4FfF0ZKPotvoVz33gKmJuyTA=";
                 allowedIPs = [ "10.100.0.5/32" ];
               }
+              {
+                # worm
+                publicKey = "JTl7tlUtS6mKNwjJ0oGXT68XxJ7U8mQ+wb6m5sXxdT8=";
+                allowedIPs = [ "10.100.0.6/32" ];
+              }
             ];
           };
           wg1 = {
