@@ -9,7 +9,7 @@
     }:
     let
       cfg = config.preferences.miniflux;
-      hostModule = self.nixosModules."preferencesNginx${self.lib.capitalize hostName}";
+      hostModule = self.nixosModules."preferencesMiniflux${self.lib.capitalize hostName}";
     in
     {
       imports = [
