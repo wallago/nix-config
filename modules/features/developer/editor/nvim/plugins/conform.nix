@@ -31,11 +31,6 @@
                   args = { "" },
                   stdin = true,
                 },
-                kulala = {
-                  command = "kulala-fmt",
-                  args = { "format", "$FILENAME" },
-                  stdin = false,
-                }
               },
               format_on_save = {
                 enabled = true,
@@ -64,6 +59,8 @@
         kulala-fmt
         taplo
         black
+        jq
+        libxml2
       ];
     };
 }
