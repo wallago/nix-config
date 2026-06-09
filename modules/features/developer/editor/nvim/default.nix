@@ -39,14 +39,16 @@
         self.homeModules.nvimPluginTrouble
         self.homeModules.nvimPluginBlink
         self.homeModules.nvimPluginAutopairs
+        self.homeModules.nvimPluginKulala
       ];
     };
     nvimPluginsOptions = {
       imports = [
         self.homeModules.nvimPluginCatppuccin
         self.homeModules.nvimPluginMarkdown
-        self.homeModules.nvimPluginTabs
-        self.homeModules.nvimPluginNeorg
+        self.homeModules.nvimPluginBufferline
+        self.homeModules.nvimPluginScope
+        self.homeModules.nvimPluginTelekasten
       ];
     };
   };
