@@ -30,10 +30,13 @@
             map("n", "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Paste from history" })
             map("n", '<leader>"', "<CMD>Telescope registers<CR>", { desc = "Registers" })
             map("n", "<leader>'", "<CMD>Telescope marks<CR>", { desc = "Marks" })
+            map("n", "<leader>fz", "<CMD>Telekasten find_notes<CR>", { desc = "Notes" })
           '';
         }
         nvim-web-devicons
         telescope-fzf-native-nvim
+        telescope-symbols-nvim
+        telescope-media-files-nvim
       ];
       home.packages = with pkgs; [
         ripgrep
