@@ -28,7 +28,15 @@
             vim.api.nvim_create_autocmd("VimEnter", {
               callback = function()
                 if vim.fn.argc() == 0 then
-                  require("persistence").load()
+                  local persistence = require("persistence")
+                  local session = persistence.current()
+                  if session and vim.fn.filereadable(session) ~= 0 then
+                    persistence.load()
+                  else
+                    vim.schedule(function()
+                      require("oil").open()
+                    end)
+                  end
                 end
               end,
               nested = true,
