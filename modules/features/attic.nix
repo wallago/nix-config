@@ -21,6 +21,7 @@
         inherit (cfg) environmentFile;
         settings = {
           listen = url;
+          database.url = "postgresql:///atticd?host=/run/postgresql";
           chunking = {
             # The minimum NAR size to trigger chunking
             # If 0, chunking is disabled entirely for newly-uploaded NARs.
@@ -34,6 +35,18 @@
             max-size = 256 * 1024; # 256 KiB
           };
         };
+
+      };
+
+      services.postgresql = {
+        enable = true;
+        ensureDatabases = [ "atticd" ];
+        ensureUsers = [
+          {
+            name = "atticd";
+            ensureDBOwnership = true;
+          }
+        ];
       };
     };
 }
