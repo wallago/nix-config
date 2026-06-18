@@ -1,8 +1,7 @@
 {
-  flake.homeModules.zenContainers = {
-    programs.zen-browser.profiles.default = {
-      containersForce = true; # Delete containers not declared here
-      containers = {
+  flake.homeModules.zenContainers =
+    let
+      perso = {
         Personal = {
           color = "red";
           icon = "fingerprint";
@@ -13,17 +12,33 @@
           icon = "circle";
           id = 2;
         };
-        Work = {
-          color = "blue";
-          icon = "briefcase";
-          id = 3;
-        };
         Shopping = {
           color = "green";
           icon = "dollar";
           id = 4;
         };
       };
+      work = {
+        Work = {
+          color = "blue";
+          icon = "briefcase";
+          id = 3;
+        };
+
+      };
+    in
+    {
+      programs.zen-browser.profiles.perso = {
+        containersForce = true; # Delete containers not declared here
+        containers = perso;
+      };
+      programs.zen-browser.profiles.work = {
+        containersForce = true; # Delete containers not declared here
+        containers = work;
+      };
+      programs.zen-browser.profiles.default = {
+        containersForce = true; # Delete containers not declared here
+        containers = perso // work;
+      };
     };
-  };
 }

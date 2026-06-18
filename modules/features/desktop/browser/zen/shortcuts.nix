@@ -1,8 +1,24 @@
 {
-  flake.homeModules.zenShortcuts = {
-    programs.zen-browser.profiles.default = {
-      keyboardShortcuts = [
-        # Compact Mode
+  flake.homeModules.zenShortcuts =
+    let
+      workspaces = [
+        {
+          id = "zen-close-all-unpinned-tabs";
+          key = "c";
+          modifiers.alt = true;
+        }
+        {
+          id = "zen-workspace-forward";
+          key = "o";
+          modifiers.control = true;
+        }
+        {
+          id = "zen-workspace-backward";
+          key = "n";
+          modifiers.control = true;
+        }
+      ];
+      compact = [
         {
           id = "zen-compact-mode-toggle";
           key = "c";
@@ -19,31 +35,23 @@
             alt = true;
           };
         }
-        # Workspaces
+      ];
+      find = [
         {
-          id = "zen-close-all-unpinned-tabs";
-          key = "c";
-          modifiers.alt = true;
+          id = "key_findAgain";
+          key = "r";
+          modifiers = {
+            control = true;
+            shift = true;
+          };
         }
         {
-          id = "zen-workspace-forward";
-          key = "o";
+          id = "key_findNext";
+          key = "r";
           modifiers.control = true;
         }
-        {
-          id = "zen-workspace-backward";
-          key = "n";
-          modifiers.control = true;
-        }
-
-        # Other Zen Features
-        {
-          id = "zen-copy-url-markdown";
-          key = "m";
-          modifiers.control = true;
-        }
-
-        # Window & Tab Management
+      ];
+      tabs = [
         {
           id = "key_close";
           key = "q";
@@ -57,8 +65,8 @@
           id = "key_quitApplication";
           disabled = true;
         }
-
-        # Navigation
+      ];
+      nav = [
         {
           id = "goForwardKb";
           key = "o";
@@ -82,25 +90,28 @@
             shift = true;
           };
         }
-
-        # Search & Find
+      ];
+      misc = [
         {
-          id = "key_findAgain";
-          key = "r";
-          modifiers = {
-            control = true;
-            shift = true;
-          };
-        }
-        {
-          id = "key_findNext";
-          key = "r";
+          id = "zen-copy-url-markdown";
+          key = "m";
           modifiers.control = true;
         }
       ];
-      # In order to avoid breaking changes here, sometimes when you upgrade you
-      # should be asked to bump this version
-      keyboardShortcutsVersion = 19;
+      commonShortcuts = workspaces ++ tabs ++ nav ++ compact ++ find ++ misc;
+    in
+    {
+      programs.zen-browser.profiles.default = {
+        keyboardShortcuts = commonShortcuts;
+        keyboardShortcutsVersion = 19;
+      };
+      programs.zen-browser.profiles.perso = {
+        keyboardShortcuts = commonShortcuts;
+        keyboardShortcutsVersion = 19;
+      };
+      programs.zen-browser.profiles.work = {
+        keyboardShortcuts = commonShortcuts;
+        keyboardShortcutsVersion = 19;
+      };
     };
-  };
 }
