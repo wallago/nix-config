@@ -13,8 +13,9 @@
       environment.systemPackages = with pkgs; [
         nix-output-monitor # `nom` — pretty build output
         nvd # diff between two system generations
-        nh # ergonomic wrapper for nixos-rebuild
       ];
 
+      # ergonomic wrapper for nixos-rebuild
+      programs.nh.enable = true;
     };
 }
