@@ -53,8 +53,8 @@
       map("n", "<leader>to", "<CMD>tabonly<CR>",  o("Tab: close others"))
       map("n", "<leader>tf", "<CMD>tabmove +1<CR>", o("Tab: move forward"))
       map("n", "<leader>tb", "<CMD>tabmove -1<CR>",  o("Tab: close backward"))
-      map("n", "<TAB>", "gt", o("Tab: next"))
-      map("n", "<S-TAB>", "gT", o("Tab: prev"))
+      -- map("n", "<TAB>", "gt", o("Tab: next"))
+      -- map("n", "<S-TAB>", "gT", o("Tab: prev"))
 
       -- Buffer ───────────────────────────────────────────────────────────────
       map("n", "<C-q>", "<CMD>q<CR>",   o("Quit"))
