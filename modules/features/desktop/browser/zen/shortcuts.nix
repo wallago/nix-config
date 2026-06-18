@@ -99,19 +99,17 @@
         }
       ];
       commonShortcuts = workspaces ++ tabs ++ nav ++ compact ++ find ++ misc;
+      commonConfig = {
+        keyboardShortcuts = commonShortcuts;
+        keyboardShortcutsVersion = 19;
+      };
+
     in
     {
-      programs.zen-browser.profiles.default = {
-        keyboardShortcuts = commonShortcuts;
-        keyboardShortcutsVersion = 19;
-      };
-      programs.zen-browser.profiles.perso = {
-        keyboardShortcuts = commonShortcuts;
-        keyboardShortcutsVersion = 19;
-      };
-      programs.zen-browser.profiles.work = {
-        keyboardShortcuts = commonShortcuts;
-        keyboardShortcutsVersion = 19;
+      programs.zen-browser.profiles = {
+        default = commonConfig;
+        perso = commonConfig;
+        work = commonConfig;
       };
     };
 }

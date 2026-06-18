@@ -13,8 +13,10 @@
 
     in
     {
-      programs.zen-browser.profiles.default.extensions.packages = commonAddons;
-      programs.zen-browser.profiles.work.extensions.packages = commonAddons;
-      programs.zen-browser.profiles.perso.extensions.packages = commonAddons;
+      programs.zen-browser.profiles = {
+        default.extensions.packages = commonAddons;
+        work.extensions.packages = commonAddons;
+        perso.extensions.packages = commonAddons;
+      };
     };
 }

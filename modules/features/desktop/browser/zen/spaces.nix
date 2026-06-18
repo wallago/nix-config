@@ -50,17 +50,19 @@
       };
     in
     {
-      programs.zen-browser.profiles.default = {
-        spacesForce = true; # Delete spaces not declared here
-        spaces = perso // work;
-      };
-      programs.zen-browser.profiles.perso = {
-        spacesForce = true; # Delete spaces not declared here
-        spaces = perso;
-      };
-      programs.zen-browser.profiles.work = {
-        spacesForce = true; # Delete spaces not declared here
-        spaces = work;
+      programs.zen-browser.profiles = {
+        default = {
+          spacesForce = true; # Delete spaces not declared here
+          spaces = perso // work;
+        };
+        perso = {
+          spacesForce = true; # Delete spaces not declared here
+          spaces = perso;
+        };
+        work = {
+          spacesForce = true; # Delete spaces not declared here
+          spaces = work;
+        };
       };
     };
 }

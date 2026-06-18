@@ -11,8 +11,10 @@
       ];
     in
     {
-      programs.zen-browser.profiles.default.mods = commonMods;
-      programs.zen-browser.profiles.work.mods = commonMods;
-      programs.zen-browser.profiles.perso.mods = commonMods;
+      programs.zen-browser.profiles = {
+        default.mods = commonMods;
+        work.mods = commonMods;
+        perso.mods = commonMods;
+      };
     };
 }

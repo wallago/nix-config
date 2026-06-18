@@ -28,17 +28,19 @@
       };
     in
     {
-      programs.zen-browser.profiles.perso = {
-        containersForce = true; # Delete containers not declared here
-        containers = perso;
-      };
-      programs.zen-browser.profiles.work = {
-        containersForce = true; # Delete containers not declared here
-        containers = work;
-      };
-      programs.zen-browser.profiles.default = {
-        containersForce = true; # Delete containers not declared here
-        containers = perso // work;
+      programs.zen-browser.profiles = {
+        perso = {
+          containersForce = true; # Delete containers not declared here
+          containers = perso;
+        };
+        work = {
+          containersForce = true; # Delete containers not declared here
+          containers = work;
+        };
+        default = {
+          containersForce = true; # Delete containers not declared here
+          containers = perso // work;
+        };
       };
     };
 }

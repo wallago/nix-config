@@ -46,19 +46,21 @@
       };
     in
     {
-      programs.zen-browser.profiles.default.search = {
-        force = true; # Enforce declared search engines on each rebuild
-        default = "ddg";
-        engines = perso;
-      };
-      programs.zen-browser.profiles.perso.search = {
-        force = true; # Enforce declared search engines on each rebuild
-        default = "ddg";
-        engines = perso;
-      };
-      programs.zen-browser.profiles.work.search = {
-        force = true; # Enforce declared search engines on each rebuild
-        default = "ddg";
+      programs.zen-browser.profiles = {
+        default.search = {
+          force = true; # Enforce declared search engines on each rebuild
+          default = "ddg";
+          engines = perso;
+        };
+        perso.search = {
+          force = true; # Enforce declared search engines on each rebuild
+          default = "ddg";
+          engines = perso;
+        };
+        work.search = {
+          force = true; # Enforce declared search engines on each rebuild
+          default = "ddg";
+        };
       };
     };
 }

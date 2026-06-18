@@ -127,17 +127,19 @@
       };
     in
     {
-      programs.zen-browser.profiles.default = {
-        pinsForce = true; # Delete pins not declared here
-        pins = workPins // devPins // persoPins // shoppingPins;
-      };
-      programs.zen-browser.profiles.work = {
-        pinsForce = true; # Delete pins not declared here
-        pins = workPins;
-      };
-      programs.zen-browser.profiles.perso = {
-        pinsForce = true; # Delete pins not declared here
-        pins = devPins // persoPins // shoppingPins;
+      programs.zen-browser.profiles = {
+        default = {
+          pinsForce = true; # Delete pins not declared here
+          pins = workPins // devPins // persoPins // shoppingPins;
+        };
+        work = {
+          pinsForce = true; # Delete pins not declared here
+          pins = workPins;
+        };
+        perso = {
+          pinsForce = true; # Delete pins not declared here
+          pins = devPins // persoPins // shoppingPins;
+        };
       };
     };
 }
