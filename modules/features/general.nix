@@ -18,22 +18,29 @@
     ];
   };
 
-  flake.homeModules.general = {
-    imports = [
-      self.homeModules.homeOptions
-      self.homeModules.secrets
-      self.homeModules.user
-      self.homeModules.networking
+  flake.homeModules.general =
+    { config, ... }:
+    let
+      username = config.preferences.user.name;
+    in
+    {
+      imports = [
+        self.homeModules.homeOptions
+        self.homeModules.secrets
+        self.homeModules.user
+        self.homeModules.networking
 
-      self.homeModules.impermanence
-      self.homeModules.shell
-      self.homeModules.pager
-    ];
+        self.homeModules.impermanence
+        self.homeModules.shell
+        self.homeModules.pager
+      ];
 
-    home = {
-      stateVersion = "26.11";
+      sops.gnupg.home = "/home/${username}/.gnupg";
+
+      home = {
+        stateVersion = "26.11";
+      };
+
+      programs.home-manager.enable = true;
     };
-
-    programs.home-manager.enable = true;
-  };
 }
