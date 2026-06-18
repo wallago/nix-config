@@ -27,3 +27,7 @@ creation_rules:
     key_groups:
       - age: [*sponge, *squid, *coral, *krill]
         pgp: [*yubikey]
+  - path_regex: modules/secrets/productivity.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid]
+        pgp: [*yubikey]
