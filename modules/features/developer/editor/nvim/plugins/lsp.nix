@@ -14,6 +14,14 @@
                   nixpkgs = {
                     expr = "import <nixpkgs> { }",
                   },
+                  options = {
+                    nixos = {
+                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options",
+                    },
+                    ["home-manager"] = {
+                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options.home-manager.users.type.getSubOptions []",
+                    },
+                  },
                   formatting = {
                     command = { "nixfmt" },
                   },
@@ -44,6 +52,34 @@
 
             map("n", "<leader>fs", vim.lsp.buf.document_symbol, { desc = "LSP: file symbols" })
             map("n", "<leader>fS", vim.lsp.buf.workspace_symbol, { desc = "LSP: workspace symbols" })
+
+            map("n", "<leader>fo", function()
+              local word = vim.fn.expand("<cWORD>"):gsub("[=;{}]", "")
+              local res = vim.system({ "manix", word }, { text = true }):wait()
+              local out = (res.stdout or "")
+              if out == "" then out = "no match for: " .. word end
+              local lines = vim.split(out, "\n")
+
+              local buf = vim.api.nvim_create_buf(false, true)        -- scratch buffer
+              vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+              vim.bo[buf].modifiable = false
+              vim.bo[buf].filetype = "markdown"
+
+              local width  = math.min(100, vim.o.columns - 4)
+              local height = math.min(#lines, vim.o.lines - 6)
+              local win = vim.api.nvim_open_win(buf, true, {          -- `true` = enter/focus it
+                relative = "editor",
+                row = math.floor((vim.o.lines - height) / 2),
+                col = math.floor((vim.o.columns - width) / 2),
+                width = width,
+                height = height,
+                border = "rounded",
+                style = "minimal",
+              })
+              for _, k in ipairs({ "q", "<Esc>" }) do
+                vim.keymap.set("n", k, function() vim.api.nvim_win_close(win, true) end, { buffer = buf })
+              end
+            end, { desc = "Manix: option docs under cursor" })
           '';
         }
       ];
@@ -51,6 +87,7 @@
       home.packages = with pkgs; [
         nixd
         nixfmt
+        manix
       ];
     };
 }
