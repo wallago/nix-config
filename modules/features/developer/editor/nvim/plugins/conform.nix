@@ -23,7 +23,8 @@
                 sql = { "sql-formatter" },
                 http = { "kulala" },
                 toml = { "taplo" },
-                python = { "black" }
+                python = { "black" },
+                just = { "just" }
               },
               formatters = {
                 ["sql-formatter"] = {
@@ -61,6 +62,7 @@
         black
         jq
         libxml2
+        just
       ];
     };
 }

@@ -20,10 +20,14 @@
         bat
         catimg
         viu
+        just
       ];
 
       programs.fish = {
         enable = true;
+        shellAbbrs = {
+          j = "just";
+        };
         interactiveShellInit = ''
           fish_vi_key_bindings
           set fish_greeting ""

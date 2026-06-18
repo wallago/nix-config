@@ -20,10 +20,23 @@ fmt:
 check-dry:
     nix flake check --no-build --print-build-logs
 
-# Mirror full CI locally
-check: fmt
+# Run everything GitHub CI runs, in CI mode (no file writes). Run before pushing.
+ci:
+    @echo "▶ commit format"
+    nix run nixpkgs#committed -- -vv HEAD
+    @echo "▶ markdown links"
+    nix run nixpkgs#lychee -- -v *.md
+    @echo "▶ typos"
+    nix run nixpkgs#typos
+    @echo "▶ statix"
+    nix run nixpkgs#statix -- check .
+    @echo "▶ deadnix"
+    nix run nixpkgs#deadnix -- --fail .
+    @echo "▶ format check"
+    nix fmt -- --ci .
+    @echo "▶ flake check"
     nix flake check --print-build-logs --all-systems
-    @echo "✅ All checks passed"
+    @echo "✅ CI mirror passed"
 
 
 # ── Build ─────────────────────────────────────────────────────
@@ -33,33 +46,32 @@ eval HOST=host:
 
 # Build a host's system closure (no activation)
 build HOST=host:
-    nixos-rebuild build --flake {{flake}}#{{HOST}}
+    nh os build {{flake}} --hostname {{HOST}}
 
 # Show what would change without building
 diff HOST=host:
-    nixos-rebuild dry-activate --flake {{flake}}#{{HOST}}
+    nh os build {{flake}} --hostname {{HOST}} --dry
 
 # ── Apply ─────────────────────────────────────────────────────
 # Switch the current machine (asks for sudo)
 switch HOST=host:
-    sudo nixos-rebuild switch --flake {{flake}}#{{HOST}}
+    nh os switch {{flake}} --hostname {{HOST}}
 
 # Switch + bump generation but only on next boot
 boot HOST=host:
-    sudo nixos-rebuild boot --flake {{flake}}#{{HOST}}
+    nh os boot {{flake}} --hostname {{HOST}}
 
 # Test config without making it the boot default
 test HOST=host:
-    sudo nixos-rebuild test --flake {{flake}}#{{HOST}}
+    nh os test {{flake}} --hostname {{HOST}}
 
 # Switch a remote machine over SSH
 # Usage: just switch-remote coral
 switch-remote HOST:
-    nixos-rebuild switch \
-      --flake {{flake}}#{{HOST}} \
+    nh os switch {{flake}} \
+      --hostname {{HOST}} \
       --target-host root@{{HOST}} \
-      --build-host root@{{HOST}} \
-      --use-substitutes
+      --build-host root@{{HOST}}
 
 # ── VMs ───────────────────────────────────────────────────────
 # Build a QEMU VM image of a host (graphical)
