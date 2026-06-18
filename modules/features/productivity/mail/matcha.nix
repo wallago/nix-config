@@ -31,7 +31,10 @@
       };
 
       # To add a email (google): matcha gmail auth ...@gmail.com
-      home.packages = [ pkgs.matcha ];
+      home.packages = with pkgs; [
+        matcha
+        python3 # deps
+      ];
 
       xdg.configFile."matcha/oauth_client.json".source =
         config.lib.file.mkOutOfStoreSymlink
