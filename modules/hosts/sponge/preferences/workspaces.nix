@@ -3,7 +3,10 @@
     preferences.workspaces = {
       productivity = "DP-2";
       config = "DP-2";
-      browser = "HDMI-A-1";
+      matcha = "DP-2";
+      browser-perso = "HDMI-A-1";
+      browser-work = "DP-3";
+      notes = "DP-3";
     };
   };
 }
