@@ -12,6 +12,8 @@
           config = ''
             require("telekasten").setup({
               home = vim.fn.expand("${home}"),
+              auto_set_filetype = false,
+              auto_set_syntax = true,
               dailies = vim.fn.expand("${home}/daily"),
               weeklies = vim.fn.expand("${home}/weekly"),
               templates = vim.fn.expand("${home}/templates"),
