@@ -7,6 +7,18 @@
           plugin = nvim-lspconfig;
           config = ''
             vim.lsp.inlay_hint.enable(true)
+
+            vim.lsp.config('just', {
+              init_options = {
+                formatting = {
+                  indentation = '\t',
+                },
+                rules = {
+                },
+              },
+            })
+            vim.lsp.enable('just')
+
             vim.lsp.config("nixd", {
               cmd = { "nixd" },
               settings = {
@@ -88,6 +100,7 @@
         nixd
         nixfmt
         manix
+        just-lsp
       ];
     };
 }
