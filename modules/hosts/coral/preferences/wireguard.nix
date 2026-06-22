@@ -22,7 +22,7 @@
               }
               {
                 # cuttlefish
-                publicKey = "gW+F/0uL2dDxzlN4Q836w17fiElhwqyk6ffdybR+Ikk=";
+                publicKey = "Bx8RvmvK2EpC41zqscX4zuw+qjYYWrPB3LrUxk8xg3k=";
                 allowedIPs = [ "10.100.0.4/32" ];
               }
               {
