@@ -6,7 +6,6 @@
       autoUpdates = false;
       includeCoAuthoredBy = false;
       permissions = {
-        defaultMode = "plan";
         allow = [
           # Git
           "Bash(git status*)"
