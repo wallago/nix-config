@@ -8,6 +8,7 @@ keys:
   gpg_access: &pgp_keys
     - &yubikey 704592C4592CD51F
 creation_rules:
+  # Hosts
   - path_regex: modules/secrets/sponge.ya?ml$
     key_groups:
       - age: [*sponge, *squid]
@@ -24,10 +25,16 @@ creation_rules:
     key_groups:
       - age: [*krill, *squid, *sponge]
         pgp: [*yubikey]
+  - path_regex: modules/secrets/cuttlefish.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *cuttlefish]
+        pgp: [*yubikey]
+  # Common
   - path_regex: modules/secrets/netrc.ya?ml$
     key_groups:
       - age: [*sponge, *squid, *coral, *krill, *cuttlefish]
         pgp: [*yubikey]
+  # Specific
   - path_regex: modules/secrets/productivity.ya?ml$
     key_groups:
       - age: [*sponge, *squid]
@@ -35,8 +42,4 @@ creation_rules:
   - path_regex: modules/secrets/miniflux.ya?ml$
     key_groups:
       - age: [*sponge, *squid, *coral]
-        pgp: [*yubikey]
-  - path_regex: modules/secrets/cuttlefish.ya?ml$
-    key_groups:
-      - age: [*sponge, *squid, *cuttlefish]
         pgp: [*yubikey]
