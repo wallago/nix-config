@@ -26,5 +26,4 @@
         wl-clipboard
       ];
     };
-
 }
