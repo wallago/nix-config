@@ -1,207 +1,178 @@
 # List all commands
 default:
-    @{{just_executable()}} --list
+    @{{ just_executable() }} --list
 
 # ── Variables ─────────────────────────────────────────────────
-# Override at invocation time, e.g. `just build sponge`
-host    := `hostname`
-flake   := "."
 
-# ── Dev workflow ──────────────────────────────────────────────
-# Enter a dev shell (formatters, sops, etc.)
-shell:
-    nix develop
+host := `hostname`
+flake := "."
 
-# Format every nix file in the repo
-fmt:
-    nix fmt
+# ── Dev ───────────────────────────────────────────────────────
 
-# Show what `nix flake check` would do without running it
-check-dry:
-    nix flake check --no-build --print-build-logs
+# Check if the code is buildable (dry mode)
+[group('dev')]
+check:
+    nix flake check --no-build --print-build-logs --all-systems
 
 # Run everything GitHub CI runs, in CI mode (no file writes). Run before pushing.
+[group('dev')]
 ci:
     @echo "▶ commit format"
-    nix run nixpkgs#committed -- -vv HEAD
+    committed -vv HEAD
     @echo "▶ markdown links"
-    nix run nixpkgs#lychee -- -v *.md
+    lychee -v *.md
     @echo "▶ typos"
-    nix run nixpkgs#typos
+    typos
     @echo "▶ statix"
-    nix run nixpkgs#statix -- check .
+    statix check .
     @echo "▶ deadnix"
-    nix run nixpkgs#deadnix -- --fail .
+    deadnix --fail .
     @echo "▶ format check"
     nix fmt -- --ci .
     @echo "▶ flake check"
     nix flake check --print-build-logs --all-systems
     @echo "✅ CI mirror passed"
 
-
-# ── Build ─────────────────────────────────────────────────────
-# Evaluate a host's config without building (fast feedback)
-eval HOST=host:
-    nix eval --raw {{flake}}#nixosConfigurations.{{HOST}}.config.system.build.toplevel.drvPath
-
-# Build a host's system closure (no activation)
-build HOST=host:
-    nh os build {{flake}} --hostname {{HOST}}
-
-# Show what would change without building
-diff HOST=host:
-    nh os build {{flake}} --hostname {{HOST}} --dry
-
-# ── Apply ─────────────────────────────────────────────────────
-# Switch the current machine (asks for sudo)
-switch HOST=host:
-    nh os switch {{flake}} --hostname {{HOST}}
-
-# Switch + bump generation but only on next boot
-boot HOST=host:
-    nh os boot {{flake}} --hostname {{HOST}}
-
-# Test config without making it the boot default
-test HOST=host:
-    nh os test {{flake}} --hostname {{HOST}}
-
-# Switch a remote machine over SSH
-# Usage: just switch-remote coral
-switch-remote HOST:
-    nh os switch {{flake}} \
-      --hostname {{HOST}} \
-      --target-host root@{{HOST}} \
-      --build-host root@{{HOST}}
-
-# ── VMs ───────────────────────────────────────────────────────
-# Build a QEMU VM image of a host (graphical)
-vm HOST=host:
-    nixos-rebuild build-vm --flake {{flake}}#{{HOST}}
-    @echo "▶ run with: ./result/bin/run-nixos-vm"
-
-# Build + launch a VM in one step
-vm-run HOST=host: (vm HOST)
-    ./result/bin/run-nixos-vm
-
-# ── Inputs & updates ──────────────────────────────────────────
 # Update every flake input
+[group('dev')]
 update:
     nix flake update
 
-# Update a single input. Usage: just update-input nixpkgs
-update-input INPUT:
-    nix flake update {{INPUT}}
-# Show what would update (no changes)
-update-dry:
-    nix flake lock --recreate-lock-file --dry-run 2>&1 | head -50
-
-# Refresh the flake.lock without changing inputs
-relock:
-    nix flake lock
-
-# ── Secrets (sops-nix) ────────────────────────────────────────
-# Edit a secrets file. Usage: just secret coral
-secret FILE:
-    nix run nixpkgs#sops modules/secrets/{{FILE}}.yaml
-
-secret-without-yk FILE:
-    SOPS_AGE_KEY=$(sudo nix run nixpkgs#ssh-to-age -- -private-key -i /persist/etc/ssh/ssh_host_ed25519_key) \
-    nix run nixpkgs#sops modules/secrets/{{FILE}}.yaml
-
-# Re-encrypt all secrets after changing recipients in .sops.yaml
-secrets-rotate:
-    find modules/secrets -name '*.yaml' -exec nix run nixpkgs#sops updatekeys {} \;
-
-# ── Garbage collection ────────────────────────────────────────
-# Clean dev artifacts: ./result symlinks
-clean:
-    find . -maxdepth 3 -type l -name 'result*' -delete
-
-# Run nix store gc
-gc:
-    nix store gc
-
-# Aggressive: delete generations older than 14 days, then GC
-gc-deep:
-    sudo nix-collect-garbage --delete-older-than 14d
-    sudo nix store optimise
-
 # Show what disk space is currently occupied by the store
+[group('dev')]
 size:
     nix path-info -Sh /run/current-system
 
-# ── Inspection ────────────────────────────────────────────────
-# Show all hosts defined by the flake
-hosts:
-    @nix eval --json {{flake}}#nixosConfigurations --apply 'builtins.attrNames' | jq -r '.[]'
+# Show options available for given package
+[group('dev')]
+option OPT='':
+    manix {{ OPT }}
 
-# List packages exposed for the current system
-packages:
-    @nix flake show --json 2>/dev/null | jq -r '.packages | to_entries[] | .key as $sys | .value | keys[] | "\($sys)\t\(.)"' | column -t
+# ── Build ─────────────────────────────────────────────────────
+
+# Evaluate a host's config without building (fast feedback)
+[group('build')]
+eval HOST=host:
+    nix eval --raw {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.toplevel.drvPath
+
+# Build a host's system closure (no activation)
+[confirm]
+[group('build')]
+build HOST=host:
+    nh os build {{ flake }} --hostname {{ HOST }}
+
+# Show what would change without building
+[group('build')]
+diff HOST=host:
+    nh os build {{ flake }} --hostname {{ HOST }} --dry
+
+# ── Apply ─────────────────────────────────────────────────────
+
+# Switch the current machine
+[confirm]
+[group('apply')]
+switch HOST=host:
+    nh os switch {{ flake }} --hostname {{ HOST }}
+
+# Switch + bump generation but only on next boot
+[confirm]
+[group('apply')]
+boot HOST=host:
+    nh os boot {{ flake }} --hostname {{ HOST }}
+
+# Test config without making it the boot default
+[confirm]
+[group('apply')]
+test HOST=host:
+    nh os test {{ flake }} --hostname {{ HOST }}
+
+# ── Secrets ───────────────────────────────────────────────────
+
+# Edit a secrets file. Usage: just secret coral
+[group('secret')]
+secret FILE:
+    sops modules/secrets/{{ FILE }}.yaml
+
+# Re-encrypt all secrets after changing recipients in .sops.yaml
+[group('secret')]
+secrets-rotate:
+    find modules/secrets -name '*.yaml' -exec sops updatekeys {} \;
+
+# ── Garbage collection ────────────────────────────────────────
+
+# Collect unreferenced store paths (light, no root, keeps generations)
+[group('gc')]
+gc:
+    nix store gc
+
+# Prune old generations (keep last 5 + last 7 days) then gc + optimise
+[group('gc')]
+gc-deep:
+    nh clean all --keep 5 --keep-since 7d --optimise
+
+# Preview what gc-deep would remove
+[group('gc')]
+gc-dry:
+    nh clean all --dry
+
+# ── Inspection ────────────────────────────────────────────────
+
+# Show all hosts defined by the flake
+[group('inspect')]
+hosts:
+    @nix eval --json {{ flake }}#nixosConfigurations --apply 'builtins.attrNames' | jq -r '.[]'
 
 # Show flake metadata
+[group('inspect')]
 info:
     nix flake metadata
 
-# Show why a path is in the closure of a host
-# Usage: just why coral firefox
+# Show why a path is in the closure of a host. Usage: just why coral firefox
+[group('inspect')]
 why HOST PKG:
-    nix why-depends {{flake}}#nixosConfigurations.{{HOST}}.config.system.build.toplevel \
-      nixpkgs#{{PKG}}
+    nix why-depends {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.toplevel nixpkgs#{{ PKG }}
 
-option OPT:
-  nix run nixpkgs#manix {{OPT}}
+# # Switch a remote machine over SSH
+# # Usage: just switch-remote coral
+# switch-remote HOST:
+#     nh os switch {{flake}} \
+#       --hostname {{HOST}} \
+#       --target-host root@{{HOST}} \
+#       --build-host root@{{HOST}}
+#
 
-# ── Repo hygiene ──────────────────────────────────────────────
-# Spell-check the repo
-typos:
-    nix run nixpkgs#typos
-
-# Check links in markdown
-links:
-    nix run nixpkgs#lychee -- '**/*.md'
-
-# Verify dead nix code
-deadnix:
-    nix run nixpkgs#deadnix -- -f .
-
-# Statix linter for nix
-statix:
-    nix run nixpkgs#statix -- check .
-
-# ── Miscellaneous ──────────────────────────────────────────────
-# Claude monitor token
-claude-usage:
-    nix run nixpkgs#claude-monitor
-
-# to rm
-
-# Install NixOS on a remote host using nixos-anywhere, seeding the sops age key
-install host flake:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    tmp=$(mktemp -d)
-    trap 'rm -rf "$tmp"' EXIT
-
-    ssh_dir="$tmp/persist/etc/ssh"
-    install -d -m 0755 $ssh_dir
-    ssh-keygen -t ed25519 -N "" -C "root@{{flake}}" \
-      -f "$ssh_dir/ssh_host_ed25519_key"
-    chmod 600 "$ssh_dir/ssh_host_ed25519_key"
-    pub="$ssh_dir/ssh_host_ed25519_key.pub"
-
-    echo
-    echo "SSH pubkey:"
-    cat "$pub"
-    echo
-    echo "Age pubkey (add to .sops.yaml):"
-    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$pub"
-    echo
-
-    read -rp "Update .sops.yaml + run 'just secrets-rotate', then press Enter to install... "
-
-    nix run github:nix-community/nixos-anywhere -- \
-      --flake ".#{{flake}}" \
-      --extra-files "$tmp" \
-      --target-host "root@{{host}}"
+# # Claude monitor token
+# claude-usage:
+#     nix run nixpkgs#claude-monitor
+#
+# # to rm
+#
+# # Install NixOS on a remote host using nixos-anywhere, seeding the sops age key
+# install host flake:
+#     #!/usr/bin/env bash
+#     set -euo pipefail
+#
+#     tmp=$(mktemp -d)
+#     trap 'rm -rf "$tmp"' EXIT
+#
+#     ssh_dir="$tmp/persist/etc/ssh"
+#     install -d -m 0755 $ssh_dir
+#     ssh-keygen -t ed25519 -N "" -C "root@{{flake}}" \
+#       -f "$ssh_dir/ssh_host_ed25519_key"
+#     chmod 600 "$ssh_dir/ssh_host_ed25519_key"
+#     pub="$ssh_dir/ssh_host_ed25519_key.pub"
+#
+#     echo
+#     echo "SSH pubkey:"
+#     cat "$pub"
+#     echo
+#     echo "Age pubkey (add to .sops.yaml):"
+#     nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$pub"
+#     echo
+#
+#     read -rp "Update .sops.yaml + run 'just secrets-rotate', then press Enter to install... "
+#
+#     nix run github:nix-community/nixos-anywhere -- \
+#       --flake ".#{{flake}}" \
+#       --extra-files "$tmp" \
+#       --target-host "root@{{host}}"
