@@ -4,6 +4,7 @@ keys:
     - &squid age1fls2addadr7m0mecsqguwfzvqskt93575wn5atu83zvtgtgv0cqqd5kumv
     - &coral age1t3t4llqc4fmrsr3x4apuz5utctjm82vdez7pztrfcytjyghr3quqsgs776
     - &krill age1vvfmted43wwp548z7sld9gcdcn6wy3dmv6r7m7yzyqwdq5rwnd4swe53uf
+    - &cuttlefish age1vvfmted43wwp548z7sld9gcdcn6wy3dmv6r7m7yzyqwdq5rwnd4swe53uf
   gpg_access: &pgp_keys
     - &yubikey 704592C4592CD51F
 creation_rules:
@@ -25,9 +26,17 @@ creation_rules:
         pgp: [*yubikey]
   - path_regex: modules/secrets/netrc.ya?ml$
     key_groups:
-      - age: [*sponge, *squid, *coral, *krill]
+      - age: [*sponge, *squid, *coral, *krill, *cuttlefish]
         pgp: [*yubikey]
   - path_regex: modules/secrets/productivity.ya?ml$
     key_groups:
       - age: [*sponge, *squid]
+        pgp: [*yubikey]
+  - path_regex: modules/secrets/miniflux.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *coral]
+        pgp: [*yubikey]
+  - path_regex: modules/secrets/cuttlefish.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *cuttlefish]
         pgp: [*yubikey]
