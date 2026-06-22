@@ -15,24 +15,38 @@
           type = lib.types.str;
           description = "Private Key";
         };
-        devices = lib.mkOption {
+        folders = lib.mkOption {
           type = lib.types.attrsOf (
             lib.types.submodule {
               options = {
-                id = lib.mkOption {
+                name = lib.mkOption {
                   type = lib.types.str;
-                  description = "Syncthing device ID";
+                  description = "Folder name";
                 };
-                addresses = lib.mkOption {
-                  type = lib.types.listOf lib.types.str;
-                  default = [ "dynamic" ];
-                  description = "How to reach this device";
+                devices = lib.mkOption {
+                  type = lib.types.attrsOf (
+                    lib.types.submodule {
+                      options = {
+                        id = lib.mkOption {
+                          type = lib.types.str;
+                          description = "Syncthing device ID";
+                        };
+                        addresses = lib.mkOption {
+                          type = lib.types.listOf lib.types.str;
+                          default = [ "dynamic" ];
+                          description = "How to reach this device";
+                        };
+                      };
+                    }
+                  );
+                  default = { };
+                  description = "Peer devices to sync with";
                 };
               };
             }
           );
           default = { };
-          description = "Peer devices to sync with";
+          description = "Folders to sync";
         };
       };
     };

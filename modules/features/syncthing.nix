@@ -10,6 +10,7 @@
       cfg = config.preferences.syncthing;
       defaultUser = config.preferences.user.name;
       hostModule = self.nixosModules."preferencesSyncthing${self.lib.capitalize hostName}";
+      allDevices = lib.foldl' (acc: folder: acc // folder.devices) { } (lib.attrValues cfg.folders);
     in
     {
       imports = [
@@ -35,15 +36,12 @@
             user = "admin";
             insecureSkipHostcheck = true;
           };
-          folders = {
-            "Notes" = {
-              path = "/home/${defaultUser}/Notes";
-              devices = lib.mapAttrsToList (name: _: name) cfg.devices;
-            };
-          };
-          inherit (cfg)
-            devices
-            ;
+          devices = lib.mapAttrs (_: dev: { inherit (dev) id addresses; }) allDevices;
+          folders = lib.mapAttrs (_: folder: {
+            label = folder.name;
+            path = "/home/${defaultUser}/${folder.name}";
+            devices = lib.attrNames folder.devices;
+          }) cfg.folders;
         };
 
         overrideDevices = true;
