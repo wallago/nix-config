@@ -10,6 +10,7 @@
     imports = [
       self.homeModules.eilmeldung
       self.homeModules.matcha
+      self.homeModules.bagels
     ];
   };
 }

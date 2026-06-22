@@ -7,8 +7,8 @@
         key = config.sops.secrets."syncthing-key".path;
         guiPasswordFile = config.sops.secrets."syncthing-password".path;
         folders = {
-          bagles = {
-            name = "Bagles";
+          bagels = {
+            name = "Bagels";
             devices = {
               coral = {
                 id = "DTVJZPN-EZ4LYVA-AXHJGJ2-RX7HV2B-7JSVDIB-OMRKK6X-YJZMKDY-RVCKOQL";
