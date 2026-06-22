@@ -39,7 +39,6 @@
         frametime_color = "7DCFFF";
 
         position = "top-left";
-        toggle_hud = "Ctrl_L+H";
       };
     };
   };

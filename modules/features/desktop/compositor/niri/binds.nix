@@ -88,6 +88,10 @@
             action.switch-focus-between-floating-and-tiling = [ ];
             hotkey-overlay.title = "Toggle Focus Floating";
           };
+          "Mod+Space" = {
+            action.switch-layout = "next";
+            hotkey-overlay.title = "Switch Keyboard Layout";
+          };
 
           # Layout Behavior
           "Mod+F" = {

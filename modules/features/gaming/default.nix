@@ -4,7 +4,6 @@
     imports = [
       self.nixosModules.gamemode
       self.nixosModules.steam
-      self.nixosModules.gamescope
     ];
   };
 

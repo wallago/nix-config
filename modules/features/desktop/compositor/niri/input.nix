@@ -4,8 +4,8 @@
     {
       programs.niri.settings.input = {
         keyboard.xkb = {
-          layout = config.preferences.user.keyboard.layout;
-          variant = config.preferences.user.keyboard.variant;
+          layout = "us,${config.preferences.user.keyboard.layout}";
+          variant = ",${config.preferences.user.keyboard.variant}";
         };
 
         touchpad = {

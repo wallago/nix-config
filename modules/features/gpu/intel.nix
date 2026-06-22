@@ -3,8 +3,6 @@
   flake.nixosModules.intel =
     {
       pkgs,
-      lib,
-      config,
       ...
     }:
     {
@@ -27,9 +25,5 @@
       };
 
       environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
-
-      programs.steam.package = lib.mkIf config.programs.steam.enable (
-        pkgs.steam.override { extraArgs = "-cef-disable-gpu"; }
-      );
     };
 }
