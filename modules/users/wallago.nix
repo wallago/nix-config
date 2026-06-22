@@ -12,6 +12,9 @@
           "video"
           # Allow access to sound cards (/dev/snd/*)
           "audio"
+
+          "disk"
+          "dialout"
         ];
         shell = pkgs.fish;
         hashedPasswordFile = config.sops.secrets.wallago-password.path;

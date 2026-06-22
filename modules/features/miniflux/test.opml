@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0" xmlns:miniflux="https://miniflux.app/opml">
+    <head>
+        <title>Miniflux</title>
+        <dateCreated>Thu, 25 Jun 2026 11:19:34 CEST</dateCreated>
+    </head>
+    <body>
+        <outline text="1 · 🔴 Must read">
+            <outline title="Reddit Rust" text="Reddit Rust" xmlUrl="https://www.reddit.com/r/rust/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/rust/" type="rss"></outline>
+            <outline title="Reddit NixOS" text="Reddit NixOS" xmlUrl="https://www.reddit.com/r/NixOS/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/NixOS/" type="rss"></outline>
+            <outline title="NixOS Discourse" text="NixOS Discourse" xmlUrl="https://discourse.nixos.org/latest.rss" htmlUrl="https://discourse.nixos.org/" type="rss"></outline>
+            <outline title="Rust Blog" text="Rust Blog" xmlUrl="https://blog.rust-lang.org/feed.xml" htmlUrl="https://blog.rust-lang.org/" type="rss"></outline>
+            <outline title="This Week in Rust" text="This Week in Rust" xmlUrl="https://this-week-in-rust.org/atom.xml" htmlUrl="https://this-week-in-rust.org/" type="rss"></outline>
+            <outline title="Youtube DevOps Toolbox" text="Youtube DevOps Toolbox" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w" htmlUrl="https://www.youtube.com/channel/UCYeiozh-4QwuC1sjgCmB92w" type="rss"></outline>
+            <outline title="Youtube Vimjoyer" text="Youtube Vimjoyer" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_zBdZ0_H_jn41FDRG7q4Tw" htmlUrl="https://www.youtube.com/channel/UC_zBdZ0_H_jn41FDRG7q4Tw" type="rss"></outline>
+        </outline>
+        <outline text="2 · 🟠 Should read">
+            <outline title="Reddit TUI" text="Reddit TUI" xmlUrl="https://www.reddit.com/r/tui/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/tui/" type="rss"></outline>
+            <outline title="Reddit CLI" text="Reddit CLI" xmlUrl="https://www.reddit.com/r/commandline/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/commandline/" type="rss"></outline>
+            <outline title="Reddit Neovim" text="Reddit Neovim" xmlUrl="https://www.reddit.com/r/neovim/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/neovim/" type="rss"></outline>
+            <outline title="Hacker News" text="Hacker News" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com/" type="rss"></outline>
+            <outline title="LWN" text="LWN" xmlUrl="https://lwn.net/headlines/rss" htmlUrl="https://lwn.net/" type="rss"></outline>
+            <outline title="Neovim News" text="Neovim News" xmlUrl="https://neovim.io/news.xml" htmlUrl="https://neovim.io/" type="rss"></outline>
+        </outline>
+        <outline text="3 · 🟡 Would read">
+            <outline title="Cloudflare Blog" text="Cloudflare Blog" xmlUrl="https://blog.cloudflare.com/rss" htmlUrl="https://blog.cloudflare.com/" type="rss"></outline>
+            <outline title="Phoronix" text="Phoronix" xmlUrl="https://www.phoronix.com/rss.php" htmlUrl="https://www.phoronix.com/" type="rss"></outline>
+        </outline>
+        <outline text="4 · 🟢 Could read">
+            <outline title="Reddit Devops" text="Reddit Devops" xmlUrl="https://www.reddit.com/r/devops/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/devops/" type="rss"></outline>
+            <outline title="Reddit Linux" text="Reddit Linux" xmlUrl="https://www.reddit.com/r/linux/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/linux/" type="rss"></outline>
+            <outline title="Reddit Programming" text="Reddit Programming" xmlUrl="https://www.reddit.com/r/programming/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/programming/" type="rss"></outline>
+            <outline title="Reddit Self Hosted" text="Reddit Self Hosted" xmlUrl="https://www.reddit.com/r/selfhosted/.rss?feed=15a1cd13d0828c5d2bd0787de5e56502d2cbbc41&amp;user=Significant-Task-305" htmlUrl="https://www.reddit.com/r/selfhosted/" type="rss"></outline>
+            <outline title="Bunnie&#39;s blog" text="Bunnie&#39;s blog" xmlUrl="https://bunniestudios.com/blog/?feed=rss2" htmlUrl="https://bunniestudios.com/blog/" type="rss"></outline>
+            <outline title="Drew DeVault" text="Drew DeVault" xmlUrl="https://drewdevault.com/blog/index.xml" htmlUrl="https://drewdevault.com/blog/" type="rss"></outline>
+            <outline title="Faster than lime" text="Faster than lime" xmlUrl="https://fasterthanli.me/index.xml" htmlUrl="https://fasterthanli.me/" type="rss"></outline>
+            <outline title="Hackaday" text="Hackaday" xmlUrl="https://hackaday.com/feed" htmlUrl="https://hackaday.com/" type="rss"></outline>
+            <outline title="Julia Evans" text="Julia Evans" xmlUrl="https://jvns.ca/atom.xml" htmlUrl="https://jvns.ca/" type="rss"></outline>
+            <outline title="Krebs on Security" text="Krebs on Security" xmlUrl="https://krebsonsecurity.com/feed" htmlUrl="https://krebsonsecurity.com/" type="rss"></outline>
+            <outline title="Matklad" text="Matklad" xmlUrl="https://matklad.github.io/feed.xml" htmlUrl="https://matklad.github.io/" type="rss"></outline>
+            <outline title="Port Swigger" text="Port Swigger" xmlUrl="https://portswigger.net/blog/rss" htmlUrl="https://portswigger.net/blog/" type="rss"></outline>
+            <outline title="Project Zero" text="Project Zero" xmlUrl="https://googleprojectzero.blogspot.com/feeds/posts/default" htmlUrl="https://googleprojectzero.com/" type="rss"></outline>
+            <outline title="Schneier on Security" text="Schneier on Security" xmlUrl="https://schneier.com/blog/atom.xml" htmlUrl="https://schneier.com/blog/" type="rss"></outline>
+            <outline title="Velo News" text="Velo News" xmlUrl="https://velonews.com/feed" htmlUrl="https://velonews.com/" type="rss"></outline>
+        </outline>
+    </body>
+</opml>⏎
