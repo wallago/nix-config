@@ -32,8 +32,18 @@
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           just
+
           inputs.claude-code.packages.${system}.default
-          nodejs
+          nodejs # deps of claude
+
+          # Just deps
+          sops
+          manix
+          committed
+          lychee
+          typos
+          statix
+          deadnix
         ];
         shellHook = ''
           mkdir -p .claude
