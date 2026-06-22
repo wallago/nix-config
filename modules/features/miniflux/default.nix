@@ -18,6 +18,7 @@
         hostModule
       ];
 
+      # https://feedburner.google.com
       services.miniflux = {
         enable = true;
         inherit (cfg) adminCredentialsFile;
@@ -61,16 +62,14 @@
 
       sops.templates."miniflux-feeds.opml".content =
         builtins.replaceStrings
-          [ "@REDDIT_TOKEN@" "@REDDIT_USER@" ]
+          [ "@GH_TOKEN@" ]
           [
-            config.sops.placeholder."reddit-rss-token"
-            config.sops.placeholder."reddit-rss-user"
+            config.sops.placeholder."gh-rss-token"
           ]
           (builtins.readFile ./feeds.opml);
 
       sops.secrets = {
-        reddit-rss-token = { inherit sopsFile; };
-        reddit-rss-user = { inherit sopsFile; };
+        gh-rss-token = { inherit sopsFile; };
       };
     };
 }
