@@ -9,6 +9,7 @@
 [default.extend-identifiers]
 # Hex colors and other opaque identifiers typos shouldn't split
 C0CAF5 = "C0CAF5"
+fo = "fo"
 
 
 [files]
