@@ -45,7 +45,7 @@
             map("n", "gI", vim.lsp.buf.implementation, { desc = "LSP: implementation" })
             map("n", "gh", vim.lsp.buf.hover, { desc = "LSP: hover" })
             map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: rename" })
-            map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: code action" })
+            map({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: code action" })
 
             map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
             map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
