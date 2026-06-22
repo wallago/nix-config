@@ -10,6 +10,7 @@
     let
       cfg = config.preferences.miniflux;
       hostModule = self.nixosModules."preferencesMiniflux${self.lib.capitalize hostName}";
+      sopsFile = ../../secrets/miniflux.yaml;
     in
     {
       imports = [
@@ -23,6 +24,10 @@
         config = {
           LISTEN_ADDR = "127.0.0.1:${toString cfg.port}";
           BASE_URL = "https://${cfg.url}";
+          POLLING_FREQUENCY = 1; # scheduler runs every minute
+          BATCH_SIZE = 1; # refresh ≤1 feed/min → ≤1 Reddit request/min
+          POLLING_PARSING_ERROR_LIMIT = 0; # don't auto-disable a feed after a few 403s
+          HTTP_CLIENT_USER_AGENT = "web:miniflux-selfhost:1.0";
         };
       };
 
@@ -50,8 +55,22 @@
           done
           ${pkgs.curl}/bin/curl -sf -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
             -X POST http://127.0.0.1:${toString cfg.port}/v1/import \
-            --data-binary @${./feeds.opml}
+            --data-binary @${config.sops.templates."miniflux-feeds.opml".path}
         '';
+      };
+
+      sops.templates."miniflux-feeds.opml".content =
+        builtins.replaceStrings
+          [ "@REDDIT_TOKEN@" "@REDDIT_USER@" ]
+          [
+            config.sops.placeholder."reddit-rss-token"
+            config.sops.placeholder."reddit-rss-user"
+          ]
+          (builtins.readFile ./feeds.opml);
+
+      sops.secrets = {
+        reddit-rss-token = { inherit sopsFile; };
+        reddit-rss-user = { inherit sopsFile; };
       };
     };
 }
