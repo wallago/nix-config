@@ -2,7 +2,6 @@
 {
   flake.nixosModules.developer = {
     imports = [
-      self.nixosModules.netrc
       self.nixosModules.direnv
       self.nixosModules.nix-ld
 

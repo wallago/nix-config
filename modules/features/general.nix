@@ -9,6 +9,7 @@
       self.nixosModules.user
       self.nixosModules.secrets
       self.nixosModules.security
+      self.nixosModules.netrc
       self.nixosModules.networking
 
       self.nixosModules.impermanence
