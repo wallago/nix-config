@@ -18,7 +18,7 @@ jobs:
       matrix:
         host: [coral, sponge, squid, krill]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: DeterminateSystems/nix-installer-action@main
       - name: Install Attic client
         run: nix profile add nixpkgs#attic-client
