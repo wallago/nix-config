@@ -15,6 +15,11 @@
       youtubeUrl = "https://youtube.com";
       redditUrl = "https://reddit.com";
       whatsappUrl = "https://web.whatsapp.com/";
+
+      leboncoinUrl = "https://www.leboncoin.fr/";
+      jinkaUrl = "https://www.jinka.fr/";
+      claudeUrl = "https://claude.ai/new";
+
       workId = "cdd10fab-4fc5-494b-9041-325e5759195b";
       personalId = "c6de089c-410d-4206-961d-ab11f988d40a";
       shoppingId = "78aabdad-8aae-4fe0-8ff0-2a0c6c4ccc24";
@@ -57,12 +62,26 @@
           workspace = shoppingId;
           container = 4;
         };
+        "Leboncoin" = {
+          id = "c47a938c-9be2-4b00-9fa7-082d0bd60e96";
+          url = leboncoinUrl;
+          position = 103;
+          workspace = shoppingId;
+          container = 4;
+        };
       };
       devPins = {
         "GitHub" = {
           id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
           url = githubUrl;
           position = 101;
+          workspace = devId;
+          container = 2;
+        };
+        "Claude" = {
+          id = "f9848f46-5fee-41e7-a69a-1fa60f24718d";
+          url = claudeUrl;
+          position = 102;
           workspace = devId;
           container = 2;
         };
@@ -135,6 +154,13 @@
           id = "3dbc43fc-3d63-48e1-a353-f146de02e7e7";
           url = whatsappUrl;
           position = 104;
+          workspace = personalId;
+          container = 1;
+        };
+        "Jinka" = {
+          id = "ab21c5ca-c393-4f94-b87e-d8c57e445933";
+          url = jinkaUrl;
+          position = 105;
           workspace = personalId;
           container = 1;
         };
