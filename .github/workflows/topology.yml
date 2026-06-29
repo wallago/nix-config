@@ -20,7 +20,7 @@ jobs:
           nix build .#topology.x86_64-linux.config.output
           mkdir -p docs
           cp -fL result/main.svg docs/topology.svg
-          cp -fL result/services.svg docs/services.svg
+          cp -fL result/network.svg docs/network.svg
       - name: Commit if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
