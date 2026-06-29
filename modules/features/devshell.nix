@@ -36,14 +36,18 @@
           inputs.claude-code.packages.${system}.default
           nodejs # deps of claude
 
-          # Just deps
-          sops
-          manix
-          committed
-          lychee
+          # repo tooling
           typos
+          committed
+          git-cliff
+          lychee
+
+          # nix tooling
+          nixfmt
           statix
           deadnix
+          manix
+          sops
         ];
         shellHook = ''
           mkdir -p .claude
