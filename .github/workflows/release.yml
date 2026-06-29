@@ -1,0 +1,33 @@
+name: Release
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  release:
+    name: Create GitHub release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set the release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --latest --github-repo ${{ github.repository }}
+        env:
+          OUTPUT: CHANGES.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Release v${{ env.RELEASE_VERSION }}"
+          body: ${{ steps.git-cliff.outputs.content }}
