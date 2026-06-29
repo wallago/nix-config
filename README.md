@@ -1,5 +1,7 @@
 # nix-config
 
+![Network topology](docs/topology.svg)
+
 Personal NixOS / home-manager configuration, structured as a [`flake-parts`](https://flake.parts) flake using the [dendritic pattern](https://github.com/mirkolenz/flocken) — every concern lives in its own module file, auto-imported via [`import-tree`](https://github.com/vic/import-tree).
 
 This repo defines:

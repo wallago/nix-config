@@ -16,6 +16,7 @@
       self.nixosModules.shell
       self.nixosModules.locale
       self.nixosModules.pager
+      self.nixosModules.topology
     ];
   };
 

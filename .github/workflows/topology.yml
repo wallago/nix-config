@@ -1,0 +1,28 @@
+name: Topology
+on:
+  push:
+    branches: [main]
+    paths:
+      - "modules/**"
+      - "flake.nix"
+      - "flake.lock"
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Render topology
+        run: |
+          nix build .#topology.x86_64-linux.config.output
+          mkdir -p docs
+          cp -fL result/main.svg docs/topology.svg
+          cp -fL result/services.svg docs/services.svg
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(topology): refresh diagrams"
+          file_pattern: docs/*.svg

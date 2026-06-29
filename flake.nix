@@ -112,6 +112,12 @@
       url = "github:wallago/bp-to-bagels-csv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Generate network/infra diagrams from the NixOS configs
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
