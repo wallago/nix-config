@@ -1,6 +1,6 @@
 [remote.github]
-owner = "design-solutions"
-repo = "https://github.com/design-et-solutions/4837-R8-Gordini"
+owner = "wallago"
+repo = "nix-config"
 
 [changelog]
 header = """
