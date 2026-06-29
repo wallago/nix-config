@@ -1,10 +1,27 @@
 # Changelog
 
+## 0.0.2 - 2026-06-29
+
+### 🚀 Features
+
+- *(topology)* Enhance arch
+
+### 🚜 Refactor
+
+- *(cliff)* Changes naming of cats
+
+### ⚙️ Miscellaneous Tasks
+
+- *(topology)* Refresh diagrams by @wallago
+
+
+**Full Changelog**: https://github.com/wallago/nix-config/compare/v0.0.1...v0.0.2
+
 ## 0.0.1 - 2026-06-29
 
-### � Features
+### 🚀 Features
 
-- *(devshell)* Adding missing tools
+- *(devshell)* Adding missing tools by @wallago
 - *(topology)* Init doc by @wallago
 - *(topology)* Adding it by @wallago
 - *(zen/pins)* Adding some sites by @wallago
@@ -273,10 +290,10 @@
 - *(gpg)* Adding gpg basic function by @wallago
 - *(home/hyprland)* Adding window swallowing by @wallago
 
-### � Bug Fixes
+### 🐛 Bug Fixes
 
-- *(cliff)* Update credentials
-- *(justfile)* Remove cargo version related command
+- *(cliff)* Update credentials by @wallago
+- *(justfile)* Remove cargo version related command by @wallago
 - *(workflows/topology)* Wrong output name by @wallago
 - *(nix)* Register binary caches in nix.settings so builds use them by @wallago
 - *(miniflux)* Adding reddit auth by @wallago
@@ -372,7 +389,7 @@
 - *(home/nvim)* Fixing conform plugins when deleting files/dirs by @wallago
 - Rust toolchains by @wallago
 
-### � Refactor
+### 🚜 Refactor
 
 - *(justfile)* Make it more clear by @wallago
 - *(flake)* Remove unused inputs by @wallago
@@ -502,19 +519,20 @@
 - Update path file by @wallago
 - *(nixos/users/wallago)* Change path by @wallago
 
-### � Documentation
+### 📚 Documentation
 
 - *(claude)* Document dendritic layout and just workflow by @wallago
 
-### � Styling
+### 🎨 Styling
 
 - *(eilmeldung)* Resize panels by @wallago
 - *(home/sponge)* Change wallpaper by @wallago
 - *(home/squid)* Change wallpaper by @wallago
 - *(hyprland)* Change some styling stuff by @wallago
 
-### �� Miscellaneous Tasks
+### ⚙️ Miscellaneous Tasks
 
+- *(release)* V0.0.1 by @wallago
 - *(flake)* Bump lock by @wallago
 - *(typos)* Add "fo" by @wallago
 - *(justfile)* Refactor it by @wallago
