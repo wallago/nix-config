@@ -18,6 +18,7 @@
           {
             gh-runner-nix-config-1 = { };
             gh-runner-nix-config-2 = { };
+            gh-runner-bp-to-bagels-csv = { };
           }
         ];
         templates = lib.mapAttrs' (name: iface: {

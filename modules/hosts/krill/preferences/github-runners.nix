@@ -24,6 +24,14 @@
             lychee
           ];
         };
+        bp-to-bagels-csv = {
+          tokenFile = sops.gh-runner-bp-to-bagels-csv.path;
+          url = "https://github.com/wallago/bp-to-bagels-csv";
+          extraPackages = with pkgs; [
+            wget
+            curl
+          ];
+        };
       };
     };
 }
