@@ -130,8 +130,6 @@ changelog:
 [group('release')]
 publish VERSION:
     @test -z "$(jj diff --name-only)" || (echo "✗ working copy has uncommitted changes — commit or abandon them first" && exit 1)
-    @echo "▶ bump version → {{ VERSION }}"
-    cargo set-version {{ VERSION }}
     @echo "▶ regenerate changelog"
     git-cliff --tag v{{ VERSION }} -o CHANGELOG.md
     @echo "▶ record release commit"
