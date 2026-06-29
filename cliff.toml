@@ -58,20 +58,20 @@ conventional_commits = true
 filter_unconventional = true
 commit_preprocessors = [{ pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" }]
 commit_parsers = [
-  { message = "^feat", group = "<!-- 0 -->¿ Features" },
-  { message = "^fix", group = "<!-- 1 -->¿ Bug Fixes" },
-  { message = "^refactor", group = "<!-- 2 -->¿ Refactor" },
-  { message = "^doc", group = "<!-- 3 -->¿ Documentation" },
-  { message = "^perf", group = "<!-- 4 -->¿ Performance" },
-  { message = "^style", group = "<!-- 5 -->¿ Styling" },
-  { message = "^test", group = "<!-- 6 -->¿ Testing" },
+  { message = "^feat", group = "<!-- 0 -->ğŸš€ Features" },
+  { message = "^fix", group = "<!-- 1 -->ğŸ› Bug Fixes" },
+  { message = "^refactor", group = "<!-- 2 -->ğŸšœ Refactor" },
+  { message = "^doc", group = "<!-- 3 -->ğŸ“š Documentation" },
+  { message = "^perf", group = "<!-- 4 -->âš¡ Performance" },
+  { message = "^style", group = "<!-- 5 -->ğŸ¨ Styling" },
+  { message = "^test", group = "<!-- 6 -->ğŸ§ª Testing" },
   { message = "^chore\\(release\\): prepare for", skip = true },
   { message = "^chore\\(deps.*\\)", skip = true },
   { message = "^chore\\(pr\\)", skip = true },
   { message = "^chore\\(pull\\)", skip = true },
-  { message = "^chore|^ci", group = "<!-- 7 -->¿¿ Miscellaneous Tasks" },
-  { body = ".*security", group = "<!-- 8 -->¿¿ Security" },
-  { message = "^revert", group = "<!-- 9 -->¿¿ Revert" },
+  { message = "^chore|^ci", group = "<!-- 7 -->âš™ï¸ Miscellaneous Tasks" },
+  { body = ".*security", group = "<!-- 8 -->ğŸ›¡ï¸ Security" },
+  { message = "^revert", group = "<!-- 9 -->â—€ï¸ Revert" },
 ]
 tag_pattern = "v[0-9].*"
 skip_tags = "beta|alpha"
