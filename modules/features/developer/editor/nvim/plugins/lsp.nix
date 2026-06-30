@@ -42,6 +42,19 @@
             })
             vim.lsp.enable("nixd")
 
+            -- spell/grammar checking for prose (incl. jj describe messages)
+            vim.filetype.add({ extension = { jjdescription = "gitcommit" } })
+            vim.lsp.config("ltex", {
+              cmd = { "ltex-ls-plus" },
+              filetypes = { "gitcommit", "markdown", "text" },
+              settings = {
+                ltex = {
+                  language = "en-US",
+                },
+              },
+            })
+            vim.lsp.enable("ltex")
+
             vim.diagnostic.config({
               virtual_lines = { current_line = true },
               signs = true,
@@ -101,6 +114,7 @@
         nixfmt
         manix
         just-lsp
+        ltex-ls-plus
       ];
     };
 }
