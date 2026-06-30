@@ -47,6 +47,13 @@ build HOST=host:
 diff HOST=host:
     nh os build {{ flake }} --hostname {{ HOST }} --dry
 
+# Render network topology diagrams into ./docs
+[group('build')]
+topology:
+    nix build .#topology.x86_64-linux.config.output
+    @cp ./result/network.svg ./docs/network.svg
+    @cp ./result/main.svg ./docs/topology.svg
+
 # ── Apply ─────────────────────────────────────────────────────
 
 # Switch the current machine

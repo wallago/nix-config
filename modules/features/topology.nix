@@ -13,10 +13,8 @@
         # NixOS hosts that live behind the router on the Home LAN.
         homeHosts = [
           "coral"
-          "cuttlefish"
           "krill"
           "sponge"
-          "squid"
         ];
 
         # WireGuard mesh addresses (coral is the hub/server).
@@ -27,6 +25,22 @@
           cuttlefish = "10.100.0.4";
           krill = "10.100.0.5";
         };
+
+        # WireGuard mesh interface for any host with a wg address.
+        # Clients connect to the coral hub; coral itself is the center.
+        wgIface =
+          host:
+          lib.optionalAttrs (wgAddr ? ${host}) {
+            wg0 = {
+              virtual = true;
+              network = "wg";
+              addresses = [ "${wgAddr.${host}}/24" ];
+              physicalConnections = lib.optional (host != "coral") {
+                node = "coral";
+                interface = "wg0";
+              };
+            };
+          };
       in
       {
         networks = {
@@ -76,9 +90,10 @@
             };
           };
         }
-        # Each NixOS host: a Home-LAN port (wired to the router) plus its
-        # WireGuard interface. Declared here because NetworkManager+DHCP means
-        # the interface extractor sees nothing on these hosts.
+        // {
+          squid.interfaces = wgIface "squid";
+          cuttlefish.interfaces = wgIface "cuttlefish";
+        }
         // lib.genAttrs homeHosts (host: {
           interfaces = {
             lan = {
@@ -91,18 +106,7 @@
               ];
             };
           }
-          // lib.optionalAttrs (wgAddr ? ${host}) {
-            wg0 = {
-              virtual = true;
-              network = "wg";
-              addresses = [ "${wgAddr.${host}}/24" ];
-              # Clients connect to the coral hub; coral itself is the center.
-              physicalConnections = lib.optional (host != "coral") {
-                node = "coral";
-                interface = "wg0";
-              };
-            };
-          };
+          // wgIface host;
         });
       }
     )

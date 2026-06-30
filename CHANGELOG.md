@@ -1,17 +1,27 @@
 # Changelog
 
+## 0.1.0 - 2026-06-30
+
+### ⚙️ Miscellaneous Tasks
+
+- *(topology)* Refresh diagrams by @wallago
+
+
+**Full Changelog**: https://github.com/wallago/nix-config/compare/v0.0.2...v0.1.0
+
 ## 0.0.2 - 2026-06-29
 
 ### 🚀 Features
 
-- *(topology)* Enhance arch
+- *(topology)* Enhance arch by @wallago
 
 ### 🚜 Refactor
 
-- *(cliff)* Changes naming of cats
+- *(cliff)* Changes naming of cats by @wallago
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(release)* V0.0.2 by @wallago
 - *(topology)* Refresh diagrams by @wallago
 
 
