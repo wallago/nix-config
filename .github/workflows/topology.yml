@@ -22,7 +22,7 @@ jobs:
           cp -fL result/main.svg docs/topology.svg
           cp -fL result/network.svg docs/network.svg
       - name: Commit if changed
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(topology): refresh diagrams"
           file_pattern: docs/*.svg
