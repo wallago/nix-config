@@ -44,7 +44,14 @@
         variant = config.preferences.user.keyboard.variant;
       };
 
-      preferences.user.name = "wallago";
+      preferences.user = {
+        name = "wallago";
+        groups = {
+          serial.enable = true;
+          disk.enable = true;
+        };
+      };
+
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
