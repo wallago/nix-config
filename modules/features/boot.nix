@@ -13,7 +13,10 @@
           "systemd.show_status=auto"
         ];
         loader = {
-          systemd-boot.enable = true;
+          systemd-boot = {
+            enable = true;
+            configurationLimit = 10; # keep only the last 10 generations on /boot
+          };
           efi.canTouchEfiVariables = true;
           timeout = 0;
         };
