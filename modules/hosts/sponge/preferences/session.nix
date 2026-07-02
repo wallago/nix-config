@@ -9,7 +9,9 @@
         "vi"
         "./Notes"
         "-c"
-        "Telekasten find_notes"
+        "Telekasten goto_thisweek"
+        "-c"
+        "vsplit ./Notes/pickup-tasks.md"
       ];
       webPerso = [
         "zen-beta"
