@@ -1,12 +1,12 @@
-{
+{ self, ... }: {
   flake.nixosModules.boot =
     { pkgs, lib, ... }:
     {
+      imports = [ self.nixosModules.plymouth ];
       boot = {
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-        # consoleLogLevel = 3;
         initrd = {
-          verbose = true;
+          verbose = lib.mkDefault true;
           systemd.enable = true;
         };
         kernelParams = [
