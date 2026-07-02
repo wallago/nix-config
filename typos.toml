@@ -14,4 +14,4 @@ fo = "fo"
 
 [files]
 # Exclude files or directories from checking
-extend-exclude = ["*.lock", "modules/secrets/"]
+extend-exclude = ["*.lock", "modules/secrets/", "CHANGELOG.md"]
