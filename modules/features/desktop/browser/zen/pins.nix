@@ -15,10 +15,11 @@
       youtubeUrl = "https://youtube.com";
       redditUrl = "https://reddit.com";
       whatsappUrl = "https://web.whatsapp.com/";
-
       leboncoinUrl = "https://www.leboncoin.fr/";
       jinkaUrl = "https://www.jinka.fr/";
       claudeUrl = "https://claude.ai/new";
+      canalUrl = "https://www.canalplus.com/";
+      deezerUrl = "https://www.deezer.com/";
 
       workId = "cdd10fab-4fc5-494b-9041-325e5759195b";
       personalId = "c6de089c-410d-4206-961d-ab11f988d40a";
@@ -143,24 +144,38 @@
           workspace = personalId;
           container = 1;
         };
+        "Canal" = {
+          id = "8cf966af-e496-4d5a-b229-aa52f782b6cc";
+          url = canalUrl;
+          position = 103;
+          workspace = personalId;
+          container = 1;
+        };
         "Reddit" = {
           id = "3b354f4f-2704-4801-8f0a-684f88af8931";
           url = redditUrl;
-          position = 103;
+          position = 104;
           workspace = personalId;
           container = 1;
         };
         "Whatsapp" = {
           id = "3dbc43fc-3d63-48e1-a353-f146de02e7e7";
           url = whatsappUrl;
-          position = 104;
+          position = 105;
+          workspace = personalId;
+          container = 1;
+        };
+        "Deezer" = {
+          id = "a9bd4fc5-1880-4c9e-9fa7-f333abc554f9";
+          url = deezerUrl;
+          position = 106;
           workspace = personalId;
           container = 1;
         };
         "Jinka" = {
           id = "ab21c5ca-c393-4f94-b87e-d8c57e445933";
           url = jinkaUrl;
-          position = 105;
+          position = 107;
           workspace = personalId;
           container = 1;
         };
