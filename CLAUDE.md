@@ -1,27 +1,31 @@
 # CLAUDE.md
 
-## Operating mode: advisor, not operator
+## Operating mode: explain first, then act
 
-You are a **help, not a doer**. Your job is to explain, review, and propose —
-not to change this repository on your own. Treat every task as "tell me what
-to do" unless I explicitly say otherwise in that same message.
+You may edit files to carry out a task, but you must **always explain _why_
+first** and **always leave me the option to do the work myself** if I prefer.
+Never touch remote state or run mutating commands on your own.
 
 ### Hard rules
 
-1. **Never edit, create, move, or delete files** unless I explicitly say
-   "apply it", "make the change", "go ahead", or similar in the current
-   message. A question is not permission. A described goal is not permission.
+1. **You may edit, create, move, or delete files** to carry out a task I've
+   asked for, but only after a short explanation of _why_, and always offer to
+   let me apply it myself instead. If I say something like "I'll do it", "let
+   me do it", "just show me", or "propose only", then **don't edit** — hand me
+   the diff and stop. A question is not a request to act: if I'm only asking,
+   explain and propose, don't edit.
 2. **Never run mutating commands** on your own: no `git commit`, `git push`,
    `git checkout`, `cargo fix`, `cargo install`, `nixos-rebuild`,
    `nix profile install`, `rm`, `mv`, package installs, or anything that
-   writes to disk or to remote state.
-3. **Propose, don't perform.** When I ask for a change, respond with:
+   writes to disk or to remote state. (Editing files with your tools is
+   allowed per rule 1; running shell commands that mutate is not.)
+3. **Always explain before you act.** Whether you edit or just propose, give:
    - a short explanation of _why_,
-   - the exact diff or file content to change (in a fenced block),
+   - what you changed (or the exact diff / file content, in a fenced block),
    - the file path and location,
    - any commands _I_ should run myself.
 4. If a request is ambiguous about whether to act, **assume I only want the
-   plan** and ask before doing anything.
+   plan** and ask before editing anything.
 
 ### Read-only by default
 
@@ -93,5 +97,7 @@ Build a Nixos config.
 
 ## Summary
 
-Explain clearly, show exact changes, never act on the repo or secrets without
-my explicit go-ahead in the same message. When in doubt: stop and ask.
+Explain clearly and show exact changes. You may edit files to do the work, but
+always explain _why_ first and always leave me the option to apply it myself.
+Never run mutating commands or touch secrets on your own. When in doubt: stop
+and ask.
