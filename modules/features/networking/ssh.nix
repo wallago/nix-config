@@ -22,7 +22,9 @@
       networking.firewall.allowedTCPPorts = [ 2222 ];
 
       users.users.${userName}.openssh.authorizedKeys.keys = cfg.authorizedSshKeys ++ [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKMPubEMjwYfkQl5ofu6MUbZYwSmInB+M1gVdnMIidj"
+        # sponge
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIyPVvllSJcM+yJNaCIAg+Xied2gg8zuHPuieMtWTR7b"
+        # squid
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMgZLJu6Us/PBZsLGuWSg1viq96m7ryJcuZdKHrKeAsq"
       ];
     };
