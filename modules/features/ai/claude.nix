@@ -1,7 +1,7 @@
 {
   flake.homeModules.claude = {
     home.file.".claude/settings.json".text = builtins.toJSON {
-      model = "claude-opus-4-8";
+      model = "claude-fable-5";
       theme = "dark";
       autoUpdates = false;
       includeCoAuthoredBy = false;
