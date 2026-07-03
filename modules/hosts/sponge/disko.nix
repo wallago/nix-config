@@ -11,21 +11,22 @@
 
   flake.diskoConfigurations.hostSponge = {
     disko.devices = {
-      disk.disk1 = {
-        device = "/dev/disk/by-id/nvme-Corsair_MP600_GS_2305802200013241002";
+      disk.main = {
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0R146956Y";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
-            # BIOS Boot Partition for legacy GRUB (optional)
+            # BIOS boot partition. Only used if you ever fall back to legacy
+            # GRUB; harmless on UEFI. 1 MiB is enough.
             boot = {
-              name = "boot";
-              size = "2M";
+              size = "1M";
               type = "EF02";
+              priority = 1;
             };
-            # EFI System Partition (ESP) for UEFI systems
+
+            # EFI System Partition. systemd-boot lives here.
             esp = {
-              name = "ESP";
               size = "1G";
               type = "EF00";
               content = {
@@ -35,29 +36,38 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+
+            # Dedicated swap partition. More predictable than swap-on-btrfs.
+            # resumeDevice = true wires up hibernation.
+            swap = {
+              size = "16G";
+              content = {
+                type = "swap";
+                resumeDevice = true;
+              };
+            };
+
+            # Everything else: btrfs with subvolumes for impermanence.
             root = {
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
-                # Subvolumes must set a mountpoint in order to be mounted,
-                # unless their parent is mounted
+                extraArgs = [
+                  "-f"
+                  "-L"
+                  "nixos"
+                ];
                 subvolumes = {
+                  # Root subvolume — gets wiped/rolled back on every boot
+                  # via your impermanence activation script.
                   "@root" = {
                     mountpoint = "/";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-                  "@persist" = {
-                    mountpoint = "/persist";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"
                     ];
                   };
+
                   "@nix" = {
                     mountpoint = "/nix";
                     mountOptions = [
@@ -65,16 +75,31 @@
                       "noatime"
                     ];
                   };
-                  "@swap" = {
+
+                  "@persist" = {
+                    mountpoint = "/persist";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"
                     ];
-                    mountpoint = "/swap";
-                    swap.swapfile = {
-                      size = "16G";
-                      path = "swapfile";
-                    };
+                  };
+
+                  "@home" = {
+                    mountpoint = "/home";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+
+                  # Snapshots of @root live here. Used for impermanence
+                  # rollback — see services.btrbk or your activation script.
+                  "@snapshots" = {
+                    mountpoint = "/.snapshots";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                 };
               };
