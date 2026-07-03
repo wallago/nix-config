@@ -185,15 +185,11 @@
       programs.zen-browser.profiles = {
         default = {
           pinsForce = true; # Delete pins not declared here
-          pins = workPins // devPins // persoPins // shoppingPins;
+          pins = workPins // devPins;
         };
-        work = {
+        secondary = {
           pinsForce = true; # Delete pins not declared here
-          pins = workPins;
-        };
-        perso = {
-          pinsForce = true; # Delete pins not declared here
-          pins = devPins // persoPins // shoppingPins;
+          pins = persoPins // shoppingPins;
         };
       };
     };

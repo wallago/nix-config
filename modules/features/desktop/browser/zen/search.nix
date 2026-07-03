@@ -52,12 +52,7 @@
           default = "ddg";
           engines = perso;
         };
-        perso.search = {
-          force = true; # Enforce declared search engines on each rebuild
-          default = "ddg";
-          engines = perso;
-        };
-        work.search = {
+        secondary.search = {
           force = true; # Enforce declared search engines on each rebuild
           default = "ddg";
         };

@@ -108,8 +108,7 @@
     {
       programs.zen-browser.profiles = {
         default = commonConfig;
-        perso = commonConfig;
-        work = commonConfig;
+        secondary = commonConfig;
       };
     };
 }
