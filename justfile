@@ -54,6 +54,11 @@ topology:
     @cp ./result/network.svg ./docs/network.svg
     @cp ./result/main.svg ./docs/topology.svg
 
+# Build a vm for a host to test it
+[group('build')]
+build-vm HOST=host:
+    nh os build-vm --with-bootloader {{ flake }} --hostname {{ HOST }}
+
 # ── Apply ─────────────────────────────────────────────────────
 
 # Switch the current machine
@@ -73,6 +78,18 @@ boot HOST=host:
 [group('apply')]
 test HOST=host:
     nh os test {{ flake }} --hostname {{ HOST }}
+
+# ── Security ──────────────────────────────────────────────────
+
+# Verify if secure boot is well installed
+[group('security')]
+secure-boot-check:
+    sudo sbctl verify
+
+# Status of secure boot
+[group('security')]
+secure-boot-status:
+    sbctl status
 
 # ── Secrets ───────────────────────────────────────────────────
 

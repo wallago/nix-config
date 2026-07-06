@@ -42,6 +42,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Secure Boot & Measured Boot for NixOS
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ─── Desktop ───────────────────────────────────────────────────────────────
 
     # Scrollable-tiling Wayland compositor
