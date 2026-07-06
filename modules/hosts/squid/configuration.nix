@@ -34,6 +34,7 @@
         self.nixosModules.wireguardClient
         self.nixosModules.battery
         self.nixosModules.syncthing
+        self.nixosModules.lanzaboote
 
         self.nixosModules.diskoSquid
       ];
