@@ -4,6 +4,16 @@
     {
       preferences.wireguard.server = {
         externalInterface = "enp114s0";
+        firewall.extraCommands = ''
+          # wg1 is untrusted: never let it reach wg0 or the internet via NAT
+          iptables -A FORWARD -i wg1 -o wg0 -j DROP
+          iptables -A FORWARD -i wg1 -o enp114s0 -j DROP
+
+          # within wg1: only squid/sponge may initiate; replies allowed back
+          iptables -A FORWARD -i wg1 -o wg1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+          iptables -A FORWARD -i wg1 -o wg1 -s 10.200.0.2,10.200.0.3 -p tcp --dport 2222 -j ACCEPT
+          iptables -A FORWARD -i wg1 -o wg1 -j DROP
+        '';
         interfaces = {
           wg0 = {
             ip = "10.100.0.1/24";
@@ -42,6 +52,11 @@
             listenPort = 51840;
             privateKeyFile = config.sops.secrets."wg1-sk".path;
             peers = [
+              {
+                # provision-iso
+                publicKey = "Qfc0+PXgYKb7BnVFXObFRtsJT6lFXfhTzl6JDIJtVw4=";
+                allowedIPs = [ "10.200.0.254/32" ];
+              }
               {
                 # squid
                 publicKey = "XOr3H2ae1jdm+k2TzkSArirfa57DSpM3wTEXrvLkzBg=";
