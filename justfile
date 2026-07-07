@@ -68,6 +68,12 @@ run-iso HOST='provisionIso':
         -bios "$(nix build --print-out-paths nixpkgs#OVMF.fd)/FV/OVMF.fd" \
         -cdrom result/iso/*.iso
 
+# Build the ISO for HOST and burn it to a USB key (interactive device picker)
+[group('build')]
+boot-key-iso HOST='provisionIso':
+    nix build {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.isoImage
+    nix shell nixpkgs#caligula --command caligula burn result/iso/*.iso
+
 # ── Apply ─────────────────────────────────────────────────────
 
 # Switch the current machine
