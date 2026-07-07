@@ -59,6 +59,15 @@ topology:
 build-vm HOST=host:
     nh os build-vm --with-bootloader {{ flake }} --hostname {{ HOST }}
 
+# Build an ISO host and boot it in a QEMU VM (UEFI). Usage: just run-iso
+[group('build')]
+run-iso HOST='provisionIso':
+    nix build {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.isoImage
+    nix shell nixpkgs#qemu --command qemu-system-x86_64 \
+        -enable-kvm -m 4G -smp 2 \
+        -bios "$(nix build --print-out-paths nixpkgs#OVMF.fd)/FV/OVMF.fd" \
+        -cdrom result/iso/*.iso
+
 # ── Apply ─────────────────────────────────────────────────────
 
 # Switch the current machine

@@ -1,10 +1,17 @@
 {
   flake.nixosModules.vmNix =
-    { lib, config, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     let
       userName = config.preferences.user.name;
     in
     {
+      environment.systemPackages = with pkgs; [ qemu ];
+
       virtualisation.vmVariant = {
         # Disable impermanence
         environment.persistence = lib.mkForce { };
