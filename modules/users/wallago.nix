@@ -20,11 +20,6 @@
           "video"
           # Allow access to sound cards (/dev/snd/*)
           "audio"
-
-          # Allow raw access to block devices (/dev/sd*, /dev/nvme*)
-          "disk"
-          # Allow access to serial ports (/dev/ttyACM*, /dev/ttyUSB*) for flashing MCUs
-          "dialout"
         ] # Allow raw access to block devices (/dev/sd*, /dev/nvme*)
         ++ lib.optional groups.disk.enable "disk"
         # Allow access to serial ports (/dev/ttyACM*, /dev/ttyUSB*) for flashing MCUs
