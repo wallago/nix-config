@@ -22,4 +22,8 @@
         };
       };
     };
+
+  flake.nixosModules.bootEmulatedSystems = {
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  };
 }

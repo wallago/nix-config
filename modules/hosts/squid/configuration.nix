@@ -35,6 +35,7 @@
         self.nixosModules.battery
         self.nixosModules.syncthing
         self.nixosModules.lanzaboote
+        self.nixosModules.bootEmulatedSystems
 
         self.nixosModules.diskoSquid
       ];
