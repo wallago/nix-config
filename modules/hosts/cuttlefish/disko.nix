@@ -5,8 +5,6 @@
       inputs.disko.nixosModules.disko
       self.diskoConfigurations.hostCuttlefish
     ];
-    fileSystems."/persist".neededForBoot = true;
-    fileSystems."/home".neededForBoot = true;
   };
 
   flake.diskoConfigurations.hostCuttlefish = {

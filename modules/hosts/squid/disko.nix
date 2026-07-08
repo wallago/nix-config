@@ -5,8 +5,6 @@
       inputs.disko.nixosModules.disko
       self.diskoConfigurations.hostSquid
     ];
-    fileSystems."/persist".neededForBoot = true;
-    fileSystems."/home".neededForBoot = true;
   };
 
   flake.diskoConfigurations.hostSquid = {
