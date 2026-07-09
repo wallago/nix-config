@@ -33,6 +33,7 @@
         self.nixosModules.productivity
         self.nixosModules.wireguardClient
         self.nixosModules.syncthing
+        self.nixosModules.bootEmulatedSystems
 
         self.nixosModules.disko
       ];
