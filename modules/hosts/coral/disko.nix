@@ -1,12 +1,4 @@
-{ inputs, self, ... }:
 {
-  flake.nixosModules.diskoCoral = {
-    imports = [
-      inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostCoral
-    ];
-  };
-
   flake.diskoConfigurations.hostCoral = {
     disko.devices = {
       disk.disk1 = {

@@ -1,12 +1,4 @@
-{ inputs, self, ... }:
 {
-  flake.nixosModules.diskoSquid = {
-    imports = [
-      inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostSquid
-    ];
-  };
-
   flake.diskoConfigurations.hostSquid = {
     disko.devices = {
       disk.main = {

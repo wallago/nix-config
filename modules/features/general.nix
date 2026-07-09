@@ -6,7 +6,6 @@
       self.nixosModules.nix
       self.nixosModules.home-manager
       self.nixosModules.boot
-      self.nixosModules.fileSystemsCommon
       self.nixosModules.user
       self.nixosModules.secrets
       self.nixosModules.security

@@ -37,7 +37,7 @@
         self.nixosModules.lanzaboote
         self.nixosModules.bootEmulatedSystems
 
-        self.nixosModules.diskoSquid
+        self.nixosModules.disko
       ];
 
       # default keyboard at login level

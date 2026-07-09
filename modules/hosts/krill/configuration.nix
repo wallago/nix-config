@@ -27,7 +27,7 @@
         self.nixosModules.wireguardClient
         self.nixosModules.githubRunners
 
-        self.nixosModules.diskoKrill
+        self.nixosModules.disko
       ];
 
       preferences.user.name = "wallago";

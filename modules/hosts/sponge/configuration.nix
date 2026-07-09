@@ -34,7 +34,7 @@
         self.nixosModules.wireguardClient
         self.nixosModules.syncthing
 
-        self.nixosModules.diskoSponge
+        self.nixosModules.disko
       ];
 
       # default keyboard at login level
