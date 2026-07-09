@@ -82,6 +82,11 @@
                 publicKey = "p99A09tn8LOAJsAVPldf6+ZMmmOutYuph5LbB7akBFQ=";
                 allowedIPs = [ "10.200.0.6/32" ];
               }
+              {
+                # 4849
+                publicKey = "AZgGljiVN/i4xZ2XWbqqsjbACHzX+HF6vurYFuRq9wA=";
+                allowedIPs = [ "10.200.0.7/32" ];
+              }
             ];
           };
         };
