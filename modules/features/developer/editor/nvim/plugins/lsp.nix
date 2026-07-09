@@ -1,6 +1,53 @@
 {
   flake.homeModules.nvimPluginLsp =
     { pkgs, ... }:
+    let
+      lsp_just = ''
+        vim.lsp.config('just', {
+          init_options = {
+            formatting = {
+              indentation = '\t',
+            },
+            rules = {
+            },
+          },
+        })
+        vim.lsp.enable('just')
+      '';
+      lsp_nixd = ''
+        vim.lsp.config("nixd", {
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = "import <nixpkgs> { }",
+              },
+              options = {
+                nixos = {
+                  expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options",
+                },
+                ["home-manager"] = {
+                  expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options.home-manager.users.type.getSubOptions []",
+                },
+              },
+              formatting = {
+                command = { "nixfmt" },
+              },
+            },
+          },
+        })
+        vim.lsp.enable("nixd")
+      '';
+      lsp_harper = ''
+        -- spell/grammar checking for prose (incl. jj describe messages)
+        vim.filetype.add({ extension = { jjdescription = "gitcommit" } })
+        vim.lsp.config("harper_ls", {
+          cmd = { "harper-ls", "--stdio" },
+          filetypes = { "gitcommit", "markdown", "text" },
+        })
+        vim.lsp.enable("harper_ls")
+      '';
+    in
     {
       programs.neovim.plugins = with pkgs.vimPlugins; [
         {
@@ -8,52 +55,9 @@
           config = ''
             vim.lsp.inlay_hint.enable(true)
 
-            vim.lsp.config('just', {
-              init_options = {
-                formatting = {
-                  indentation = '\t',
-                },
-                rules = {
-                },
-              },
-            })
-            vim.lsp.enable('just')
-
-            vim.lsp.config("nixd", {
-              cmd = { "nixd" },
-              settings = {
-                nixd = {
-                  nixpkgs = {
-                    expr = "import <nixpkgs> { }",
-                  },
-                  options = {
-                    nixos = {
-                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options",
-                    },
-                    ["home-manager"] = {
-                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options.home-manager.users.type.getSubOptions []",
-                    },
-                  },
-                  formatting = {
-                    command = { "nixfmt" },
-                  },
-                },
-              },
-            })
-            vim.lsp.enable("nixd")
-
-            -- spell/grammar checking for prose (incl. jj describe messages)
-            vim.filetype.add({ extension = { jjdescription = "gitcommit" } })
-            vim.lsp.config("ltex", {
-              cmd = { "ltex-ls-plus" },
-              filetypes = { "gitcommit", "markdown", "text" },
-              settings = {
-                ltex = {
-                  language = "en-US",
-                },
-              },
-            })
-            vim.lsp.enable("ltex")
+            ${lsp_just}
+            ${lsp_nixd}
+            ${lsp_harper}
 
             vim.diagnostic.config({
               virtual_lines = { current_line = true },
@@ -114,7 +118,7 @@
         nixfmt
         manix
         just-lsp
-        ltex-ls-plus
+        harper
       ];
     };
 }
