@@ -4,7 +4,7 @@
     {
       imports = [ self.nixosModules.plymouth ];
       boot = {
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkOverride 1100 pkgs.linuxPackages_latest;
         initrd = {
           verbose = lib.mkDefault true;
           systemd.enable = true;
@@ -14,10 +14,10 @@
         ];
         loader = {
           systemd-boot = {
-            enable = true;
+            enable = lib.mkDefault true;
             configurationLimit = 10; # keep only the last 10 generations on /boot
           };
-          efi.canTouchEfiVariables = true;
+          efi.canTouchEfiVariables = lib.mkDefault true;
           timeout = 0;
         };
       };

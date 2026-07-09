@@ -45,6 +45,11 @@
                 publicKey = "JTl7tlUtS6mKNwjJ0oGXT68XxJ7U8mQ+wb6m5sXxdT8=";
                 allowedIPs = [ "10.100.0.6/32" ];
               }
+              {
+                # anemone
+                publicKey = "HXIP0qGJzsnjF47rEQ0usHWLFjPuXl4BvATJbJVktlY=";
+                allowedIPs = [ "10.100.0.7/32" ];
+              }
             ];
           };
           wg1 = {
