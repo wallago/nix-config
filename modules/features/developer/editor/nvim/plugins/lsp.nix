@@ -76,8 +76,12 @@
             map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: rename" })
             map({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: code action" })
 
+            map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Diagnostic: float under cursor" })
+            map("n", "<leader>fd", "<CMD>Telescope diagnostics<CR>", { desc = "Diagnostics (fuzzy)" })
             map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
             map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+            map("n", "[e", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Prev error" })
+            map("n", "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Next error" })
 
             map("n", "<leader>fs", vim.lsp.buf.document_symbol, { desc = "LSP: file symbols" })
             map("n", "<leader>fS", vim.lsp.buf.workspace_symbol, { desc = "LSP: workspace symbols" })
