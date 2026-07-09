@@ -15,7 +15,6 @@
     {
       imports = [
         self.homeModules.desktopOptions
-        self.homeModules.shell
         self.homeModules.compositor
         self.homeModules.browser
         self.homeModules.wallpaper
