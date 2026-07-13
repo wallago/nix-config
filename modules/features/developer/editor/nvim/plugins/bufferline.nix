@@ -27,10 +27,8 @@
             -- Most used functions
             vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>")
             vim.keymap.set("n", "<leader>bf", "<cmd>BufferLineCycleNext<CR>")
-            -- vim.keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>")
-            vim.keymap.set("n", "<leader>bf", "<cmd>BufferLineCycleNext<CR>")
-            vim.keymap.set("n", "<leader>bb", "<cmd>BufferLineCyclePrev<CR>")
-            -- vim.keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>")
+            vim.keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>")
+            vim.keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>")
             vim.keymap.set("n", "<leader>bb", "<cmd>BufferLineCyclePrev<CR>")
 
             -- Smart close: drop to previous buffer, or close the split if it
