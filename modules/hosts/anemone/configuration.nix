@@ -1,7 +1,7 @@
 { inputs, self, ... }:
 {
   flake.nixosConfigurations.anemone = inputs.nixos-raspberrypi.lib.nixosSystem {
-    nixpkgs = inputs.nixpkgs;
+    inherit (inputs) nixpkgs;
     specialArgs = {
       hostName = "anemone";
       inherit self;
