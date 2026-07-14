@@ -15,6 +15,7 @@
           "coral"
           "krill"
           "sponge"
+          "anemone"
         ];
 
         # WireGuard mesh addresses (coral is the hub/server).
@@ -24,6 +25,7 @@
           sponge = "10.100.0.3";
           cuttlefish = "10.100.0.4";
           krill = "10.100.0.5";
+          anemone = "10.100.0.7";
         };
 
         # WireGuard mesh interface for any host with a wg address.
