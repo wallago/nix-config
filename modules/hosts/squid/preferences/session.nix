@@ -9,14 +9,16 @@
         "vi"
         "./Notes"
         "-c"
-        "Telekasten find_notes"
+        "lua require('telekasten').goto_thisweek({ journal_auto_open = true })"
+        "-c"
+        "vsplit ./Notes/pickup-tasks.md"
       ];
-      webPerso = [
+      webSecondary = [
         "zen-beta"
-        "--name=zen-perso"
-        "--class=zen-perso"
+        "--name=zen-secondary"
+        "--class=zen-secondary"
         "-P"
-        "perso"
+        "secondary"
         "--new-instance"
       ];
       rssCmd = [
@@ -25,12 +27,10 @@
         "-e"
         "eilmeldung"
       ];
-      webWorkCmd = [
+      webMainCmd = [
         "zen-beta"
-        "--name=zen-work"
-        "--class=zen-work"
-        "-P"
-        "work"
+        "--name=zen-main"
+        "--class=zen-main"
         "--new-instance"
       ];
       mailCmd = [
@@ -61,15 +61,15 @@
           maximized = true;
         }
         {
-          command = webPerso;
-          matchAppId = "zen-perso";
-          workspace = "browser-perso";
+          command = webSecondary;
+          matchAppId = "zen-secondary";
+          workspace = "browser";
           maximized = true;
         }
         {
-          command = webWorkCmd;
-          matchAppId = "zen-work";
-          workspace = "browser-work";
+          command = webMainCmd;
+          matchAppId = "zen-main";
+          workspace = "browser";
           maximized = true;
         }
         {

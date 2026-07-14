@@ -41,6 +41,10 @@
       map("v", "e", "gj", o("↓ down (visual line)"))
       map("v", "i", "gk", o("↑ up (visual line)"))
 
+      -- Textobjects: i/o are movement, so l = inner, O = swap ends  ────────
+      map({ "x", "o" }, "l", "i", o("Inner textobject"))
+      map("x", "O", "o", o("Swap selection ends"))
+
       -- Window navigation: <C-w> + n/e/i/o  ────────────────────────────────
       map("n", "<C-w>n", "<C-w>h", o("← left"))
       map("n", "<C-w>e", "<C-w>j", o("↓ bottom"))
@@ -59,7 +63,7 @@
       -- Buffer ───────────────────────────────────────────────────────────────
       map("n", "<C-q>", "<CMD>q<CR>",   o("Quit"))
       map("n", "<C-x>", "<CMD>x<CR>",   o("Quit & Save"))
-      map("n", "<C-o>", "<CMD>qall<CR>",   o("Quit all"))
+      map("n", "<leader>Q", "<CMD>qall<CR>", o("Quit all"))
       map("n", "<C-s>", "<CMD>w<CR>",   o("Save"))
 
       -- Wrong Desc ─────────────────────────────────────────────────────────

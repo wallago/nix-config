@@ -54,6 +54,26 @@ topology:
     @cp ./result/network.svg ./docs/network.svg
     @cp ./result/main.svg ./docs/topology.svg
 
+# Build a vm for a host to test it
+[group('build')]
+build-vm HOST=host:
+    nh os build-vm --with-bootloader {{ flake }} --hostname {{ HOST }}
+
+# Build an ISO host and boot it in a QEMU VM (UEFI). Usage: just run-iso
+[group('build')]
+run-iso HOST='provisionIso':
+    nix build {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.isoImage
+    nix shell nixpkgs#qemu --command qemu-system-x86_64 \
+        -enable-kvm -m 4G -smp 2 \
+        -bios "$(nix build --print-out-paths nixpkgs#OVMF.fd)/FV/OVMF.fd" \
+        -cdrom result/iso/*.iso
+
+# Build the ISO for HOST and burn it to a USB key (interactive device picker)
+[group('build')]
+boot-key-iso HOST='provisionIso':
+    nix build {{ flake }}#nixosConfigurations.{{ HOST }}.config.system.build.isoImage
+    nix shell nixpkgs#caligula --command caligula burn result/iso/*.iso
+
 # ── Apply ─────────────────────────────────────────────────────
 
 # Switch the current machine
@@ -73,6 +93,18 @@ boot HOST=host:
 [group('apply')]
 test HOST=host:
     nh os test {{ flake }} --hostname {{ HOST }}
+
+# ── Security ──────────────────────────────────────────────────
+
+# Verify if secure boot is well installed
+[group('security')]
+secure-boot-check:
+    sudo sbctl verify
+
+# Status of secure boot
+[group('security')]
+secure-boot-status:
+    sbctl status
 
 # ── Secrets ───────────────────────────────────────────────────
 

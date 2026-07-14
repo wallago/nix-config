@@ -15,8 +15,7 @@
     {
       programs.zen-browser.profiles = {
         default.extensions.packages = commonAddons;
-        work.extensions.packages = commonAddons;
-        perso.extensions.packages = commonAddons;
+        secondary.extensions.packages = commonAddons;
       };
     };
 }

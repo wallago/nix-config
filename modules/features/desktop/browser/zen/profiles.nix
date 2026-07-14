@@ -15,12 +15,8 @@
           isDefault = true;
           settings = commonSettings;
         };
-        perso = {
+        secondary = {
           id = 1;
-          settings = commonSettings;
-        };
-        work = {
-          id = 2;
           settings = commonSettings;
         };
       };

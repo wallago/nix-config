@@ -1,6 +1,14 @@
 {
   flake.nixosModules.userWallago =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    let
+      groups = config.preferences.user.groups;
+    in
     {
       users.users.wallago = {
         extraGroups = [
@@ -12,7 +20,10 @@
           "video"
           # Allow access to sound cards (/dev/snd/*)
           "audio"
-        ];
+        ] # Allow raw access to block devices (/dev/sd*, /dev/nvme*)
+        ++ lib.optional groups.disk.enable "disk"
+        # Allow access to serial ports (/dev/ttyACM*, /dev/ttyUSB*) for flashing MCUs
+        ++ lib.optional groups.serial.enable "dialout";
         shell = pkgs.fish;
         hashedPasswordFile = config.sops.secrets.wallago-password.path;
       };

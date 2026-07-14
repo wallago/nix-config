@@ -1,14 +1,4 @@
-{ inputs, self, ... }:
 {
-  flake.nixosModules.diskoCoral = {
-    imports = [
-      inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostCoral
-    ];
-    fileSystems."/persist".neededForBoot = true;
-    fileSystems."/home".neededForBoot = true;
-  };
-
   flake.diskoConfigurations.hostCoral = {
     disko.devices = {
       disk.disk1 = {

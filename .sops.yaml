@@ -1,10 +1,12 @@
 keys:
   age_access: &age_keys
-    - &sponge age1dzwegqyge33deld53k5cvc0gnwulp9xl3nhqdd7a9y8zcjaq7aqqrr67mn
+    - &sponge age1u4vh62vgwlwdednune7up0qrn4e3qv8jdz3smckkm3qw30ksuexqure586
     - &squid age1fls2addadr7m0mecsqguwfzvqskt93575wn5atu83zvtgtgv0cqqd5kumv
     - &coral age1t3t4llqc4fmrsr3x4apuz5utctjm82vdez7pztrfcytjyghr3quqsgs776
     - &krill age1vvfmted43wwp548z7sld9gcdcn6wy3dmv6r7m7yzyqwdq5rwnd4swe53uf
     - &cuttlefish age1vvfmted43wwp548z7sld9gcdcn6wy3dmv6r7m7yzyqwdq5rwnd4swe53uf
+    - &anemone age1afl7ceuvqpm7pp2t8e90mgeug6cvxpuepvm5ulelw7tqu5ly3aesl3pyzu
+    - &iso age195z8u5gvwv45ppu5mxk030ujdpt4380zkxgnqe3g4qnfe8df89xs89xztf
   gpg_access: &pgp_keys
     - &yubikey 704592C4592CD51F
 creation_rules:
@@ -29,10 +31,18 @@ creation_rules:
     key_groups:
       - age: [*sponge, *squid, *cuttlefish]
         pgp: [*yubikey]
+  - path_regex: modules/secrets/anemone.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *anemone]
+        pgp: [*yubikey]
+  - path_regex: modules/secrets/provision-iso.ya?ml$
+    key_groups:
+      - age: [*sponge, *squid, *iso]
+        pgp: [*yubikey]
   # Common
   - path_regex: modules/secrets/netrc.ya?ml$
     key_groups:
-      - age: [*sponge, *squid, *coral, *krill, *cuttlefish]
+      - age: [*sponge, *squid, *coral, *krill, *cuttlefish, *anemone]
         pgp: [*yubikey]
   # Specific
   - path_regex: modules/secrets/productivity.ya?ml$

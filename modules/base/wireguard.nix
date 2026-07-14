@@ -44,6 +44,11 @@
           type = lib.types.str;
           description = "NAT external interface (e.g. eth0)";
         };
+        firewall.extraCommands = lib.mkOption {
+          type = lib.types.str;
+          default = "";
+          description = "Extra commands for firewall";
+        };
         interfaces = lib.mkOption {
           type = lib.types.attrsOf (
             lib.types.submodule {

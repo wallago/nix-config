@@ -32,7 +32,7 @@
 
         self.nixosModules.preferencesMinifluxCoral
 
-        self.nixosModules.diskoCoral
+        self.nixosModules.disko
       ];
 
       preferences.user.name = "wallago";

@@ -26,7 +26,7 @@
         self.nixosModules.intel
         self.nixosModules.wireguardClient
 
-        self.nixosModules.diskoCuttlefish
+        self.nixosModules.disko
       ];
 
       preferences.user.name = "wallago";

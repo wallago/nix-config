@@ -34,8 +34,10 @@
         self.nixosModules.wireguardClient
         self.nixosModules.battery
         self.nixosModules.syncthing
+        self.nixosModules.lanzaboote
+        self.nixosModules.bootEmulatedSystems
 
-        self.nixosModules.diskoSquid
+        self.nixosModules.disko
       ];
 
       # default keyboard at login level
@@ -44,7 +46,14 @@
         variant = config.preferences.user.keyboard.variant;
       };
 
-      preferences.user.name = "wallago";
+      preferences.user = {
+        name = "wallago";
+        groups = {
+          serial.enable = true;
+          disk.enable = true;
+        };
+      };
+
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general

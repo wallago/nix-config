@@ -1,6 +1,53 @@
 {
   flake.homeModules.nvimPluginLsp =
     { pkgs, ... }:
+    let
+      lsp_just = ''
+        vim.lsp.config('just', {
+          init_options = {
+            formatting = {
+              indentation = '\t',
+            },
+            rules = {
+            },
+          },
+        })
+        vim.lsp.enable('just')
+      '';
+      lsp_nixd = ''
+        vim.lsp.config("nixd", {
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = "import <nixpkgs> { }",
+              },
+              options = {
+                nixos = {
+                  expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options",
+                },
+                ["home-manager"] = {
+                  expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options.home-manager.users.type.getSubOptions []",
+                },
+              },
+              formatting = {
+                command = { "nixfmt" },
+              },
+            },
+          },
+        })
+        vim.lsp.enable("nixd")
+      '';
+      lsp_harper = ''
+        -- spell/grammar checking for prose (incl. jj describe messages)
+        vim.filetype.add({ extension = { jjdescription = "gitcommit" } })
+        vim.lsp.config("harper_ls", {
+          cmd = { "harper-ls", "--stdio" },
+          filetypes = { "gitcommit", "markdown", "text" },
+        })
+        vim.lsp.enable("harper_ls")
+      '';
+    in
     {
       programs.neovim.plugins = with pkgs.vimPlugins; [
         {
@@ -8,39 +55,9 @@
           config = ''
             vim.lsp.inlay_hint.enable(true)
 
-            vim.lsp.config('just', {
-              init_options = {
-                formatting = {
-                  indentation = '\t',
-                },
-                rules = {
-                },
-              },
-            })
-            vim.lsp.enable('just')
-
-            vim.lsp.config("nixd", {
-              cmd = { "nixd" },
-              settings = {
-                nixd = {
-                  nixpkgs = {
-                    expr = "import <nixpkgs> { }",
-                  },
-                  options = {
-                    nixos = {
-                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options",
-                    },
-                    ["home-manager"] = {
-                      expr = "(builtins.head (builtins.attrValues (builtins.getFlake (toString ./.)).nixosConfigurations)).options.home-manager.users.type.getSubOptions []",
-                    },
-                  },
-                  formatting = {
-                    command = { "nixfmt" },
-                  },
-                },
-              },
-            })
-            vim.lsp.enable("nixd")
+            ${lsp_just}
+            ${lsp_nixd}
+            ${lsp_harper}
 
             vim.diagnostic.config({
               virtual_lines = { current_line = true },
@@ -59,8 +76,12 @@
             map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: rename" })
             map({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: code action" })
 
+            map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Diagnostic: float under cursor" })
+            map("n", "<leader>fd", "<CMD>Telescope diagnostics<CR>", { desc = "Diagnostics (fuzzy)" })
             map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
             map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+            map("n", "[e", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Prev error" })
+            map("n", "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Next error" })
 
             map("n", "<leader>fs", vim.lsp.buf.document_symbol, { desc = "LSP: file symbols" })
             map("n", "<leader>fS", vim.lsp.buf.workspace_symbol, { desc = "LSP: workspace symbols" })
@@ -101,6 +122,7 @@
         nixfmt
         manix
         just-lsp
+        harper
       ];
     };
 }

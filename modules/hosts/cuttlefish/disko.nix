@@ -1,14 +1,4 @@
-{ inputs, self, ... }:
 {
-  flake.nixosModules.diskoCuttlefish = {
-    imports = [
-      inputs.disko.nixosModules.disko
-      self.diskoConfigurations.hostCuttlefish
-    ];
-    fileSystems."/persist".neededForBoot = true;
-    fileSystems."/home".neededForBoot = true;
-  };
-
   flake.diskoConfigurations.hostCuttlefish = {
     disko.devices = {
       disk.disk1 = {
