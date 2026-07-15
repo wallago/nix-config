@@ -63,6 +63,7 @@
           self.homeModules.gaming
 
           self.homeModules.sshWg0
+          self.homeModules.sshWg1
 
           self.homeModules.preferencesSessionSponge
           self.homeModules.preferencesWorkspacesSponge
