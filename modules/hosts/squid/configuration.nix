@@ -65,6 +65,7 @@
           self.homeModules.gaming
 
           self.homeModules.sshWg0
+          self.homeModules.sshWg1
 
           self.homeModules.preferencesSessionSquid
           self.homeModules.preferencesWorkspacesSquid
