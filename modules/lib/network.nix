@@ -1,5 +1,4 @@
 {
-
   flake.lib.networks = {
     wg0 = {
       port = 51820;

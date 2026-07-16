@@ -11,7 +11,7 @@
         nativeBuildInputs = [ pkgs.makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/bagels \
-            --add-flags "--at ${config.home.homeDirectory}/Bagels/"
+            --add-flags "--at ${config.home.homeDirectory}/sync-bagels/"
         '';
       })
     ];
