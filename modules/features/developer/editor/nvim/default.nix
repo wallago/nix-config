@@ -49,6 +49,7 @@
         self.homeModules.nvimPluginBufferline
         self.homeModules.nvimPluginScope
         self.homeModules.nvimPluginTelekasten
+        self.homeModules.nvimPluginTips
       ];
     };
   };
