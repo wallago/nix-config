@@ -2,7 +2,7 @@
   flake.homeModules.nvimPluginTelekasten =
     { pkgs, ... }:
     let
-      home = "~/Notes";
+      home = "~/sync-notes";
     in
     {
       programs.neovim.plugins = with pkgs.vimPlugins; [
