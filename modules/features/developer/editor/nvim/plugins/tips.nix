@@ -14,7 +14,7 @@
             }
 
             vim.api.nvim_set_keymap("n", "<leader>no", "<cmd>NeovimTips<CR>", { desc = "Tips" })
-            vim.api.nvim_set_keymap("n", "<leader>no", "<cmd>NeovimTipsBookmarks<CR>", { desc = "Bookmarked tips" })
+            vim.api.nvim_set_keymap("n", "<leader>nb", "<cmd>NeovimTipsBookmarks<CR>", { desc = "Bookmarked tips" })
             vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NeovimTipsEdit<CR>", { desc = "Edit tip" })
             vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NeovimTipsAdd<CR>", { desc = "Add tip" })
             vim.api.nvim_set_keymap("n", "<leader>nh", "<cmd>help neovim-tips<CR>", { desc = "neovim-tips help" })
