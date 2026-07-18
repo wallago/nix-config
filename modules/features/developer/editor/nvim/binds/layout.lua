@@ -1,14 +1,14 @@
 -- Movement: NEIO replaces HJKL (n=← e=↓ i=↑ o=→), I/E take H/L
 -- (top/bottom of screen) and T takes K (keyword lookup)  ─────────────
 for _, mode in ipairs({ "n", "v", "x", "o" }) do
-  map(mode, "n", "h", o("← left"))
-  map(mode, "e", "j", o("↓ down"))
-  map(mode, "i", "k", o("↑ up"))
-  map(mode, "o", "l", o("→ right"))
+	map(mode, "n", "h", o("← left"))
+	map(mode, "e", "j", o("↓ down"))
+	map(mode, "i", "k", o("↑ up"))
+	map(mode, "o", "l", o("→ right"))
 
-  map(mode, "I", "H", o("Top of screen"))
-  map(mode, "E", "L", o("Bottom of screen"))
-  map(mode, "T", "K", o("Look up keyword"))
+	map(mode, "I", "H", o("Top of screen"))
+	map(mode, "E", "L", o("Bottom of screen"))
+	map(mode, "T", "K", o("Look up keyword"))
 end
 
 -- Re-home the commands NEIO displaced:
@@ -30,6 +30,8 @@ map("n", "e", "gj", o("↓ down (visual line)"))
 map("n", "i", "gk", o("↑ up (visual line)"))
 map("v", "e", "gj", o("↓ down (visual line)"))
 map("v", "i", "gk", o("↑ up (visual line)"))
+map("o", "e", "gj", o("↓ down (charwise)"))
+map("o", "i", "gk", o("↑ up (charwise)"))
 
 -- Textobjects: i/o are movement now, so in visual/operator mode
 -- l = inner textobject (was i), O = swap selection ends (was o)  ─────

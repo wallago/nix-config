@@ -24,3 +24,10 @@ map("n", "<A-i>", function()
 	vim.cmd("normal! `[")
 	vim.o.paste = false
 end, { silent = true })
+
+-- Surround the word under the cursor with quotes ─────────────────────
+map("n", '<leader>"', 'ciw"<C-r>""<Esc>', o('Surround word with "'))
+map("n", "<leader>'", "ciw'<C-r>\"'<Esc>", o("Surround word with '"))
+
+-- Clear search highlight ─────────────────────────────────────────────
+map("n", "<leader>\\", "<Cmd>nohlsearch<CR>", o("Clear search highlight"))

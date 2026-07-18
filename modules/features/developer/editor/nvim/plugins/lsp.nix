@@ -60,7 +60,8 @@
             ${lsp_harper}
 
             vim.diagnostic.config({
-              virtual_lines = { current_line = true },
+              virtual_lines = false,
+              virtual_text = false,
               signs = true,
               underline = true,
               severity_sort = true,
@@ -75,6 +76,10 @@
             map("n", "gh", vim.lsp.buf.hover, { desc = "LSP: hover" })
             map("n", "gn", vim.lsp.buf.rename, { desc = "LSP: rename" })
             map({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: code action" })
+            map("n", "gt", function()
+              local on = vim.diagnostic.config().virtual_lines
+              vim.diagnostic.config({ virtual_lines = on and false or { current_line = true } })
+            end, { desc = "Toggle inline diagnostics" })
             vim.keymap.del("n", "grr")
             vim.keymap.del("n", "grn")
             vim.keymap.del("n", "gra")
