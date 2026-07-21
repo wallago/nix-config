@@ -40,6 +40,7 @@
         self.homeModules.nvimPluginBlink
         self.homeModules.nvimPluginAutopairs
         self.homeModules.nvimPluginKulala
+        self.homeModules.nvimPluginActionsPreview
       ];
     };
     nvimPluginsOptions = {
