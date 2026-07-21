@@ -62,7 +62,7 @@
         };
         "4849" = {
           ip = "10.200.0.7";
-          publicKey = "AZgGljiVN/i4xZ2XWbqqsjbACHzX+HF6vurYFuRq9wA=";
+          publicKey = "VXhJ1rFSpSrAU36ZpF7waG7HdnP9sekeHaJEAIq7/kQ=";
         };
         provision-iso = {
           ip = "10.200.0.254";
