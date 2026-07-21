@@ -7,8 +7,6 @@
 
       self.nixosModules.devApps
     ];
-
-    networking.firewall.allowedTCPPorts = [ 3000 ];
   };
 
   flake.homeModules.developer = {
