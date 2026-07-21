@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.nixosModules.ssh =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       userName = config.preferences.user.name;
       cfg = config.preferences.ssh;
@@ -18,6 +18,8 @@
           LogLevel = "VERBOSE";
         };
       };
+
+      environment.systemPackages = with pkgs; [ waypipe ];
 
       networking.firewall.allowedTCPPorts = [ 2222 ];
 
