@@ -42,7 +42,7 @@
       networking = {
         firewall = {
           allowedUDPPorts = lib.mapAttrsToList (_: iface: iface.listenPort) cfg.interfaces;
-          inherit (cfg.firewall) extraCommands;
+          inherit (cfg.firewall) extraCommands extraStopCommands;
         };
         nat = {
           enable = true;

@@ -1,7 +1,7 @@
 { self, ... }: {
   flake.lib.syncthing =
     let
-      hosts = self.lib.networks.wg0.hosts;
+      hosts = self.lib.wireguard.wg0.hosts;
       port = 22000;
     in
     {
