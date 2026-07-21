@@ -49,6 +49,11 @@
           default = "";
           description = "Extra commands for firewall";
         };
+        firewall.extraStopCommands = lib.mkOption {
+          type = lib.types.str;
+          default = "";
+          description = "Extra teardown commands for firewall";
+        };
         interfaces = lib.mkOption {
           type = lib.types.attrsOf (
             lib.types.submodule {

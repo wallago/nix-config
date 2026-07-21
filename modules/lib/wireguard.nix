@@ -1,5 +1,5 @@
 {
-  flake.lib.networks = {
+  flake.lib.wireguard = {
     wg0 = {
       port = 51820;
       hosts = {
@@ -63,10 +63,17 @@
         "4849" = {
           ip = "10.200.0.7";
           publicKey = "VXhJ1rFSpSrAU36ZpF7waG7HdnP9sekeHaJEAIq7/kQ=";
+          ports = [
+            2201
+            443
+          ];
         };
         provision-iso = {
           ip = "10.200.0.254";
           publicKey = "Qfc0+PXgYKb7BnVFXObFRtsJT6lFXfhTzl6JDIJtVw4=";
+          ports = [
+            2222
+          ];
         };
       };
     };
