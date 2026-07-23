@@ -1,13 +1,16 @@
 { self, ... }: {
   flake.nixosModules.preferencesWireguardProvisionIso =
     { config, ... }:
+    let
+      inherit (self.lib.wireguard.wg1) hosts port;
+    in
     {
       preferences.wireguard.client.interfaces = {
         wg1 = {
-          ip = "${self.lib.networks.wg1.hosts.provision-iso.ip}/24";
-          serverPublicKey = self.lib.networks.wg1.hosts.coral.publicKey;
+          ip = "${hosts.provision-iso.ip}/24";
+          serverPublicKey = hosts.coral.publicKey;
           allowedIPs = [ "10.200.0.0/24" ];
-          serverPort = self.lib.networks.wg1.port;
+          serverPort = port;
           configFile = config.sops.templates."wg1.conf".path;
         };
       };

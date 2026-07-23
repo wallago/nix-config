@@ -1,13 +1,16 @@
 { self, ... }: {
   flake.nixosModules.preferencesWireguardCuttlefish =
     { config, ... }:
+    let
+      inherit (self.lib.wireguard.wg0) hosts port;
+    in
     {
       preferences.wireguard.client.interfaces = {
         wg0 = {
-          ip = "${self.lib.netwroks.wg0.hosts.cuttlefish.ip}/24";
-          serverPublicKey = self.lib.netwroks.wg0.hosts.coral.publicKey;
+          ip = "${hosts.cuttlefish.ip}/24";
+          serverPublicKey = hosts.coral.publicKey;
           allowedIPs = [ "10.100.0.0/24" ];
-          serverPort = self.lib.netwroks.wg0.port;
+          serverPort = port;
           configFile = config.sops.templates."wg0.conf".path;
         };
       };
