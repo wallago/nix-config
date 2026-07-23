@@ -4,8 +4,8 @@
     imports = [
       self.nixosModules.direnv
       self.nixosModules.nix-ld
-
       self.nixosModules.devApps
+      self.nixosModules.probe-rs
     ];
   };
 
