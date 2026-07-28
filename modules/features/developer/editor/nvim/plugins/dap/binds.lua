@@ -1,0 +1,13 @@
+local dap = require("dap")
+
+map("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP: toggle breakpoint" })
+map("n", "<leader>dB", function()
+	dap.set_breakpoint(vim.fn.input("Condition: "))
+end, { desc = "DAP: conditional breakpoint" })
+map("n", "<leader>dc", dap.continue, { desc = "DAP: continue / start" })
+map("n", "<leader>di", dap.step_into, { desc = "DAP: step into" })
+map("n", "<leader>do", dap.step_over, { desc = "DAP: step over" })
+map("n", "<leader>dO", dap.step_out, { desc = "DAP: step out" })
+map("n", "<leader>dr", dap.repl.toggle, { desc = "DAP: toggle REPL" })
+map("n", "<leader>dl", dap.run_last, { desc = "DAP: run last" })
+map("n", "<leader>dt", dap.terminate, { desc = "DAP: terminate" })

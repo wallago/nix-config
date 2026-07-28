@@ -1,0 +1,12 @@
+local map = vim.keymap.set
+map("n", "<leader>ff", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>", { desc = "Grep project" })
+map("n", "<leader>fb", "<CMD>Telescope buffers<CR>", { desc = "Buffers" })
+map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>", { desc = "Help" })
+map("n", "<leader>fr", "<CMD>Telescope resume<CR>", { desc = "Resume last picker" })
+map("n", "<leader>fk", "<CMD>Telescope keymaps<CR>", { desc = "Keymaps" })
+map("n", "<leader>/", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Search in buffer" })
+map("n", "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Paste from history" })
+map("n", '<leader>"', "<CMD>Telescope registers<CR>", { desc = "Registers" })
+map("n", "<leader>'", "<CMD>Telescope marks<CR>", { desc = "Marks" })
+map("n", "<leader>fz", "<CMD>Telekasten find_notes<CR>", { desc = "Notes" })
