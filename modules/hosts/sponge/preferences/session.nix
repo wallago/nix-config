@@ -7,11 +7,7 @@
         "--working-directory=/home/wallago"
         "-e"
         "vi"
-        "./Notes"
-        "-c"
-        "lua require('telekasten').goto_thisweek({ journal_auto_open = true })"
-        "-c"
-        "vsplit ./Notes/pickup-tasks.md"
+        "./sync-notes"
       ];
       webSecondary = [
         "zen-beta"
