@@ -68,6 +68,15 @@
             443
           ];
         };
+        "4837" = {
+          ip = "10.200.0.8";
+          publicKey = "9oLJDLTg6Z338A0WyDKQWgfGcXnUGEtA6NxgLAZ+fyI=";
+          ports = [
+            2201
+            443
+            3000
+          ];
+        };
         provision-iso = {
           ip = "10.200.0.254";
           publicKey = "Qfc0+PXgYKb7BnVFXObFRtsJT6lFXfhTzl6JDIJtVw4=";

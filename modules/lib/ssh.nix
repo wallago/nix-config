@@ -34,14 +34,21 @@
     };
     "4849" = [
       {
-        alias = "router";
+        alias = "4849-router";
         user = "root";
         port = 22;
       }
       {
-        alias = "griffon";
+        alias = "4849-griffon";
         user = "labcar";
         port = 2201;
+      }
+    ];
+    "4837" = [
+      {
+        alias = "4837-router";
+        user = "root";
+        port = 22;
       }
     ];
   };
