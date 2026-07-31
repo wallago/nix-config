@@ -70,6 +70,25 @@
               relative-to = "bottom-right";
             };
           }
+          {
+            matches = [
+              {
+                app-id = "com.floaty.term";
+              }
+            ];
+            open-floating = true;
+            default-floating-position = {
+              x = 0;
+              y = 40;
+              relative-to = "top";
+            };
+            default-column-width = {
+              fixed = 900;
+            };
+            default-window-height = {
+              fixed = 600;
+            };
+          }
         ];
     };
 }

@@ -192,6 +192,37 @@
             action.spawn = "zen-beta";
             hotkey-overlay.title = "Browser";
           };
+          "Mod+Grave" = {
+            action.spawn = [
+              "sh"
+              "-c"
+              ''
+                app=com.floaty.term
+                win=$(niri msg -j windows)
+                id=$(printf '%s' "$win" | ${lib.getExe pkgs.jq} -r \
+                  --arg a "$app" 'map(select(.app_id==$a))[0].id // empty')
+                if [ -z "$id" ]; then
+                  # First press: create the persistent floating terminal.
+                  exec ${lib.getExe pkgs.ghostty} --class="$app" --title=FloatingTerm
+                fi
+                term_ws=$(printf '%s' "$win" | ${lib.getExe pkgs.jq} -r \
+                  --arg a "$app" 'map(select(.app_id==$a))[0].workspace_id')
+                cur_ws=$(niri msg -j workspaces | ${lib.getExe pkgs.jq} -r \
+                  'map(select(.is_focused))[0].id')
+                if [ "$term_ws" = "$cur_ws" ]; then
+                  # Visible here -> hide it (park on scratch, keep focus put).
+                  niri msg action move-window-to-workspace --window-id "$id" --focus false scratch
+                else
+                  # Hidden/elsewhere -> bring it to the current workspace and focus it.
+                  idx=$(niri msg -j workspaces | ${lib.getExe pkgs.jq} -r \
+                    'map(select(.is_focused))[0].idx')
+                  niri msg action move-window-to-workspace --window-id "$id" "$idx"
+                  niri msg action focus-window --id "$id"
+                fi
+              ''
+            ];
+            hotkey-overlay.title = "Floating Terminal";
+          };
         };
     };
 }
