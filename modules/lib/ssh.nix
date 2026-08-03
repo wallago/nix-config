@@ -50,6 +50,11 @@
         user = "root";
         port = 22;
       }
+      {
+        alias = "4837-griffon";
+        user = "gordini";
+        port = 2201;
+      }
     ];
   };
 }
