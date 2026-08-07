@@ -34,6 +34,7 @@
         self.nixosModules.wireguardClient
         self.nixosModules.syncthing
         self.nixosModules.bootEmulatedSystems
+        self.nixosModules.docker
 
         self.nixosModules.disko
       ];
