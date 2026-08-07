@@ -36,6 +36,7 @@
         self.nixosModules.syncthing
         self.nixosModules.lanzaboote
         self.nixosModules.bootEmulatedSystems
+        self.nixosModules.docker
 
         self.nixosModules.disko
       ];
