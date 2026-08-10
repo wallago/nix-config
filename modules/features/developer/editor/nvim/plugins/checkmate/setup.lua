@@ -1,3 +1,4 @@
+local defaults = require("checkmate.config").get_defaults()
 require("checkmate").setup({
 	files = {
 		"**/sync-pm/{projects,work,perso}/*.md",
@@ -6,6 +7,13 @@ require("checkmate").setup({
 		"TODO.md",
 		"*.todo.md",
 	},
+	keys = vim.tbl_extend("force", defaults.keys, {
+		["<leader>Tt"] = {
+			rhs = "<cmd>Checkmate metadata toggle done<CR>",
+			desc = "Toggle todo item (stamps @done)",
+			modes = { "n", "v" },
+		},
+	}),
 	todo_states = {
 		-- Built-in states (cannot change markdown or type)
 		unchecked = { marker = "□" },
@@ -63,6 +71,24 @@ require("checkmate").setup({
 			-- Bare ids only; :PmBlock is the good path (labels + auto-stamping).
 			choices = function()
 				return require("pm").id_choices()
+			end,
+		},
+		done = {
+			aliases = { "completed", "finished" },
+			style = { fg = "#9ece6a" },
+			key = "<leader>Td",
+			sort_order = 30,
+			get_value = function()
+				return os.date("%Y-%m-%d")
+			end,
+			-- Don't demote `cancelled` (type = "complete") back to `checked`.
+			on_add = function(todo)
+				if not todo.is_complete() then
+					require("checkmate").set_todo_state(todo, "checked")
+				end
+			end,
+			on_remove = function(todo)
+				require("checkmate").set_todo_state(todo, "unchecked")
 			end,
 		},
 	},
