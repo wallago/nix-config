@@ -1,15 +1,17 @@
--- Delete the blank line below (<C-n>) or above (<C-e>) the cursor ────
-map("n", "<C-e>", function()
+-- Delete the blank line below (<A-E>) or above (<A-I>) the cursor;
+-- shifted siblings of the <A-e>/<A-i> inserts below. <C-e>/<C-i> are
+-- half-page window scrolling now, see binds/windows.lua  ─────────────
+map("n", "<A-E>", function()
 	vim.cmd([[silent +g/^\s*$/d]])
 	vim.cmd("noh")
 end, { silent = true })
 
-map("n", "<C-i>", function()
+map("n", "<A-I>", function()
 	vim.cmd([[silent -g/^\s*$/d]])
 	vim.cmd("noh")
 end, { silent = true })
 
--- Insert a blank line below (<A-n>) or above (<A-e>) while keeping
+-- Insert a blank line below (<A-e>) or above (<A-i>) while keeping
 -- the cursor put; paste mode suppresses autoindent/comment leaders ───
 map("n", "<A-e>", function()
 	vim.o.paste = true

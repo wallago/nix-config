@@ -4,6 +4,11 @@ map("n", "<C-w>e", "<C-w>j", o("↓ bottom"))
 map("n", "<C-w>i", "<C-w>k", o("↑ top"))
 map("n", "<C-w>o", "<C-w>l", o("→ right"))
 
+-- Scroll the window half a page, keeping the e=↓ / i=↑ convention.
+-- <C-i> takes over from jumplist-forward  ────────────────────────────
+map({ "n", "v" }, "<C-e>", "<C-d>", o("↓ scroll half page"))
+map({ "n", "v" }, "<C-i>", "<C-u>", o("↑ scroll half page"))
+
 -- Toggle between maximized split and the restored layout  ────────────
 local zoomed = false
 local restore_cmd
