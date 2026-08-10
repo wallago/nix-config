@@ -90,12 +90,6 @@
 
     # ─── Productivity ──────────────────────────────────────────────────────────
 
-    # Breaking-news ticker / notifier
-    eilmeldung = {
-      url = "github:christo-auer/eilmeldung";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # ─── Tooling ───────────────────────────────────────────────────────────────
 
     # Claude AI agent
