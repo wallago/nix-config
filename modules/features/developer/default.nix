@@ -13,6 +13,7 @@
     imports = [
       self.homeModules.editor
       self.homeModules.gh
+      self.homeModules.praline
       self.homeModules.versionControlManager
     ];
 
