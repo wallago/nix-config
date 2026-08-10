@@ -41,6 +41,8 @@
         self.homeModules.nvimPluginAutopairs
         self.homeModules.nvimPluginKulala
         self.homeModules.nvimPluginActionsPreview
+        self.homeModules.nvimPluginCheckmate
+        self.homeModules.nvimPluginPm
       ];
     };
     nvimPluginsOptions = {

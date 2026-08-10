@@ -28,6 +28,12 @@
               inherit (hosts) coral sponge worm;
             };
           };
+          pm = {
+            name = "sync-pm";
+            devices = {
+              inherit (hosts) coral sponge worm;
+            };
+          };
         };
       };
     };
