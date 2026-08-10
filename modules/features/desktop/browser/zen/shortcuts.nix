@@ -73,7 +73,7 @@
           modifiers.alt = true;
         }
         {
-          id = "goBackwardKb";
+          id = "goBackKb";
           key = "n";
           modifiers.alt = true;
         }
@@ -101,7 +101,7 @@
       commonShortcuts = workspaces ++ tabs ++ nav ++ compact ++ find ++ misc;
       commonConfig = {
         keyboardShortcuts = commonShortcuts;
-        keyboardShortcutsVersion = 19;
+        keyboardShortcutsVersion = 20;
       };
 
     in
