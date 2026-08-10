@@ -5,7 +5,12 @@
       programs.neovim.plugins = with pkgs.vimPlugins; [
         {
           plugin = blink-cmp;
-          config = builtins.readFile ./setup.lua;
+          config = builtins.concatStringsSep "\n" (
+            map builtins.readFile [
+              ./setup.lua
+              ./binds.lua
+            ]
+          );
         }
       ];
     };
