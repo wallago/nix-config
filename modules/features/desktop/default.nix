@@ -7,6 +7,7 @@
       self.nixosModules.compositor
       self.nixosModules.desktopShell
       self.nixosModules.printer
+      self.nixosModules.fileExplorer
     ];
   };
 
