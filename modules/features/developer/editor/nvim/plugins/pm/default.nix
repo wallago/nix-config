@@ -3,8 +3,8 @@
     programs.neovim.plugins = [
       {
         plugin = pkgs.runCommandLocal "pm-nvim" { } ''
-          mkdir -p $out/lua/pm
-          cp ${./setup.lua} $out/lua/pm/init.lua
+          mkdir -p $out/lua
+          cp -r ${./lua}/. $out/lua/
         '';
         type = "lua";
         config = ''require("pm").setup()'';
