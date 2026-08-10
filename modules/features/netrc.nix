@@ -5,7 +5,7 @@
       path = "/etc/nix/netrc";
       mode = "0440";
       owner = "root";
-      group = "nixbld";
+      group = "wheel";
     };
 
     nix.settings.netrc-file = "/etc/nix/netrc";
