@@ -16,13 +16,13 @@ end
 -- open-line o/O → j/J, prev-word-end ge → gk  ────────────────────────
 map({ "n", "v" }, "h", "n", o("Next search"))
 map({ "n", "v" }, "H", "N", o("Prev search"))
-map("n", "k", "e", o("End of word"))
-map("n", "K", "E", o("End of WORD"))
+map({ "n", "x", "o" }, "k", "e", o("End of word"))
+map({ "n", "x", "o" }, "K", "E", o("End of WORD"))
 map("n", "l", "i", o("Insert"))
 map("n", "L", "I", o("Insert at line start"))
 map("n", "j", "o", o("Open line below"))
 map("n", "J", "O", o("Open line above"))
-map("n", "gk", "ge", o("Prev end of word"))
+map({ "n", "x", "o" }, "gk", "ge", o("Prev end of word"))
 
 -- Display-line variants: in n/v mode e/i use gj/gk (overriding the
 -- plain j/k from the loop above) so wrapped lines aren't skipped  ────
