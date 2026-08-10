@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "claude-opus-5",
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(jj status*)",
+      "Bash(jj log*)",
+      "Bash(jj diff*)",
+      "Bash(jj show*)",
+      "Bash(just*)",
+      "Bash(taplo*)",
+      "Bash(typos*)",
+      "Bash(committed*)",
+      "Bash(git cliff*)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(jj git push*)",
+      "Bash(git commit*)",
+      "Bash(jj commit*)",
+      "Bash(jj describe*)",
+      "Bash(git tag*)",
+      "Bash(git reset*)",
+      "Bash(git rebase*)",
+      "Bash(jj rebase*)",
+      "Bash(jj abandon*)",
+      "Bash(jj bookmark*)",
+      "Bash(gh pr create*)",
+      "Bash(gh release*)",
+      "Bash(just publish*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./secrets/**)",
+      "Read(./.direnv/**)"
+    ]
+  }
+}
