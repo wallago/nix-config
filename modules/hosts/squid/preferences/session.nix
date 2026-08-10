@@ -49,6 +49,9 @@
         "ghostty"
         "--title=home"
         "--working-directory=/home/wallago/"
+        "-e"
+        "vi"
+        "./sync-pm/gateway.md"
       ];
     in
     {
