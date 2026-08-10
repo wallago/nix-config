@@ -1,16 +1,5 @@
-{ inputs, ... }:
 {
-  flake.nixosModules.eilmeldung = {
-    nixpkgs.overlays = [
-      inputs.eilmeldung.overlays.default
-    ];
-  };
-
   flake.homeModules.eilmeldung = {
-    imports = [
-      inputs.eilmeldung.homeManager.default
-    ];
-
     programs.eilmeldung = {
       enable = true;
       settings = {

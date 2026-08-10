@@ -2,7 +2,6 @@
 {
   flake.nixosModules.productivity = {
     imports = [
-      self.nixosModules.eilmeldung
       self.nixosModules.matcha
     ];
   };
