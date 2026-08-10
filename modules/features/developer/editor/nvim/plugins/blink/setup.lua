@@ -1,8 +1,4 @@
 require("blink.cmp").setup({
-	-- "default" = <C-space> open, <C-y> accept, <C-n>/<C-p> navigate.
-	-- Use "enter" if you want <CR> to confirm (matches your old cmp habit).
-	keymap = { preset = "enter" },
-
 	appearance = { nerd_font_variant = "mono" },
 
 	sources = {
