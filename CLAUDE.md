@@ -1,78 +1,6 @@
-# CLAUDE.md
-
-## Operating mode: explain first, then act
-
-You may edit files to carry out a task, but you must **always explain _why_
-first** and **always leave me the option to do the work myself** if I prefer.
-Never touch remote state or run mutating commands on your own.
-
-### Hard rules
-
-1. **You may edit, create, move, or delete files** to carry out a task I've
-   asked for, but only after a short explanation of _why_, and always offer to
-   let me apply it myself instead. If I say something like "I'll do it", "let
-   me do it", "just show me", or "propose only", then **don't edit** — hand me
-   the diff and stop. A question is not a request to act: if I'm only asking,
-   explain and propose, don't edit.
-2. **Never run mutating commands** on your own: no `git commit`, `git push`,
-   `git checkout`, `cargo fix`, `cargo install`, `nixos-rebuild`,
-   `nix profile install`, `rm`, `mv`, package installs, or anything that
-   writes to disk or to remote state. (Editing files with your tools is
-   allowed per rule 1; running shell commands that mutate is not.)
-3. **Always explain before you act.** Whether you edit or just propose, give:
-   - a short explanation of _why_,
-   - what you changed (or the exact diff / file content, in a fenced block),
-   - the file path and location,
-   - any commands _I_ should run myself.
-4. If a request is ambiguous about whether to act, **assume I only want the
-   plan** and ask before editing anything.
-
-### Read-only by default
-
-Read-only commands are fine without asking: `nix flake check`,
-`nixos-rebuild dry-build`, `nix eval`, `just check-dry`, `just eval <host>`,
-`just diff <host>` (dry-activate), `just hosts`, `just info`, `git status`,
-`git diff`, `git log`, `ls`, `cat` (non-secret files).
-
-If you think a mutating action is genuinely necessary, **describe it and stop** —
-let me decide.
-
-## Secrets and sensitive files: do not read
-
-Do not open, print, summarize, or pass to any tool the contents of:
-
-- `.env`, `.env.*`, `*.env`
-- `secrets/`, `secrets.nix`, `secrets.yaml`, anything `sops`-encrypted
-- `*.key`, `*.pem`, `*.p12`, `id_rsa*`, `*.crt`, credential / token files
-- `~/.cargo/credentials*`, `~/.aws/`, `~/.ssh/`, `~/.config/` credential files
-- `.netrc`, `.npmrc` (auth lines), CI secret files
-
-If a task seems to need a secret, tell me what's needed and let me handle it.
-Never echo environment variables (`env`, `printenv`, `echo $VAR`) — assume
-they may contain credentials.
-
-## Code review style
-
-- Point at the smallest correct change; don't rewrite whole files when a few
-  lines suffice.
-- Flag risky changes (unsafe blocks, system-level Nix changes, anything
-  touching auth or networking) explicitly.
-- Prefer showing a unified diff so I can apply it myself.
-- If you're unsure, say so rather than guessing.
-
-## Project context
+# Nix Config
 
 Build a Nixos config.
-
-### Nix config project
-
-- Validate with `nix flake check` / `nixos-rebuild dry-build` — never
-  `switch` or `boot`.
-- Don't restructure flake inputs, modules, or the host layout unprovoked.
-- Treat hardware config, bootloader, and disk/filesystem modules as
-  high-risk: propose, never apply.
-- Keep changes declarative and minimal; show the diff for the relevant
-  module.
 
 ## Conventions
 
@@ -81,7 +9,7 @@ Build a Nixos config.
   file under `modules/` is auto-imported** as a flake-parts module. There are
   no manual `imports` lists — to add a module, drop a file in the tree.
 - **Layout under `modules/`:**
-  - `base/` — option *declarations* (the `preferences.*` namespace) + core defaults.
+  - `base/` — option _declarations_ (the `preferences.*` namespace) + core defaults.
   - `features/` — cross-host features (desktop, shell, networking, ai, …), toggled via `preferences.*`.
   - `hosts/<name>/` — per-host `configuration.nix`, `hardware.nix`, `disko.nix`, `secrets.nix`. Hosts: `coral`, `sponge`, `squid`.
   - `users/`, `secrets/`, and `parts.nix` (systems + formatter).
@@ -95,9 +23,60 @@ Build a Nixos config.
   Mutating (you run these): `just check`/`just fmt` (formats files),
   `just switch|boot|test <host>`, `just update`.
 
-## Summary
+## Rules
 
-Explain clearly and show exact changes. You may edit files to do the work, but
-always explain _why_ first and always leave me the option to apply it myself.
-Never run mutating commands or touch secrets on your own. When in doubt: stop
-and ask.
+Standalone rules live in `.claude/rules/` and are imported here — only files
+reachable from `CLAUDE.md` get loaded, so a new rule needs a line below.
+
+@.claude/rules/propose-before-writing.md
+@.claude/rules/no-repo-mutation.md
+@.claude/rules/no-hanging-commands.md
+@.claude/rules/prevent-looping-fail.md
+
+@.claude/rules/nix.md
+
+@.claude/rules/release.md
+
+## Commands
+
+`just` is the entry point, not the raw toolchain. `just --list` for the rest.
+
+- `just check` — fast type-check, no binary
+- `just test` — test suite
+- `just fmt` — format sources in place
+- `just lint` — lint with warnings denied
+- `just ci` — the full local gate; run this before pushing
+
+<!-- TODO — anything above that is wrong here, and any command that exists only
+     in this repo: seeding, fixtures, a dev server, a hardware target. -->
+
+## Constraints
+
+- `typos` runs over the source. Add a real term to `typos.toml` rather than
+  rewording around it.
+
+- Commit messages must be Conventional Commits; `committed` checks them in CI.
+
+- Links in Markdown are checked in CI. A placeholder URL fails the build.
+
+Do not open, print, summarize, or pass to any tool the contents of:
+
+- `.env`, `.env.*`, `*.env`
+- `secrets/`, `secrets.nix`, `secrets.yaml`, anything `sops`-encrypted
+- `*.key`, `*.pem`, `*.p12`, `id_rsa*`, `*.crt`, credential / token files
+- `~/.cargo/credentials*`, `~/.aws/`, `~/.ssh/`, `~/.config/` credential files
+- `.netrc`, `.npmrc` (auth lines), CI secret files
+
+If a task seems to need a secret, tell me what's needed and let me handle it.
+Never echo environment variables (`env`, `printenv`, `echo $VAR`) — assume
+they may contain credentials.
+
+## Verifying a change
+
+`just ci-light` is the gate. Green means green.
+
+<!-- TODO — what the gate *cannot* catch here, and how it gets checked instead.
+     Be specific. "The binary is a full-screen TUI so it can't be driven
+     headlessly — UI changes get verified by reading, by `cargo check`, and by
+     asking me to run it" is the useful kind. Never claim a change works
+     without saying how it was checked. -->
