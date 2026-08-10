@@ -10,44 +10,44 @@
             email = config.programs.git.settings.user.email;
           };
           ui = {
-            pager = "less -FRX";
-            style = "square";
             diff-editor = ":builtin";
             merge-editor = ":builtin";
-            default-command = "log-recent";
+            default-command = "log";
+            show-cryptographic-signatures = true;
+          };
+          revsets = {
+            log = "default() & recent()";
+            bookmark-advance-to = "closest_pushable(@)";
+          };
+          revset-aliases = {
+            "default()" = "coalesce(trunk(), root())::present(@) | ancestors(visible_heads() & recent(), 5)";
+            "recent()" = ''committer_date(after:"1 month ago")'';
+            "closest_pushable(to)" = ''
+              heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))
+            '';
           };
           aliases = {
             l = [ "log" ];
-            log-recent = [
-              "log"
-              "-r"
-              "default() & recent()"
+            s = [ "status" ];
+            d = [ "diff" ];
+            f = [
+              "git"
+              "fetch"
+            ];
+            n = [ "new" ];
+            sq = [ "squash" ];
+            pp = [
+              "git"
+              "push"
             ];
             tug = [
               "bookmark"
-              "move"
-              "--from"
-              "heads(::@ & bookmarks())"
-              "--to"
-              "closest_pushable(@)"
+              "advance"
             ];
-            s = [ "status" ];
-            d = [ "diff" ];
-            n = [ "new" ];
-            sq = [ "squash" ];
             mine = [
               "log"
               "-r"
               "trunk().."
-            ];
-            amend = [
-              "squash"
-              "--into"
-              "@-"
-            ];
-            pp = [
-              "git"
-              "push"
             ];
             sync = [
               "rebase"
@@ -55,21 +55,12 @@
               "trunk()"
             ];
           };
-          revset-aliases = {
-            "closest_pushable(to)" =
-              "heads(::to & mutable() & ~description(exact:\" \") & (~empty() | merges()))";
-            "default()" = "coalesce(trunk(),root())::present(@) | ancestors(visible_heads() & recent(), 5)";
-            "recent()" = "committer_date(after:\" 1 month ago \")";
-          };
           template-aliases = {
             "format_short_cryptographic_signature(sig)" = ''
               if(sig,
                 sig.status(),
                 "(no sig)",
               )
-            '';
-            "format_short_change_id_with_hidden_and_divergent_info(id)" = ''
-              id.shortest(6)
             '';
           };
         };
