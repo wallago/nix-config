@@ -12,6 +12,7 @@
   flake.homeModules.developer = {
     imports = [
       self.homeModules.editor
+      self.homeModules.gh
       self.homeModules.versionControlManager
     ];
 
