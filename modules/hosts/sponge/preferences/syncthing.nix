@@ -28,6 +28,12 @@
               inherit (hosts) coral squid worm;
             };
           };
+          pm = {
+            name = "sync-pm";
+            devices = {
+              inherit (hosts) coral squid worm;
+            };
+          };
         };
       };
     };

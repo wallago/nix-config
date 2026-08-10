@@ -28,6 +28,12 @@
               inherit (hosts) sponge squid worm;
             };
           };
+          pm = {
+            name = "sync-pm";
+            devices = {
+              inherit (hosts) sponge squid worm;
+            };
+          };
         };
       };
     };
