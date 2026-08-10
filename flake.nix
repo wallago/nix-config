@@ -51,9 +51,10 @@
     # ─── Desktop ───────────────────────────────────────────────────────────────
 
     # Scrollable-tiling Wayland compositor
+    nixpkgs-niri.url = "github:nixos/nixpkgs/e72e4f299401a3689d4b3d5fc6496b11db7064eb";
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-niri";
     };
 
     # Niri feature
