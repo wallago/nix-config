@@ -62,12 +62,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # A beautiful, minimal desktop shell for Wayland
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Community-driven Nix Flake for the Zen browser
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -114,14 +108,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bp-to-bagels-csv = {
-      url = "github:wallago/bp-to-bagels-csv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Generate network/infra diagrams from the NixOS configs
     nix-topology = {
       url = "github:oddlama/nix-topology";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Repo builder
+    praline = {
+      url = "github:wallago/praline/release/v0.2.0-alpha.8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    bp-to-bagels-csv = {
+      url = "github:wallago/bp-to-bagels-csv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
