@@ -81,6 +81,10 @@
                   type = types.nullOr types.str;
                   default = null;
                 };
+                fullscreen = mkOption {
+                  type = types.bool;
+                  default = false;
+                };
                 maximized = mkOption {
                   type = types.bool;
                   default = false;

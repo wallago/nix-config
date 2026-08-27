@@ -18,6 +18,7 @@
               );
             }
             // lib.optionalAttrs e.maximized { open-maximized = true; }
+            // lib.optionalAttrs e.fullscreen { open-fullscreen = true; }
             // lib.optionalAttrs (e.workspace != null) { open-on-workspace = e.workspace; }
           ) (lib.filter (e: e.workspace != null) config.preferences.session)
         )

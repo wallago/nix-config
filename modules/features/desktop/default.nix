@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.nixosModules.desktop = {
+  flake.nixosModules.desktop = { pkgs, ... }: {
     imports = [
       self.nixosModules.displayManager
       self.nixosModules.fonts
