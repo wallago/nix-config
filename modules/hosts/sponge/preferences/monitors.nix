@@ -25,6 +25,18 @@
           x = -1920;
         };
       };
+      "DP-1" = {
+        mode = {
+          width = 1280;
+          height = 768;
+          refresh = 59.870;
+        };
+        scale = 1.0;
+        position = {
+          y = 1080;
+          x = -1920;
+        };
+      };
       "HDMI-A-1" = {
         mode = {
           width = 2560;

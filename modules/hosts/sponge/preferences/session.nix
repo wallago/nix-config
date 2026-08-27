@@ -41,6 +41,12 @@
         "-e"
         "bagels"
       ];
+      monitorCmd = [
+        "ghostty"
+        "--title=monitor"
+        "-e"
+        "vi"
+      ];
       homeTermCmd = [
         "ghostty"
         "--title=home"
@@ -98,6 +104,13 @@
           matchTitle = "bagels";
           workspace = "productivity";
           maximized = true;
+        }
+        {
+          command = monitorCmd;
+          matchAppId = "com.mitchellh.ghostty";
+          matchTitle = "monitor";
+          workspace = "monitor";
+          fullscreen = true;
         }
       ];
     };
