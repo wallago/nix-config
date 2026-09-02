@@ -16,11 +16,25 @@
           sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
           upstream = "http://127.0.0.1:${toString cfg.attic.port}";
           clientMaxBodySize = "0";
+          allowedNetworks = [
+            "10.100.0.0/24"
+          ];
         };
         "sync.wallago.xyz" = {
           sslCertificateKey = config.sops.secrets."wallago.xyz-ssl-key".path;
           sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
           upstream = "http://127.0.0.1:8384";
+          allowedNetworks = [
+            "10.100.0.0/24"
+          ];
+        };
+        "atuin.wallago.xyz" = {
+          sslCertificateKey = config.sops.secrets."wallago.xyz-ssl-key".path;
+          sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
+          upstream = "http://127.0.0.1:51844";
+          allowedNetworks = [
+            "10.100.0.0/24"
+          ];
         };
       };
     };
