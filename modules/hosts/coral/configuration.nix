@@ -29,6 +29,8 @@
         self.nixosModules.syncthing
         self.nixosModules.nginxReverseProxy
         self.nixosModules.attic
+        self.nixosModules.atuinServer
+        self.nixosModules.atuinClient
 
         self.nixosModules.preferencesMinifluxCoral
 
