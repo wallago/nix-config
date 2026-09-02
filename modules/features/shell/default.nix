@@ -1,7 +1,10 @@
 { self, ... }:
 {
   flake.nixosModules.shell = {
-    imports = [ self.nixosModules.fish ];
+    imports = [
+      self.nixosModules.fish
+      self.nixosModules.atuinClient
+    ];
   };
 
   flake.homeModules.shell = {
