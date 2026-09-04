@@ -19,7 +19,8 @@
         auto_sync = true;
         sync_frequency = "5m";
         sync_address = "https://atuin.wallago.xyz";
-        search_mode = "prefix";
+        search_mode = "fuzzy";
+        filter_mode = "global";
       };
     };
   };
