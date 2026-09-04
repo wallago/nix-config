@@ -31,7 +31,9 @@
         interactiveShellInit = ''
           fish_vi_key_bindings
           set fish_greeting ""
-          fzf_configure_bindings --history=\cr
+          fzf_configure_bindings --history=
+          bind ctrl-r _atuin_search
+          bind -M insert ctrl-r _atuin_search
         '';
         plugins = [
           {
