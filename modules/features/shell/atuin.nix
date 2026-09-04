@@ -8,6 +8,7 @@
         enable = true;
         inherit port;
         maxHistoryLength = 8192;
+        openRegistration = true;
       };
     };
 

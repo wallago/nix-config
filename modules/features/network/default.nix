@@ -11,13 +11,6 @@
         networkmanager.enable = true;
         firewall.enable = true;
         inherit hostName;
-        hosts = {
-          "10.100.0.1" = [
-            "atuin.wallago.xyz"
-            "sync.wallago.xyz"
-            "cache.wallago.xyz"
-          ];
-        };
       };
     };
 
