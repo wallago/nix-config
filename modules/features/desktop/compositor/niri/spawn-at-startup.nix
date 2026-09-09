@@ -35,7 +35,7 @@
         map (
           e:
           if e.workspace == null then { inherit (e) command; } else { command = [ "${placeOnWorkspace e}" ]; }
-        ) config.preferences.session
+        ) (lib.filter (e: e.key == null) config.preferences.session)
         ++ [
           {
             command = [

@@ -1,116 +1,58 @@
-{
+{ self, ... }: {
   flake.homeModules.preferencesSessionSponge =
+    { pkgs, lib, ... }:
     let
-      notesCmd = [
-        "ghostty"
-        "--title=notes"
-        "--working-directory=/home/wallago"
-        "-e"
-        "vi"
-        "./sync-notes"
-      ];
-      webSecondary = [
-        "zen-beta"
-        "--name=zen-secondary"
-        "--class=zen-secondary"
-        "-P"
-        "secondary"
-        "--new-instance"
-      ];
-      rssCmd = [
-        "ghostty"
-        "--title=rss"
-        "-e"
-        "eilmeldung"
-      ];
-      webMainCmd = [
-        "zen-beta"
-        "--name=zen-main"
-        "--class=zen-main"
-        "--new-instance"
-      ];
-      mailCmd = [
-        "ghostty"
-        "--title=matcha"
-        "-e"
-        "matcha"
-      ];
-      expenseTrackerCmd = [
-        "ghostty"
-        "--title=bagels"
-        "-e"
-        "bagels"
-      ];
-      monitorCmd = [
-        "ghostty"
-        "--title=monitor"
-        "-e"
-        "vi"
-      ];
-      homeTermCmd = [
-        "ghostty"
-        "--title=home"
-        "--working-directory=/home/wallago/"
-        "-e"
-        "vi"
-        "./sync-pm/gateway.md"
-      ];
+      app = self.lib.app.command { inherit pkgs lib; };
     in
     {
       preferences.session = [
         {
-          command = notesCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "notes";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = webSecondary;
-          matchAppId = "zen-secondary";
+          command = app.webSecondary;
+          matchAppId = "zen.secondary";
           workspace = "browser-secondary";
           maximized = true;
         }
         {
-          command = webMainCmd;
-          matchAppId = "zen-main";
-          workspace = "browser-main";
-          maximized = true;
-        }
-        {
-          command = rssCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "rss";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = homeTermCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "home";
-          workspace = "home";
-          maximized = true;
-        }
-        {
-          command = mailCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "matcha";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = expenseTrackerCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "bagels";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = monitorCmd;
+          command = app.monitor;
           matchAppId = "com.mitchellh.ghostty";
           matchTitle = "monitor";
           workspace = "monitor";
           fullscreen = true;
+        }
+        {
+          command = app.todo;
+          matchAppId = "com.slot.todo";
+          matchTitle = "todo";
+          key = "1";
+        }
+        {
+          command = app.note;
+          matchAppId = "com.slot.notes";
+          matchTitle = "notes";
+          key = "2";
+        }
+        {
+          command = app.mail;
+          matchAppId = "com.slot.mail";
+          matchTitle = "matcha";
+          key = "3";
+        }
+        {
+          command = app.webMain;
+          matchAppId = "com.slot.zen.main";
+          key = "4";
+        }
+        {
+          command = app.resources;
+          matchAppId = "com.slot.resources";
+          matchTitle = "resources";
+          key = "9";
+        }
+        {
+          command = app.term;
+          matchAppId = "com.slot.term";
+          matchTitle = "term";
+          key = "0";
         }
       ];
     };
