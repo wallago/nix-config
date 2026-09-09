@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.nixosModules.desktop = { pkgs, ... }: {
+  flake.nixosModules.desktop = {
     imports = [
       self.nixosModules.displayManager
       self.nixosModules.fonts
@@ -20,6 +20,7 @@
         self.homeModules.browser
         self.homeModules.wallpaper
         self.homeModules.terminalEmulator
+        self.homeModules.cheatsheet
       ];
 
       home.packages = with pkgs; [
