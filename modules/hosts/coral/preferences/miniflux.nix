@@ -5,7 +5,7 @@
       preferences.miniflux = {
         url = "rss.wallago.xyz";
         port = 5503;
-        adminCredentialsFile = config.sops.secrets."miniflux-credentials".path;
+        adminCredentialsFile = config.sops.templates."miniflux-credentials".path;
       };
     };
 }
