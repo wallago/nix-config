@@ -1,0 +1,1114 @@
+ ▐▛███▛█   Claude Code v2.1.252
+▝▜██████▀  Opus 5 · Claude Pro
+  ▝▝ ▝▝    ~/nix-config
+
+▎ Using Opus 5 (from .claude/settings.json) · /model
+
+❯ for example i search a way to have a nice sheetcheat to see more visual and   
+  graphic than the one i have with new niri feature wit mod+? i wand to have    
+  for now like and png or something else but what should i do to make you do it 
+  nicely which tool are you fine with , should it be and independant repo or    
+  something else ?                                                              
+
+● Skill(superpowers:brainstorming)
+  ⎿  Successfully loaded skill
+
+● Using superpowers:brainstorming to shape this. First, let me look at what you
+  actually have.
+
+  Read 1 file, listed 1 directory (ctrl+o to expand)
+
+● Quick answers to your meta-questions first, then one question back.
+
+  Repo: keep it here, not standalone. Your binds already live in binds.nix as
+  structured Nix data with hotkey-overlay.title on nearly every entry — that's
+  the single source of truth. A separate repo means hand-maintaining a copy that
+  drifts the first time you rebind something. A Nix derivation in
+  modules/features/desktop/compositor/niri/ that generates the cheatsheet from
+  the same attrset is the whole point.
+
+  Tool: I'd avoid a PNG. Pixel output means fixed resolution, no scaling on your
+  different outputs, and I can't iterate on it without rendering and squinting.
+  Text-based formats I can generate deterministically and you can diff — SVG or
+  HTML/CSS — are much better. I'm happy with either.
+
+  I also see you already tried this once (the commented-out Mod+Shift+Slash
+  block: ghostty + fzf + glow over markdown files). Worth knowing what made you
+  abandon it — but first:
+
+  What should the graphic actually look like?
+
+  - A — Keyboard map. Draw your physical layout (you're on a Colemak-ish/custom
+    map given I/E/Y/U/N/O), color-code keys by category, label each with its
+    action. Layered: a base view, plus Shift/Ctrl variants. This is the one
+    that's genuinely "visual" and would teach you the spatial logic of your own
+    binds.
+  - B — Grouped card grid. Your existing sections (Utils / Layout Behavior / …)
+    as columns of key → action pairs, styled. Prettier than the built-in
+    overlay, same information shape.
+  - C — Both, one page. Keyboard map on top, grouped list below as the lookup
+    table.
+
+  My recommendation is A, because B is only a reskin of what Mod+? already gives
+  you — it wouldn't solve the thing you're actually unhappy about.
+
+✻ Worked for 38s · done 6:23 PM
+
+❯  SVG or HTML/CSS — are much better ok nice go for it should i creat a soft to 
+  make you generate it ? and how should render it ?                             
+
+  Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● Both answers, then the one thing still open.
+
+  "Should I create a soft to generate it?" — No. Don't write a separate program.
+  The generator is Nix itself: a module reads the binds attrset, emits an SVG
+  string via pkgs.writeText, and the result is a path in the store. No runtime
+  dependency, no second language, and it can't drift from your binds because
+  it's built from them. Nix string templating is bad at computing layout, but a
+  keyboard map doesn't need computed layout — the key geometry is a fixed
+  skeleton and Nix only fills in labels per keysym. That's well within what it
+  handles cleanly.
+
+  One structural note: right now binds.nix keys on strings like "Mod+Shift+F"
+  with the title alongside the action. To feed both niri and the cheatsheet I'd
+  want a small shared attrset those two are derived from, rather than
+  string-parsing "Mod+Shift+F" back apart. That's a refactor of binds.nix, so it
+  goes in the design.
+
+  "How to render it?" — SVG opened in a lightweight Wayland image viewer,
+  toggled by a bind. You already have most of this: window-rules.nix:38 has a
+  ^Cheatsheet$ rule (floating, 900px, top-left) left over from the fzf/glow
+  attempt, and the commented-out Mod+Shift+Slash block has the toggle logic.
+  Both get reused. You have no image viewer installed, so it needs one — swayimg
+  (Wayland-native, SVG via librsvg, transparency, settable app-id) over imv.
+  The alternative is generating HTML and opening it in a browser window; you'd
+  get real text layout and web fonts, but ~1s startup and a browser in the loop
+  for a thing you want to feel instant. I'd take SVG.
+
+  Caveat to settle later: 900px fixed width is narrow for a keyboard map — that
+  rule will likely want widening.
+
+  Still unanswered from my last message, and it decides the whole design:
+
+  What's on the page?
+
+  - A — Keyboard map. Your physical layout drawn out, keys colored by category,
+    labeled with actions. Layered views for base / Shift / Ctrl.
+  - B — Grouped card grid. Your existing sections as styled columns of key → 
+    action.
+  - C — Both on one page. Map on top, grouped list beneath as the lookup table.
+
+  I recommend A — B is a reskin of what Mod+? already shows you, which is the
+  thing you said isn't working.
+
+✻ Crunched for 44s · done 6:25 PM
+
+※ recap: We're designing a visual niri keybind cheatsheet generated from your binds.nix as SVG, rendered in swayimg via a toggle bind. Next: pick the page layout, keyboard map (my recommendation), grouped card grid, or both. (disable recaps in /config)
+
+❯ [Image #1] something like this could be great without header and footer       
+  ⎿  [Image #1]
+
+  Searched for 1 pattern, ran 1 shell command (ctrl+o to expand)
+
+● Good — that's option B, done well. Your call; going with it.
+
+  One correction to what I said earlier: I recommended SVG when the plan was a
+  keyboard map, where the geometry is a fixed skeleton. This design isn't that.
+  Cards have different row counts, and keycap chips are variable width (SHIFT vs
+  Q). Hand-written SVG means I compute every y-coordinate and every chip width
+  from text metrics I can't measure — fragile, and it breaks the moment you
+  rename a bind. This design needs a real layout engine.
+
+  Context I picked up: you have ~46 binds in three comment-sections (Utils /
+  Layout Behavior / Apps), which regroup naturally into about six cards —
+  Navigation, Windows, Workspaces, Monitors, Layout, Apps. Good fit for the
+  reference. You also have no global palette module (catppuccin lives only
+  inside nvim), so the accent colors get defined in the cheatsheet module
+  itself. If you'd rather hoist a shared palette into base/, say so — I'm not
+  folding that in unasked.
+
+  Which layout engine builds the picture?
+
+  - Typst — pkgs.typst, ~30MB, compiles a generated .typ to PNG/SVG at build
+    time. Real layout (grid, auto-sizing boxes, rounded rects, gradients, custom
+    fonts), fully deterministic, trivial for Nix to emit. Cost: no blur, so the
+    neon glow around the cards in your reference becomes a flat accent stroke.
+    Everything else reproduces.
+  - HTML/CSS → headless Chromium screenshot at build time — exact fidelity to
+    the reference, glows included, and CSS is the thing that design was drawn
+    in. Cost: Chromium enters your build closure. That's a ~1GB substitution you
+    don't currently have, pulled in to render a cheatsheet.
+  - HTML/CSS shown live in a browser window — no build-time render, full CSS.
+    Cost: a browser starting up every time you hit the key, and Firefox/zen is
+    awkward to pin to a specific app-id and floating geometry.
+
+  I recommend Typst. It's the only one that's both light and deterministic, and
+  losing the glow is a cosmetic hit on a design that's already carried by the
+  accent colors and the keycap chips.
+
+  One practical note regardless of choice: I can't see the rendered output.
+  Expect to paste a screenshot back at me a few times while we tune it. So I'd
+  build the template standalone first with the binds hardcoded, get it looking
+  right, and only then wire it to the real attrset — fewer rebuild cycles
+  through Nix while the design is still moving.
+
+✻ Cooked for 59s · done 6:39 PM
+
+❯ go for typst it will be great i never used it                                 
+
+  Searched for 2 patterns, read 1 file (ctrl+o to expand)
+
+● Both fonts you need are already in modules/features/desktop/fonts.nix —
+  FiraCode Nerd Font for the keycaps, Noto Sans for the labels — so typst can be
+  pointed at those store paths in the build sandbox with no new dependency.
+
+  Quick orientation since you haven't used it: typst is a markup language that
+  compiles to PDF/PNG/SVG, with a real scripting layer. You write #grid(...),
+  #box(fill: .., radius: ..), #text(..). It's much closer to writing a document
+  than writing SVG, and the layout engine sizes boxes around their content —
+  which is exactly the problem we needed solved. Nix's job is only to emit a
+  .typ file; typst does the rest.
+
+  Now the design, first section.
+
+  1. Data model
+
+  The blocker is that binds.nix keys on strings like "Mod+Ctrl+Shift+N". The
+  cheatsheet needs the modifiers as separate chips, so string-splitting that
+  back apart is the wrong direction. Instead, one shared list becomes the source
+  for both consumers:
+
+  { mods = [ "Mod" "Shift" ]; key = "F";
+    title = "Fullscreen"; category = "windows";
+    action.fullscreen-window = [ ]; }
+
+  binds.nix derives the niri attribute name by joining mods ++ [ key ] with +,
+  and keeps hotkey-overlay.title from title — so niri's built-in Mod+? keeps
+  working unchanged. The cheatsheet reads the same list and gets mods and key
+  pre-split for the chips.
+
+  Two things fall out of this:
+
+  - category is new data you'll set per bind. It's what assigns a bind to a
+    card, so a new bind appears on the cheatsheet automatically once it's
+    tagged. A bind with an unknown category should fail the build rather than
+    silently vanish from the sheet.
+  - Key display names. BracketLeft → [, Return → RETURN, Escape → ESC. A small
+    lookup table in the cheatsheet module, falling through to the raw name.
+
+  Proposed cards
+
+  Your 46 binds regrouped into the reference's six-card grid:
+
+  ┌────────────┬───────┬─────────────────────────────────────────────────────┐
+  │    Card    │ Binds │                      Contents                       │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ Navigation │ 6     │ focus column left/right, focus window up/down,      │
+  │            │       │ overview, focus floating↔tiling                     │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ Windows    │ 8     │ close, fullscreen, expand, float, rotate width,     │
+  │            │       │ center column, consume/expel left+right             │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ Workspaces │ 4     │ focus workspace up/down, move column to workspace   │
+  │            │       │ up/down                                             │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ Monitors   │ 8     │ focus monitor ×4, move column to monitor ×4         │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ Apps       │ 5     │ terminal, menu, browser, lock, screenshot           │
+  ├────────────┼───────┼─────────────────────────────────────────────────────┤
+  │ System     │ 3     │ exit niri, switch keyboard layout, cheatsheet       │
+  │            │       │ itself                                              │
+  └────────────┴───────┴─────────────────────────────────────────────────────┘
+
+  The Mod+Shift-move counterparts (move column left/right, move window up/down)
+  I've put in Navigation alongside their focus versions rather than in Windows —
+  they read better as pairs. Say if you'd rather they sit in Windows.
+
+  Does that grouping look right, and are you happy adding a category field to
+  every bind?
+
+✻ Brewed for 56s · done 6:42 PM
+
+❯ yup                                                                           
+
+  Searched for 2 patterns, read 1 file (ctrl+o to expand)
+
+● 2. Architecture
+
+  The important choice here is not generating typst source from Nix. Nix's ''
+  strings would have to escape typst's # and $ sigils, and you'd end up with an
+  unreadable, unformattable blob. Instead the split is:
+
+  - Nix emits data only — a binds.json written with pkgs.writers.writeJSON,
+    containing the six cards, each with its label, subtitle, accent colour and
+    rows of {mods, key, title}.
+  - The typst file is a real file in the repo — it does #let cards = 
+    json("binds.json") and holds all the styling: the card function, the keycap
+    function, the palette, the grid. Syntax-highlighted, formattable, and I can
+    iterate on it standalone against a hand-written binds.json before any of it
+    touches Nix.
+  - The derivation just joins them — runCommand puts both in a build dir and
+    runs typst compile --font-path <fira> --font-path <noto>, producing a PNG in
+    the store.
+
+  Canvas is fixed at 1600×900, exported at 2× for sharpness. That's sized to
+  squid's eDP-1 — 1920×1080 at scale 1.2 is your tightest realistic target;
+  everything on sponge is roomier.
+
+  Files
+
+  Five files, which is over your two-file threshold, so here's the list before
+  any diffs:
+
+  ┌────────────────────────────────┬─────────────────────────────────────────┐
+  │              File              │              What happens               │
+  ├────────────────────────────────┼─────────────────────────────────────────┤
+  │                                │ New. flake.lib.niri.keybinds = { pkgs,  │
+  │ niri/keybinds.nix              │ lib }: [ … ] — the ~46 bind records,    │
+  │                                │ with category. The single source of     │
+  │                                │ truth.                                  │
+  ├────────────────────────────────┼─────────────────────────────────────────┤
+  │                                │ Rewritten as a thin derivation from     │
+  │ niri/binds.nix                 │ that list; drops from 197 lines to      │
+  │                                │ roughly 20. Niri's own Mod+? overlay is │
+  │                                │  unaffected.                            │
+  ├────────────────────────────────┼─────────────────────────────────────────┤
+  │                                │ New. Card metadata, key display names,  │
+  │ niri/cheatsheet/default.nix    │ the JSON writer, the typst derivation,  │
+  │                                │ and the toggle script.                  │
+  ├────────────────────────────────┼─────────────────────────────────────────┤
+  │ niri/cheatsheet/cheatsheet.typ │ New. The layout and styling.            │
+  ├────────────────────────────────┼─────────────────────────────────────────┤
+  │                                │ The existing ^Cheatsheet$ rule at line  │
+  │ niri/window-rules.nix          │ 38 changes to match swayimg's app-id,   │
+  │                                │ and widens from fixed = 900 to fit the  │
+  │                                │ 1600-wide image.                        │
+  └────────────────────────────────┴─────────────────────────────────────────┘
+
+  keybinds.nix has to be a function of { pkgs, lib } rather than plain data,
+  because your screenshot bind uses lib.getExe pkgs.grim. That fits — flake.lib
+  is typed lazyAttrsOf raw, so a function is a legal value there, and it sits
+  beside its two consumers rather than in modules/lib/.
+
+  swayimg doesn't need to go in home.packages; the toggle script references
+  ${lib.getExe pkgs.swayimg} directly, keeping the whole feature self-contained
+  in one directory.
+
+  Toggle
+
+  Reusing the shape of your commented-out block at binds.nix:44 — query niri msg
+  windows for the cheatsheet's app-id, close it if present, otherwise launch
+  swayimg --class=cheatsheet on the store path. So the key is a real toggle, not
+  just an opener.
+
+  Does the architecture look right?
+✻ Worked for 1m 6s · done 6:43 PM
+
+❯ ok suggest this                                                               
+
+  Listed 1 directory (ctrl+o to expand)
+
+● docs/ exists but is empty, so this creates the tree. Here's the spec — I
+  haven't written it yet.
+
+  docs/superpowers/specs/2026-09-09-niri-cheatsheet-design.md
+
+  # Niri Keybind Cheatsheet
+
+  ## Problem
+
+  Niri's built-in hotkey overlay (`Mod+?`) renders a plain list. It is hard to
+  scan
+  and gives no visual grouping. An earlier attempt (a commented-out
+  `Mod+Shift+Slash`
+  bind spawning ghostty + fzf + glow over hand-written markdown files) was
+  abandoned;
+  it required maintaining a copy of the binds by hand.
+
+  ## Goal
+
+  A graphical cheatsheet generated from the bind definitions themselves, so it
+  cannot
+  drift, toggled by a keybind.
+
+  ## Non-goals
+
+  - A keyboard-layout map. Rejected in favour of a grouped card grid.
+  - A live overlay that queries niri at runtime. The image is built with the
+  system.
+  - Header and footer branding from the reference design.
+  - A modifier legend. Dropped with the header.
+
+  ## Design
+
+  A dark 3x2 grid of category cards. Each card has an accent colour, an icon, a
+  title
+  and subtitle, then rows of keycap chips against an action label.
+
+  ### Source of truth
+
+  `flake.lib.niri.keybinds`, a function of `{ pkgs, lib }` returning a list of
+  records:
+
+      { mods = [ "Mod" "Shift" ]; key = "F";
+        title = "Fullscreen"; category = "windows";
+        action.fullscreen-window = [ ]; }
+
+  It must be a function rather than plain data because the screenshot bind
+  resolves
+  `lib.getExe pkgs.grim`. `flake.lib` is typed `lazyAttrsOf raw`, so a function
+  is a
+  legal value.
+
+  Two consumers:
+
+  - `binds.nix` joins `mods ++ [ key ]` with `+` to form the niri attribute
+  name, and
+    maps `title` onto `hotkey-overlay.title`. The built-in `Mod+?` overlay keeps
+    working unchanged.
+  - The cheatsheet reads `mods` and `key` already split, which is what the chips
+  need.
+
+  `category` is new per-bind data. An unrecognised category fails the build
+  rather
+  than dropping the bind silently from the sheet.
+
+  ### Rendering pipeline
+
+  Nix does not generate typst source. Typst's `#` and `$` sigils would need
+  escaping
+  inside Nix strings, producing an unformattable blob. Instead:
+
+  1. Nix writes `binds.json` — cards, each with label, subtitle, accent, icon,
+  and
+     rows of `{mods, key, title}`.
+  2. `cheatsheet.typ` is a real file in the repo. It does `#let cards =
+  json("binds.json")`
+     and holds all layout and styling.
+  3. A `runCommand` derivation places both in a build directory and runs
+     `typst compile --font-path <fira-code-nerd> --font-path <noto-sans>`,
+  emitting a PNG
+     into the store.
+
+  This keeps the typst file editable and lets the design be iterated standalone
+  against a hand-written `binds.json` before it is wired to Nix.
+
+  ### Canvas
+
+  1600x900, exported at 2x. Sized to squid's `eDP-1` (1920x1080 at scale 1.2, so
+  1600x900
+  logical) — the tightest realistic target. All sponge outputs are roomier.
+
+  ### Cards
+
+  | Card | Binds | Contents |
+  |---|---|---|
+  | Navigation | 6 | focus column left/right, focus window up/down, overview,
+  focus floating/tiling |
+  | Windows | 8 | close, fullscreen, expand, float, rotate width, center column,
+  consume/expel |
+  | Workspaces | 4 | focus workspace up/down, move column to workspace up/down |
+  | Monitors | 8 | focus monitor x4, move column to monitor x4 |
+  | Apps | 5 | terminal, menu, browser, lock, screenshot |
+  | System | 3 | exit niri, switch keyboard layout, cheatsheet toggle |
+
+  `Mod+Shift` move counterparts sit in Navigation beside their focus versions,
+  as pairs.
+
+  ### Palette
+
+  Background `#0a0e17`, card `#0f1420`, primary text `#e6edf3`, secondary
+  `#8b98a9`.
+  Card accents: Navigation `#4a9eff`, Windows `#a855f7`, Workspaces `#22c55e`,
+  Monitors `#06b6d4`, Apps `#f59e0b`, System `#f43f5e`. Card borders are the
+  accent at
+  low alpha. There is no global palette module in this config — catppuccin is
+  scoped to
+  nvim — so these are defined in the cheatsheet module.
+
+  ### Fonts
+
+  FiraCode Nerd Font for keycaps and card icons, Noto Sans for labels. Both are
+  already
+  in `modules/features/desktop/fonts.nix`; the derivation points typst at their
+  store
+  paths. Card icons are Nerd Font glyphs, chosen and confirmed by rendering
+  during
+  implementation.
+
+  ### Key display names
+
+  A lookup table maps `BracketLeft` to `[`, `Return` to `RETURN`, `Escape` to
+  `ESC`,
+  falling through to the raw name.
+
+  ### Toggle
+
+  Following the shape of the abandoned `Mod+Shift+Slash` block: query `niri msg
+  windows`
+  for the cheatsheet app-id; close it if present, otherwise launch
+  `swayimg --class=cheatsheet` on the store path. The key toggles rather than
+  only opens.
+  swayimg is referenced via `lib.getExe` and is not added to `home.packages`,
+  keeping the
+  feature contained in one directory.
+
+  ## Files
+
+  | File | Change |
+  |---|---|
+  | `modules/features/desktop/compositor/niri/keybinds.nix` | New. The bind
+  list. |
+  | `modules/features/desktop/compositor/niri/binds.nix` | Rewritten as a
+  derivation of the list; 197 lines to roughly 20. |
+  | `modules/features/desktop/compositor/niri/cheatsheet/default.nix` | New.
+  Card metadata, key names, JSON writer, typst derivation, toggle script. |
+  | `modules/features/desktop/compositor/niri/cheatsheet/cheatsheet.typ` | New.
+  Layout and styling. |
+  | `modules/features/desktop/compositor/niri/window-rules.nix` | Existing
+  `^Cheatsheet$` rule matches swayimg's app-id; width grows from `fixed = 900`.
+  |
+
+  ## Verification
+
+  `just ci-light` is the gate; it builds the derivation and catches eval and
+  typst
+  failures. Visual correctness cannot be automated here — the rendered PNG is
+  checked by
+  screenshot at each iteration.
+
+  ## Risks
+
+  - Typst has no blur, so the reference's neon glow becomes a flat accent
+  stroke.
+    Accepted; the design is carried by accent colour and chip shape.
+  - Fonts must resolve inside the build sandbox. If `--font-path` misses, typst
+  silently
+    substitutes a default rather than failing, so the first render is inspected
+  for it.
+
+  Say go and I'll write it. I can't commit — that's yours:
+
+  git add docs/superpowers/specs/2026-09-09-niri-cheatsheet-design.md
+  git commit -m "docs(niri): add cheatsheet design spec"
+
+  One thing that isn't in the spec because you haven't asked for it: your
+  working tree already has uncommitted changes across nine files, including
+  binds.nix and window-rules.nix — two of the files this touches. Worth landing
+  those before I start editing the same files.
+
+✻ Cogitated for 56s · done 6:45 PM
+
+❯ | File | Change |                                                             
+  |---|---|                                                                     
+  | modules/features/desktop/compositor/niri/keybinds.nix | New. The bind list. 
+  |                                                                             
+  | modules/features/desktop/compositor/niri/binds.nix | Rewritten as a         
+  derivation of the list; 197 lines to roughly 20. |                            
+  | modules/features/desktop/compositor/niri/cheatsheet/default.nix | New. Card 
+  metadata, key names, JSON writer, typst derivation, toggle script. |          
+  | modules/features/desktop/compositor/niri/cheatsheet/cheatsheet.typ | New.   
+  Layout and styling. |                                                         
+  | modules/features/desktop/compositor/niri/window-rules.nix | Existing        
+  ^Cheatsheet$ rule matches swayimg's app-id; width grows from fixed = 900. |   
+   show me content                                                              
+
+● Before the content, one correction to the spec table: you have 38 binds, not 
+  46, and Navigation is 10 rows, not 6 — the table listed only the focus binds
+  and then I said the Mod+Shift move counterparts join them, which the count
+  didn't reflect. Real distribution: Navigation 10, Monitors 8, Windows 8, Apps
+  5, Workspaces 4, System 3. So the grid order is Navigation / Monitors /
+  Windows on the top row, Workspaces / Apps / System beneath, to keep the heavy
+  cards together.
+
+  One design change from the spec, to break a dependency cycle: the toggle bind
+  is part of the bind list, but the bind list generates the image, and the image
+  is what the toggle opens. Rather than lean on Nix laziness to escape that,
+  the toggle becomes a named package niri-cheatsheet in home.packages, and the
+  bind is just action.spawn = "niri-cheatsheet" — a plain string, no cycle, and
+  consistent with your existing "ghostty" / "fuzzel" / "qylock" spawns.
+
+  ---
+
+  modules/features/desktop/compositor/niri/keybinds.nix — new
+
+  {
+    flake.lib.niri.keybinds =
+      { pkgs, lib }:
+      let
+        column-up = "I";
+        column-down = "E";
+        workspace-up = "Y";
+        workspace-down = "U";
+        window-left = "N";
+        window-right = "O";
+      in
+      [
+        # Navigation
+        {
+          mods = [ "Mod" ];
+          key = "Tab";
+          title = "Overview";
+          category = "navigation";
+          action.toggle-overview = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = window-left;
+          title = "Focus Left";
+          category = "navigation";
+          action.focus-column-left = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = window-right;
+          title = "Focus Right";
+          category = "navigation";
+          action.focus-column-right = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = column-up;
+          title = "Focus Top";
+          category = "navigation";
+          action.focus-window-up = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = column-down;
+          title = "Focus Down";
+          category = "navigation";
+          action.focus-window-down = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = window-left;
+          title = "Switch Left";
+          category = "navigation";
+          action.move-column-left = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = window-right;
+          title = "Switch Right";
+          category = "navigation";
+          action.move-column-right = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = column-up;
+          title = "Switch Top";
+          category = "navigation";
+          action.move-window-up = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = column-down;
+          title = "Switch Down";
+          category = "navigation";
+          action.move-window-down = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = "V";
+          title = "Toggle Focus Floating";
+          category = "navigation";
+          action.switch-focus-between-floating-and-tiling = [ ];
+        }
+
+        # Monitors
+        {
+          mods = [ "Mod" "Ctrl" ];
+          key = window-left;
+          title = "Focus Monitor Left";
+          category = "monitors";
+          action.focus-monitor-left = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" ];
+          key = window-right;
+          title = "Focus Monitor Right";
+          category = "monitors";
+          action.focus-monitor-right = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" ];
+          key = column-up;
+          title = "Focus Monitor Up";
+          category = "monitors";
+          action.focus-monitor-up = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" ];
+          key = column-down;
+          title = "Focus Monitor Down";
+          category = "monitors";
+          action.focus-monitor-down = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" "Shift" ];
+          key = window-left;
+          title = "Move To Monitor Left";
+          category = "monitors";
+          action.move-column-to-monitor-left = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" "Shift" ];
+          key = window-right;
+          title = "Move To Monitor Right";
+          category = "monitors";
+          action.move-column-to-monitor-right = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" "Shift" ];
+          key = column-up;
+          title = "Move To Monitor Up";
+          category = "monitors";
+          action.move-column-to-monitor-up = [ ];
+        }
+        {
+          mods = [ "Mod" "Ctrl" "Shift" ];
+          key = column-down;
+          title = "Move To Monitor Down";
+          category = "monitors";
+          action.move-column-to-monitor-down = [ ];
+        }
+
+        # Windows
+        {
+          mods = [ "Mod" ];
+          key = "Q";
+          title = "Quit";
+          category = "windows";
+          action.close-window = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "F";
+          title = "Expand";
+          category = "windows";
+          action.maximize-column = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = "F";
+          title = "Fullscreen";
+          category = "windows";
+          action.fullscreen-window = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "R";
+          title = "Rotate Width";
+          category = "windows";
+          action.switch-preset-column-width = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "V";
+          title = "Toggle Floating";
+          category = "windows";
+          action.toggle-window-floating = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "C";
+          title = "Center Column";
+          category = "windows";
+          action.center-column = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "BracketLeft";
+          title = "Move Left";
+          category = "windows";
+          action.consume-or-expel-window-left = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = "BracketRight";
+          title = "Move Right";
+          category = "windows";
+          action.consume-or-expel-window-right = [ ];
+        }
+
+        # Workspaces
+        {
+          mods = [ "Mod" ];
+          key = workspace-up;
+          title = "Focus Up Workspace";
+          category = "workspaces";
+          action.focus-workspace-up = [ ];
+        }
+        {
+          mods = [ "Mod" ];
+          key = workspace-down;
+          title = "Focus Down Workspace";
+          category = "workspaces";
+          action.focus-workspace-down = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = workspace-up;
+          title = "Move To Up Workspace";
+          category = "workspaces";
+          action.move-column-to-workspace-up = [ ];
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = workspace-down;
+          title = "Move To Down Workspace";
+          category = "workspaces";
+          action.move-column-to-workspace-down = [ ];
+        }
+
+        # Apps
+        {
+          mods = [ "Mod" ];
+          key = "Return";
+          title = "Terminal";
+          category = "apps";
+          action.spawn = "ghostty";
+        }
+        {
+          mods = [ "Mod" ];
+          key = "D";
+          title = "Menu";
+          category = "apps";
+          action.spawn = "fuzzel";
+        }
+        {
+          mods = [ "Mod" ];
+          key = "B";
+          title = "Browser";
+          category = "apps";
+          action.spawn = "zen-beta";
+        }
+        {
+          mods = [ "Mod" ];
+          key = "Escape";
+          title = "Lock";
+          category = "apps";
+          action.spawn = "qylock";
+        }
+        {
+          mods = [ "Mod" ];
+          key = "P";
+          title = "Screenshot";
+          category = "apps";
+          action.spawn = [
+            "sh"
+            "-c"
+            ''
+              ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - |
+  ${lib.getExe pkgs.satty} -f - --copy-command wl-copy
+            ''
+          ];
+        }
+
+        # System
+        {
+          mods = [ "Mod" "Shift" ];
+          key = "Slash";
+          title = "Cheatsheet";
+          category = "system";
+          action.spawn = "niri-cheatsheet";
+        }
+        {
+          mods = [ "Mod" ];
+          key = "Space";
+          title = "Switch Keyboard Layout";
+          category = "system";
+          action.switch-layout = "next";
+        }
+        {
+          mods = [ "Mod" "Shift" ];
+          key = "Q";
+          title = "Exit";
+          category = "system";
+          action.quit = [ ];
+        }
+      ];
+  }
+
+  ---
+
+  modules/features/desktop/compositor/niri/binds.nix — replaces the file
+  entirely (197 lines → 22)
+
+  { self, ... }:
+  {
+    flake.homeModules.niriBinds =
+      { pkgs, lib, ... }:
+      {
+        programs.niri.settings.binds = lib.listToAttrs (
+          map (b: {
+            name = lib.concatStringsSep "+" (b.mods ++ [ b.key ]);
+            value = {
+              inherit (b) action;
+              hotkey-overlay.title = b.title;
+            };
+          }) (self.lib.niri.keybinds { inherit pkgs lib; })
+        );
+      };
+  }
+
+  ---
+
+  modules/features/desktop/compositor/niri/cheatsheet/default.nix — new
+
+  { self, ... }:
+  {
+    flake.homeModules.niriCheatsheet =
+      { pkgs, lib, ... }:
+      let
+        cards = [
+          {
+            id = "navigation";
+            label = "Navigation";
+            subtitle = "Move focus and shuffle columns";
+            accent = "#4a9eff";
+            icon = "\uf0b2";
+          }
+          {
+            id = "monitors";
+            label = "Monitors";
+            subtitle = "Move between and across screens";
+            accent = "#06b6d4";
+            icon = "\uf108";
+          }
+          {
+            id = "windows";
+            label = "Windows";
+            subtitle = "Size, float and arrange windows";
+            accent = "#a855f7";
+            icon = "\uf2d2";
+          }
+          {
+            id = "workspaces";
+            label = "Workspaces";
+            subtitle = "Move up and down workspaces";
+            accent = "#22c55e";
+            icon = "\uf009";
+          }
+          {
+            id = "apps";
+            label = "Apps";
+            subtitle = "Launch and lock";
+            accent = "#f59e0b";
+            icon = "\uf120";
+          }
+          {
+            id = "system";
+            label = "System";
+            subtitle = "Session and global actions";
+            accent = "#f43f5e";
+            icon = "\uf013";
+          }
+        ];
+
+        keyNames = {
+          BracketLeft = "[";
+          BracketRight = "]";
+          Escape = "ESC";
+          Return = "RETURN";
+          Slash = "/";
+          Space = "SPACE";
+          Tab = "TAB";
+        };
+
+        binds = self.lib.niri.keybinds { inherit pkgs lib; };
+
+        ids = map (c: c.id) cards;
+        unknown = lib.unique (map (b: b.category) (lib.filter (b: !(lib.elem
+  b.category ids)) binds));
+
+        data = lib.throwIf (unknown != [ ])
+          "niri cheatsheet: binds tagged with unknown categories: 
+  ${lib.concatStringsSep ", " unknown}"
+          (
+            map (
+              c:
+              c
+              // {
+                rows = map (b: {
+                  inherit (b) mods title;
+                  key = keyNames.${b.key} or b.key;
+                }) (lib.filter (b: b.category == c.id) binds);
+              }
+            ) cards
+          );
+
+        bindsJson = (pkgs.formats.json { }).generate "niri-cheatsheet.json"
+  data;
+
+        image =
+          pkgs.runCommand "niri-cheatsheet.png"
+            {
+              nativeBuildInputs = [ pkgs.typst ];
+            }
+            ''
+              cp ${./cheatsheet.typ} cheatsheet.typ
+              cp ${bindsJson} binds.json
+              typst compile \
+                --font-path ${pkgs.nerd-fonts.fira-code}/share/fonts \
+                --font-path ${pkgs.noto-fonts}/share/fonts \
+                --format png \
+                --ppi 144 \
+                cheatsheet.typ "$out"
+            '';
+      in
+      {
+        home.packages = [
+          (pkgs.writeShellApplication {
+            name = "niri-cheatsheet";
+            runtimeInputs = [
+              pkgs.swayimg
+              pkgs.jq
+            ];
+            text = ''
+              id=$(niri msg --json windows \
+                | jq -r 'map(select(.app_id == "cheatsheet")) | .[0].id // 
+  empty')
+
+              if [ -n "$id" ]; then
+                niri msg action close-window --id "$id"
+              else
+                swayimg --class cheatsheet ${image} &
+              fi
+            '';
+          })
+        ];
+      };
+  }
+
+  ---
+
+  modules/features/desktop/compositor/niri/cheatsheet/cheatsheet.typ — new
+
+  typst
+  #let cards = json("binds.json")
+
+  #let bg = rgb("#0a0e17")
+  #let card-bg = rgb("#0f1420")
+  #let fg = rgb("#e6edf3")
+  #let fg-dim = rgb("#8b98a9")
+
+  #set page(width: 1600pt, height: 900pt, margin: 26pt, fill: bg)
+  #set text(font: "Noto Sans", fill: fg)
+
+  #let keycap(label, accent) = box(
+    inset: (x: 7pt, y: 4pt),
+    radius: 4pt,
+    fill: accent.transparentize(88%),
+    stroke: 0.8pt + accent.transparentize(55%),
+    text(font: "FiraCode Nerd Font", size: 9pt, weight: 600, fill: fg, label),
+  )
+
+  #let chips(r, accent) = {
+    for m in r.mods {
+      keycap(upper(m), accent)
+      text(size: 9pt, fill: fg-dim, " + ")
+    }
+    keycap(upper(r.key), accent)
+  }
+
+  #let card(c) = {
+    let accent = rgb(c.accent)
+
+    block(
+      width: 100%,
+      height: 100%,
+      fill: card-bg,
+      radius: 10pt,
+      stroke: 1pt + accent.transparentize(70%),
+      inset: 16pt,
+      {
+        grid(
+          columns: (auto, 1fr),
+          column-gutter: 12pt,
+          align: horizon,
+          text(font: "FiraCode Nerd Font", size: 21pt, fill: accent, c.icon),
+          {
+            text(size: 15pt, weight: 700, fill: accent, upper(c.label))
+            linebreak()
+            text(size: 9.5pt, fill: fg-dim, c.subtitle)
+          },
+        )
+
+        v(9pt)
+        line(length: 100%, stroke: 1pt + accent.transparentize(65%))
+        v(9pt)
+
+        grid(
+          columns: (auto, 1fr),
+          column-gutter: 18pt,
+          row-gutter: 7pt,
+          align: (right + horizon, left + horizon),
+          ..c.rows.map(r => (chips(r, accent), text(size: 10pt,
+  r.title))).flatten(),
+        )
+      },
+    )
+  }
+
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    rows: (auto, auto),
+    gutter: 18pt,
+    ..cards.map(card),
+  )
+
+  ---
+
+  modules/features/desktop/compositor/niri/window-rules.nix — replaces the
+  ^Cheatsheet$ block at line 38
+
+             {
+               matches = [
+                 {
+  -                title = "^Cheatsheet$";
+  +                app-id = "^cheatsheet$";
+                 }
+               ];
+               open-floating = true;
+  -            default-floating-position = {
+  -              x = 50;
+  -              y = 50;
+  -              relative-to = "top-left";
+  -            };
+               default-column-width = {
+  -              fixed = 900;
+  +              proportion = 0.9;
+  +            };
+  +            default-window-height = {
+  +              proportion = 0.9;
+               };
+  -            # background-effect = {
+  -            #   blur = true;
+  -            # };
+             }
+
+  default-floating-position goes away so niri centres it; the commented-out
+  background-effect goes too, since it was scaffolding from the abandoned
+  terminal version — say if you want it kept.
+
+  ---
+
+  Three things in here I could not verify and expect to need a pass:
+
+  - The six Nerd Font icon codepoints. \uf0b2 etc. are Font Awesome 4 positions
+    in the Nerd Font range; I'm reasonably confident but they're guesses until
+    rendered.
+  - swayimg --class. That's the app-id flag as I understand it; if the installed
+    version spells it differently the window rule won't match and the image
+    will tile instead of float.
+  - .transparentize() and .flatten() need a recent typst. If your nixpkgs pins
+    an older one, those are the first things to fail.
+
+  The spec doc is still unwritten — I skipped ahead to the code since that's
+  what you asked for. Say go and I'll write all five files as shown; say the
+  word on the spec separately if you still want it.
+
+✻ Cooked for 2m 33s · done 6:48 PM

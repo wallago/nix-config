@@ -1,13 +1,15 @@
 { self, ... }:
 {
   flake.nixosModules.nvidia =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
       imports = [
         self.nixosModules.graphics
       ];
 
       services.xserver.videoDrivers = [ "nvidia" ];
+
+      environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
 
       boot.initrd.kernelModules = [
         "nvidia"

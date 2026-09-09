@@ -7,6 +7,7 @@
       self.nixosModules.secretsWireguardServer
       self.nixosModules.secretsUser
       self.nixosModules.secretsAttic
+      self.nixosModules.secretsClaude
     ];
 
     sops.secrets = {

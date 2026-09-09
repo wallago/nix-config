@@ -20,6 +20,7 @@
         self.homeModules.browser
         self.homeModules.wallpaper
         self.homeModules.terminalEmulator
+        self.homeModules.cheatsheet
       ];
 
       home.packages = with pkgs; [

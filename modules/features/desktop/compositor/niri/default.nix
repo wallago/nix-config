@@ -26,6 +26,7 @@
       self.homeModules.niriSpawnAtStartup
       self.homeModules.niriWorkspaces
       self.homeModules.niriWindowRules
+      self.homeModules.niriSlots
     ];
 
     programs.niri.settings = {

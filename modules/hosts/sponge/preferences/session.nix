@@ -3,12 +3,41 @@
     let
       notesCmd = [
         "ghostty"
+        "--class=com.slot.notes"
         "--title=notes"
         "--working-directory=/home/wallago"
         "-e"
         "vi"
         "./sync-notes"
       ];
+      mailCmd = [
+        "ghostty"
+        "--class=com.slot.mail"
+        "--title=matcha"
+        "-e"
+        "matcha"
+      ];
+      # rssCmd = [
+      #   "ghostty"
+      #   "--title=rss"
+      #   "-e"
+      #   "eilmeldung"
+      # ];
+      # expenseTrackerCmd = [
+      #   "ghostty"
+      #   "--title=bagels"
+      #   "-e"
+      #   "bagels"
+      # ];
+      #       homeTermCmd = [
+      #   "ghostty"
+      #   "--title=home"
+      #   "--working-directory=/home/wallago/"
+      #   "-e"
+      #   "vi"
+      #   "./sync-pm/gateway.md"
+      # ];
+
       webSecondary = [
         "zen-beta"
         "--name=zen-secondary"
@@ -17,29 +46,11 @@
         "secondary"
         "--new-instance"
       ];
-      rssCmd = [
-        "ghostty"
-        "--title=rss"
-        "-e"
-        "eilmeldung"
-      ];
       webMainCmd = [
         "zen-beta"
         "--name=zen-main"
         "--class=zen-main"
         "--new-instance"
-      ];
-      mailCmd = [
-        "ghostty"
-        "--title=matcha"
-        "-e"
-        "matcha"
-      ];
-      expenseTrackerCmd = [
-        "ghostty"
-        "--title=bagels"
-        "-e"
-        "bagels"
       ];
       monitorCmd = [
         "ghostty"
@@ -47,24 +58,9 @@
         "-e"
         "vi"
       ];
-      homeTermCmd = [
-        "ghostty"
-        "--title=home"
-        "--working-directory=/home/wallago/"
-        "-e"
-        "vi"
-        "./sync-pm/gateway.md"
-      ];
     in
     {
       preferences.session = [
-        {
-          command = notesCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "notes";
-          workspace = "productivity";
-          maximized = true;
-        }
         {
           command = webSecondary;
           matchAppId = "zen-secondary";
@@ -78,40 +74,47 @@
           maximized = true;
         }
         {
-          command = rssCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "rss";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = homeTermCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "home";
-          workspace = "home";
-          maximized = true;
-        }
-        {
-          command = mailCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "matcha";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
-          command = expenseTrackerCmd;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "bagels";
-          workspace = "productivity";
-          maximized = true;
-        }
-        {
           command = monitorCmd;
           matchAppId = "com.mitchellh.ghostty";
           matchTitle = "monitor";
           workspace = "monitor";
           fullscreen = true;
         }
+        {
+          command = notesCmd;
+          matchAppId = "com.slot.notes";
+          matchTitle = "notes";
+          key = "1";
+          floating = true;
+        }
+        {
+          command = mailCmd;
+          matchAppId = "com.slot.mail";
+          matchTitle = "matcha";
+          key = "2";
+          floating = true;
+        }
+        # {
+        #   command = rssCmd;
+        #   matchAppId = "com.mitchellh.ghostty";
+        #   matchTitle = "rss";
+        #   workspace = "productivity";
+        #   maximized = true;
+        # }
+        # {
+        #   command = homeTermCmd;
+        #   matchAppId = "com.mitchellh.ghostty";
+        #   matchTitle = "home";
+        #   workspace = "home";
+        #   maximized = true;
+        # }
+        # {
+        #   command = expenseTrackerCmd;
+        #   matchAppId = "com.mitchellh.ghostty";
+        #   matchTitle = "bagels";
+        #   workspace = "productivity";
+        #   maximized = true;
+        # }
       ];
     };
 }

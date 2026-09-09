@@ -19,8 +19,9 @@
             }
             // lib.optionalAttrs e.maximized { open-maximized = true; }
             // lib.optionalAttrs e.fullscreen { open-fullscreen = true; }
+            // lib.optionalAttrs e.floating { open-floating = true; }
             // lib.optionalAttrs (e.workspace != null) { open-on-workspace = e.workspace; }
-          ) (lib.filter (e: e.workspace != null) config.preferences.session)
+          ) config.preferences.session
         )
         ++ [
           {
@@ -35,21 +36,16 @@
           {
             matches = [
               {
-                title = "^Cheatsheet$";
+                app-id = "^com\\.slot\\.";
               }
             ];
             open-floating = true;
-            default-floating-position = {
-              x = 50;
-              y = 50;
-              relative-to = "top-left";
-            };
             default-column-width = {
-              fixed = 900;
+              proportion = 0.85;
             };
-            # background-effect = {
-            #   blur = true;
-            # };
+            default-window-height = {
+              proportion = 0.85;
+            };
           }
           {
             matches = [
