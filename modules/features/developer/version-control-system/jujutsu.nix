@@ -1,7 +1,12 @@
 {
   flake.homeModules.jujutsu =
-    { config, ... }:
+    { pkgs, config, ... }:
     {
+      home.packages = with pkgs; [
+        difftastic
+        mergiraf
+      ];
+
       programs.jujutsu = {
         enable = true;
         settings = {
@@ -10,11 +15,14 @@
             email = config.programs.git.settings.user.email;
           };
           ui = {
+            diff-formatter = "difft";
             diff-editor = ":builtin";
-            merge-editor = ":builtin";
+            merge-editor = "vimdiff";
+            conflict-marker-style = "git";
             default-command = "log";
             show-cryptographic-signatures = true;
           };
+          merge-tools.vimdiff.program = "nvim";
           revsets = {
             log = "default() & recent()";
             bookmark-advance-to = "closest_pushable(@)";
@@ -30,6 +38,15 @@
             l = [ "log" ];
             s = [ "status" ];
             d = [ "diff" ];
+            dg = [
+              "diff"
+              "--git"
+            ];
+            rs = [
+              "resolve"
+              "--tool"
+              "mergiraf"
+            ];
             f = [
               "git"
               "fetch"
