@@ -35,9 +35,23 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      settings."*" = {
-        hashKnownHosts = true;
-        serverAliveInterval = 60;
+      settings = {
+        "*" = {
+          hashKnownHosts = true;
+          serverAliveInterval = 60;
+        };
+        corolla = {
+          hostname = "192.168.5.20";
+          port = 2222;
+          user = "ds";
+          proxyJump = "cuttlefish-wg0";
+        };
+        n1 = {
+          hostname = "192.168.5.30";
+          port = 2222;
+          user = "n1";
+          proxyJump = "cuttlefish-wg0";
+        };
       };
     };
   };
