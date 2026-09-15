@@ -2,47 +2,89 @@
 <opml version="2.0" xmlns:miniflux="https://miniflux.app/opml">
     <head>
         <title>Miniflux</title>
-        <dateCreated>Tue, 09 Jun 2026 11:15:23 CEST</dateCreated>
+        <dateCreated>Fri, 18 Sep 2026 15:38:02 CEST</dateCreated>
     </head>
     <body>
-        <outline text="1 · 🔴 Must read">
-            <outline title="NixOS Discourse" text="NixOS Discourse" xmlUrl="https://discourse.nixos.org/latest.rss" htmlUrl="https://discourse.nixos.org/" type="application/atom+xml"></outline>
-            <outline title="Reddit NixOS" text="Reddit NixOS" xmlUrl="https://feeds.feedburner.com/reddit/wttrgfhfjtv" htmlUrl="https://www.reddit.com/r/NixOS/" type="application/atom+xml"></outline>
-            <outline title="Reddit Rust" text="Reddit Rust" xmlUrl="https://feeds.feedburner.com/reddit/ht1kbjgvaub" htmlUrl="https://www.reddit.com/r/rust/" type="application/atom+xml"></outline>
-            <outline title="Rust Blog" text="Rust Blog" xmlUrl="https://blog.rust-lang.org/feed.xml" htmlUrl="https://blog.rust-lang.org/" type="application/atom+xml"></outline>
-            <outline title="This Week in Rust" text="This Week in Rust" xmlUrl="https://this-week-in-rust.org/atom.xml" htmlUrl="https://this-week-in-rust.org/" type="application/atom+xml"></outline>
-            <outline title="Youtube DevOps Toolbox" text="Youtube DevOps Toolbox" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w" htmlUrl="https://www.youtube.com/channel/UCYeiozh-4QwuC1sjgCmB92w" type="application/atom+xml"></outline>
-            <outline title="Youtube Vimjoyer" text="Youtube Vimjoyer" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_zBdZ0_H_jn41FDRG7q4Tw" htmlUrl="https://www.youtube.com/channel/UC_zBdZ0_H_jn41FDRG7q4Tw" type="application/atom+xml"></outline>
-            <outline title="Github Trend" text="Github Trend" xmlUrl="https://github.com/wallago.private.atom?token=@GH_TOKEN@" htmlUrl="https://www.github.com" type="application/atom+xml"></outline>
+        <outline text="AI">
+            <outline title="Ahead of AI" text="Ahead of AI" xmlUrl="https://magazine.sebastianraschka.com/feed" htmlUrl="https://magazine.sebastianraschka.com" description="Ahead of AI focuses on machine learning and AI research and is read by more than 200,000 researchers and practitioners who want to stay ahead in a rapidly evolving field." type="rss"></outline>
+            <outline title="Hugging Face - Blog" text="Hugging Face - Blog" xmlUrl="https://huggingface.co/blog/feed.xml" htmlUrl="https://huggingface.co/blog" description="The Hugging Face blog" type="rss"></outline>
+            <outline title="Import AI" text="Import AI" xmlUrl="https://importai.substack.com/feed" htmlUrl="https://importai.substack.com" description="Import AI is a weekly newsletter about artificial intelligence based on detailed analysis of cutting-edge research." type="rss"></outline>
+            <outline title="Interconnects AI" text="Interconnects AI" xmlUrl="https://www.interconnects.ai/feed" htmlUrl="https://www.interconnects.ai" description="The cutting edge of AI, from inside the frontier AI labs, minus the hype. The border between high-level and technical thinking. Read by leading engineers, researchers, and investors." type="rss"></outline>
+            <outline title="Reddit Claude" text="Reddit Claude" xmlUrl="https://feeds.feedburner.com/reddit/sbibsebmk9f" htmlUrl="https://www.reddit.com/r/ClaudeAI/top/?limit=100&amp;t=week" description="This is a Claude and Claude Code discussion subreddit to help you make a fully informed decision about using Claude and Claude Code to best effect for your own purposes. ¹⌉ Anthropic does not control or operate this subreddit or endorse views expressed here. ²⌉ If your problem requires Anthropic&#39;s help, visit https://support.anthropic.com/ This subreddit is not the right place to fix your account issues. ³⌉ For more help, check the resources below. ⁴⌉ Please read the rules before posting." type="rss"></outline>
+            <outline title="Reddit LocalLLaMA" text="Reddit LocalLLaMA" xmlUrl="https://feeds.feedburner.com/reddit/pkQXYlrVrOC" htmlUrl="https://www.reddit.com/r/LocalLLaMA/top/?limit=100&amp;t=week" description="Subreddit to discuss locally hostable AI. Hi Angelos!" type="rss"></outline>
+            <outline title="Simon Willison&#39;s Weblog" text="Simon Willison&#39;s Weblog" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="http://simonwillison.net/" type="rss"></outline>
         </outline>
-        <outline text="2 · 🟠 Should read">
-            <outline title="Hacker News" text="Hacker News" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com/" type="application/atom+xml"></outline>
-            <outline title="LWN" text="LWN" xmlUrl="https://lwn.net/headlines/rss" htmlUrl="https://lwn.net/" type="application/atom+xml"></outline>
-            <outline title="Neovim News" text="Neovim News" xmlUrl="https://neovim.io/news.xml" htmlUrl="https://neovim.io/" type="application/atom+xml"></outline>
-            <outline title="Reddit CLI" text="Reddit CLI" xmlUrl="https://feeds.feedburner.com/reddit/bntqsnxjblc" htmlUrl="https://www.reddit.com/r/commandline/" type="application/atom+xml"></outline>
-            <outline title="Reddit Neovim" text="Reddit Neovim" xmlUrl="https://feeds.feedburner.com/reddit/omwbrmskrcg" htmlUrl="https://www.reddit.com/r/neovim/" type="application/atom+xml"></outline>
-            <outline title="Reddit TUI" text="Reddit TUI" xmlUrl="https://feeds.feedburner.com/reddit/syj8ftl83e3" htmlUrl="https://www.reddit.com/r/tui/" type="application/atom+xml"></outline>
+        <outline text="Blogs">
+            <outline title="Bunnie&#39;s blog" text="Bunnie&#39;s blog" xmlUrl="https://bunniestudios.com/blog/?feed=rss2" htmlUrl="https://bunniestudios.com/blog/" type="rss"></outline>
+            <outline title="Drew DeVault" text="Drew DeVault" xmlUrl="https://drewdevault.com/blog/index.xml" htmlUrl="https://drewdevault.com/blog/" type="rss"></outline>
+            <outline title="Faster than lime" text="Faster than lime" xmlUrl="https://fasterthanli.me/index.xml" htmlUrl="https://fasterthanli.me/" type="rss"></outline>
+            <outline title="Julia Evans" text="Julia Evans" xmlUrl="https://jvns.ca/atom.xml" htmlUrl="https://jvns.ca/" type="rss"></outline>
         </outline>
-        <outline text="3 · 🟡 Would read">
-            <outline title="Cloudflare Blog" text="Cloudflare Blog" xmlUrl="https://blog.cloudflare.com/rss" htmlUrl="https://blog.cloudflare.com/" type="application/atom+xml"></outline>
-            <outline title="Phoronix" text="Phoronix" xmlUrl="https://www.phoronix.com/rss.php" htmlUrl="https://www.phoronix.com/" type="application/atom+xml"></outline>
+        <outline text="DevOps">
+            <outline title="Reddit Devops" text="Reddit Devops" xmlUrl="https://feeds.feedburner.com/reddit/nycutud3tay" htmlUrl="https://www.reddit.com/r/devops/" type="rss"></outline>
         </outline>
-        <outline text="4 · 🟢 Could read">
-            <outline title="Bunnie&#39;s blog" text="Bunnie&#39;s blog" xmlUrl="https://bunniestudios.com/blog/?feed=rss2" htmlUrl="https://bunniestudios.com/blog/" type="application/atom+xml"></outline>
-            <outline title="Drew DeVault" text="Drew DeVault" xmlUrl="https://drewdevault.com/blog/index.xml" htmlUrl="https://drewdevault.com/blog/" type="application/atom+xml"></outline>
-            <outline title="Faster than lime" text="Faster than lime" xmlUrl="https://fasterthanli.me/index.xml" htmlUrl="https://fasterthanli.me/" type="application/atom+xml"></outline>
-            <outline title="Hackaday" text="Hackaday" xmlUrl="https://hackaday.com/feed" htmlUrl="https://hackaday.com/" type="application/atom+xml"></outline>
-            <outline title="Julia Evans" text="Julia Evans" xmlUrl="https://jvns.ca/atom.xml" htmlUrl="https://jvns.ca/" type="application/atom+xml"></outline>
-            <outline title="Krebs on Security" text="Krebs on Security" xmlUrl="https://krebsonsecurity.com/feed" htmlUrl="https://krebsonsecurity.com/" type="application/atom+xml"></outline>
-            <outline title="Matklad" text="Matklad" xmlUrl="https://matklad.github.io/feed.xml" htmlUrl="https://matklad.github.io/" type="application/atom+xml"></outline>
-            <outline title="Port Swigger" text="Port Swigger" xmlUrl="https://portswigger.net/blog/rss" htmlUrl="https://portswigger.net/blog/" type="application/atom+xml"></outline>
-            <outline title="Project Zero" text="Project Zero" xmlUrl="https://googleprojectzero.blogspot.com/feeds/posts/default" htmlUrl="https://googleprojectzero.com/" type="application/atom+xml"></outline>
-            <outline title="Reddit Devops" text="Reddit Devops" xmlUrl="https://feeds.feedburner.com/reddit/nycutud3tay" htmlUrl="https://www.reddit.com/r/devops/" type="application/atom+xml"></outline>
-            <outline title="Reddit Linux" text="Reddit Linux" xmlUrl="https://feeds.feedburner.com/reddit/qm20cmrfvoh" htmlUrl="https://www.reddit.com/r/linux/" type="application/atom+xml"></outline>
-            <outline title="Reddit Programming" text="Reddit Programming" xmlUrl="https://feeds.feedburner.com/reddit/82sbcidz87j" htmlUrl="https://www.reddit.com/r/programming/" type="application/atom+xml"></outline>
-            <outline title="Reddit Self Hosted" text="Reddit Self Hosted" xmlUrl="https://feeds.feedburner.com/reddit/a0r7bpbhrnb" htmlUrl="https://www.reddit.com/r/selfhosted/" type="application/atom+xml"></outline>
-            <outline title="Schneier on Security" text="Schneier on Security" xmlUrl="https://schneier.com/blog/atom.xml" htmlUrl="https://schneier.com/blog/" type="application/atom+xml"></outline>
-            <outline title="Velo News" text="Velo News" xmlUrl="https://velonews.com/feed" htmlUrl="https://velonews.com/" type="application/atom+xml"></outline>
+        <outline text="Github">
+            <outline title="Github Following" text="Github Following" xmlUrl="https://github.com/wallago.private.atom?token=AK3SJA7Q6V2HXRZCZ2K7KAGIJJUAY" htmlUrl="https://www.github.com" type="rss"></outline>
+        </outline>
+        <outline text="Hardware">
+            <outline title="Hackaday" text="Hackaday" xmlUrl="https://hackaday.com/feed" htmlUrl="https://hackaday.com/" type="rss"></outline>
+        </outline>
+        <outline text="Infra">
+            <outline title="Cloudflare Blog" text="Cloudflare Blog" xmlUrl="https://blog.cloudflare.com/rss" htmlUrl="https://blog.cloudflare.com/" type="rss"></outline>
+        </outline>
+        <outline text="Linux">
+            <outline title="LWN" text="LWN" xmlUrl="https://lwn.net/headlines/rss" htmlUrl="https://lwn.net/" type="rss"></outline>
+            <outline title="Phoronix" text="Phoronix" xmlUrl="https://www.phoronix.com/rss.php" htmlUrl="https://www.phoronix.com/" type="rss"></outline>
+            <outline title="Reddit Linux" text="Reddit Linux" xmlUrl="https://feeds.feedburner.com/reddit/qm20cmrfvoh" htmlUrl="https://www.reddit.com/r/linux/" type="rss"></outline>
+        </outline>
+        <outline text="Neovim">
+            <outline title="Neovim News" text="Neovim News" xmlUrl="https://neovim.io/news.xml" htmlUrl="https://neovim.io/" type="rss"></outline>
+            <outline title="Reddit Neovim" text="Reddit Neovim" xmlUrl="https://feeds.feedburner.com/reddit/omwbrmskrcg" htmlUrl="https://www.reddit.com/r/neovim/" type="rss"></outline>
+            <outline title="Release notes from neovim" text="Release notes from neovim" xmlUrl="https://github.com/neovim/neovim/releases.atom" htmlUrl="https://github.com/neovim/neovim/releases" type="rss"></outline>
+        </outline>
+        <outline text="Nix">
+            <outline title="Determinate Systems blog" text="Determinate Systems blog" xmlUrl="https://determinate.systems/rss.xml" htmlUrl="https://determinate.systems/" description="News, releases, deep dives, and how-tos from the Determinate Systems team." type="rss"></outline>
+            <outline title="NixOS Discourse" text="NixOS Discourse" xmlUrl="https://discourse.nixos.org/latest.rss" htmlUrl="https://discourse.nixos.org/" type="rss"></outline>
+            <outline title="NixOS Weekly" text="NixOS Weekly" xmlUrl="https://weekly.nixos.org/feeds/all.rss.xml" htmlUrl="https://weekly.nixos.org/" type="rss"></outline>
+            <outline title="Reddit NixOS" text="Reddit NixOS" xmlUrl="https://feeds.feedburner.com/reddit/wttrgfhfjtv" htmlUrl="https://www.reddit.com/r/NixOS/" type="rss"></outline>
+            <outline title="Tweag - Engineering blog" text="Tweag - Engineering blog" xmlUrl="https://www.tweag.io/rss.xml" htmlUrl="https://tweag.io/" description="Software Innovation Lab" type="rss"></outline>
+        </outline>
+        <outline text="PZ">
+            <outline title="Project Zomboid" text="Project Zomboid" xmlUrl="https://projectzomboid.com/blog/feed/" htmlUrl="https://projectzomboid.com/blog/" type="rss"></outline>
+            <outline title="Reddit projectzomboid" text="Reddit projectzomboid" xmlUrl="https://feeds.feedburner.com/reddit/U0kcp0d8D7X" htmlUrl="https://www.reddit.com/r/projectzomboid/top/?limit=100&amp;t=week" description="Project Zomboid: An isometric zombie survival simulation / role playing game Find the official Discord here: https://discord.gg/theindiestone" type="rss"></outline>
+        </outline>
+        <outline text="Programming">
+            <outline title="Hacker News" text="Hacker News" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com/" type="rss"></outline>
+            <outline title="Reddit Programming" text="Reddit Programming" xmlUrl="https://feeds.feedburner.com/reddit/82sbcidz87j" htmlUrl="https://www.reddit.com/r/programming/" type="rss"></outline>
+        </outline>
+        <outline text="Rust">
+            <outline title="Inside Rust Blog" text="Inside Rust Blog" xmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml" htmlUrl="https://blog.rust-lang.org/inside-rust/" description="Want to follow along with Rust development? Curious how you might get involved? Take a look!" type="rss"></outline>
+            <outline title="Reddit Rust" text="Reddit Rust" xmlUrl="https://feeds.feedburner.com/reddit/ht1kbjgvaub" htmlUrl="https://www.reddit.com/r/rust/" type="rss"></outline>
+            <outline title="Rust Blog" text="Rust Blog" xmlUrl="https://blog.rust-lang.org/feed.xml" htmlUrl="https://blog.rust-lang.org/" type="rss"></outline>
+            <outline title="This Week in Rust" text="This Week in Rust" xmlUrl="https://this-week-in-rust.org/atom.xml" htmlUrl="https://this-week-in-rust.org/" type="rss"></outline>
+        </outline>
+        <outline text="Security">
+            <outline title="Krebs on Security" text="Krebs on Security" xmlUrl="https://krebsonsecurity.com/feed" htmlUrl="https://krebsonsecurity.com/" type="rss"></outline>
+            <outline title="Port Swigger" text="Port Swigger" xmlUrl="https://portswigger.net/blog/rss" htmlUrl="https://portswigger.net/blog/" type="rss"></outline>
+            <outline title="Project Zero" text="Project Zero" xmlUrl="https://googleprojectzero.blogspot.com/feeds/posts/default" htmlUrl="https://googleprojectzero.com/" type="rss"></outline>
+            <outline title="Schneier on Security" text="Schneier on Security" xmlUrl="https://schneier.com/blog/atom.xml" htmlUrl="https://schneier.com/blog/" type="rss"></outline>
+        </outline>
+        <outline text="Self Hosted">
+            <outline title="Reddit Self Hosted" text="Reddit Self Hosted" xmlUrl="https://feeds.feedburner.com/reddit/a0r7bpbhrnb" htmlUrl="https://www.reddit.com/r/selfhosted/" type="rss"></outline>
+            <outline title="selfh.st" text="selfh.st" xmlUrl="https://selfh.st/rss/" htmlUrl="https://selfh.st" description="Self-hosted news, content, updates, launches, events, and more" type="rss"></outline>
+        </outline>
+        <outline text="Sport">
+            <outline title="Climbing" text="Climbing" xmlUrl="https://www.climbing.com/feed?scope=anon" htmlUrl="https://www.climbing.com/" description="Climbing.com is your first stop for news, photos, videos, and advice about bouldering, sport climbing, trad climbing and alpine climbing. Since 1970, Climbing magazine&#39;s mission is to inspire people to climb, seek new challenges, and climb better and safer." type="rss"></outline>
+            <outline title="iRunFar" text="iRunFar" xmlUrl="https://www.irunfar.com/feed" htmlUrl="https://www.irunfar.com/" description="Trail running and ultrarunning information and inspiration." type="rss"></outline>
+            <outline title="Velo News" text="Velo News" xmlUrl="https://velonews.com/feed" htmlUrl="https://velonews.com/" type="rss"></outline>
+        </outline>
+        <outline text="Terminal">
+            <outline title="Reddit CLI" text="Reddit CLI" xmlUrl="https://feeds.feedburner.com/reddit/bntqsnxjblc" htmlUrl="https://www.reddit.com/r/commandline/" type="rss"></outline>
+            <outline title="Reddit TUI" text="Reddit TUI" xmlUrl="https://feeds.feedburner.com/reddit/syj8ftl83e3" htmlUrl="https://www.reddit.com/r/tui/" type="rss"></outline>
+        </outline>
+        <outline text="Videos">
+            <outline title="Youtube DevOps Toolbox" text="Youtube DevOps Toolbox" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w" htmlUrl="https://www.youtube.com/channel/UCYeiozh-4QwuC1sjgCmB92w" type="rss"></outline>
+            <outline title="Youtube Vimjoyer" text="Youtube Vimjoyer" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_zBdZ0_H_jn41FDRG7q4Tw" htmlUrl="https://www.youtube.com/channel/UC_zBdZ0_H_jn41FDRG7q4Tw" type="rss"></outline>
         </outline>
     </body>
 </opml>

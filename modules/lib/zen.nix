@@ -136,6 +136,11 @@
           id = "85fbc7ff-8b37-4bd6-bf3d-e5a3809dcf4e";
           url = "https://app.codecov.io/gh/wallago";
         }
+        {
+          name = "Feed Burnner";
+          id = "fd54e3ac-385c-4627-bcff-59bec0d6f078";
+          url = "https://feedburner.google.com/";
+        }
       ];
       self = [
         {
