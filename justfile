@@ -219,31 +219,32 @@ ci:
 # # to rm
 #
 # # Install NixOS on a remote host using nixos-anywhere, seeding the sops age key
-# install host flake:
-#     #!/usr/bin/env bash
-#     set -euo pipefail
-#
-#     tmp=$(mktemp -d)
-#     trap 'rm -rf "$tmp"' EXIT
-#
-#     ssh_dir="$tmp/persist/etc/ssh"
-#     install -d -m 0755 $ssh_dir
-#     ssh-keygen -t ed25519 -N "" -C "root@{{flake}}" \
-#       -f "$ssh_dir/ssh_host_ed25519_key"
-#     chmod 600 "$ssh_dir/ssh_host_ed25519_key"
-#     pub="$ssh_dir/ssh_host_ed25519_key.pub"
-#
-#     echo
-#     echo "SSH pubkey:"
-#     cat "$pub"
-#     echo
-#     echo "Age pubkey (add to .sops.yaml):"
-#     nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$pub"
-#     echo
-#
-#     read -rp "Update .sops.yaml + run 'just secrets-rotate', then press Enter to install... "
-#
-#     nix run github:nix-community/nixos-anywhere -- \
-#       --flake ".#{{flake}}" \
-#       --extra-files "$tmp" \
-#       --target-host "root@{{host}}"
+install flake:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    tmp=$(mktemp -d)
+    trap 'rm -rf "$tmp"' EXIT
+
+    ssh_dir="$tmp/persist/etc/ssh"
+    install -d -m 0755 $ssh_dir
+    ssh-keygen -t ed25519 -N "" -C "root@{{ flake }}" \
+      -f "$ssh_dir/ssh_host_ed25519_key"
+    chmod 600 "$ssh_dir/ssh_host_ed25519_key"
+    pub="$ssh_dir/ssh_host_ed25519_key.pub"
+
+    echo
+    echo "SSH pubkey:"
+    cat "$pub"
+    echo
+    echo "Age pubkey (add to .sops.yaml):"
+    nix shell nixpkgs#ssh-to-age -c ssh-to-age < "$pub"
+    echo
+
+    read -rp "Update .sops.yaml + run 'just secrets-rotate', then press Enter to install... "
+
+    nix run github:nix-community/nixos-anywhere -- \
+      --flake ".#{{ flake }}" \
+      --extra-files "$tmp" \
+      --ssh-port 2222 \
+      --target-host "root@10.200.0.254"

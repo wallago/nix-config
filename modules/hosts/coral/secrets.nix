@@ -7,10 +7,15 @@
       self.nixosModules.secretsWireguardServer
       self.nixosModules.secretsUser
       self.nixosModules.secretsAttic
+      self.nixosModules.secretsClaude
     ];
 
     sops.secrets = {
       "wallago.xyz-ssl-key" = {
+        owner = config.services.nginx.user;
+        group = config.services.nginx.group;
+      };
+      "wallago.xyz-ssl-crt" = {
         owner = config.services.nginx.user;
         group = config.services.nginx.group;
       };

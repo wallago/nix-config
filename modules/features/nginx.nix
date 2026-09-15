@@ -33,6 +33,10 @@
             ;
           extraConfig = ''
             client_max_body_size ${host.clientMaxBodySize};
+          ''
+          + lib.optionalString (host.allowedNetworks or [ ] != [ ]) ''
+            ${lib.concatMapStrings (network: "allow ${network};\n") host.allowedNetworks}
+            deny all;
           '';
           locations."/".proxyPass = host.upstream;
         }) cfg.hosts;

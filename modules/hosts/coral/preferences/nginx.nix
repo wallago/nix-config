@@ -22,6 +22,11 @@
           sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
           upstream = "http://127.0.0.1:8384";
         };
+        "atuin.wallago.xyz" = {
+          sslCertificateKey = config.sops.secrets."wallago.xyz-ssl-key".path;
+          sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
+          upstream = "http://127.0.0.1:51488";
+        };
       };
     };
 }

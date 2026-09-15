@@ -1,6 +1,6 @@
 {
   flake.homeModules.desktopOptions =
-    { lib, ... }:
+    { lib, config, ... }:
     let
       inherit (lib) mkOption types;
     in
@@ -69,6 +69,10 @@
             types.submodule {
               options = {
                 command = mkOption { type = types.listOf types.str; };
+                key = mkOption {
+                  type = types.nullOr types.str;
+                  default = null;
+                };
                 matchAppId = mkOption {
                   type = types.nullOr types.str;
                   default = null;
@@ -81,7 +85,15 @@
                   type = types.nullOr types.str;
                   default = null;
                 };
+                fullscreen = mkOption {
+                  type = types.bool;
+                  default = false;
+                };
                 maximized = mkOption {
+                  type = types.bool;
+                  default = false;
+                };
+                floating = mkOption {
                   type = types.bool;
                   default = false;
                 };
@@ -90,5 +102,10 @@
           );
         };
       };
+
+      config.assertions = map (e: {
+        assertion = e.key == null || e.workspace == null;
+        message = "preferences.session: `${builtins.head e.command}` sets both key and workspace; a slot parks on `scratch` and is summoned to the focused workspace.";
+      }) config.preferences.session;
     };
 }

@@ -120,6 +120,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    skimmer = {
+      url = "github:wallago/skimmer?ref=alpha";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ─── RPI ───────────────────────────────────────────────────────────────────
 
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";

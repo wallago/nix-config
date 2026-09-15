@@ -2,12 +2,11 @@
   flake.nixosModules.secretsMiniflux =
     { config, ... }:
     {
-      sops.secrets = {
-        miniflux-credentials = { };
-        "wallago.xyz-ssl-crt" = {
-          owner = config.services.nginx.user;
-          group = config.services.nginx.group;
-        };
-      };
+      sops.secrets.miniflux-admin-password = { };
+
+      sops.templates."miniflux-credentials".content = ''
+        ADMIN_USERNAME=admin
+        ADMIN_PASSWORD=${config.sops.placeholder.miniflux-admin-password}
+      '';
     };
 }

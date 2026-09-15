@@ -25,6 +25,11 @@
                 default = "1m";
                 description = "Max upload body size for this host (0 = unlimited)";
               };
+              allowedNetworks = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = [ ];
+                description = "Network allowed to use this address.";
+              };
             };
           }
         );
