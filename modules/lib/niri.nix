@@ -289,7 +289,10 @@
         action.spawn = "ghostty";
       }
       {
-        mods = [ "Mod" ];
+        mods = [
+          "Mod"
+          "Shift"
+        ];
         key = "P";
         title = "Power Menu";
         category = "apps";
