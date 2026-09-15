@@ -4,11 +4,6 @@
       default = {
         containersForce = true; # Delete containers not declared here
         containers = {
-          Entertainment = {
-            color = "red";
-            icon = "chill";
-            id = 1;
-          };
           Dev = {
             color = "purple";
             icon = "circle";
@@ -28,6 +23,16 @@
             color = "yellow";
             icon = "pet";
             id = 5;
+          };
+        };
+      };
+      secondary = {
+        containersForce = true; # Delete containers not declared here
+        containers = {
+          Entertainment = {
+            color = "red";
+            icon = "chill";
+            id = 1;
           };
         };
       };

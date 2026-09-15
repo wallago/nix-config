@@ -15,6 +15,10 @@
           isDefault = true;
           settings = commonSettings;
         };
+        secondary = {
+          id = 1;
+          settings = commonSettings;
+        };
       };
     };
 }

@@ -22,20 +22,13 @@
         default = {
           spacesForce = true; # Delete spaces not declared here
           spaceRouting = {
-            defaultExternalRoute = "78e3bba2-c29a-4573-977e-3477a56b0feb"; # external opens with no match
-            routes."twitch" = {
-              reference = "twitch.com";
-              openIn = "c2a98414-f9a5-4c03-971c-f11a5133919d";
+            defaultExternalRoute = "cdd10fab-4fc5-494b-9041-325e5759195b"; # external opens with no match
+            routes."teams" = {
+              reference = "teams.cloud.microsoft";
+              openIn = "cdd10fab-4fc5-494b-9041-325e5759195b";
             };
           };
           spaces = {
-            "Entertainment" = {
-              id = "c2a98414-f9a5-4c03-971c-f11a5133919d";
-              position = 1000;
-              icon = "📹";
-              container = 1;
-              theme = mkTheme 120 200 150;
-            };
             "Dev" = {
               id = "78e3bba2-c29a-4573-977e-3477a56b0feb";
               position = 2000;
@@ -63,6 +56,25 @@
               icon = "👥";
               container = 5;
               theme = mkTheme 220 180 200;
+            };
+          };
+        };
+        secondary = {
+          spacesForce = true; # Delete spaces not declared here
+          spaceRouting = {
+            defaultExternalRoute = "c2a98414-f9a5-4c03-971c-f11a5133919d"; # external opens with no match
+            routes."twitch" = {
+              reference = "twitch.tv";
+              openIn = "c2a98414-f9a5-4c03-971c-f11a5133919d";
+            };
+          };
+          spaces = {
+            "Entertainment" = {
+              id = "c2a98414-f9a5-4c03-971c-f11a5133919d";
+              position = 1000;
+              icon = "📹";
+              container = 1;
+              theme = mkTheme 120 200 150;
             };
           };
         };

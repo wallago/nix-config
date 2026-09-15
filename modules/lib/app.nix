@@ -28,7 +28,9 @@
       "zen-beta"
       "--name=zen.static"
       "--new-instance"
-      "https://twitch.com"
+      "-P"
+      "secondary"
+      "https://twitch.tv"
     ];
     webMain = [
       "zen-beta"

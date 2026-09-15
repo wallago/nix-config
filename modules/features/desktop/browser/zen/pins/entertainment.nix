@@ -13,7 +13,7 @@
     in
     {
       programs.zen-browser.profiles = {
-        default = {
+        secondary = {
           pinsForce = true; # Delete pins not declared here
           inherit pins;
         };

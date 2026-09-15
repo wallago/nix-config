@@ -52,6 +52,10 @@
           default = "ddg";
           engines = engine;
         };
+        secondary.search = {
+          force = true; # Enforce declared search engines on each rebuild
+          default = "ddg";
+        };
       };
     };
 }
