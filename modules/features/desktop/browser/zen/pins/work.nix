@@ -6,14 +6,13 @@
       pins = mkPins {
         workspace = id;
         container = 3;
-        start = 102;
       } self.lib.zen.sites.work;
     in
     {
       programs.zen-browser.profiles = {
         default = {
           pinsForce = true; # Delete pins not declared here
-          pins = pins;
+          inherit pins;
         };
       };
     };

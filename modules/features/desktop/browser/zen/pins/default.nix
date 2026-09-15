@@ -63,7 +63,8 @@
       imports = [
         self.homeModules.zenPinsDev
         self.homeModules.zenPinsShopping
-        self.homeModules.zenPinsPerso
+        self.homeModules.zenPinsEntertainment
+        self.homeModules.zenPinsSocial
         self.homeModules.zenPinsWork
 
       ];

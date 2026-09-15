@@ -2,7 +2,7 @@
   flake.homeModules.zenSearch =
     { pkgs, ... }:
     let
-      perso = {
+      engine = {
         mynixos = {
           name = "My NixOS";
           urls = [
@@ -50,11 +50,7 @@
         default.search = {
           force = true; # Enforce declared search engines on each rebuild
           default = "ddg";
-          engines = perso;
-        };
-        secondary.search = {
-          force = true; # Enforce declared search engines on each rebuild
-          default = "ddg";
+          engines = engine;
         };
       };
     };

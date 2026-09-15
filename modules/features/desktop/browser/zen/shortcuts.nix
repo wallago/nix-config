@@ -183,11 +183,9 @@
       programs.zen-browser = {
         profiles = {
           default = commonConfig;
-          secondary = commonConfig;
         };
         activationFragments = {
           default = mkExtraFragment "default";
-          secondary = mkExtraFragment "secondary";
         };
       };
     };

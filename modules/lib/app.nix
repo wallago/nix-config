@@ -26,11 +26,9 @@
     ];
     webSecondary = [
       "zen-beta"
-      "--name=zen.secondary"
-      "--class=zen.secondary"
-      "-P"
-      "secondary"
+      "--name=zen.static"
       "--new-instance"
+      "https://twitch.com"
     ];
     webMain = [
       "zen-beta"
