@@ -1,7 +1,6 @@
 {
   flake.lib.zen.sites = {
     work = [
-      # Work
       {
         name = "Teams";
         id = "859d6d24-bb0b-4e3d-b3f6-65d50f135545";
@@ -35,57 +34,46 @@
         url = "https://www.leboncoin.fr/";
       }
     ];
-    perso = {
-      entertainment = [
-        {
-          name = "Twitch";
-          id = "327ca5d6-a577-4390-ad51-ef8947a83d82";
-          url = "https://twitch.com";
-        }
-        {
-          name = "Youtube";
-          id = "7db410d2-dcdf-4c34-ba91-2e144093bebe";
-          url = "https://youtube.com";
-        }
-        {
-          name = "Canal";
-          id = "8cf966af-e496-4d5a-b229-aa52f782b6cc";
-          url = "https://www.canalplus.com/";
-        }
-        {
-          name = "Deezer";
-          id = "a9bd4fc5-1880-4c9e-9fa7-f333abc554f9";
-          url = "https://www.deezer.com/";
-        }
-      ];
-      social = [
-        {
-          name = "Reddit";
-          id = "3b354f4f-2704-4801-8f0a-684f88af8931";
-          url = "https://reddit.com";
-        }
-        {
-          name = "Whatsapp";
-          id = "3dbc43fc-3d63-48e1-a353-f146de02e7e7";
-          url = "https://web.whatsapp.com/";
-        }
-      ];
-      misc = [
-        {
-          name = "Jinka";
-          id = "ab21c5ca-c393-4f94-b87e-d8c57e445933";
-          url = "https://www.jinka.fr/";
-        }
-      ];
-    };
+    entertainment = [
+      {
+        name = "Twitch";
+        id = "327ca5d6-a577-4390-ad51-ef8947a83d82";
+        url = "https://twitch.com";
+      }
+      {
+        name = "Youtube";
+        id = "7db410d2-dcdf-4c34-ba91-2e144093bebe";
+        url = "https://youtube.com";
+      }
+      {
+        name = "Canal";
+        id = "8cf966af-e496-4d5a-b229-aa52f782b6cc";
+        url = "https://www.canalplus.com/";
+      }
+      {
+        name = "Deezer";
+        id = "a9bd4fc5-1880-4c9e-9fa7-f333abc554f9";
+        url = "https://www.deezer.com/";
+      }
+    ];
+    social = [
+      {
+        name = "Reddit";
+        id = "3b354f4f-2704-4801-8f0a-684f88af8931";
+        url = "https://reddit.com";
+      }
+      {
+        name = "Whatsapp";
+        id = "3dbc43fc-3d63-48e1-a353-f146de02e7e7";
+        url = "https://web.whatsapp.com/";
+      }
+      {
+        name = "Jinka";
+        id = "ab21c5ca-c393-4f94-b87e-d8c57e445933";
+        url = "https://www.jinka.fr/";
+      }
+    ];
     dev = {
-      default = [
-        {
-          name = "GitHub";
-          id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
-          url = "https://github.com";
-        }
-      ];
       nix = [
         {
           name = "My NixOS";
@@ -134,6 +122,11 @@
       ];
       tools = [
         {
+          name = "GitHub";
+          id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
+          url = "https://github.com";
+        }
+        {
           name = "Cloudflare";
           id = "ff84a63f-a537-4676-9a48-41eddc54fe1c";
           url = "https://dash.cloudflare.com/bfdb3ee6d1ba5f748e3d64cee32abf50/wallago.xyz/ssl-tls/origin/origin-certificates";
@@ -154,6 +147,13 @@
           name = "Sync (syncthing)";
           id = "23bd1ad9-d9c1-4856-9e2f-f857d181a53b";
           url = "https://sync.wallago.xyz";
+        }
+      ];
+      lib = [
+        {
+          name = "Emoji";
+          id = "6ae171c8-f6df-431e-8667-d30635f65524";
+          url = "https://emojipedia.org/";
         }
       ];
     };

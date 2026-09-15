@@ -1,12 +1,15 @@
 { self, ... }: {
-  flake.homeModules.zenPinsShopping =
-    { mkPins, ... }:
+  flake.homeModules.zenPinsEntertainment =
+    {
+      mkPins,
+      ...
+    }:
     let
-      id = "78aabdad-8aae-4fe0-8ff0-2a0c6c4ccc24";
+      id = "c2a98414-f9a5-4c03-971c-f11a5133919d";
       pins = mkPins {
         workspace = id;
-        container = 4;
-      } self.lib.zen.sites.shopping;
+        container = 1;
+      } self.lib.zen.sites.entertainment;
     in
     {
       programs.zen-browser.profiles = {

@@ -8,7 +8,7 @@
       preferences.session = [
         {
           command = app.webSecondary;
-          matchAppId = "zen.secondary";
+          matchAppId = "zen.static";
           workspace = "browser-secondary";
           maximized = true;
         }

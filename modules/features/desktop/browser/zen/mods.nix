@@ -13,7 +13,6 @@
     {
       programs.zen-browser.profiles = {
         default.mods = commonMods;
-        secondary.mods = commonMods;
       };
     };
 }
