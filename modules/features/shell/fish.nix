@@ -21,6 +21,7 @@
         catimg
         viu
         just
+        fastfetch
       ];
 
       programs.fish = {
@@ -32,6 +33,34 @@
           fish_vi_key_bindings
           set fish_greeting ""
           fzf_configure_bindings --history=
+
+          function clear --description 'clear + header'
+            command clear
+            if set -q PROJECT_BANNER
+              $PROJECT_BANNER
+            else if set -q PROJECT_NAME
+              __project_banner
+            else
+              fastfetch --logo small --structure os:kernel:uptime:disk:Memory:Swap:LocalIp
+            end
+          end
+
+          function __clear_and_repaint
+            clear >/dev/tty
+            string repeat -N \n --count=(math (count (fish_prompt)) - 1) >/dev/tty
+            commandline -f repaint
+          end
+
+          function direnv --description 'direnv + banner on reload/allow'
+            command direnv $argv
+            if contains -- "$argv[1]" reload allow
+              clear
+            end
+          end
+
+          bind ctrl-l __clear_and_repaint
+          bind -M insert ctrl-l __clear_and_repaint
+
           bind ctrl-r _atuin_search
           bind -M insert ctrl-r _atuin_search
         '';
