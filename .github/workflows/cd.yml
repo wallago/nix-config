@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: [coral, sponge, squid, krill, cuttlefish, anemone]
+        host: [coral, sponge, squid, krill, cuttlefish]
     steps:
       - uses: actions/checkout@v7
       - name: Configure Attic
