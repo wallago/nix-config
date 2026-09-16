@@ -19,8 +19,6 @@ jobs:
         host: [coral, sponge, squid, krill]
     steps:
       - uses: actions/checkout@v7
-      - name: Install Attic client
-        run: nix profile add nixpkgs#attic-client
       - name: Configure Attic
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
