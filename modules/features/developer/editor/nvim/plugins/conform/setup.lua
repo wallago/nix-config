@@ -17,6 +17,7 @@ require("conform").setup({
 		toml = { "taplo" },
 		python = { "black" },
 		just = { "just" },
+		slint = { "slint" },
 	},
 	formatters = {
 		["sql-formatter"] = {
