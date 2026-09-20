@@ -13,7 +13,7 @@
   };
 
   flake.nixosModules.configAnemone =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       userName = config.preferences.user.name;
     in
@@ -29,6 +29,10 @@
 
         inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5.base
         inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5.bluetooth
+      ];
+
+      environment.systemPackages = [
+        pkgs.python3 # SSH Tunnel
       ];
 
       preferences.user.name = "wallago";
