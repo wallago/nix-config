@@ -15,8 +15,12 @@
           proton-ge-bin # Wine-based compatibility layer
         ];
         package = pkgs.steam.override {
+          extraPkgs = p: [
+            p.gamemode
+            p.mangohud
+          ];
           extraEnv = {
-            MANGOHUD = true; # exported as MANGOHUD=1 inside Steam, inherited by every game
+            MANGOHUD = true;
           };
           extraArgs = lib.optionalString (lib.elem "intel" config.services.xserver.videoDrivers) "-cef-disable-gpu";
         };
