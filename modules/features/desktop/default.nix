@@ -26,6 +26,7 @@
       home.packages = with pkgs; [
         imv
         mpv
+        pavucontrol
         wl-clipboard
       ];
     };
