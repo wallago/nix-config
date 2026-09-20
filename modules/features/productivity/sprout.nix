@@ -17,7 +17,7 @@
           postPatch = ''
             substituteInPlace src/main.rs --replace-fail \
               'exe_dir.join("habit.db")' \
-              '{ let d = dirs::data_dir().unwrap_or_default().join("sprout"); std::fs::create_dir_all(&d)?; d.join("habit.db") }'
+              '{ let d = dirs::home_dir().unwrap_or_default().join("sync-habit"); std::fs::create_dir_all(&d)?; d.join("habit.db") }'
           '';
           doCheck = false;
         }))

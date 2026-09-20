@@ -36,6 +36,11 @@
           key = "4";
         }
         {
+          command = app.habit;
+          matchAppId = "com.slot.habit";
+          key = "5";
+        }
+        {
           command = app.resources;
           matchAppId = "com.slot.resources";
           matchTitle = "resources";

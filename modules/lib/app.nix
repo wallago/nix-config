@@ -61,5 +61,12 @@
       "--class=com.slot.term"
       "--title=term"
     ];
+    habit = [
+      "ghostty"
+      "--class=com.slot.habit"
+      "--title=habit"
+      "-e"
+      "sprout"
+    ];
   };
 }
