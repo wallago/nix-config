@@ -28,6 +28,12 @@
               inherit (hosts) squid sponge;
             };
           };
+          mind = {
+            name = "sync-mind";
+            devices = {
+              inherit (hosts) sponge squid worm;
+            };
+          };
         };
       };
     };

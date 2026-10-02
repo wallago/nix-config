@@ -28,6 +28,12 @@
               inherit (hosts) coral sponge;
             };
           };
+          mind = {
+            name = "sync-mind";
+            devices = {
+              inherit (hosts) coral sponge worm;
+            };
+          };
         };
       };
     };

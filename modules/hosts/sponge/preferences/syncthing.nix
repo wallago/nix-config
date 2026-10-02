@@ -28,6 +28,12 @@
               inherit (hosts) coral squid;
             };
           };
+          mind = {
+            name = "sync-mind";
+            devices = {
+              inherit (hosts) coral squid worm;
+            };
+          };
         };
       };
     };
