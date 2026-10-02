@@ -39,6 +39,13 @@
         port = 2201;
       }
     ];
+    "4835" = [
+      {
+        alias = "4835-corolla";
+        user = "ds";
+        port = 2201;
+      }
+    ];
     "4837" = [
       {
         alias = "4837-gordini";
