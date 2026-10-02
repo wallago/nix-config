@@ -40,18 +40,12 @@
           hashKnownHosts = true;
           serverAliveInterval = 60;
         };
-        corolla = {
-          hostname = "192.168.5.34";
-          port = 2222;
-          user = "ds";
-          proxyJump = "anemone-wg0";
-        };
-        n1 = {
-          hostname = "192.168.5.30";
-          port = 2222;
-          user = "n1";
-          proxyJump = "anemone-wg0";
-        };
+        # corolla = {
+        #   hostname = "192.168.5.34";
+        #   port = 2222;
+        #   user = "ds";
+        #   proxyJump = "anemone-wg0";
+        # };
       };
     };
   };
