@@ -329,7 +329,7 @@
         key = "Escape";
         title = "Lock";
         category = "apps";
-        action.spawn = "qylock";
+        action.spawn = "qylock-lock";
       }
       {
         mods = [ "Mod" ];
