@@ -68,5 +68,12 @@
       "-e"
       "sprout"
     ];
+    calendar = [
+      "ghostty"
+      "--class=com.slot.calendar"
+      "--title=calendar"
+      "-e"
+      "ikhal"
+    ];
   };
 }
