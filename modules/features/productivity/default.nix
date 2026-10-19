@@ -9,9 +9,11 @@
   flake.homeModules.productivity = {
     imports = [
       # self.homeModules.eilmeldung
-      self.homeModules.matcha
-      self.homeModules.sprout
       # self.homeModules.bagels
+      self.homeModules.matcha # mails
+      self.homeModules.sprout # habbits
+      self.homeModules.khal # calendar
     ];
+
   };
 }
