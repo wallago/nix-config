@@ -22,6 +22,7 @@
         self.homeModules.niriWorkspaces
         self.homeModules.niriWindowRules
         self.homeModules.niriSlots
+        self.homeModules.niriProjects
       ];
 
       # niri-flake runs `niri validate` on config.kdl with this package.
