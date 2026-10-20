@@ -52,7 +52,7 @@
           highlight_event_days = true;
         };
         view = {
-          agenda_event_format = "{calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}";
+          agenda_event_format = "{calendar-color}{cancelled}{start-end-time-style} {title} [{categories}]{repeat-symbol}{reset}";
           theme = "dark";
           frame = "color";
           blank_line_before_day = true;
