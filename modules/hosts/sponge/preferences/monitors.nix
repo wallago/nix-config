@@ -12,6 +12,7 @@
           x = 0;
           y = 0;
         };
+        wallpaper = ../../../../wallpapers/night-city.jpeg;
       };
       "DP-3" = {
         mode = {
@@ -24,6 +25,7 @@
           y = 0;
           x = -1920;
         };
+        wallpaper = ../../../../wallpapers/night-city.jpeg;
       };
       "DP-1" = {
         mode = {
@@ -36,6 +38,7 @@
           y = 1080;
           x = -1920;
         };
+        wallpaper = ../../../../wallpapers/night-city.jpeg;
       };
       "HDMI-A-1" = {
         mode = {
@@ -48,6 +51,7 @@
           y = -1152;
           x = 0;
         };
+        wallpaper = ../../../../wallpapers/night-city.jpeg;
       };
     };
   };

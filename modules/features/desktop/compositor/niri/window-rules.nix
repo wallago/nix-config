@@ -2,6 +2,15 @@
   flake.homeModules.niriWindowRules =
     { lib, config, ... }:
     {
+      # Draw the wallpaper on the backdrop rather than inside each workspace,
+      # so it stays put on workspace switch and shows in the overview.
+      programs.niri.settings.layer-rules = [
+        {
+          matches = [ { namespace = "^awww-daemon"; } ];
+          place-within-backdrop = true;
+        }
+      ];
+
       programs.niri.settings.window-rules =
         lib.filter (r: r.matches != [ ]) (
           map (
