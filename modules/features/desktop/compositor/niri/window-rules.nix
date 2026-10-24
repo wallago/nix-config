@@ -9,6 +9,11 @@
           matches = [ { namespace = "^awww-daemon"; } ];
           place-within-backdrop = true;
         }
+        {
+          # DMS draws its own wallpaper inside each workspace, over awww's.
+          matches = [ { namespace = "^dms:wallpaper$"; } ];
+          opacity = 0.0;
+        }
       ];
 
       programs.niri.settings.window-rules =
