@@ -7,6 +7,8 @@
       default-column-width.proportion = 0.5;
       tab-indicator.place-within-column = true;
       gaps = 8;
+      # Let the backdrop wallpaper show through instead of a per-workspace fill.
+      background-color = "transparent";
     };
   };
 }

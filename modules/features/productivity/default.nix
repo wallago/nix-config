@@ -11,7 +11,7 @@
       # self.homeModules.eilmeldung
       # self.homeModules.bagels
       self.homeModules.matcha # mails
-      self.homeModules.sprout # habbits
+      self.homeModules.sprout # habits
       self.homeModules.khal # calendar
     ];
 

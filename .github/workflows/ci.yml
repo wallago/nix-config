@@ -22,7 +22,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Run committed
-        uses: crate-ci/committed@master
+        uses: crate-ci/committed@main
         with:
           args: "-vv"
           commits: "HEAD"
