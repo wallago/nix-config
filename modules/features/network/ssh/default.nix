@@ -35,9 +35,17 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      settings."*" = {
-        hashKnownHosts = true;
-        serverAliveInterval = 60;
+      settings = {
+        "*" = {
+          hashKnownHosts = true;
+          serverAliveInterval = 60;
+        };
+        # corolla = {
+        #   hostname = "192.168.5.34";
+        #   port = 2222;
+        #   user = "ds";
+        #   proxyJump = "anemone-wg0";
+        # };
       };
     };
   };

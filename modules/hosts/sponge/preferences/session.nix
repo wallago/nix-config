@@ -43,6 +43,16 @@
           key = "4";
         }
         {
+          command = app.habit;
+          matchAppId = "com.slot.habit";
+          key = "5";
+        }
+        {
+          command = app.calendar;
+          matchAppId = "com.slot.calendar";
+          key = "6";
+        }
+        {
           command = app.resources;
           matchAppId = "com.slot.resources";
           matchTitle = "resources";

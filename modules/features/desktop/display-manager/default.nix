@@ -1,13 +1,9 @@
 { self, ... }:
 {
-  flake.nixosModules.displayManager =
-    { pkgs, ... }:
-    {
-      imports = [
-        self.nixosModules.sddm
-        self.nixosModules.qylock
-      ];
-
-      environment.systemPackages = [ pkgs.xwayland-satellite ];
-    };
+  flake.nixosModules.displayManager = {
+    imports = [
+      self.nixosModules.sddm
+      self.nixosModules.qylock
+    ];
+  };
 }

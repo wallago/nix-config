@@ -6,6 +6,9 @@
         enable = true;
         settings = {
           general = {
+            desiredgov = "performance";
+            softrealtime = "auto";
+            inhibit_screensaver = 1;
             renice = 10;
           };
           custom = {

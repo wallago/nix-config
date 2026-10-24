@@ -22,6 +22,7 @@
         jq
         libxml2
         just
+        slint-lsp
       ];
     };
 }

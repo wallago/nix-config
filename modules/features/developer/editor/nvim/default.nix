@@ -43,6 +43,7 @@
         self.homeModules.nvimPluginActionsPreview
         self.homeModules.nvimPluginCheckmate
         self.homeModules.nvimPluginPm
+        self.homeModules.nvimPluginCommentFrame
       ];
     };
     nvimPluginsOptions = {

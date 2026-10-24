@@ -54,8 +54,19 @@
             n = [ "new" ];
             sq = [ "squash" ];
             pp = [
-              "git"
-              "push"
+              "util"
+              "exec"
+              "--"
+              "sh"
+              "-c"
+              ''
+                set -e
+                jj git push "$@"
+                if [ -n "$(jj log --no-graph -r '@ & bookmarks() & ~bookmarks(exact:"main")' -T commit_id)" ]; then
+                  jj new
+                fi
+              ''
+              "jj-pp"
             ];
             tug = [
               "bookmark"

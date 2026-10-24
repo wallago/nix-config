@@ -10,18 +10,6 @@
         key = config.sops.secrets."syncthing-key".path;
         guiPasswordFile = config.sops.secrets."syncthing-password".path;
         folders = {
-          nvim = {
-            name = "sync-nvim";
-            devices = {
-              inherit (hosts) sponge squid;
-            };
-          };
-          bagels = {
-            name = "sync-bagels";
-            devices = {
-              inherit (hosts) sponge squid;
-            };
-          };
           notes = {
             name = "sync-notes";
             devices = {
@@ -30,6 +18,18 @@
           };
           pm = {
             name = "sync-pm";
+            devices = {
+              inherit (hosts) sponge squid worm;
+            };
+          };
+          habit = {
+            name = "sync-habit";
+            devices = {
+              inherit (hosts) squid sponge;
+            };
+          };
+          mind = {
+            name = "sync-mind";
             devices = {
               inherit (hosts) sponge squid worm;
             };

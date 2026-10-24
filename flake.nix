@@ -4,7 +4,7 @@
   inputs = {
     # ─── Core ──────────────────────────────────────────────────────────────────
 
-    # Nixpkgs — small unstable channel
+    # Nixpkgs — unstable channel
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Modular flake authoring — split outputs into composable modules
@@ -16,7 +16,11 @@
     # ─── System ────────────────────────────────────────────────────────────────
 
     # Declarative ephemeral root: pick what survives a reboot
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     # Per-user environment management on top of Nix
     home-manager = {
@@ -50,11 +54,11 @@
 
     # ─── Desktop ───────────────────────────────────────────────────────────────
 
-    # Scrollable-tiling Wayland compositor
-    nixpkgs-niri.url = "github:nixos/nixpkgs/e72e4f299401a3689d4b3d5fc6496b11db7064eb";
+    # Typed niri settings (home-manager module only); niri itself comes from nixpkgs
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs-niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
     # Niri feature
@@ -70,12 +74,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # Soothing pastel theme for Nix
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Curated Firefox add-ons exposed as Nix packages
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -88,8 +86,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ─── Productivity ──────────────────────────────────────────────────────────
-
     # ─── Tooling ───────────────────────────────────────────────────────────────
 
     # Claude AI agent
@@ -98,31 +94,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jj-starship = {
-      url = "github:dmmulroy/jj-starship";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Generate network/infra diagrams from the NixOS configs
     nix-topology = {
       url = "github:oddlama/nix-topology";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     # Repo builder
     praline = {
       url = "github:wallago/praline/release/v0.2.0-alpha.8";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.claude-code.follows = "claude-code";
     };
 
     bp-to-bagels-csv = {
       url = "github:wallago/bp-to-bagels-csv";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.claude-code.follows = "claude-code";
     };
 
     skimmer = {
       url = "github:wallago/skimmer?ref=alpha";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.claude-code.follows = "claude-code";
     };
 
     # ─── RPI ───────────────────────────────────────────────────────────────────
