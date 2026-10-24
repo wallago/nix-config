@@ -11,7 +11,7 @@
         }
         {
           # DMS draws its own wallpaper inside each workspace, over awww's.
-          matches = [ { namespace = "^dms:wallpaper$"; } ];
+          matches = [ { namespace = "^quickshell$"; } ];
           opacity = 0.0;
         }
       ];
