@@ -34,6 +34,17 @@
               inherit (hosts) sponge squid worm;
             };
           };
+          todo = {
+            name = "sync-todo";
+            devices = {
+              inherit (hosts)
+                sponge
+                squid
+                worm
+                krill
+                ;
+            };
+          };
         };
       };
     };

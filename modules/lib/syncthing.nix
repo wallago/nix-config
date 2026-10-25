@@ -23,6 +23,10 @@
           id = "VECK7WJ-R4CXSHS-RWOGRLH-RTBA42P-M2SZKEY-AIBSAEQ-A3U5QYG-UNY6WAB";
           addresses = [ "tcp://${hosts.worm.ip}:${toString port}" ];
         };
+        krill = {
+          id = "N2NAHXC-JGNMSCU-GWEBZKX-AJMY2TC-YKACC7D-3GVSARB-DTE37D7-UVYUCQA";
+          addresses = [ "tcp://${hosts.krill.ip}:${toString port}" ];
+        };
       };
     };
 }

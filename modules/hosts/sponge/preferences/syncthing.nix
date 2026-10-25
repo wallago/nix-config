@@ -34,6 +34,17 @@
               inherit (hosts) coral squid worm;
             };
           };
+          todo = {
+            name = "sync-todo";
+            devices = {
+              inherit (hosts)
+                coral
+                squid
+                worm
+                krill
+                ;
+            };
+          };
         };
       };
     };

@@ -3,6 +3,7 @@
     imports = [
       self.nixosModules.secretsWireguardClient
       self.nixosModules.secretsUser
+      self.nixosModules.secretsSyncthing
     ];
 
     sops = {

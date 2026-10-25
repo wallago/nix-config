@@ -26,6 +26,7 @@
         self.nixosModules.intel
         self.nixosModules.wireguardClient
         self.nixosModules.githubRunners
+        self.nixosModules.syncthing
 
         self.nixosModules.disko
       ];
