@@ -120,6 +120,12 @@
       inputs.claude-code.follows = "claude-code";
     };
 
+    todo = {
+      url = "github:wallago/todo";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.claude-code.follows = "claude-code";
+    };
+
     # ─── RPI ───────────────────────────────────────────────────────────────────
 
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
