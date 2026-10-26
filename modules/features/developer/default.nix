@@ -1,12 +1,15 @@
 { self, ... }:
 {
-  flake.nixosModules.developer = {
+  flake.nixosModules.developer = { pkgs, ... }: {
     imports = [
       self.nixosModules.direnv
       self.nixosModules.nix-ld
       self.nixosModules.devApps
       self.nixosModules.probe-rs
     ];
+
+    # For claude access to chromium
+    environment.systemPackages = with pkgs; [ chromium ];
   };
 
   flake.homeModules.developer = {

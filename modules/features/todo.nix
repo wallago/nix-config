@@ -17,16 +17,13 @@
             root = "/home/wallago/sync-todo";
             inbox = "todo.md";
           };
+          mcp.allowed_hosts = [
+            "todo.wallago.xyz"
+            "127.0.0.1"
+            "::1"
+          ];
         };
       };
-      # mcp = {
-      #   enable = true;
-      #   listen = "0.0.0.0:5506";
-      #   # allowedHosts = [
-      #   #   "homelab"
-      #   #   "homelab.your-tailnet.ts.net"
-      #   # ];
-      # };
       firewallInterfaces = [ "wg0" ];
     };
   };
