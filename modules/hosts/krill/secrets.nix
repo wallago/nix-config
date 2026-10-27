@@ -4,6 +4,7 @@
       self.nixosModules.secretsWireguardClient
       self.nixosModules.secretsUser
       self.nixosModules.secretsSyncthing
+      self.nixosModules.secretsTodo
     ];
 
     sops = {

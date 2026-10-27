@@ -1,30 +1,33 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
-  flake.nixosModules.todo = {
-    imports = [ inputs.todo.nixosModules.default ];
+  flake.nixosModules.todo =
+    { config, hostName, ... }:
+    let
+      cfg = config.preferences.todo;
+      hostModule = self.nixosModules."preferencesTodo${self.lib.capitalize hostName}";
+    in
+    {
+      imports = [
+        inputs.todo.nixosModules.default
+        self.nixosModules.todoOptions
+        hostModule
+      ];
 
-    services.todo = {
-      server = {
-        enable = true;
-        user = "wallago";
-        group = "users";
-        settings = {
-          server = {
-            address = "0.0.0.0";
-            port = 5505;
+      services.todo = {
+        server = {
+          enable = true;
+          inherit (cfg) user group;
+          inherit (cfg.server) tokenFile;
+          settings = {
+            server = { inherit (cfg.server) address port; };
+            vault = {
+              root = cfg.server.vault.rootPath;
+              inbox = "todo.md";
+            };
+            mcp.allowedHosts = cfg.server.mcp.allowedHosts;
           };
-          vault = {
-            root = "/home/wallago/sync-todo";
-            inbox = "todo.md";
-          };
-          mcp.allowed_hosts = [
-            "todo.wallago.xyz"
-            "127.0.0.1"
-            "::1"
-          ];
         };
+        inherit (cfg) firewallInterfaces;
       };
-      firewallInterfaces = [ "wg0" ];
     };
-  };
 }
