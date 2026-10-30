@@ -61,6 +61,7 @@
             pd = "pr diff";
             pc = "pr create --fill";
             pk = "pr checks";
+            pm = "pr merge --squash --auto";
 
             # Actions — you have 4 workflows, this is where the typing is
             rl = "run list -L 10";
