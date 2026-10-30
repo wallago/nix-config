@@ -106,6 +106,7 @@
                 else
                   gh pr create --head "$bookmark" --fill "$@"
                 fi
+                jj n
               ''
               ""
             ];
