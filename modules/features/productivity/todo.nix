@@ -8,7 +8,7 @@
     in
     {
       imports = [
-        inputs.todo.nixosModules.default
+        inputs.todo.nixosModules.server
         self.nixosModules.todoOptions
         hostModule
       ];
@@ -28,6 +28,27 @@
           };
         };
         inherit (cfg) firewallInterfaces;
+      };
+    };
+
+  flake.homeModules.todo =
+    { config, hostName, ... }:
+    let
+      cfg = config.preferences.todo;
+      hostModule = self.homeModules."preferencesTodo${self.lib.capitalize hostName}";
+    in
+    {
+      imports = [
+        inputs.todo.homeModules.tui
+        self.homeModules.todoOptions
+        hostModule
+      ];
+
+      programs.todo = {
+        enable = true;
+        settings = {
+          inherit (cfg) server keys;
+        };
       };
     };
 }

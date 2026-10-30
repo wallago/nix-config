@@ -13,13 +13,6 @@
           maximized = true;
         }
         {
-          command = app.monitor;
-          matchAppId = "com.mitchellh.ghostty";
-          matchTitle = "monitor";
-          workspace = "monitor";
-          fullscreen = true;
-        }
-        {
           command = app.todo;
           matchAppId = "com.slot.todo";
           matchTitle = "todo";

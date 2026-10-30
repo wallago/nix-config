@@ -10,6 +10,7 @@
     imports = [
       # self.homeModules.eilmeldung
       # self.homeModules.bagels
+      self.homeModules.todo # todo
       self.homeModules.matcha # mails
       self.homeModules.sprout # habits
       self.homeModules.khal # calendar

@@ -31,7 +31,6 @@
 
         self.nixosModules.disko
       ];
-
       preferences.user.name = "wallago";
       home-manager.users.${userName} = {
         imports = [

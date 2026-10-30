@@ -12,10 +12,8 @@
       "ghostty"
       "--class=com.slot.todo"
       "--title=todo"
-      "--working-directory=/home/wallago/sync-pm/"
       "-e"
-      "vi"
-      "gateway.md"
+      "todo-tui"
     ];
     mail = [
       "ghostty"
