@@ -16,6 +16,10 @@
             type = lib.types.str;
             description = "Path to the file holding the bearer token (a sops secret).";
           };
+          readTokenFile = lib.mkOption {
+            type = lib.types.str;
+            description = "Path to the file holding the bearer read-only token (a sops secret).";
+          };
           address = lib.mkOption {
             type = lib.types.str;
             description = "Server address.";

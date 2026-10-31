@@ -10,6 +10,7 @@
         group = "users";
         server = {
           tokenFile = sops.todoToken.path;
+          readTokenFile = sops.todoReadToken.path;
           address = "0.0.0.0";
           port = 5505;
           vault.rootPath = "/home/wallago/sync-todo";

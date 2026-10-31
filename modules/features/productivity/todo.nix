@@ -17,7 +17,7 @@
         server = {
           enable = true;
           inherit (cfg) user group;
-          inherit (cfg.server) tokenFile;
+          inherit (cfg.server) tokenFile readTokenFile;
           settings = {
             server = { inherit (cfg.server) address port; };
             vault = {
