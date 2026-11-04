@@ -329,7 +329,7 @@
         key = "Escape";
         title = "Lock";
         category = "apps";
-        action.spawn = "qylock";
+        action.spawn = "qylock-lock";
       }
       {
         mods = [ "Mod" ];
@@ -340,7 +340,14 @@
           "sh"
           "-c"
           ''
-            ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --copy-command wl-copy
+            ${lib.getExe pkgs.wayfreeze} & freeze=$!
+            sleep 0.1
+            geom=$(${lib.getExe pkgs.slurp}) || { kill $freeze; exit 0; }
+            img=$(mktemp --suffix .png)
+            ${lib.getExe pkgs.grim} -g "$geom" "$img"
+            kill $freeze
+            ${lib.getExe pkgs.satty} -f "$img" --copy-command wl-copy
+            rm -f "$img"
           ''
         ];
       }

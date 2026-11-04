@@ -12,10 +12,8 @@
       "ghostty"
       "--class=com.slot.todo"
       "--title=todo"
-      "--working-directory=/home/wallago/sync-pm/"
       "-e"
-      "vi"
-      "gateway.md"
+      "todo-tui"
     ];
     mail = [
       "ghostty"
@@ -60,6 +58,20 @@
       "ghostty"
       "--class=com.slot.term"
       "--title=term"
+    ];
+    habit = [
+      "ghostty"
+      "--class=com.slot.habit"
+      "--title=habit"
+      "-e"
+      "sprout"
+    ];
+    calendar = [
+      "ghostty"
+      "--class=com.slot.calendar"
+      "--title=calendar"
+      "-e"
+      "ikhal"
     ];
   };
 }

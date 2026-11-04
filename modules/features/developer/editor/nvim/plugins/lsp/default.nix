@@ -13,6 +13,7 @@
               ./nix.lua
               ./diagnostic.lua
               ./common.lua
+              ./slint.lua
             ]
           );
         }

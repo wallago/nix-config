@@ -107,7 +107,7 @@
       commonShortcuts = workspaces ++ tabs ++ nav ++ compact ++ find ++ misc;
       commonConfig = {
         keyboardShortcuts = commonShortcuts;
-        keyboardShortcutsVersion = 20;
+        keyboardShortcutsVersion = 21;
       };
 
       extraShortcuts = [

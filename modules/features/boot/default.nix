@@ -5,10 +5,6 @@
       imports = [ self.nixosModules.plymouth ];
       boot = {
         kernelPackages = lib.mkOverride 1100 pkgs.linuxPackages_latest;
-        initrd = {
-          verbose = lib.mkDefault true;
-          systemd.enable = true;
-        };
         kernelParams = [
           "systemd.show_status=auto"
         ];

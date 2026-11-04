@@ -1,5 +1,5 @@
 {
-  flake.homeModules.mangohud = {
+  flake.homeModules.mangohud = { config, ... }: {
     programs.mangohud = {
       enable = true;
       enableSessionWide = false;
@@ -24,9 +24,9 @@
         # --- appearance
         legacy_layout = false; # modern compact layout with separators
         round_corners = 8; # rounded background box
-        background_alpha = 0.4; # semi-transparent backdrop
-        alpha = 0.9; # text opacity
-        font_size = 22;
+        background_alpha = 0.2; # semi-transparent backdrop
+        alpha = 0.5; # text opacity
+        font_size = 16;
         cellpadding_y = -0.1; # tighter vertical spacing
 
         # --- colors
@@ -38,7 +38,13 @@
         ram_color = "F7768E";
         frametime_color = "7DCFFF";
 
-        position = "top-left";
+        # --- frametime logging: F2 starts/stops, mangoplot renders the csv
+        output_folder = "${config.home.homeDirectory}/Downloads/PZ_debug";
+        log_duration = 120;
+        log_interval = 0;
+        toggle_logging = "F2";
+
+        position = "top-right";
       };
     };
   };
