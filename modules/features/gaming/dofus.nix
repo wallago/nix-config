@@ -13,21 +13,12 @@
         };
       };
 
-      # Separate Xorg login session for Dofus: the native client can't
-      # read monitors under niri/xwayland-satellite.
+      # Xorg for Dofus, started from a TTY with `dofus-x` (SDDM's Wayland
+      # greeter can't launch X sessions). The native client can't read
+      # monitors under niri/xwayland-satellite.
       services.xserver = {
         enable = true;
-        displayManager.session = [
-          {
-            manage = "desktop";
-            name = "dofus";
-            start = ''
-              ${pkgs.openbox}/bin/openbox &
-              SDL_VIDEODRIVER=x11 /etc/profiles/per-user/$USER/bin/dofus &
-              waitPID=$!
-            '';
-          }
-        ];
+        displayManager.startx.enable = true;
       };
     };
 
@@ -55,9 +46,25 @@
           exec appimage-run "$appimage" "$@"
         '';
       };
+
+      dofus-x = pkgs.writeShellApplication {
+        name = "dofus-x";
+        text = ''
+          xinitrc="$(mktemp)"
+          printf '%s\n' '#!/bin/sh' \
+            '${pkgs.openbox}/bin/openbox &' \
+            'export SDL_VIDEODRIVER=x11' \
+            'exec ${dofus}/bin/dofus' >"$xinitrc"
+          chmod +x "$xinitrc"
+          exec startx "$xinitrc" -- vt"''${XDG_VTNR:-3}"
+        '';
+      };
     in
     {
-      home.packages = [ dofus ];
+      home.packages = [
+        dofus
+        dofus-x
+      ];
 
       # Browser login hands back to the launcher via ankama:// links
       xdg.desktopEntries.ankama-launcher = {
