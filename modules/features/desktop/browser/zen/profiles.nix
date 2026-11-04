@@ -6,6 +6,8 @@
         "zen.view.compact.hide-tabbar" = true;
         "zen.urlbar.behavior" = "float";
         "zen.welcome-screen.seen" = true;
+        # Transparent UI so niri's background blur shows through (see niri/blur.nix).
+        "zen.widget.linux.transparency" = true;
       };
     in
     {

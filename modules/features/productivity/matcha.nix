@@ -2,7 +2,7 @@
   flake.nixosModules.matcha =
     { config, ... }:
     let
-      sopsFile = ../../../secrets/productivity.yaml;
+      sopsFile = ../../secrets/productivity.yaml;
     in
     {
       sops = {

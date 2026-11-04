@@ -1,5 +1,12 @@
 require("catppuccin").setup({
 	flavour = "mocha",
+	transparent_background = true,
+	custom_highlights = function(colors)
+		return {
+			CursorLine = { bg = "NONE" },
+			CursorLineNr = { fg = colors.lavender, bold = true },
+		}
+	end,
 	integrations = {
 		blink_cmp = {
 			style = "bordered",

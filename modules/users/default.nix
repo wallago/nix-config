@@ -1,11 +1,12 @@
 {
   flake.nixosModules.user =
-    { config, ... }:
+    { config, hostName, ... }:
     let
       userName = config.preferences.user.name;
       authorizedSshKeys = config.preferences.user.authorizedSshKeys;
     in
     {
+      home-manager.extraSpecialArgs = { inherit hostName; };
       users.users.${userName} = {
         isNormalUser = true;
         description = userName;

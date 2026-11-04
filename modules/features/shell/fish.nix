@@ -58,6 +58,21 @@
             end
           end
 
+          function __auto_fetch --on-variable PWD --description 'background fetch when entering a repo'
+            set -l root (jj root 2>/dev/null; or git rev-parse --show-toplevel 2>/dev/null)
+            test -n "$root"; or return
+            test "$root" = "$__auto_fetch_root"; and return
+            set -g __auto_fetch_root $root
+            if test -d $root/.jj
+              jj -R $root git fetch
+            else
+              git -C $root fetch --all --prune --quiet
+            end
+            disown
+          end
+
+          __auto_fetch
+
           bind ctrl-l __clear_and_repaint
           bind -M insert ctrl-l __clear_and_repaint
 
