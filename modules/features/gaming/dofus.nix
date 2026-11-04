@@ -19,18 +19,19 @@
     let
       dofus = pkgs.writeShellApplication {
         name = "dofus";
-        runtimeInputs = [ pkgs.curl ];
+        runtimeInputs = [ pkgs.xdg-utils ];
         text = ''
           dir="''${XDG_DATA_HOME:-$HOME/.local/share}/ankama"
           appimage="$dir/Ankama-Launcher.AppImage"
-          url="''${DOFUS_APPIMAGE_URL:-https://download.ankama.com/launcher/full/linux}"
 
           if [ ! -x "$appimage" ]; then
             mkdir -p "$dir"
-            echo "[dofus] downloading Ankama Launcher from $url" >&2
-            curl --fail --location --retry 3 --output "$appimage.part" "$url"
-            chmod +x "$appimage.part"
-            mv "$appimage.part" "$appimage"
+            printf '%s\n' \
+              "[dofus] Ankama Launcher not found. Download the Linux AppImage and save it as:" \
+              "  $appimage" \
+              "then run: chmod +x \"$appimage\" && dofus" >&2
+            xdg-open "https://www.ankama.com/en/launcher" >/dev/null 2>&1 || true
+            exit 1
           fi
 
           # appimage-run comes from programs.appimage (system), so extraPkgs apply
