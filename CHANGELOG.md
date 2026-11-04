@@ -1,10 +1,140 @@
 # Changelog
 
+## 0.3.0 - 2026-11-04
+
+### 🚀 Features
+
+- *(zen)* Adding a second profile (entertainment) by @wallago
+- *(rss)* Update skimmer + miniflux by @wallago
+- *(banner)* Adding project banner by @wallago
+- *(jujutsu)* Add tools for diff / merge / resolve by @wallago
+- *(nvidia)* Add monitoring tool by @wallago
+- *(zen/pins)* Refactor sites by @wallago
+- *(niri/slots)* Setup slots behavior by @wallago
+- *(skimmer)* Setup it on coral by @wallago
+- *(cheatsheet)* Gen cheatsheet from niri (or more) by @wallago
+- *(atuin)* Add settings by @wallago
+- *(atuin)* Add server and client by @wallago
+- *(nginx)* Allow specific network if needed by @wallago
+
+### 🐛 Bug Fixes
+
+- *(cd)* Remove anemone (its specific one) by @wallago
+- *(cd)* Give the right pkgs by @wallago
+- *(niri/binds)* Change power menu bind by @wallago
+- *(atuin)* Change some related settings tmw by @wallago
+- *(kicad)* Add x11 env setup to make it work smooth by @wallago
+- *(cd)* Revert change by @wallago
+- *(cd)* Change attic url by @wallago
+
+### 🚜 Refactor
+
+- *(zen)* Change how zen is define by @wallago in [#38](https://github.com/wallago/nix-config/pull/38)
+- *(cd)* Remove unused deps by @wallago
+- *(nix/cache)* Update pub key by @wallago
+- *(nvim/tips)* Change how often seen tips by @wallago
+- *(sponge)* Change monitor frame rate by @wallago
+- *(miniflux)* Change how password is handle by @wallago
+- *(zen/pins)* Change arch by @wallago
+- *(justfile)* Add a command to fresh install config by @wallago
+- *(netrc)* Update attic token by @wallago
+
+### ⚙️ Miscellaneous Tasks
+
+- *(topology)* Refresh diagrams by @wallago
+- Push vonpvmwwsqms  by @wallago in [#48](https://github.com/wallago/nix-config/pull/48)
+- *(claude)* Update ruleset for mutation repo by @wallago
+- *(cd)* Adding missing hosts by @wallago
+- *(merge)* Bumps by @wallago
+- *(topology)* Refresh diagrams by @wallago
+- *(flake)* Bump lock by @wallago
+- *(flake)* Bump lock by @wallago
+- *(claude)* Change default mode by @wallago
+- *(flake)* Bump lock by @wallago
+- *(flake)* Bump lock by @wallago
+- *(topology)* Refresh diagrams by @wallago
+
+
+**Full Changelog**: https://github.com/wallago/nix-config/compare/v0.2.0...v0.3.0
+
+## 0.2.0 - 2026-08-26
+
+### 🚀 Features
+
+- *(hosts/cuttlefish)* Update hardware by @wallago
+- *(gh)* Add alias commands by @wallago
+- *(nvim/checkmate)* Add auto done when checked by @wallago
+- *(desktop)* Adding file explorer by @wallago
+- *(praline)* Adding settings by @wallago
+- *(developer)* Adding praline tool by @wallago
+- *(jj)* Update config by @wallago
+- *(nvim/blink)* Update bindings by @wallago
+- *(flake)* Bump lock and add praline and rm noctalia by @wallago
+- *(nvim/binds)* Change some nav binding by @wallago
+- *(todo)* Adding home session as todo entry by @wallago
+- *(nvim/todo)* Adding some update to checkmate and pm by @wallago
+- *(gh)* Adding it by @wallago
+- *(blink)* Rework mouvement by @wallago
+- *(todo)* New way to manage my tasks by @wallago
+- *(docker)* Adding it by @wallago
+- *(ssh)* Adding a new host by @wallago
+- *(niri)* Create a floating crashpad term by @wallago
+- *(wireguard)* Adding new project by @wallago
+- *(nvim/windows)* Add a command to toggle maximized split window by @wallago
+- *(zen/pins)* Adding sites + resorting by @wallago
+- *(developer/dev-apps)* Adding unity by @wallago
+- *(developer)* Adding probe-rs module by @wallago
+- *(nvim)* Add bindings + add actions-preview by @wallago
+- *(dev-apps)* Adding rustdesk by @wallago
+- *(nvim)* Add tips plugin by @wallago
+- *(squid)* Add ssh alias for wg1 by @wallago
+
+### 🐛 Bug Fixes
+
+- *(waypipe)* Add an older ffmpeg lib by @wallago
+- *(niri)* Niri haven't follow newest nixpkg by @wallago
+- *(netrc)* Changing group to allow `nh` to use cache by @wallago
+- *(cuttlefish)* Change hardware by @wallago
+- *(attic)* Db address by @wallago
+
+### 🚜 Refactor
+
+- *(claude)* Change how claude is handle by @wallago
+- *(overlays)* Remove unnecessary changes by @wallago
+- *(eilmeldung)* Now in hm by @wallago
+- *(nvim/binds)* Add custom key on visual mode too by @wallago
+- *(ai/claude)* Handle claude declaratively by @wallago
+- *(sponge)* Changing notes dir by @wallago
+- *(nvim)* Plugins and how lua are handles by @wallago
+- *(wireguard)* Change preferences settings by @wallago
+- *(ssh)* Change how ssh alias are handle by @wallago
+- *(wireguard)* Change how handle wg by @wallago
+- *(wireguard)* Update one client by @wallago
+- *(nvim)* Bindings by @wallago
+- *(syncthing)* Make it less redundant and more logical by @wallago
+- *(nvim)* Bindings by @wallago
+- *(provision-iso)* Remove unused user password by @wallago
+- *(wireguard)* Make a lib to share data between hosts by @wallago
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* V0.2.0 by @wallago
+- *(flake)* Bump lock by @wallago
+- *(zen)* Bump version by @wallago
+- *(flake)* Bump lock by @wallago
+- *(merge)* Fetch main by @wallago
+- *(merge)* From wallago/dependabot/nix/flake-inputs-bd14fc9949 by @wallago in [#30](https://github.com/wallago/nix-config/pull/30)
+- *(topology)* Refresh diagrams by @wallago
+- *(repo)* Adding pull request template by @wallago
+
+
+**Full Changelog**: https://github.com/wallago/nix-config/compare/v0.1.1...v0.2.0
+
 ## 0.1.1 - 2026-07-14
 
 ### 🚀 Features
 
-- *(topology)* Add anemone
+- *(topology)* Add anemone by @wallago
 - *(sponge)* Add boot emulated systems module by @wallago
 - *(hosts)* Add new host named anemone by @wallago
 - *(coral/wireguard)* Add a new host on wg1 by @wallago
@@ -52,6 +182,7 @@
 
 ### ⚙️ Miscellaneous Tasks
 
+- *(release)* V0.1.1 by @wallago
 - *(topology)* Refresh diagrams by @wallago
 - *(flake)* Bump lock by @wallago
 - *(flake)* Bump lock by @wallago
