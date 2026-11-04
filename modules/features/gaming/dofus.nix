@@ -12,6 +12,23 @@
           ];
         };
       };
+
+      # Separate Xorg login session for Dofus: the native client can't
+      # read monitors under niri/xwayland-satellite.
+      services.xserver = {
+        enable = true;
+        displayManager.session = [
+          {
+            manage = "desktop";
+            name = "dofus";
+            start = ''
+              ${pkgs.openbox}/bin/openbox &
+              SDL_VIDEODRIVER=x11 /etc/profiles/per-user/$USER/bin/dofus &
+              waitPID=$!
+            '';
+          }
+        ];
+      };
     };
 
   flake.homeModules.dofus =
