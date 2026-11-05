@@ -1,24 +1,28 @@
+# Setup: download the Linux Ankama Launcher AppImage:
+#   mkdir -p ~/.local/share/ankama
+#   curl -fL -o ~/.local/share/ankama/Ankama-Launcher.AppImage "https://launcher.cdn.ankama.com/installers/production/Ankama%20Launcher-Setup-x86_64.AppImage"
+#   chmod +x ~/.local/share/ankama/Ankama-Launcher.AppImage
+# Play: Ctrl+Alt+F3, log in, `dofus-x` (Ctrl+Alt+F1 back to niri).
+# Leave: quit the launcher, or Ctrl+Alt+Backspace, or `pkill Xorg` from a TTY.
+# Why Xorg: the Linux client can't read monitors under niri/xwayland-satellite.
 {
   flake.nixosModules.dofus =
     { pkgs, ... }:
     {
       programs.appimage = {
         enable = true;
-        binfmt = true;
         package = pkgs.appimage-run.override {
           extraPkgs = p: [
-            p.icu # .NET/Unity globalization, avoids the generic .NET crash
+            p.icu # .NET/Unity globalization
             p.libsecret # launcher stores its login (API key) via keytar
           ];
         };
       };
 
-      # Xorg for Dofus, started from a TTY with `dofus-x` (SDDM's Wayland
-      # greeter can't launch X sessions). The native client can't read
-      # monitors under niri/xwayland-satellite.
       services.xserver = {
         enable = true;
         displayManager.startx.enable = true;
+        xkb.options = "terminate:ctrl_alt_bksp";
       };
     };
 
@@ -65,17 +69,5 @@
         dofus
         dofus-x
       ];
-
-      # Browser login hands back to the launcher via ankama:// links
-      xdg.desktopEntries.ankama-launcher = {
-        name = "Ankama Launcher";
-        exec = "dofus %u";
-        icon = "applications-games";
-        categories = [ "Game" ];
-        mimeType = [
-          "x-scheme-handler/ankama"
-          "x-scheme-handler/ankama-launcher"
-        ];
-      };
     };
 }
