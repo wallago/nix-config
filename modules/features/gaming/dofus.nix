@@ -52,9 +52,9 @@
       };
 
       # Xorg spans every screen: with DOFUS_OUTPUT set (e.g. DP-2), the other
-      # screens mirror it, so the game can only land there. Don't turn them
-      # off: the client aborts on outputs without a CRTC. Output names
-      # (Xorg's, not niri's) are logged to ~/.local/state/dofus-outputs.
+      # screens mirror it, blacked out, so the game can only land there.
+      # Don't turn them off: the client aborts on outputs without a CRTC.
+      # Output names (Xorg's, not niri's) go to ~/.local/state/dofus-outputs.
       dofus-session = pkgs.writeShellScript "dofus-session" ''
         xrandr=${pkgs.xrandr}/bin/xrandr
         state="''${XDG_STATE_HOME:-$HOME/.local/state}"
@@ -65,7 +65,7 @@
           "$xrandr" --output "$DOFUS_OUTPUT" --primary --pos 0x0
           for out in $(cut -d' ' -f1 "$state/dofus-outputs"); do
             [ "$out" = "$DOFUS_OUTPUT" ] ||
-              "$xrandr" --output "$out" --same-as "$DOFUS_OUTPUT"
+              "$xrandr" --output "$out" --same-as "$DOFUS_OUTPUT" --brightness 0
           done
         fi
 
