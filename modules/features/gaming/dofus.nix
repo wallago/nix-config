@@ -51,16 +51,34 @@
         '';
       };
 
+      # Xorg spans every screen: with DOFUS_OUTPUT set (e.g. DP-2), keep only
+      # that one so the game opens there and clicks line up. Output names
+      # (Xorg's, not niri's) are logged to ~/.local/state/dofus-outputs.
+      dofus-session = pkgs.writeShellScript "dofus-session" ''
+        xrandr=${pkgs.xrandr}/bin/xrandr
+        state="''${XDG_STATE_HOME:-$HOME/.local/state}"
+        mkdir -p "$state"
+        "$xrandr" | grep ' connected' >"$state/dofus-outputs"
+
+        if [ -n "''${DOFUS_OUTPUT:-}" ]; then
+          for out in $(cut -d' ' -f1 "$state/dofus-outputs"); do
+            if [ "$out" = "$DOFUS_OUTPUT" ]; then
+              "$xrandr" --output "$out" --auto --primary
+            else
+              "$xrandr" --output "$out" --off
+            fi
+          done
+        fi
+
+        ${pkgs.openbox}/bin/openbox &
+        export SDL_VIDEODRIVER=x11
+        exec ${dofus}/bin/dofus
+      '';
+
       dofus-x = pkgs.writeShellApplication {
         name = "dofus-x";
         text = ''
-          xinitrc="$(mktemp)"
-          printf '%s\n' '#!/bin/sh' \
-            '${pkgs.openbox}/bin/openbox &' \
-            'export SDL_VIDEODRIVER=x11' \
-            'exec ${dofus}/bin/dofus' >"$xinitrc"
-          chmod +x "$xinitrc"
-          exec startx "$xinitrc" -- vt"''${XDG_VTNR:-3}"
+          exec startx ${dofus-session} -- vt"''${XDG_VTNR:-3}"
         '';
       };
     in
