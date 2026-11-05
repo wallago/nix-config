@@ -78,6 +78,20 @@
 
           bind ctrl-r _atuin_search
           bind -M insert ctrl-r _atuin_search
+
+          # NEIO replaces HJKL in normal mode, matching the nvim binds
+          bind -M default n 'fish_vi_run_count backward-char'
+          bind -M default e 'fish_vi_run_count down-or-search'
+          bind -M default i 'fish_vi_run_count up-or-search'
+          bind -M default o 'fish_vi_run_count forward-char'
+          # Re-home what NEIO displaced: insert i/I → l/L, word-end e/E → k/K,
+          # open-line o/O → j/J
+          bind -M default -m insert l repaint-mode
+          bind -M default -m insert L beginning-of-line repaint-mode
+          bind -M default k 'fish_vi_run_count forward-word-end'
+          bind -M default K 'fish_vi_run_count forward-bigword-end'
+          bind -M default -m insert j 'set fish_cursor_end_mode exclusive' insert-line-under repaint-mode
+          bind -M default -m insert J 'set fish_cursor_end_mode exclusive' insert-line-over repaint-mode
         '';
         plugins = [
           {
