@@ -51,10 +51,10 @@
         '';
       };
 
-      # Xorg spans every screen: with DOFUS_OUTPUT set (e.g. DP-2), make that
-      # one primary so the game opens there. Don't turn the others off: the
-      # client aborts on outputs without a CRTC. Output names (Xorg's, not
-      # niri's) are logged to ~/.local/state/dofus-outputs.
+      # Xorg spans every screen: with DOFUS_OUTPUT set (e.g. DP-2), the other
+      # screens mirror it, so the game can only land there. Don't turn them
+      # off: the client aborts on outputs without a CRTC. Output names
+      # (Xorg's, not niri's) are logged to ~/.local/state/dofus-outputs.
       dofus-session = pkgs.writeShellScript "dofus-session" ''
         xrandr=${pkgs.xrandr}/bin/xrandr
         state="''${XDG_STATE_HOME:-$HOME/.local/state}"
@@ -62,7 +62,11 @@
         "$xrandr" | grep ' connected' >"$state/dofus-outputs"
 
         if [ -n "''${DOFUS_OUTPUT:-}" ]; then
-          "$xrandr" --output "$DOFUS_OUTPUT" --primary
+          "$xrandr" --output "$DOFUS_OUTPUT" --primary --pos 0x0
+          for out in $(cut -d' ' -f1 "$state/dofus-outputs"); do
+            [ "$out" = "$DOFUS_OUTPUT" ] ||
+              "$xrandr" --output "$out" --same-as "$DOFUS_OUTPUT"
+          done
         fi
 
         ${pkgs.openbox}/bin/openbox &
