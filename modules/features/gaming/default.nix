@@ -4,6 +4,7 @@
     imports = [
       self.nixosModules.gamemode
       self.nixosModules.steam
+      self.nixosModules.dofus
     ];
   };
 
@@ -12,6 +13,7 @@
     {
       imports = [
         self.homeModules.mangohud
+        self.homeModules.dofus
       ];
 
       home.packages = [

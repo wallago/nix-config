@@ -22,7 +22,7 @@
           extraEnv = {
             MANGOHUD = true;
           };
-          extraArgs = lib.optionalString (lib.elem "intel" config.services.xserver.videoDrivers) "-cef-disable-gpu";
+          extraArgs = lib.optionalString (lib.elem "modesetting" config.services.xserver.videoDrivers) "-cef-disable-gpu";
         };
       };
       hardware.steam-hardware.enable = true; # Controller udev rules
