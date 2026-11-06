@@ -41,8 +41,8 @@
 
       # default keyboard at login level
       services.xserver.xkb = {
-        layout = config.preferences.user.keyboard.layout;
-        variant = config.preferences.user.keyboard.variant;
+        layout = "us";
+        variant = "";
       };
 
       preferences.user = {
@@ -71,7 +71,10 @@
           self.homeModules.preferencesMonitorsSponge
         ];
 
-        preferences.user.name = userName;
+        preferences.user = {
+          name = userName;
+          keyboard.startLayout = 0;
+        };
       };
     };
 }

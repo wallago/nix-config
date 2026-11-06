@@ -18,7 +18,6 @@
       extraConfig = ''
         keybinds {
             shared {
-                unbind "Alt n" "Alt i" "Alt o"
                 bind "Alt n" { MoveFocusOrTab "Left"; }
                 bind "Alt e" { MoveFocus "Down"; }
                 bind "Alt i" { MoveFocus "Up"; }
@@ -26,7 +25,6 @@
                 bind "Alt a" { NewPane; }
             }
             pane {
-                unbind "n" "e" "i"
                 bind "n" { MoveFocus "Left"; }
                 bind "e" { MoveFocus "Down"; }
                 bind "i" { MoveFocus "Up"; }
@@ -35,7 +33,6 @@
                 bind "b" { TogglePaneEmbedOrFloating; SwitchToMode "Locked"; }
             }
             tab {
-                unbind "n" "i" "o"
                 bind "n" { GoToPreviousTab; }
                 bind "o" { GoToNextTab; }
                 bind "a" { NewTab; SwitchToMode "Locked"; }
@@ -51,7 +48,6 @@
                 bind "O" { Resize "Decrease Right"; }
             }
             move {
-                unbind "n"
                 bind "n" { MovePane "Left"; }
                 bind "e" { MovePane "Down"; }
                 bind "i" { MovePane "Up"; }
@@ -59,7 +55,6 @@
                 bind "Tab" { MovePane; }
             }
             scroll {
-                unbind "e"
                 bind "e" { ScrollDown; }
                 bind "i" { ScrollUp; }
                 bind "v" { EditScrollback; SwitchToMode "Locked"; }
