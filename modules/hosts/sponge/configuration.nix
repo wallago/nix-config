@@ -71,7 +71,10 @@
           self.homeModules.preferencesMonitorsSponge
         ];
 
-        preferences.user.name = userName;
+        preferences.user = {
+          name = userName;
+          keyboard.kagu.enable = true;
+        };
       };
     };
 }

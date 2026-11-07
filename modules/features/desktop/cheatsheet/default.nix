@@ -1,10 +1,22 @@
 { self, ... }:
 {
   flake.homeModules.cheatsheet =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
+      # A sheet about a keyboard (`keyboard = "kagu"`) shows only on hosts
+      # that use it.
+      shown =
+        s: !(s ? keyboard) || (s.keyboard == "kagu" && config.preferences.user.keyboard.kagu.enable);
+
       sheets = lib.sort (a: b: a.order < b.order) (
-        lib.mapAttrsToList (name: mk: (mk { inherit pkgs lib; }) // { inherit name; }) self.lib.cheatsheets
+        lib.filter shown (
+          lib.mapAttrsToList (name: mk: (mk { inherit pkgs lib; }) // { inherit name; }) self.lib.cheatsheets
+        )
       );
 
       total = lib.length sheets;
@@ -18,7 +30,10 @@
         i: s:
         let
           json = (pkgs.formats.json { }).generate "cheatsheet-${s.name}.json" (
-            (removeAttrs s [ "order" ])
+            (removeAttrs s [
+              "order"
+              "keyboard"
+            ])
             // {
               index = i + 1;
               inherit total;

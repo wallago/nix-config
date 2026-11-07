@@ -145,21 +145,26 @@ let
 
     os = {
       name = "Os";
-      subtitle = "Hold D or H : every key is sent with Super";
+      subtitle = "Hold D or H : every key is sent with Super, niri labels below";
       accent = "#14b8a6";
       inherit combos;
-      keys = modKeys;
+      keys = keys [
+        "Q@close  W        F@max     P@shot   B@browser     J         ;             ${up}@focus     '              '"
+        "A        R@width  S         T        G             [@stack   ${left}@focus  ${down}@focus  ${right}@focus  ]@stack"
+        "Z        X        C@center  D@menu   V@float       K         H             ,              .              /"
+        "${bksp}  --  --       --  ${space}@layout  --"
+      ];
     };
 
     hyp = {
       name = "Hyp";
-      subtitle = "Ctrl+Alt+Shift+Super (✦), for niri";
+      subtitle = "Ctrl+Alt+Shift+Super (✦): niri moves, monitors and app slots";
       accent = "#f43f5e";
       keys = keys [
-        "✦ Q  ✦ W  ✦ F  ✦ P  ✦ B     ✦ 1  ✦ 2        ✦ 3        ✦ 4         ✦ 5"
-        "✦ A  ✦ R  ✦ S  ✦ T  ✦ G     --   ✦ ${left}  ✦ ${up}    ✦ ${right}  --"
-        "✦ Z  ✦ X  ✦ C  ✦ D  ✦ V     --   ✦ ;        ✦ ${down}  ✦ '         --"
-        "✦ ${esc}  --  ✦ ${tab}      ✦ ${ret}  ✦ ${space}  ##"
+        "✦ Q@exit  ✦ W  ✦ F@full  ✦ P@power  ✦ B     ✦ 1@todo  ✦ 2@notes  ✦ 3@mail  ✦ 4@web  ✦ 5@habit"
+        "✦ A  ✦ R@res  ✦ S  ✦ T@term  ✦ G     --   ✦ ${left}@move  ✦ ${up}@move  ✦ ${right}@move  --"
+        "✦ Z@to mon ←  ✦ X@to mon →  ✦ C@cal  ✦ D  ✦ V@float ↔     --   ✦ ;@mon ←  ✦ ${down}@move  ✦ '@mon →  --"
+        "✦ ${esc}  --  ✦ ${tab}@overview      ✦ ${ret}  ✦ ${space}@help  ##"
       ];
     };
 
@@ -179,8 +184,9 @@ let
   page = order: subtitle: names: _: {
     inherit order subtitle;
     title = "Kagu";
+    keyboard = "kagu";
     inherit (layers.${lib.head names}) accent;
-    footer = "Big label: tap. Small label below: hold. Filled key: the hold that opened the layer.";
+    footer = "Big label: tap. Small label below: hold, or the niri action on Os and Hyp. Filled key: the hold that opened the layer.";
     legend = [
       {
         key = "W F";

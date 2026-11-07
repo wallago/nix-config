@@ -51,6 +51,7 @@
                 type = lib.types.str;
                 default = "colemak_dh";
               };
+              kagu.enable = lib.mkEnableOption "the Kagu split keyboard: its niri binds and cheatsheet pages";
             };
           };
         };
