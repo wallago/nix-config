@@ -4,6 +4,7 @@
 #import "styles.typ": *
 #import "components.typ": card
 #import "bands.typ": footer, header
+#import "keyboard.typ": layer-grid
 
 #let sheet = json("sheet.json")
 
@@ -24,22 +25,37 @@
   let foot-h = measure(block(width: inner-w, footer(sheet))).height
   let grid-h = page-h - 2 * pad - head-h - foot-h - 4 * band - 2pt
 
-  // Row heights grow ~linearly with `u`, so one pass estimates the scale
-  // that fills the page and a second pass confirms it.
-  let rows = row-heights(1.0)
-  let u = calc.min(1.75, grid-h / stack-height(rows))
-  let rows = row-heights(u)
+  let body = if "layers" in sheet {
+    layer-grid(sheet.layers, inner-w, grid-h)
+  } else {
+    // Row heights grow ~linearly with `u`, so one pass estimates the scale
+    // that fills the page and a second pass confirms it.
+    let rows = row-heights(1.0)
+    let u = calc.min(1.75, grid-h / stack-height(rows))
+    let rows = row-heights(u)
 
-  // Never overflow: shrink until it fits, then stop.
-  while stack-height(rows) > grid-h and u > 0.55 {
-    u = u * 0.94
-    rows = row-heights(u)
+    // Never overflow: shrink until it fits, then stop.
+    while stack-height(rows) > grid-h and u > 0.55 {
+      u = u * 0.94
+      rows = row-heights(u)
+    }
+
+    assert(
+      stack-height(rows) <= grid-h,
+      message: "cheatsheet '" + sheet.name + "' has too many rows to fit one page",
+    )
+
+    grid(
+      columns: (col-w,) * cols,
+      rows: rows,
+      column-gutter: gut,
+      row-gutter: gut,
+      ..sheet
+        .cards
+        .enumerate()
+        .map(((i, c)) => card(c, u: u, h: rows.at(calc.floor(i / cols)))),
+    )
   }
-
-  assert(
-    stack-height(rows) <= grid-h,
-    message: "cheatsheet '" + sheet.name + "' has too many rows to fit one page",
-  )
 
   stack(
     dir: ttb,
@@ -50,16 +66,7 @@
     block(
       width: 100%,
       height: grid-h,
-      align(horizon + left, grid(
-        columns: (col-w,) * cols,
-        rows: rows,
-        column-gutter: gut,
-        row-gutter: gut,
-        ..sheet
-          .cards
-          .enumerate()
-          .map(((i, c)) => card(c, u: u, h: rows.at(calc.floor(i / cols)))),
-      )),
+      align(horizon + left, body),
     ),
     v(band),
     line(length: 100%, stroke: 1pt + hair),

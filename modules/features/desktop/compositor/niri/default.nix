@@ -22,7 +22,6 @@
         self.homeModules.niriWorkspaces
         self.homeModules.niriWindowRules
         self.homeModules.niriSlots
-        self.homeModules.niriProjects
         self.homeModules.niriBlur
       ];
 
