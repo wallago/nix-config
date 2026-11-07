@@ -8,12 +8,17 @@
 
 #let opt(sheet, key, fallback) = sheet.at(key, default: fallback)
 
+// A sheet's own accent, else its first card's.
+#let accent-of(sheet) = rgb(if "accent" in sheet { sheet.accent } else {
+  sheet.cards.first().accent
+})
+
 #let legend-box(sheet) = {
   let legend = opt(sheet, "legend", ())
   if legend.len() == 0 {
     none
   } else {
-    let accent = rgb(sheet.cards.first().accent)
+    let accent = accent-of(sheet)
     box(
       radius: 10pt * chrome,
       inset: (x: 16pt * chrome, y: 11pt * chrome),
@@ -34,7 +39,7 @@
   columns: (auto, auto, auto, 1fr, auto),
   column-gutter: (14pt, 24pt, 24pt, 0pt),
   align: horizon,
-  tile(opt(sheet, "mark", 0xf11c), rgb(sheet.cards.first().accent), size: 44pt),
+  tile(opt(sheet, "mark", 0xf11c), accent-of(sheet), size: 44pt),
   {
     text(
       size: 25pt,
@@ -66,7 +71,7 @@
 )
 
 #let footer(sheet) = {
-  let accent = rgb(sheet.cards.first().accent)
+  let accent = accent-of(sheet)
   grid(
     columns: (auto, 1fr, auto),
     column-gutter: 14pt * chrome,
