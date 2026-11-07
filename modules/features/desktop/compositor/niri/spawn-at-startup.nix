@@ -36,16 +36,14 @@
           e:
           if e.workspace == null then { inherit (e) command; } else { command = [ "${placeOnWorkspace e}" ]; }
         ) (lib.filter (e: e.key == null) config.preferences.session)
-        ++ [
-          {
-            command = [
-              "niri"
-              "msg"
-              "action"
-              "switch-layout"
-              "1"
-            ];
-          }
-        ];
+        ++ lib.optional (config.preferences.user.keyboard.startLayout != 0) {
+          command = [
+            "niri"
+            "msg"
+            "action"
+            "switch-layout"
+            (toString config.preferences.user.keyboard.startLayout)
+          ];
+        };
     };
 }

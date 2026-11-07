@@ -51,6 +51,11 @@
                 type = lib.types.str;
                 default = "colemak_dh";
               };
+              startLayout = lib.mkOption {
+                type = lib.types.ints.between 0 1;
+                default = 1;
+                description = "niri layout index active after login: 0 = plain us (QWERTY), 1 = layout/variant above.";
+              };
               kagu.enable = lib.mkEnableOption "the Kagu split keyboard: its niri binds and cheatsheet pages";
             };
           };
