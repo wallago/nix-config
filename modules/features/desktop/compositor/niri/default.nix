@@ -22,7 +22,6 @@
         self.homeModules.niriWorkspaces
         self.homeModules.niriWindowRules
         self.homeModules.niriSlots
-        self.homeModules.niriProjects
         self.homeModules.niriBlur
       ];
 
@@ -31,6 +30,11 @@
 
       programs.niri.settings = {
         prefer-no-csd = true;
+
+        cursor = {
+          hide-after-inactive-ms = 3000;
+          hide-when-typing = true;
+        };
 
         hotkey-overlay = {
           hide-not-bound = true;

@@ -9,6 +9,20 @@
     let
       slots = lib.filter (e: e.key != null) config.preferences.session;
       slotSize = "85%";
+
+      # Kagu Hyp (Ctrl+Alt+Shift+Super) key for each slot key: the Hyp layer
+      # has digits 1-5 only, so the others move to letters.
+      hypKeys = {
+        "1" = "1";
+        "2" = "2";
+        "3" = "3";
+        "4" = "4";
+        "5" = "5";
+        "6" = "C";
+        "9" = "R";
+        "0" = "T";
+        "Shift+Slash" = "Space";
+      };
       launcher = e: pkgs.writeShellScript "slot-${e.key}" "exec ${lib.escapeShellArgs e.command}";
       table = pkgs.writeText "niri-slots.json" (
         builtins.toJSON (
@@ -88,19 +102,26 @@
 
         niri msg action focus-window --id "$id"
       '';
+
+      bind = prefix: key: e: {
+        name = "${prefix}+${key}";
+        value = {
+          action.spawn = [
+            "${dispatcher}"
+            e.key
+          ];
+          hotkey-overlay.title = lib.removePrefix "com.slot." e.matchAppId;
+        };
+      };
+
+      hypBinds = map (e: bind "Mod+Ctrl+Alt+Shift" hypKeys.${e.key} e) (
+        lib.filter (e: hypKeys ? ${e.key}) slots
+      );
     in
     {
       programs.niri.settings.binds = lib.listToAttrs (
-        map (
-          e:
-          lib.nameValuePair "Mod+${e.key}" {
-            action.spawn = [
-              "${dispatcher}"
-              e.key
-            ];
-            hotkey-overlay.title = lib.removePrefix "com.slot." e.matchAppId;
-          }
-        ) slots
+        map (e: bind "Mod" e.key e) slots
+        ++ lib.optionals config.preferences.user.keyboard.kagu.enable hypBinds
       );
     };
 }

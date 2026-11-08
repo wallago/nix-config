@@ -10,7 +10,8 @@
         self.nixosModules.graphics
       ];
 
-      services.xserver.videoDrivers = [ "intel" ];
+      # xf86-video-intel can't drive Gen12+ (Alder Lake): use modesetting
+      services.xserver.videoDrivers = [ "modesetting" ];
 
       hardware.graphics = {
 

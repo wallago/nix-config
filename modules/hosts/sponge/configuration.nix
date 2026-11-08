@@ -74,6 +74,7 @@
         preferences.user = {
           name = userName;
           keyboard.startLayout = 0;
+          keyboard.kagu.enable = true;
         };
       };
     };

@@ -2,7 +2,7 @@
 {
   options.flake = flake-parts-lib.mkSubmoduleOptions {
     lib = lib.mkOption {
-      type = lib.types.lazyAttrsOf lib.types.raw;
+      type = lib.types.lazyAttrsOf lib.types.unspecified;
       default = { };
       description = "Shared helpers and data for this flake.";
     };

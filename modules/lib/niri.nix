@@ -8,6 +8,17 @@
       workspace-down = "U";
       window-left = "N";
       window-right = "O";
+
+      # Kagu keys (preferences.user.keyboard.kagu.enable): its Os layer sends
+      # Super with arrows, its Hyp layer Ctrl+Alt+Shift+Super. `action`
+      # overrides the bind's own one.
+      os = [ "Mod" ];
+      hyp = [
+        "Mod"
+        "Ctrl"
+        "Alt"
+        "Shift"
+      ];
     in
     [
       # Navigation
@@ -16,6 +27,10 @@
         key = "Tab";
         title = "Overview";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "Tab";
+        };
         action.toggle-overview = [ ];
       }
       {
@@ -23,6 +38,10 @@
         key = window-left;
         title = "Focus Left";
         category = "navigation";
+        kagu = {
+          mods = os;
+          key = "Left";
+        };
         action.focus-column-left = [ ];
       }
       {
@@ -30,6 +49,10 @@
         key = window-right;
         title = "Focus Right";
         category = "navigation";
+        kagu = {
+          mods = os;
+          key = "Right";
+        };
         action.focus-column-right = [ ];
       }
       {
@@ -37,6 +60,11 @@
         key = column-up;
         title = "Focus Top";
         category = "navigation";
+        kagu = {
+          mods = os;
+          key = "Up";
+          action.focus-window-or-workspace-up = [ ];
+        };
         action.focus-window-up = [ ];
       }
       {
@@ -44,6 +72,11 @@
         key = column-down;
         title = "Focus Down";
         category = "navigation";
+        kagu = {
+          mods = os;
+          key = "Down";
+          action.focus-window-or-workspace-down = [ ];
+        };
         action.focus-window-down = [ ];
       }
       {
@@ -54,6 +87,10 @@
         key = window-left;
         title = "Switch Left";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "Left";
+        };
         action.move-column-left = [ ];
       }
       {
@@ -64,6 +101,10 @@
         key = window-right;
         title = "Switch Right";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "Right";
+        };
         action.move-column-right = [ ];
       }
       {
@@ -74,6 +115,11 @@
         key = column-up;
         title = "Switch Top";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "Up";
+          action.move-window-up-or-to-workspace-up = [ ];
+        };
         action.move-window-up = [ ];
       }
       {
@@ -84,6 +130,11 @@
         key = column-down;
         title = "Switch Down";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "Down";
+          action.move-window-down-or-to-workspace-down = [ ];
+        };
         action.move-window-down = [ ];
       }
       {
@@ -94,6 +145,10 @@
         key = "V";
         title = "Toggle Focus Floating";
         category = "navigation";
+        kagu = {
+          mods = hyp;
+          key = "V";
+        };
         action.switch-focus-between-floating-and-tiling = [ ];
       }
 
@@ -106,6 +161,10 @@
         key = window-left;
         title = "Focus Monitor Left";
         category = "monitors";
+        kagu = {
+          mods = hyp;
+          key = "Semicolon";
+        };
         action.focus-monitor-left = [ ];
       }
       {
@@ -116,6 +175,10 @@
         key = window-right;
         title = "Focus Monitor Right";
         category = "monitors";
+        kagu = {
+          mods = hyp;
+          key = "Apostrophe";
+        };
         action.focus-monitor-right = [ ];
       }
       {
@@ -147,6 +210,10 @@
         key = window-left;
         title = "Move To Monitor Left";
         category = "monitors";
+        kagu = {
+          mods = hyp;
+          key = "Z";
+        };
         action.move-column-to-monitor-left = [ ];
       }
       {
@@ -158,6 +225,10 @@
         key = window-right;
         title = "Move To Monitor Right";
         category = "monitors";
+        kagu = {
+          mods = hyp;
+          key = "X";
+        };
         action.move-column-to-monitor-right = [ ];
       }
       {
@@ -206,6 +277,10 @@
         key = "F";
         title = "Fullscreen";
         category = "windows";
+        kagu = {
+          mods = hyp;
+          key = "F";
+        };
         action.fullscreen-window = [ ];
       }
       {
@@ -296,6 +371,10 @@
         key = "P";
         title = "Power Menu";
         category = "apps";
+        kagu = {
+          mods = hyp;
+          key = "P";
+        };
         action.spawn = [
           "dms"
           "ipc"
@@ -378,6 +457,10 @@
         key = "Q";
         title = "Exit";
         category = "system";
+        kagu = {
+          mods = hyp;
+          key = "Q";
+        };
         action.quit = [ ];
       }
     ];
