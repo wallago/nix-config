@@ -40,16 +40,22 @@
   let held = k.at("held", default: false)
   let t = glyphs(k.at("t", default: ""))
   let blank = t == "" and not held
+  // `▽` falls through to the layer below: drawn, but dimmed like a blank.
+  let trans = t == "▽"
   let big = if t.clusters().len() > 3 { 0.21 } else { 0.32 }
   box(
     width: size,
     height: size,
     radius: size * 0.17,
-    fill: if held { accent.transparentize(45%) } else if blank { panel } else {
+    fill: if held { accent.transparentize(45%) } else if blank or trans {
+      panel
+    } else {
       accent.transparentize(90%)
     },
     stroke: (size * 0.016)
-      + if blank { hair } else { accent.transparentize(50%) },
+      + if blank { hair } else if trans { accent.transparentize(80%) } else {
+        accent.transparentize(50%)
+      },
     {
       if "s" in k {
         place(top + center, dy: size * 0.07, text(
@@ -63,7 +69,7 @@
         font: mono,
         size: size * big,
         weight: 600,
-        fill: fg,
+        fill: if trans { fg-mute } else { fg },
         t,
       ))
       if "h" in k {
@@ -170,6 +176,8 @@
     (cell-w - 44pt) / (10 + 9 * key-gut + split),
     (cell-h - 32pt - head) / (4 + 3 * key-gut),
   )
+  // A short sheet leaves the cards at their natural height, not stretched.
+  let cell-h = calc.min(cell-h, board-h(size) + 32pt + head)
   grid(
     columns: (cell-w,) * 2,
     column-gutter: gut,

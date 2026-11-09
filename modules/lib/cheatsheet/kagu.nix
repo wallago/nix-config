@@ -94,8 +94,8 @@ let
       keys = keys [
         "Q           W       F           P           B     J  L           U      Y       '"
         "A@${shift}  R@Ctrl  S@Alt       T@${super}  G     M  N@${super}  E@Alt  I@Ctrl  O@${shift}"
-        "Z@Sys       X       C@Ctrl+app  D@Super+os  V     K  H@Super+os  ,@Ctrl+app  .  /@Sys"
-        "${bksp}@Mou  ${shift}@${shift}  Lwr@Lwr     Rse@Rse  ${space}  Hyp"
+        "Z@Sys       X@Mou   C@Ctrl+app  D@Super+os  V     K  H@Super+os  ,@Ctrl+app  .  /@Sys"
+        "${bksp}  ${shift}@${shift}  Lwr@Lwr     Rse@Rse  ${space}  Hyp"
       ];
     };
 
@@ -125,13 +125,13 @@ let
 
     mou = {
       name = "Mou";
-      subtitle = "Left-hand shortcuts, right hand on the mouse";
+      subtitle = "Hold X: left-hand shortcuts, right hand on the mouse";
       accent = "#06b6d4";
       keys = keys [
-        "Ctl Q  Ctl W  --     --     --       --  --  --  --  --"
-        "--     --     Ctl S  Ctl T  --       --  --  --  --  --"
-        "Ctl Z  Ctl X  Ctl C  --     Ctl V    --  --  --  --  --"
-        "##  --  --    --  --  --"
+        "tty 2^C+A F2  --     --     --     --       --  --  --  --  --"
+        "tty 3^C+A F3  --     Ctl S  Ctl T  --       --  --  --  --  --"
+        "Ctl Z         ##     Ctl C  --     Ctl V    --  --  --  --  --"
+        "▽  --  --    --  --  --"
       ];
     };
 
@@ -168,13 +168,37 @@ let
       ];
     };
 
+    game = {
+      name = "Game";
+      subtitle = "Dofus, one hand: plain keys, no hold-taps. Right half (▽) is Base";
+      accent = "#84cc16";
+      keys = keys [
+        "1         2     3    4       5         ▽  ▽  ▽  ▽  ▽"
+        "6         7     8    9       0         ▽  ▽  ▽  ▽  ▽"
+        "${shift}  Ctrl  Alt  ${tab}  ${ret}    ▽  ▽  ▽  ▽  ▽"
+        "${esc}  ${space}@end turn  Menu@hold    ▽  ▽  ▽"
+      ];
+    };
+
+    menu = {
+      name = "Menu";
+      subtitle = "Hold Menu in Game: Dofus windows";
+      accent = "#eab308";
+      keys = keys [
+        "Base@leave  M@map  G@guild  F@friends  J@jobs    ▽  ▽  ▽  ▽  ▽"
+        "I@invent.   C@chars  S@spells  Q@quests  H@havre-sac    ▽  ▽  ▽  ▽  ▽"
+        "▽  ▽  ▽  ▽  ▽    ▽  ▽  ▽  ▽  ▽"
+        "▽  ▽  ##    ▽  ▽  ▽"
+      ];
+    };
+
     sys = {
       name = "Sys";
-      subtitle = "Bluetooth profiles, hold Z or /";
+      subtitle = "Hold Z or / : Bluetooth profiles, G enters the game layer";
       accent = "#8b5cf6";
       keys = keys [
         "0^${bt}  1^${bt}  2^${bt}  --  --    --  --  --  --  --"
-        "clear^$$mdi:bluetooth-off$$  --  --  --  --    --  --  --  --  --"
+        "clear^$$mdi:bluetooth-off$$  --  --  --  Game    --  --  --  --  --"
         "##  --  --  --  --    --  --  --  --  --"
         "--  --  --    --  --  --"
       ];
@@ -213,6 +237,10 @@ in
       "os"
       "hyp"
       "sys"
+    ];
+    kagu-game = page 3 "Game layers" [
+      "game"
+      "menu"
     ];
   };
 }
