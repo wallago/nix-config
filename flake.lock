@@ -1295,11 +1295,11 @@
         "rust-overlay": "rust-overlay_5"
       },
       "locked": {
-        "lastModified": 1793742712,
-        "narHash": "sha256-+QpB0PhIJRKJJZ9rIe0eVzIDNTmDhGas4QzVIuQ8f8k=",
+        "lastModified": 1794213489,
+        "narHash": "sha256-+ID7Wy8456MpoU6j7f38Igt/1cXdTw4RwXHnxPM6gfY=",
         "owner": "wallago",
         "repo": "todo",
-        "rev": "eeb1a77c3358208aa825406bd07914adb2bc205d",
+        "rev": "39ecf341262624085e950ae8aeaec17f9a9ca057",
         "type": "github"
       },
       "original": {
