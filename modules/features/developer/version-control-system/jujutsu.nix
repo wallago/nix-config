@@ -83,8 +83,9 @@
               "-d"
               "trunk()"
             ];
-            # Push REV (default: @, or @- if @ is empty) under an auto-named
-            # bookmark and open a PR for it; re-running only pushes.
+            # Push REV (default: @, or @- if @ is empty) under its existing
+            # bookmark, or an auto-named one if it has none, and open a PR for
+            # it; re-running only pushes.
             # Usage: jj pr [REV] [gh pr create args...]
             pr = [
               "util"
@@ -99,8 +100,13 @@
                 if [ "$rev" = "@" ] && [ "$(jj log -r @ --no-graph -T 'empty')" = "true" ]; then
                   rev="@-"
                 fi
-                jj git push --change "$rev"
                 bookmark="$(jj log -r "$rev" --no-graph -T 'local_bookmarks.map(|b| b.name()).join("\n")' | head -n1)"
+                if [ -n "$bookmark" ]; then
+                  jj git push --bookmark "$bookmark"
+                else
+                  jj git push --change "$rev"
+                  bookmark="$(jj log -r "$rev" --no-graph -T 'local_bookmarks.map(|b| b.name()).join("\n")' | head -n1)"
+                fi
                 if gh pr view "$bookmark" >/dev/null 2>&1; then
                   gh pr view "$bookmark" --json url -q .url
                 else
