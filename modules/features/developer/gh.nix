@@ -9,18 +9,12 @@
           pkgs.jq
         ];
         text = ''
-          # Usage: gh setup [--free] [--checks "A,B"] [REPO]  (defaults to the repo in cwd)
-          # --free: skip what a free plan rejects on private repos (auto-merge, rulesets)
+          # Usage: gh setup [--checks "A,B"] [REPO]  (defaults to the repo in cwd)
           # --checks: CI check names a PR needs green before it can merge
           # Safe to re-run: the ruleset is replaced by what the flags describe.
-          free=false
           checks=""
           while [ $# -gt 0 ]; do
             case "$1" in
-              --free)
-                free=true
-                shift
-                ;;
               --checks)
                 checks="''${2:?--checks needs a comma-separated list}"
                 shift 2
@@ -36,14 +30,11 @@
             --enable-merge-commit=false \
             --enable-rebase-merge=false \
             --delete-branch-on-merge \
+            --enable-auto-merge \
             --allow-update-branch \
             --enable-wiki=false \
             --enable-projects=false \
             --enable-discussions=false
-
-          if [ "$free" = false ]; then
-            gh repo edit "$repo" --enable-auto-merge
-          fi
 
           gh repo edit "$repo" \
             --enable-secret-scanning \
@@ -52,11 +43,6 @@
 
           gh api --method PUT "repos/$repo/vulnerability-alerts"
           gh api --method PUT "repos/$repo/automated-security-fixes"
-
-          if [ "$free" = true ]; then
-            echo "free plan: skipped auto-merge and the default-branch ruleset for $repo"
-            exit 0
-          fi
 
           # shellcheck disable=SC2016
           ruleset="$(jq -n --arg checks "$checks" '
@@ -147,7 +133,7 @@
               gh setup "$1"'';
 
             # Apply preset settings + default-branch ruleset
-            # Example: gh setup  |  gh setup --checks "Flake check,Statix" wallago/foo  |  gh setup --free my-org/foo
+            # Example: gh setup  |  gh setup --checks "Flake check,Statix" wallago/foo
             setup = "!gh-repo-setup \"$@\"";
           };
         };
