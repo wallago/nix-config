@@ -6,7 +6,13 @@
         name = "gh-repo-setup";
         runtimeInputs = [ pkgs.gh ];
         text = ''
-          # Usage: gh setup [REPO]  (defaults to the repo in cwd)
+          # Usage: gh setup [REPO] | gh setup-free [REPO]  (defaults to the repo in cwd)
+          # --free: skip what a free plan rejects on private repos (auto-merge, rulesets)
+          free=false
+          if [ "''${1:-}" = "--free" ]; then
+            free=true
+            shift
+          fi
           repo="$(gh repo view ''${1:+"$1"} --json nameWithOwner -q .nameWithOwner)"
 
           gh repo edit "$repo" \
@@ -15,11 +21,14 @@
             --enable-merge-commit=false \
             --enable-rebase-merge=false \
             --delete-branch-on-merge \
-            --enable-auto-merge \
             --allow-update-branch \
             --enable-wiki=false \
             --enable-projects=false \
             --enable-discussions=false
+
+          if [ "$free" = false ]; then
+            gh repo edit "$repo" --enable-auto-merge
+          fi
 
           gh repo edit "$repo" \
             --enable-secret-scanning \
@@ -28,6 +37,11 @@
 
           gh api --method PUT "repos/$repo/vulnerability-alerts"
           gh api --method PUT "repos/$repo/automated-security-fixes"
+
+          if [ "$free" = true ]; then
+            echo "free plan: skipped auto-merge and the default-branch ruleset for $repo"
+            exit 0
+          fi
 
           gh api --method POST "repos/$repo/rulesets" --input - <<'EOF'
           {
@@ -86,6 +100,16 @@
               gh repo create "$@" --source=. --push
               gh setup'';
 
+            # Same as init, for repos on a free plan (e.g. company org)
+            # Example: gh init-free my-org/repo-name --private
+            init-free = ''
+              !set -e
+              git init -b main
+              git add -A
+              git commit -m "chore: initial commit"
+              gh repo create "$@" --source=. --push
+              gh setup-free'';
+
             # Example: gh new this-is-the-repo-name --template wallago/tpl --private
             new = ''
               !set -e
@@ -95,6 +119,10 @@
             # Apply preset settings + default-branch ruleset
             # Example: gh setup  |  gh setup wallago/foo
             setup = "!gh-repo-setup \"$@\"";
+
+            # Free-plan preset: no auto-merge, no ruleset
+            # Example: gh setup-free  |  gh setup-free my-org/foo
+            setup-free = "!gh-repo-setup --free \"$@\"";
           };
         };
       };
