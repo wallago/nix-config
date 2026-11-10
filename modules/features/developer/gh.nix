@@ -9,19 +9,15 @@
           pkgs.jq
         ];
         text = ''
-          # Usage: gh setup [--checks "A,B"] [REPO]  (defaults to the repo in cwd)
-          # --checks: CI check names a PR needs green before it can merge
+          # Usage: gh setup [--ci] [REPO]  (defaults to the repo in cwd)
+          # --ci: a PR needs the `CI` check green before it can merge. The repo's
+          #       workflow must have a job named `CI` that gathers all the others.
           # Safe to re-run: the ruleset is replaced by what the flags describe.
-          checks=""
-          while [ $# -gt 0 ]; do
-            case "$1" in
-              --checks)
-                checks="''${2:?--checks needs a comma-separated list}"
-                shift 2
-                ;;
-              *) break ;;
-            esac
-          done
+          ci=false
+          if [ "''${1:-}" = "--ci" ]; then
+            ci=true
+            shift
+          fi
           repo="$(gh repo view ''${1:+"$1"} --json nameWithOwner -q .nameWithOwner)"
 
           gh repo edit "$repo" \
@@ -45,7 +41,7 @@
           gh api --method PUT "repos/$repo/automated-security-fixes"
 
           # shellcheck disable=SC2016
-          ruleset="$(jq -n --arg checks "$checks" '
+          ruleset="$(jq -n --argjson ci "$ci" '
             [
               { type: "deletion" },
               { type: "non_fast_forward" },
@@ -59,13 +55,12 @@
                   allowed_merge_methods: ["squash"]
               } }
             ]
-            + (if $checks == "" then [] else [
+            + (if $ci then [
               { type: "required_status_checks", parameters: {
                   strict_required_status_checks_policy: false,
-                  required_status_checks:
-                    ($checks | split(",") | map({ context: (sub("^ +"; "") | sub(" +$"; "")) }))
+                  required_status_checks: [ { context: "CI" } ]
               } }
-            ] end)
+            ] else [] end)
             | {
                 name: "protect-default-branch",
                 target: "branch",
@@ -133,7 +128,7 @@
               gh setup "$1"'';
 
             # Apply preset settings + default-branch ruleset
-            # Example: gh setup  |  gh setup --checks "Flake check,Statix" wallago/foo
+            # Example: gh setup  |  gh setup --ci wallago/foo
             setup = "!gh-repo-setup \"$@\"";
           };
         };
