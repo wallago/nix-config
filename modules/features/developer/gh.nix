@@ -4,9 +4,30 @@
     let
       repoSetup = pkgs.writeShellApplication {
         name = "gh-repo-setup";
-        runtimeInputs = [ pkgs.gh ];
+        runtimeInputs = [
+          pkgs.gh
+          pkgs.jq
+        ];
         text = ''
-          # Usage: gh setup [REPO]  (defaults to the repo in cwd)
+          # Usage: gh setup [--free] [--checks "A,B"] [REPO]  (defaults to the repo in cwd)
+          # --free: skip what a free plan rejects on private repos (auto-merge, rulesets)
+          # --checks: CI check names a PR needs green before it can merge
+          # Safe to re-run: the ruleset is replaced by what the flags describe.
+          free=false
+          checks=""
+          while [ $# -gt 0 ]; do
+            case "$1" in
+              --free)
+                free=true
+                shift
+                ;;
+              --checks)
+                checks="''${2:?--checks needs a comma-separated list}"
+                shift 2
+                ;;
+              *) break ;;
+            esac
+          done
           repo="$(gh repo view ''${1:+"$1"} --json nameWithOwner -q .nameWithOwner)"
 
           gh repo edit "$repo" \
@@ -15,11 +36,14 @@
             --enable-merge-commit=false \
             --enable-rebase-merge=false \
             --delete-branch-on-merge \
-            --enable-auto-merge \
             --allow-update-branch \
             --enable-wiki=false \
             --enable-projects=false \
             --enable-discussions=false
+
+          if [ "$free" = false ]; then
+            gh repo edit "$repo" --enable-auto-merge
+          fi
 
           gh repo edit "$repo" \
             --enable-secret-scanning \
@@ -29,19 +53,49 @@
           gh api --method PUT "repos/$repo/vulnerability-alerts"
           gh api --method PUT "repos/$repo/automated-security-fixes"
 
-          gh api --method POST "repos/$repo/rulesets" --input - <<'EOF'
-          {
-            "name": "protect-default-branch",
-            "target": "branch",
-            "enforcement": "active",
-            "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
-            "rules": [
-              { "type": "deletion" },
-              { "type": "non_fast_forward" },
-              { "type": "required_linear_history" }
+          if [ "$free" = true ]; then
+            echo "free plan: skipped auto-merge and the default-branch ruleset for $repo"
+            exit 0
+          fi
+
+          # shellcheck disable=SC2016
+          ruleset="$(jq -n --arg checks "$checks" '
+            [
+              { type: "deletion" },
+              { type: "non_fast_forward" },
+              { type: "required_linear_history" },
+              { type: "pull_request", parameters: {
+                  required_approving_review_count: 0,
+                  dismiss_stale_reviews_on_push: false,
+                  require_code_owner_review: false,
+                  require_last_push_approval: false,
+                  required_review_thread_resolution: true,
+                  allowed_merge_methods: ["squash"]
+              } }
             ]
-          }
-          EOF
+            + (if $checks == "" then [] else [
+              { type: "required_status_checks", parameters: {
+                  strict_required_status_checks_policy: false,
+                  required_status_checks:
+                    ($checks | split(",") | map({ context: (sub("^ +"; "") | sub(" +$"; "")) }))
+              } }
+            ] end)
+            | {
+                name: "protect-default-branch",
+                target: "branch",
+                enforcement: "active",
+                conditions: { ref_name: { include: ["~DEFAULT_BRANCH"], exclude: [] } },
+                rules: .
+              }
+          ')"
+
+          id="$(gh api "repos/$repo/rulesets?includes_parents=false" \
+            --jq '.[] | select(.name == "protect-default-branch") | .id')"
+          if [ -n "$id" ]; then
+            gh api --method PUT "repos/$repo/rulesets/$id" --input - <<<"$ruleset"
+          else
+            gh api --method POST "repos/$repo/rulesets" --input - <<<"$ruleset"
+          fi
         '';
       };
     in
@@ -93,7 +147,7 @@
               gh setup "$1"'';
 
             # Apply preset settings + default-branch ruleset
-            # Example: gh setup  |  gh setup wallago/foo
+            # Example: gh setup  |  gh setup --checks "Flake check,Statix" wallago/foo  |  gh setup --free my-org/foo
             setup = "!gh-repo-setup \"$@\"";
           };
         };
