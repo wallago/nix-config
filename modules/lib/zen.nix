@@ -34,28 +34,52 @@
         url = "https://www.leboncoin.fr/";
       }
     ];
-    entertainment = [
-      {
-        name = "Twitch";
-        id = "327ca5d6-a577-4390-ad51-ef8947a83d82";
-        url = "https://twitch.com";
-      }
-      {
-        name = "Youtube";
-        id = "7db410d2-dcdf-4c34-ba91-2e144093bebe";
-        url = "https://youtube.com";
-      }
-      {
-        name = "Canal";
-        id = "8cf966af-e496-4d5a-b229-aa52f782b6cc";
-        url = "https://www.canalplus.com/";
-      }
-      {
-        name = "Deezer";
-        id = "a9bd4fc5-1880-4c9e-9fa7-f333abc554f9";
-        url = "https://www.deezer.com/";
-      }
-    ];
+    entertainment = {
+      media = [
+        {
+          name = "Twitch";
+          id = "327ca5d6-a577-4390-ad51-ef8947a83d82";
+          url = "https://twitch.com";
+        }
+        {
+          name = "Youtube";
+          id = "7db410d2-dcdf-4c34-ba91-2e144093bebe";
+          url = "https://youtube.com";
+        }
+        {
+          name = "Canal";
+          id = "8cf966af-e496-4d5a-b229-aa52f782b6cc";
+          url = "https://www.canalplus.com/";
+        }
+        {
+          name = "Deezer";
+          id = "a9bd4fc5-1880-4c9e-9fa7-f333abc554f9";
+          url = "https://www.deezer.com/";
+        }
+      ];
+      dofus = [
+        {
+          name = "Ganymede";
+          id = "4bdd6456-c2c7-440f-aafe-183239f9d01e";
+          url = "https://ganymede-app.com/tree";
+        }
+        {
+          name = "Dofocus";
+          id = "f3d50228-5ff8-4b5f-b86a-67575eeac300";
+          url = "https://dofocus.fr/forgemagie/";
+        }
+        {
+          name = "Huzounet";
+          id = "92cbe6db-2d91-48a2-a3e4-24b5649da61f";
+          url = "https://huzounet.fr/equipments";
+        }
+        {
+          name = "Tougli";
+          id = "3831a620-5986-42f5-aed1-4078c935eebe";
+          url = "https://tougli.barbofus.com/";
+        }
+      ];
+    };
     social = [
       {
         name = "Reddit";
