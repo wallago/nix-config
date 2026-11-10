@@ -13,14 +13,14 @@
           workspace = id;
           container = 1;
           position = 100;
-        } self.lib.zen.sites.dev.media
+        } self.lib.zen.sites.entertainment.media
         // mkGroup {
           name = "Dofus";
           id = "b6abeb46-c398-49cf-ba09-d34e7b984444";
           workspace = id;
           container = 1;
           position = 200;
-        } self.lib.zen.sites.dev.dofus;
+        } self.lib.zen.sites.entertainment.dofus;
     in
     {
       programs.zen-browser.profiles = {
