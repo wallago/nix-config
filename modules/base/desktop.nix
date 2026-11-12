@@ -101,6 +101,11 @@
             }
           );
         };
+        dofus.output = mkOption {
+          description = "Monitor Dofus opens on; null means the only monitor";
+          type = types.nullOr types.str;
+          default = null;
+        };
       };
 
       config.assertions = map (e: {

@@ -58,5 +58,8 @@
           key = "0";
         }
       ];
+
+      # Dofus (dofus-niri) opens on the 27".
+      preferences.dofus.output = "DP-2";
     };
 }

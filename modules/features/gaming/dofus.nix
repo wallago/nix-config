@@ -2,9 +2,10 @@
 #   mkdir -p ~/.local/share/ankama
 #   curl -fL -o ~/.local/share/ankama/Ankama-Launcher.AppImage "https://launcher.cdn.ankama.com/installers/production/Ankama%20Launcher-Setup-x86_64.AppImage"
 #   chmod +x ~/.local/share/ankama/Ankama-Launcher.AppImage
-# Play: Ctrl+Alt+F3, log in, `dofus-x` (Ctrl+Alt+F1 back to niri).
-# Leave: quit the launcher, or Ctrl+Alt+Backspace, or `pkill Xorg` from a TTY.
-# Why Xorg: the Linux client can't read monitors under niri/xwayland-satellite.
+# Play: launch "Dofus" from the app launcher, or run `dofus-niri`.
+# Leave: quit the launcher, or close the window.
+# Why a nested X server: the Linux client finds its window through
+# _NET_CLIENT_LIST, which xwayland-satellite doesn't publish. openbox does.
 {
   flake.nixosModules.dofus =
     { pkgs, ... }:
@@ -18,17 +19,29 @@
           ];
         };
       };
-
-      services.xserver = {
-        enable = true;
-        displayManager.startx.enable = true;
-        xkb.options = "terminate:ctrl_alt_bksp";
-      };
     };
 
   flake.homeModules.dofus =
-    { pkgs, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
+      # The monitor Dofus opens on: preferences.dofus.output, or the only one.
+      output =
+        let
+          names = lib.attrNames config.preferences.monitors;
+        in
+        if config.preferences.dofus.output != null then
+          config.preferences.dofus.output
+        else if lib.length names == 1 then
+          lib.head names
+        else
+          throw "preferences.dofus.output: this host has ${toString (lib.length names)} monitors, name the one Dofus opens on";
+      inherit (config.preferences.monitors.${output}) mode;
+
       dofus = pkgs.writeShellApplication {
         name = "dofus";
         runtimeInputs = [ pkgs.xdg-utils ];
@@ -51,40 +64,78 @@
         '';
       };
 
-      # Xorg spans every screen: with DOFUS_OUTPUT set (e.g. DP-2), the other
-      # screens mirror it, blacked out, so the game can only land there.
-      # Don't turn them off: the client aborts on outputs without a CRTC.
-      # Output names (Xorg's, not niri's) go to ~/.local/state/dofus-outputs.
-      dofus-session = pkgs.writeShellScript "dofus-session" ''
-        xrandr=${pkgs.xrandr}/bin/xrandr
-        state="''${XDG_STATE_HOME:-$HOME/.local/state}"
-        mkdir -p "$state"
-        "$xrandr" | grep ' connected' >"$state/dofus-outputs"
-
-        if [ -n "''${DOFUS_OUTPUT:-}" ]; then
-          "$xrandr" --output "$DOFUS_OUTPUT" --primary --pos 0x0
-          for out in $(cut -d' ' -f1 "$state/dofus-outputs"); do
-            [ "$out" = "$DOFUS_OUTPUT" ] ||
-              "$xrandr" --output "$out" --same-as "$DOFUS_OUTPUT" --brightness 0
-          done
-        fi
-
-        ${pkgs.openbox}/bin/openbox &
-        export SDL_VIDEODRIVER=x11
-        exec ${dofus}/bin/dofus
+      # Side mouse buttons hold keys, only inside the nested X server:
+      # 8 is the back button, 9 the forward one.
+      dofus-binds = pkgs.writeText "dofus-xbindkeysrc" ''
+        "xdotool keydown y"
+          b:8
+        "xdotool keyup y"
+          b:8 + Release
+        "xdotool keydown w"
+          b:9
+        "xdotool keyup w"
+          b:9 + Release
       '';
 
-      dofus-x = pkgs.writeShellApplication {
-        name = "dofus-x";
+      # Rootful Xwayland: one fullscreen niri window holding a whole X screen.
+      # -geometry is the monitor's pixel size: -fullscreen alone keeps a
+      # 640x480 screen and stretches it, and -hidpi crashes Xwayland when the
+      # window opens on a scaled output.
+      # -noreset keeps the server up when its last client disconnects.
+      # WAYLAND_DISPLAY is unset so the client only uses its X11 code path.
+      dofus-niri = pkgs.writeShellApplication {
+        name = "dofus-niri";
+        runtimeInputs = [
+          pkgs.xwayland
+          pkgs.openbox
+          pkgs.xbindkeys
+          pkgs.xdotool
+        ];
         text = ''
-          exec startx ${dofus-session} -- vt"''${XDG_VTNR:-3}"
+          run="$(mktemp -d)"
+          xw=""
+          trap 'kill "$xw" 2>/dev/null || true; rm -rf "$run"' EXIT
+
+          # Xwayland picks a free display and writes its number once ready
+          Xwayland -displayfd 3 -noreset -fullscreen \
+            -geometry ${toString mode.width}x${toString mode.height} 3>"$run/display" &
+          xw=$!
+          until [ -s "$run/display" ]; do
+            if ! kill -0 "$xw" 2>/dev/null; then
+              echo "[dofus] Xwayland failed to start" >&2
+              exit 1
+            fi
+            sleep 0.1
+          done
+          DISPLAY=":$(cat "$run/display")"
+          export DISPLAY
+
+          openbox &
+          xbindkeys -n -f ${dofus-binds} &
+          env -u WAYLAND_DISPLAY XDG_SESSION_TYPE=x11 SDL_VIDEODRIVER=x11 \
+            ${dofus}/bin/dofus "$@"
         '';
       };
     in
     {
       home.packages = [
         dofus
-        dofus-x
+        dofus-niri
+      ];
+
+      xdg.desktopEntries.dofus = {
+        name = "Dofus";
+        comment = "Ankama Launcher in a nested X session";
+        exec = "${dofus-niri}/bin/dofus-niri";
+        categories = [ "Game" ];
+      };
+
+      programs.niri.settings.window-rules = [
+        {
+          matches = [ { app-id = "^org\\.freedesktop\\.Xwayland$"; } ];
+          open-on-output = output;
+          open-fullscreen = true;
+        }
       ];
     };
 }
