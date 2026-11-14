@@ -49,6 +49,7 @@
             i: c:
             lib.nameValuePair c.name {
               inherit (c) id url;
+              inherit workspace container;
               folderParentId = id;
               position = position + i;
             }
