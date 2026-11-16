@@ -28,7 +28,6 @@
       "--new-instance"
       "-P"
       "secondary"
-      "https://twitch.tv"
     ];
     webMain = [
       "zen-beta"
