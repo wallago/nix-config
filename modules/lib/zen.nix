@@ -59,6 +59,11 @@
       ];
       dofus = [
         {
+          name = "DofusDB";
+          id = "ed0bd81d-c6b9-4750-8089-13a070a8b084";
+          url = "https://dofusdb.fr/fr/";
+        }
+        {
           name = "Ganymede";
           id = "4bdd6456-c2c7-440f-aafe-183239f9d01e";
           url = "https://ganymede-app.com/tree";
