@@ -10,6 +10,17 @@
         key = config.sops.secrets."syncthing-key".path;
         guiPasswordFile = config.sops.secrets."syncthing-password".path;
         folders = {
+          mind = {
+            name = "sync-mind";
+            devices = {
+              inherit (hosts)
+                coral
+                sponge
+                squid
+                worm
+                ;
+            };
+          };
           todo = {
             name = "sync-todo";
             devices = {
@@ -18,7 +29,6 @@
                 squid
                 sponge
                 worm
-                krill
                 ;
             };
           };

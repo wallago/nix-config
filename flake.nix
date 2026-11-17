@@ -126,6 +126,11 @@
       inputs.claude-code.follows = "claude-code";
     };
 
+    mind = {
+      url = "github:wallago/mind";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ─── RPI ───────────────────────────────────────────────────────────────────
 
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
