@@ -31,7 +31,12 @@
           mind = {
             name = "sync-mind";
             devices = {
-              inherit (hosts) coral squid worm;
+              inherit (hosts)
+                coral
+                squid
+                worm
+                krill
+                ;
             };
           };
           todo = {
