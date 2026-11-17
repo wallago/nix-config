@@ -13,9 +13,10 @@
           readTokenFile = sops.todoReadToken.path;
           address = "0.0.0.0";
           port = 5505;
+          publicUrl = "https://todo.wallago.xyz";
           vault.rootPath = "/home/wallago/sync-todo";
           mcp.allowedHosts = [
-            "https://todo.wallago.xyz"
+            "todo.wallago.xyz"
             "127.0.0.1"
             "::1"
           ];
