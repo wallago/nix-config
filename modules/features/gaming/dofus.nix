@@ -64,8 +64,9 @@
         '';
       };
 
-      # Side mouse buttons hold keys, only inside the nested X server:
-      # 8 is the back button, 9 the forward one.
+      # Mouse buttons send keys, only inside the nested X server:
+      # 8 (back) and 9 (forward) hold keys, 2 (wheel click) taps F1,
+      # Dofus's "Ready / End turn" shortcut.
       dofus-binds = pkgs.writeText "dofus-xbindkeysrc" ''
         "xdotool keydown y"
           b:8
@@ -75,6 +76,8 @@
           b:9
         "xdotool keyup w"
           b:9 + Release
+        "xdotool key F1"
+          b:2
       '';
 
       # Rootful Xwayland: one fullscreen niri window holding a whole X screen.
