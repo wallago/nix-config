@@ -15,7 +15,7 @@
           port = 5505;
           vault.rootPath = "/home/wallago/sync-todo";
           mcp.allowedHosts = [
-            "todo.wallago.xyz"
+            "https://todo.wallago.xyz"
             "127.0.0.1"
             "::1"
           ];
