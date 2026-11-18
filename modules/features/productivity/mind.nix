@@ -18,7 +18,7 @@
         inherit (cfg) user group;
         inherit (cfg.server) tokenFile;
         settings = {
-          server = { inherit (cfg.server) address port; };
+          server = { inherit (cfg.server) address port publicUrl; };
           vault.root = cfg.server.vault.rootPath;
           mcp.allowedHosts = cfg.server.mcp.allowedHosts;
         };
