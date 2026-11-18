@@ -502,11 +502,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1794934439,
-        "narHash": "sha256-PWXPc97TmUDsd7DFr/9fSAoNzHuKXHenb64wsFpBQU0=",
+        "lastModified": 1794998403,
+        "narHash": "sha256-UXMxi+5fTNqonZG9jv8T6PDnE/N/Dkw3M8Y/r7GSbpw=",
         "owner": "wallago",
         "repo": "mind",
-        "rev": "34e72261de1d89f491a4bb2655a66454979836e6",
+        "rev": "c1a1a9c623bf888cbcaa7967b3b747ef121a82a4",
         "type": "github"
       },
       "original": {
