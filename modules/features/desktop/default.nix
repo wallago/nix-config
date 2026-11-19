@@ -21,6 +21,7 @@
         self.homeModules.wallpaper
         self.homeModules.terminalEmulator
         self.homeModules.cheatsheet
+        self.homeModules.idle
       ];
 
       home.packages = with pkgs; [
