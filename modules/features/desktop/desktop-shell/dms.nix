@@ -1,6 +1,6 @@
 {
   flake.nixosModules.dms = {
-    programs.dms-shell = {
+    programs.dux-shell = {
       enable = true;
     };
   };
