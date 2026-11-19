@@ -33,10 +33,6 @@
             description = "Public HTTPS URL of the server, as reached from the internet, with https://.
     Turns on the OAuth login so claude.ai can add /mcp as a connector. Needs tokenFile.";
           };
-          vault.rootPath = lib.mkOption {
-            type = lib.types.str;
-            description = "Vault root path, absolute.";
-          };
           mcp.allowedHosts = lib.mkOption {
             type = lib.types.listOf lib.types.str;
             default = [
