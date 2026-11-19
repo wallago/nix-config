@@ -32,6 +32,11 @@
           sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
           upstream = "http://10.100.0.5:5505"; # Krill
         };
+        "mind.wallago.xyz" = {
+          sslCertificateKey = config.sops.secrets."wallago.xyz-ssl-key".path;
+          sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
+          upstream = "http://10.100.0.5:5506"; # Krill
+        };
       };
     };
 }

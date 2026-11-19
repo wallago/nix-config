@@ -28,6 +28,7 @@
         self.nixosModules.githubRunners
         self.nixosModules.syncthing
         self.nixosModules.todo
+        self.nixosModules.mind
 
         self.nixosModules.disko
       ];

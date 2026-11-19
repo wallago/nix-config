@@ -5,6 +5,7 @@
       self.nixosModules.secretsUser
       self.nixosModules.secretsSyncthing
       self.nixosModules.secretsTodoServer
+      self.nixosModules.secretsMindServer
     ];
 
     sops = {
