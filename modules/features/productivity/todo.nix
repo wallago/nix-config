@@ -20,10 +20,6 @@
           inherit (cfg.server) tokenFile readTokenFile;
           settings = {
             server = { inherit (cfg.server) address port publicUrl; };
-            vault = {
-              root = cfg.server.vault.rootPath;
-              inbox = "todo.md";
-            };
             mcp.allowedHosts = cfg.server.mcp.allowedHosts;
           };
         };

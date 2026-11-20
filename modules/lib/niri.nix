@@ -408,7 +408,13 @@
         key = "Escape";
         title = "Lock";
         category = "apps";
-        action.spawn = "qylock-lock";
+        action.spawn = [
+          "dms"
+          "ipc"
+          "call"
+          "lock"
+          "lock"
+        ];
       }
       {
         mods = [ "Mod" ];
