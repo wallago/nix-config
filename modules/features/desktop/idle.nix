@@ -6,7 +6,7 @@
       timeouts = [
         {
           timeout = 300;
-          command = "qylock-lock";
+          command = "dms ipc call lock lock";
         }
       ];
     };
