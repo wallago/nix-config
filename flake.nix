@@ -121,7 +121,7 @@
     };
 
     todo = {
-      url = "github:wallago/todo";
+      url = "github:wallago/todo?ref=refactor/vault";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.claude-code.follows = "claude-code";
     };
