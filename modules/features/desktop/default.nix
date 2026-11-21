@@ -22,6 +22,7 @@
         self.homeModules.terminalEmulator
         self.homeModules.cheatsheet
         self.homeModules.idle
+        self.homeModules.desktopShell
       ];
 
       home.packages = with pkgs; [
