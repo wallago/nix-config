@@ -64,6 +64,21 @@
         '';
       };
 
+      # Ganymede (Dofus guides overlay). Its AppImage doesn't find
+      # libgpg-error through the sandbox's ld cache, so hand it over directly.
+      ganymede = pkgs.writeShellApplication {
+        name = "ganymede";
+        text = ''
+          appimage="''${XDG_DATA_HOME:-$HOME/.local/share}/ganymede/Ganymede.AppImage"
+          if [ ! -f "$appimage" ]; then
+            echo "[ganymede] AppImage not found, save it as: $appimage" >&2
+            exit 1
+          fi
+          export LD_LIBRARY_PATH="${lib.getLib pkgs.libgpg-error}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+          exec appimage-run "$appimage" "$@"
+        '';
+      };
+
       # Mouse buttons send keys, only inside the nested X server:
       # 8 (back) and 9 (forward) hold keys, 2 (wheel click) taps F1,
       # Dofus's "Ready / End turn" shortcut.
@@ -124,12 +139,20 @@
       home.packages = [
         dofus
         dofus-niri
+        ganymede
       ];
 
       xdg.desktopEntries.dofus = {
         name = "Dofus";
         comment = "Ankama Launcher in a nested X session";
         exec = "${dofus-niri}/bin/dofus-niri";
+        categories = [ "Game" ];
+      };
+
+      xdg.desktopEntries.ganymede = {
+        name = "Ganymede";
+        comment = "Dofus guides";
+        exec = "${ganymede}/bin/ganymede";
         categories = [ "Game" ];
       };
 
