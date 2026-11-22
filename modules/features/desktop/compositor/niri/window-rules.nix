@@ -17,6 +17,15 @@
       ];
 
       programs.niri.settings.window-rules =
+        let
+          # Slots whose app-id can't be under com.slot. (e.g. Ganymede)
+          # still get the slot rules.
+          otherSlotIds = map (e: "^${lib.escapeRegex e.matchAppId}$") (
+            lib.filter (
+              e: e.key != null && e.matchAppId != null && !lib.hasPrefix "com.slot." e.matchAppId
+            ) config.preferences.session
+          );
+        in
         lib.filter (r: r.matches != [ ]) (
           map (
             e:
@@ -52,7 +61,8 @@
               {
                 app-id = "^com\\.slot\\.";
               }
-            ];
+            ]
+            ++ map (id: { app-id = id; }) otherSlotIds;
             open-floating = true;
             default-column-width = {
               proportion = 0.85;
