@@ -162,7 +162,7 @@ let
       accent = "#f43f5e";
       keys = keys [
         "✦ Q@exit  ✦ W  ✦ F@full  ✦ P@power  ✦ B     ✦ 1@todo  ✦ 2@notes  ✦ 3@mail  ✦ 4@web  ✦ 5@habit"
-        "✦ A  ✦ R@res  ✦ S  ✦ T@term  ✦ G     --   ✦ ${left}@move  ✦ ${up}@move  ✦ ${right}@move  --"
+        "✦ A  ✦ R@res  ✦ S  ✦ T@term  ✦ G@ganymede  --   ✦ ${left}@move  ✦ ${up}@move  ✦ ${right}@move  --"
         "✦ Z@to mon ←  ✦ X@to mon →  ✦ C@cal  ✦ D  ✦ V@float ↔     --   ✦ ;@mon ←  ✦ ${down}@move  ✦ '@mon →  --"
         "✦ ${esc}  --  ✦ ${tab}@overview      ✦ ${ret}  ✦ ${space}@help  ##"
       ];
