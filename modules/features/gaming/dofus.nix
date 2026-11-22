@@ -150,11 +150,11 @@
       };
 
       # Ganymede is an app slot on Mod+8 (Kagu Hyp+G).
-      # app-id is the `identifier` in Ganymede's tauri.conf.json.
+      # Its app-id can't be set, so it isn't under com.slot.
       preferences.session = [
         {
           command = [ "${ganymede}/bin/ganymede" ];
-          matchAppId = "com.ganymede.ganymede-app";
+          matchAppId = "Ganymede";
           key = "8";
         }
       ];
