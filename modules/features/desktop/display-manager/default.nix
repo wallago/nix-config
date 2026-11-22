@@ -2,8 +2,7 @@
 {
   flake.nixosModules.displayManager = {
     imports = [
-      self.nixosModules.sddm
-      self.nixosModules.qylock
+      self.nixosModules.duxGreeter
     ];
   };
 }
