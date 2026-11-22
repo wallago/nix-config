@@ -149,6 +149,16 @@
         categories = [ "Game" ];
       };
 
+      # Ganymede is an app slot on Mod+8 (Kagu Hyp+G).
+      # app-id is the `identifier` in Ganymede's tauri.conf.json.
+      preferences.session = [
+        {
+          command = [ "${ganymede}/bin/ganymede" ];
+          matchAppId = "com.ganymede.ganymede-app";
+          key = "8";
+        }
+      ];
+
       xdg.desktopEntries.ganymede = {
         name = "Ganymede";
         comment = "Dofus guides";
