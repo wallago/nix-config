@@ -16,9 +16,6 @@
     # Every client machine joins as tag:external. Admins may open these
     # ports on it; clients may open nothing, so they can't see each other.
     clientPorts = [
-      2201
-      2202
-      2203
       2222
       443
       3000
