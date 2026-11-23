@@ -38,8 +38,8 @@
           upstream = "http://10.100.0.5:5506"; # Krill
         };
         "vpn.wallago.xyz" = {
-          sslCertificateKey = config.sops.secrets."wallago.xyz-ssl-key".path;
-          sslCertificate = config.sops.secrets."wallago.xyz-ssl-crt".path;
+          # DNS only, so it needs a public cert, not the Cloudflare Origin one.
+          useACMEHost = "vpn.wallago.xyz";
           upstream = "http://127.0.0.1:${toString cfg.headscale.server.port}";
           proxyWebsockets = true; # tailscale clients upgrade the connection
         };

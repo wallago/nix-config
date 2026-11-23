@@ -9,12 +9,19 @@
           lib.types.submodule {
             options = {
               sslCertificate = lib.mkOption {
-                type = lib.types.str;
-                description = "SSL certificate";
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "SSL certificate (unused when useACMEHost is set)";
               };
               sslCertificateKey = lib.mkOption {
-                type = lib.types.str;
-                description = "SSL certificate key";
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "SSL certificate key (unused when useACMEHost is set)";
+              };
+              useACMEHost = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "Use this security.acme cert instead of sslCertificate/sslCertificateKey";
               };
               upstream = lib.mkOption {
                 type = lib.types.str;
