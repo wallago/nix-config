@@ -2,20 +2,21 @@
   flake.nixosModules.duxGreeter =
     { config, ... }:
     let
-      inherit (config.preferences.user) name keyboard;
+      inherit (config.preferences.user) name;
+      inherit (config.services.xserver) xkb;
     in
     {
       services.displayManager.dux-greeter = {
         enable = true;
         compositor = {
           name = "niri";
-          # Same keyboard layouts as the niri session, so the password types the same
+          # The host's login layout (services.xserver.xkb), as SDDM used
           customConfig = ''
             input {
                 keyboard {
                     xkb {
-                        layout "us,${keyboard.layout}"
-                        variant ",${keyboard.variant}"
+                        layout "${xkb.layout}"
+                        variant "${xkb.variant}"
                     }
                 }
             }
