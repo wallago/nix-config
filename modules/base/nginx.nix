@@ -20,6 +20,11 @@
                 type = lib.types.str;
                 description = "Address the / location proxies to";
               };
+              proxyWebsockets = lib.mkOption {
+                type = lib.types.bool;
+                default = false;
+                description = "Forward connection upgrades (WebSocket) to the upstream";
+              };
               clientMaxBodySize = lib.mkOption {
                 type = lib.types.str;
                 default = "1m";

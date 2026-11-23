@@ -16,6 +16,7 @@
       self.nixosModules.userOptions
       self.nixosModules.secretsProvisionIso
       self.nixosModules.wireguardClient
+      self.nixosModules.headscaleClient
       self.nixosModules.secrets
       self.nixosModules.ssh
     ];
@@ -60,6 +61,10 @@
         # restarting brings wg1 up
         systemctl restart wg-quick-wg1.service
         ${pkgs.wireguard-tools}/bin/wg show wg1
+
+        # joins the Griffon network now that the pre-auth key is readable
+        systemctl restart tailscaled-autoconnect.service
+        ${pkgs.tailscale}/bin/tailscale status
       '')
     ];
 

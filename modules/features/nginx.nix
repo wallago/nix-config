@@ -38,7 +38,10 @@
             ${lib.concatMapStrings (network: "allow ${network};\n") host.allowedNetworks}
             deny all;
           '';
-          locations."/".proxyPass = host.upstream;
+          locations."/" = {
+            proxyPass = host.upstream;
+            inherit (host) proxyWebsockets;
+          };
         }) cfg.hosts;
       };
 

@@ -118,6 +118,23 @@ secret FILE:
 secrets-rotate:
     find modules/secrets -name '*.yaml' -exec sops updatekeys {} \;
 
+# ── Griffon ───────────────────────────────────────────────
+
+# Mint the shared key for the provisioning ISO (then store it with `just secret provision-iso`)
+[group('griffon')]
+griffon-iso-key:
+    ssh coral-wg0 sudo griffon-key provision
+
+# Mint a single-use key that joins one client PC as tag:griffon
+[group('griffon')]
+griffon-client-key:
+    ssh coral-wg0 sudo griffon-key client
+
+# List the machines on the Griffon network
+[group('griffon')]
+griffon-nodes:
+    ssh coral-wg0 sudo headscale nodes list
+
 # ── Garbage collection ────────────────────────────────────────
 
 # Collect unreferenced store paths (light, no root, keeps generations)
