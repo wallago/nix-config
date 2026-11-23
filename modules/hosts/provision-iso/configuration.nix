@@ -62,7 +62,7 @@
         systemctl restart wg-quick-wg1.service
         ${pkgs.wireguard-tools}/bin/wg show wg1
 
-        # joins the Griffon network now that the pre-auth key is readable
+        # joins the external network now that the pre-auth key is readable
         systemctl restart tailscaled-autoconnect.service
         ${pkgs.tailscale}/bin/tailscale status
       '')

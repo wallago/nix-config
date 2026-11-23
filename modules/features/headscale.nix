@@ -19,16 +19,16 @@ in
 
       policy = {
         tagOwners = {
-          "tag:griffon" = [ admin ];
+          "tag:external" = [ admin ];
           "tag:provision" = [ admin ];
         };
-        # Only admins initiate. Nothing allows tag:griffon or tag:provision
+        # Only admins initiate. Nothing allows tag:external or tag:provision
         # as a source, so clients can't reach admins or each other.
         acls = [
           {
             action = "accept";
             src = [ admin ];
-            dst = [ "tag:griffon:${ports headscale.clientPorts}" ];
+            dst = [ "tag:external:${ports headscale.clientPorts}" ];
           }
           {
             action = "accept";
@@ -40,13 +40,13 @@ in
 
       # Mint pre-auth keys without remembering headscale's flags.
       keyTool = pkgs.writeShellApplication {
-        name = "griffon-key";
+        name = "ext-key";
         runtimeInputs = [
           config.services.headscale.package
           pkgs.jq
         ];
         text = ''
-          # Usage: griffon-key provision | griffon-key client
+          # Usage: ext-key provision | ext-key client
           user_id="$(headscale users list -o json | jq -r '.[] | select(.name == "${headscale.user}") | .id')"
           if [ -z "$user_id" ]; then
             echo "no headscale user '${headscale.user}': run 'headscale users create ${headscale.user}'" >&2
@@ -61,11 +61,11 @@ in
               ;;
             client)
               # One machine, used once at install.
-              headscale preauthkeys create --user "$user_id" --tags tag:griffon \
+              headscale preauthkeys create --user "$user_id" --tags tag:external \
                 --expiration 2h
               ;;
             *)
-              echo "usage: griffon-key provision | griffon-key client" >&2
+              echo "usage: ext-key provision | ext-key client" >&2
               exit 1
               ;;
           esac
@@ -87,7 +87,7 @@ in
           dns = {
             magic_dns = true;
             base_domain = headscale.baseDomain;
-            # Leave the car PCs' own DNS alone; only *.griffon.internal goes to MagicDNS.
+            # Leave the client machines' own DNS alone; only *.ext.internal goes to MagicDNS.
             override_local_dns = false;
           };
           policy = {

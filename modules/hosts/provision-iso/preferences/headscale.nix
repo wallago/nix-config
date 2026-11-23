@@ -8,7 +8,7 @@
         authKeyFile = config.sops.secrets."headscale-provision-key".path;
       };
 
-      # Output of `just griffon-iso-key`, stored with `just secret provision-iso`.
+      # Output of `just ext-iso-key`, stored with `just secret provision-iso`.
       sops.secrets."headscale-provision-key".sopsFile = ../../../secrets/provision-iso.yaml;
     };
 }

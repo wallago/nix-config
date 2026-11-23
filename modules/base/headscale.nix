@@ -22,7 +22,7 @@
         hostName = lib.mkOption {
           type = lib.types.nullOr lib.types.str;
           default = null;
-          description = "Node name on the network (e.g. 4835-corolla)";
+          description = "Node name on the network (e.g. lab-1)";
         };
       };
     };
