@@ -149,6 +149,16 @@
         categories = [ "Game" ];
       };
 
+      # Ganymede is an app slot on Mod+8 (Kagu Hyp+G).
+      # Its app-id can't be set, so it isn't under com.slot.
+      preferences.session = [
+        {
+          command = [ "${ganymede}/bin/ganymede" ];
+          matchAppId = "Ganymede";
+          key = "8";
+        }
+      ];
+
       xdg.desktopEntries.ganymede = {
         name = "Ganymede";
         comment = "Dofus guides";

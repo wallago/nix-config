@@ -80,12 +80,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Lockscreen themes
-    qylock = {
-      url = "github:LordHerdier/qylock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # ─── Tooling ───────────────────────────────────────────────────────────────
 
     # Claude AI agent

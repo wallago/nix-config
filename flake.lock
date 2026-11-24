@@ -50,11 +50,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1795129294,
-        "narHash": "sha256-E0QlifhRoHhi4XK2qR+TK9xepw3LWF090sAP2oVNsgs=",
+        "lastModified": 1795215682,
+        "narHash": "sha256-NzqBLAIGMiQesm6Fe0hO9OXjBzeNJ9x6XO9F97pTKaw=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "3994f6d2eeed6030346815db09c8a47c2de97b89",
+        "rev": "4c9d590f6924cd7bb4437c0a8636abc3ea506ad3",
         "type": "github"
       },
       "original": {
@@ -85,11 +85,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794328522,
-        "narHash": "sha256-h2BYMW4nTFpIqnMd8gwAPFmJAp/1wWLQ6vT0NfL5qt4=",
+        "lastModified": 1795168368,
+        "narHash": "sha256-D35n2Q2v1KrlF9LS/pFl8Z3EBMJW6qvPw5q4HMbXXLg=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "1dd30c29c88d99ce295f15e27f93c49bc5fbae07",
+        "rev": "44761d4f745b95e037458a0e57133c5700c8e320",
         "type": "github"
       },
       "original": {
@@ -221,11 +221,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1795147445,
-        "narHash": "sha256-c6T//Rp76UUiZoc9dF26R6wPlArmmgR+jq2+BZYdGQA=",
+        "lastModified": 1795233760,
+        "narHash": "sha256-eEYtDG99UbXeBMbQDTTAuLsagBoNL5pLsVuRNqnncRE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "6d8de345bb04ba765b32f2e81af3fcf2efd67671",
+        "rev": "e80d6b27d377d16f1c4517788c807a6b2b643f76",
         "type": "gitlab"
       },
       "original": {
@@ -377,24 +377,6 @@
     "flake-utils_6": {
       "inputs": {
         "systems": "systems_7"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_7": {
-      "inputs": {
-        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1791914995,
@@ -1038,27 +1020,6 @@
         "type": "github"
       }
     },
-    "qylock": {
-      "inputs": {
-        "flake-utils": "flake-utils_5",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780672759,
-        "narHash": "sha256-jVNBiyhdA0lU2CapcgoWO9WlnEF/EBg+JfpPf/G/CzQ=",
-        "owner": "LordHerdier",
-        "repo": "qylock",
-        "rev": "b7bad464d588e3dca068e403aace88f817666841",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LordHerdier",
-        "repo": "qylock",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "bp-to-bagels-csv": "bp-to-bagels-csv",
@@ -1078,7 +1039,6 @@
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_6",
         "praline": "praline",
-        "qylock": "qylock",
         "skimmer": "skimmer",
         "sops-nix": "sops-nix",
         "todo": "todo",
@@ -1286,7 +1246,7 @@
         "claude-code": [
           "claude-code"
         ],
-        "flake-utils": "flake-utils_6",
+        "flake-utils": "flake-utils_5",
         "naersk": "naersk_4",
         "nixpkgs": [
           "nixpkgs"
@@ -1433,27 +1393,12 @@
         "type": "github"
       }
     },
-    "systems_8": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "todo": {
       "inputs": {
         "claude-code": [
           "claude-code"
         ],
-        "flake-utils": "flake-utils_7",
+        "flake-utils": "flake-utils_6",
         "naersk": "naersk_5",
         "nixpkgs": [
           "nixpkgs"
@@ -1461,11 +1406,11 @@
         "rust-overlay": "rust-overlay_6"
       },
       "locked": {
-        "lastModified": 1795115587,
-        "narHash": "sha256-8a5wf5QAmgUV/NXsl7axTXnWHR9Dw4mafsykWfJKp6c=",
+        "lastModified": 1795176167,
+        "narHash": "sha256-wv8bSxFfSEwM8Fomja6BahSpdepgEylOHHe98Q2mQh0=",
         "owner": "wallago",
         "repo": "todo",
-        "rev": "0c1de90ca335da8116c2370aa704ba4ab26a8fdd",
+        "rev": "8f6cb1136c2f50dbd366c4ad253de786f400a326",
         "type": "github"
       },
       "original": {
