@@ -162,8 +162,11 @@
       xdg.desktopEntries.ganymede = {
         name = "Ganymede";
         comment = "Dofus guides";
-        exec = "${ganymede}/bin/ganymede";
+        # %u: the browser hands the login back as a ganymede:// URL, which
+        # the single-instance plugin forwards to the open window.
+        exec = "${ganymede}/bin/ganymede %u";
         categories = [ "Game" ];
+        mimeType = [ "x-scheme-handler/ganymede" ];
       };
 
       programs.niri.settings.window-rules = [
