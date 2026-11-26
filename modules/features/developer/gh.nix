@@ -4,9 +4,20 @@
     let
       repoSetup = pkgs.writeShellApplication {
         name = "gh-repo-setup";
-        runtimeInputs = [ pkgs.gh ];
+        runtimeInputs = [
+          pkgs.gh
+          pkgs.jq
+        ];
         text = ''
-          # Usage: gh setup [REPO]  (defaults to the repo in cwd)
+          # Usage: gh setup [--ci] [REPO]  (defaults to the repo in cwd)
+          # --ci: a PR needs the `CI` check green before it can merge. The repo's
+          #       workflow must have a job named `CI` that gathers all the others.
+          # Safe to re-run: the ruleset is replaced by what the flags describe.
+          ci=false
+          if [ "''${1:-}" = "--ci" ]; then
+            ci=true
+            shift
+          fi
           repo="$(gh repo view ''${1:+"$1"} --json nameWithOwner -q .nameWithOwner)"
 
           gh repo edit "$repo" \
@@ -29,19 +40,43 @@
           gh api --method PUT "repos/$repo/vulnerability-alerts"
           gh api --method PUT "repos/$repo/automated-security-fixes"
 
-          gh api --method POST "repos/$repo/rulesets" --input - <<'EOF'
-          {
-            "name": "protect-default-branch",
-            "target": "branch",
-            "enforcement": "active",
-            "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
-            "rules": [
-              { "type": "deletion" },
-              { "type": "non_fast_forward" },
-              { "type": "required_linear_history" }
+          # shellcheck disable=SC2016
+          ruleset="$(jq -n --argjson ci "$ci" '
+            [
+              { type: "deletion" },
+              { type: "non_fast_forward" },
+              { type: "required_linear_history" },
+              { type: "pull_request", parameters: {
+                  required_approving_review_count: 0,
+                  dismiss_stale_reviews_on_push: false,
+                  require_code_owner_review: false,
+                  require_last_push_approval: false,
+                  required_review_thread_resolution: true,
+                  allowed_merge_methods: ["squash"]
+              } }
             ]
-          }
-          EOF
+            + (if $ci then [
+              { type: "required_status_checks", parameters: {
+                  strict_required_status_checks_policy: false,
+                  required_status_checks: [ { context: "CI" } ]
+              } }
+            ] else [] end)
+            | {
+                name: "protect-default-branch",
+                target: "branch",
+                enforcement: "active",
+                conditions: { ref_name: { include: ["~DEFAULT_BRANCH"], exclude: [] } },
+                rules: .
+              }
+          ')"
+
+          id="$(gh api "repos/$repo/rulesets?includes_parents=false" \
+            --jq '.[] | select(.name == "protect-default-branch") | .id')"
+          if [ -n "$id" ]; then
+            gh api --method PUT "repos/$repo/rulesets/$id" --input - <<<"$ruleset"
+          else
+            gh api --method POST "repos/$repo/rulesets" --input - <<<"$ruleset"
+          fi
         '';
       };
     in
@@ -93,7 +128,7 @@
               gh setup "$1"'';
 
             # Apply preset settings + default-branch ruleset
-            # Example: gh setup  |  gh setup wallago/foo
+            # Example: gh setup  |  gh setup --ci wallago/foo
             setup = "!gh-repo-setup \"$@\"";
           };
         };
