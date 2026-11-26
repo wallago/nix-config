@@ -13,10 +13,6 @@
             default = 3000;
           };
         };
-        webDir = lib.mkOption {
-          type = lib.types.str;
-          default = "/srv/skimmer-web";
-        };
         firewallInterfaces = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = [ ];

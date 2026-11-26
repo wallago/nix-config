@@ -1,7 +1,7 @@
 { inputs, self, ... }:
 {
   flake.nixosModules.skimmer =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       prefs = config.preferences.skimmer;
     in
@@ -17,11 +17,10 @@
         verbose = 1;
         schedule = "*-*-* 07:00:00 Europe/Paris";
         serve = true;
+        inherit (prefs) firewallInterfaces;
         settings = {
           reader = "Rust dev on NixOS. Skip explainers, lead with what changed.";
           server = { inherit (prefs.server) address port; };
-          inherit (prefs) firewallInterfaces;
-          web.dir = prefs.webDir;
           miniflux = {
             url = "https://${config.preferences.miniflux.url}";
             username = "admin";
