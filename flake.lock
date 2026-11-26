@@ -1100,11 +1100,11 @@
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1795714087,
-        "narHash": "sha256-qHGaGl8+qoBs0sN/wYEDpucG3leFoHT4YtG+G+DDpE4=",
+        "lastModified": 1795714937,
+        "narHash": "sha256-u6D9/JUmAAw6mFBJTiis4AFi5XibziDixRn3NmwlaZs=",
         "owner": "wallago",
         "repo": "skimmer",
-        "rev": "5d10133eb6cb3bb0707c3ded89b5af84d5ec2d57",
+        "rev": "0c6dca0e2a4f445bd270f4c8ebd2cdeabe4b02ad",
         "type": "github"
       },
       "original": {
