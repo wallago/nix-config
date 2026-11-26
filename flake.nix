@@ -102,12 +102,6 @@
       inputs.claude-code.follows = "claude-code";
     };
 
-    bp-to-bagels-csv = {
-      url = "github:wallago/bp-to-bagels-csv";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.claude-code.follows = "claude-code";
-    };
-
     skimmer = {
       url = "github:wallago/skimmer?ref=alpha";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -115,7 +109,7 @@
     };
 
     todo = {
-      url = "github:wallago/todo?ref=refactor/vault";
+      url = "github:wallago/todo";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.claude-code.follows = "claude-code";
     };
