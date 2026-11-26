@@ -19,6 +19,7 @@
     {
       imports = [
         self.nixosModules.general
+        self.nixosModules.personal
 
         self.nixosModules.userWallago
         self.nixosModules.secretsCoral
@@ -37,12 +38,14 @@
         self.nixosModules.preferencesSkimmerCoral
 
         self.nixosModules.disko
+        self.diskoConfigurations.hostCoral
       ];
 
       preferences.user.name = "wallago";
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
+          self.homeModules.personal
         ];
 
         preferences.user = {

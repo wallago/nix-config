@@ -7,9 +7,7 @@
       self.nixosModules.home-manager
       self.nixosModules.boot
       self.nixosModules.user
-      self.nixosModules.secrets
       self.nixosModules.security
-      self.nixosModules.netrc
       self.nixosModules.networking
 
       self.nixosModules.impermanence
@@ -20,29 +18,21 @@
     ];
   };
 
-  flake.homeModules.general =
-    { config, ... }:
-    let
-      username = config.preferences.user.name;
-    in
-    {
-      imports = [
-        self.homeModules.homeOptions
-        self.homeModules.secrets
-        self.homeModules.user
-        self.homeModules.networking
+  flake.homeModules.general = {
+    imports = [
+      self.homeModules.homeOptions
+      self.homeModules.user
+      self.homeModules.networking
 
-        self.homeModules.impermanence
-        self.homeModules.shell
-        self.homeModules.pager
-      ];
+      self.homeModules.impermanence
+      self.homeModules.shell
+      self.homeModules.pager
+    ];
 
-      sops.gnupg.home = "/home/${username}/.gnupg";
-
-      home = {
-        stateVersion = "26.11";
-      };
-
-      programs.home-manager.enable = true;
+    home = {
+      stateVersion = "26.11";
     };
+
+    programs.home-manager.enable = true;
+  };
 }

@@ -19,6 +19,7 @@
     {
       imports = [
         self.nixosModules.general
+        self.nixosModules.personal
 
         self.nixosModules.userWallago
         self.nixosModules.secretsSponge
@@ -37,6 +38,7 @@
         self.nixosModules.docker
 
         self.nixosModules.disko
+        self.diskoConfigurations.hostSponge
       ];
 
       # default keyboard at login level
@@ -56,6 +58,7 @@
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
+          self.homeModules.personal
 
           self.homeModules.ai
           self.homeModules.desktop

@@ -20,12 +20,14 @@
     {
       imports = [
         self.nixosModules.general
+        self.nixosModules.personal
 
         self.nixosModules.userWallago
         self.nixosModules.secretsAnemone
 
         self.nixosModules.wireguardClient
         self.nixosModules.disko
+        self.diskoConfigurations.hostAnemone
 
         inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5.base
         inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5.bluetooth
@@ -39,6 +41,7 @@
       home-manager.users.${userName} = {
         imports = [
           self.homeModules.general
+          self.homeModules.personal
         ];
         preferences.user.name = userName;
       };
