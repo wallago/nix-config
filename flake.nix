@@ -103,7 +103,7 @@
     };
 
     skimmer = {
-      url = "github:wallago/skimmer?ref=alpha";
+      url = "github:wallago/skimmer";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.claude-code.follows = "claude-code";
     };

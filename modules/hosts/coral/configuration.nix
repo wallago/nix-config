@@ -34,6 +34,7 @@
         self.nixosModules.skimmer
 
         self.nixosModules.preferencesMinifluxCoral
+        self.nixosModules.preferencesSkimmerCoral
 
         self.nixosModules.disko
       ];
