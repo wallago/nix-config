@@ -25,6 +25,7 @@
 
         self.nixosModules.intel
         self.nixosModules.wireguardServer
+        self.nixosModules.headscaleServer
         self.nixosModules.miniflux
         self.nixosModules.syncthing
         self.nixosModules.nginxReverseProxy

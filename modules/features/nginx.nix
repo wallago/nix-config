@@ -24,22 +24,33 @@
         recommendedTlsSettings = true;
         recommendedOptimisation = true;
         recommendedUwsgiSettings = true;
-        virtualHosts = lib.mapAttrs (_: host: {
-          forceSSL = true;
-          enableACME = false;
-          inherit (host)
-            sslCertificate
-            sslCertificateKey
-            ;
-          extraConfig = ''
-            client_max_body_size ${host.clientMaxBodySize};
-          ''
-          + lib.optionalString (host.allowedNetworks or [ ] != [ ]) ''
-            ${lib.concatMapStrings (network: "allow ${network};\n") host.allowedNetworks}
-            deny all;
-          '';
-          locations."/".proxyPass = host.upstream;
-        }) cfg.hosts;
+        virtualHosts = lib.mapAttrs (
+          _: host:
+          {
+            forceSSL = true;
+            enableACME = false;
+            inherit (host) useACMEHost;
+          }
+          // lib.optionalAttrs (host.useACMEHost == null) {
+            inherit (host)
+              sslCertificate
+              sslCertificateKey
+              ;
+          }
+          // {
+            extraConfig = ''
+              client_max_body_size ${host.clientMaxBodySize};
+            ''
+            + lib.optionalString (host.allowedNetworks or [ ] != [ ]) ''
+              ${lib.concatMapStrings (network: "allow ${network};\n") host.allowedNetworks}
+              deny all;
+            '';
+            locations."/" = {
+              proxyPass = host.upstream;
+              inherit (host) proxyWebsockets;
+            };
+          }
+        ) cfg.hosts;
       };
 
       networking.firewall.allowedTCPPorts = [
